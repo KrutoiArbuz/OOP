@@ -104,4 +104,32 @@ class HeapsortTest {
         Heapsort.heapsort(arr);
         assertArrayEquals(copy, arr);
     }
+
+    @Test
+    void shiftDownTestNoChange() {
+        int[] arr = {5, 3, 4};
+        Heapsort.shiftDown(arr, arr.length, 0);
+        assertArrayEquals(new int[]{5, 3, 4}, arr);
+    }
+
+    @Test
+    void shiftDownTestSwapLeft() {
+        int[] arr = {3, 5, 4};
+        Heapsort.shiftDown(arr, arr.length, 0);
+        assertArrayEquals(new int[]{5, 3, 4}, arr);
+    }
+
+    @Test
+    void shiftDownTestSwapRight() {
+        int[] arr = {3, 4, 5};
+        Heapsort.shiftDown(arr, arr.length, 0);
+        assertArrayEquals(new int[]{5, 4, 3}, arr);
+    }
+
+    @Test
+    void shiftDownTestNoChildren() {
+        int[] arr = {5};
+        Heapsort.shiftDown(arr, arr.length, 0);
+        assertArrayEquals(new int[]{5}, arr);
+    }
 }
