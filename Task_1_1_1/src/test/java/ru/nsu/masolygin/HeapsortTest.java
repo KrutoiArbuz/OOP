@@ -132,4 +132,11 @@ class HeapsortTest {
         Heapsort.shiftDown(arr, arr.length, 0);
         assertArrayEquals(new int[]{5}, arr);
     }
+
+    @Test
+    void swapTest() {
+        int[] arr = {1, 2};
+        Heapsort.swap(arr, 0, 1);
+        assertArrayEquals(new int[]{2, 1}, arr);
+    }
 }
