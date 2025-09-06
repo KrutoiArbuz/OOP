@@ -139,4 +139,41 @@ class HeapsortTest {
         Heapsort.swap(arr, 0, 1);
         assertArrayEquals(new int[]{2, 1}, arr);
     }
+
+    @Test
+    void timeTest() {
+        int[] sizes = {1000, 5000, 10000, 20000, 50000, 100000, 200000};
+        double[] times = new double[sizes.length];
+        double[] theoreticalTimes = new double[sizes.length];
+
+
+        for (int i = 0; i < sizes.length; i++) {
+            int size = sizes[i];
+            Random random = new Random(0);
+
+            int[] arr = new int[size];
+            for (int j = 0; j < size; j++) {
+                arr[j] = random.nextInt();
+            }
+
+            long startTime = System.nanoTime();
+            Heapsort.heapsort(arr);
+            long endTime = System.nanoTime();
+
+            long duration = endTime - startTime;
+            double durationInMillis = duration / 1_000_000.0;
+            times[i] = durationInMillis;
+
+            theoreticalTimes[i] = size * Math.log(size) / Math.log(2);
+        }
+
+        for (int i=1; i<times.length; i++) {
+
+
+            double expectGrowth=theoreticalTimes[i]/theoreticalTimes[i-1];
+            double realGrowth=times[i]/times[i-1];
+
+            assertTrue(realGrowth<expectGrowth*1.1);
+        }
+    }
 }
