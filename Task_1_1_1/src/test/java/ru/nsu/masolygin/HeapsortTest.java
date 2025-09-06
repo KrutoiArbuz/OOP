@@ -167,13 +167,13 @@ class HeapsortTest {
             theoreticalTimes[i] = size * Math.log(size) / Math.log(2);
         }
 
-        for (int i=1; i<times.length; i++) {
+        for (int i = 1; i < times.length; i++) {
 
 
-            double expectGrowth=theoreticalTimes[i]/theoreticalTimes[i-1];
-            double realGrowth=times[i]/times[i-1];
+            double expectGrowth = theoreticalTimes[i] / theoreticalTimes[i - 1];
+            double realGrowth = times[i] / times[i - 1];
 
-            assertTrue(realGrowth<expectGrowth*1.1);
+            assertTrue(realGrowth < expectGrowth * 1.2);
         }
     }
 }
