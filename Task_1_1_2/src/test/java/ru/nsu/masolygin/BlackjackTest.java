@@ -3,7 +3,10 @@ package ru.nsu.masolygin;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class BlackjackTest {
 
@@ -78,7 +81,45 @@ class BlackjackTest {
     }
 
     @Test
-    void testDetermineWinner() {
+    void testDetermineWinnerPlayerWins() {
+        Card playerCard1 = new Card(Card.Suit.HEARTS, Card.Rank.TEN);
+        Card playerCard2 = new Card(Card.Suit.CLUBS, Card.Rank.KING);
+        Card dealerCard1 = new Card(Card.Suit.DIAMONDS, Card.Rank.NINE);
+    final Card dealerCard2 = new Card(Card.Suit.SPADES, Card.Rank.EIGHT);
+
+        player.takeCard(playerCard1);
+        player.takeCard(playerCard2);
+        dealer.takeCard(dealerCard1);
+        dealer.takeCard(dealerCard2);
+
+        blackjack.determineWinner();
+
+        assertEquals(20, player.getScore());
+        assertEquals(17, dealer.getScore());
+        assertTrue(player.getScore() > dealer.getScore());
+    }
+
+    @Test
+    void testDetermineWinnerDealerWins() {
+        Card playerCard1 = new Card(Card.Suit.HEARTS, Card.Rank.TEN);
+        Card playerCard2 = new Card(Card.Suit.CLUBS, Card.Rank.FIVE);
+        Card dealerCard1 = new Card(Card.Suit.DIAMONDS, Card.Rank.QUEEN);
+    final Card dealerCard2 = new Card(Card.Suit.SPADES, Card.Rank.SEVEN);
+
+        player.takeCard(playerCard1);
+        player.takeCard(playerCard2);
+        dealer.takeCard(dealerCard1);
+        dealer.takeCard(dealerCard2);
+
+        blackjack.determineWinner();
+
+        assertEquals(15, player.getScore());
+        assertEquals(17, dealer.getScore());
+        assertTrue(dealer.getScore() > player.getScore());
+    }
+
+    @Test
+    void testDetermineWinnerTie() {
         Card playerCard1 = new Card(Card.Suit.HEARTS, Card.Rank.TEN);
         Card playerCard2 = new Card(Card.Suit.CLUBS, Card.Rank.SEVEN);
         Card dealerCard1 = new Card(Card.Suit.DIAMONDS, Card.Rank.NINE);
@@ -91,6 +132,8 @@ class BlackjackTest {
 
         blackjack.determineWinner();
 
+        assertEquals(17, player.getScore());
+        assertEquals(17, dealer.getScore());
         assertEquals(player.getScore(), dealer.getScore());
     }
 
@@ -114,4 +157,14 @@ class BlackjackTest {
 
         assertEquals(18, dealer.getScore());
     }
+
+    @Test
+    void testDeckDepletion() {
+        while (deck.size() > 0) {
+            deck.dealCard();
+        }
+        assertThrows(IllegalStateException.class, () -> deck.dealCard());
+    }
+
+
 }
