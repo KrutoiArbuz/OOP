@@ -120,6 +120,18 @@ public class Blackjack {
             System.out.println("It's a tie!");
         }
     }
+    
+    public Player getPlayer() {
+        return player;
+    }
+
+    public Dealer getDealer() {
+        return dealer;
+    }
+
+    public Deck getDeck() {
+        return deck;
+    }
 
     public static void main(String[] args) {
         Blackjack blackjack = new Blackjack();

@@ -3,6 +3,9 @@ package ru.nsu.masolygin;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -17,10 +20,10 @@ class BlackjackTest {
 
     @BeforeEach
     void setUp() {
-        deck = new Deck();
-        player = new Player("Player");
-        dealer = new Dealer();
         blackjack = new Blackjack();
+        deck = blackjack.getDeck();
+        player = blackjack.getPlayer();
+        dealer = blackjack.getDealer();
     }
 
     @Test
@@ -166,5 +169,77 @@ class BlackjackTest {
         assertThrows(IllegalStateException.class, () -> deck.dealCard());
     }
 
+    @Test
+    void testDetermineWinnerOutputsDealerBusts() {
+        dealer.takeCard(new Card(Card.Suit.HEARTS, Card.Rank.TEN));
+        dealer.takeCard(new Card(Card.Suit.CLUBS, Card.Rank.TEN));
+        dealer.takeCard(new Card(Card.Suit.DIAMONDS, Card.Rank.FIVE));
+
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        blackjack.determineWinner();
+
+        String output = outContent.toString();
+        assertTrue(output.contains("You won the round! The dealer busted."));
+    }
+
+    @Test
+    void testDetermineWinnerOutputsPlayerBusts() {
+        player.takeCard(new Card(Card.Suit.HEARTS, Card.Rank.TEN));
+        player.takeCard(new Card(Card.Suit.CLUBS, Card.Rank.TEN));
+        player.takeCard(new Card(Card.Suit.DIAMONDS, Card.Rank.TWO));
+
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        blackjack.determineWinner();
+
+        String output = outContent.toString();
+    assertTrue(output.contains("You lost the round!"),
+           "Expected output to contain player bust message, but was: " + output);
+    }
+
+    @Test
+    void testDetermineWinnerOutputsPlayerWins() {
+        player.takeCard(new Card(Card.Suit.HEARTS, Card.Rank.TEN));
+        dealer.takeCard(new Card(Card.Suit.HEARTS, Card.Rank.NINE));
+
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        blackjack.determineWinner();
+
+        String output = outContent.toString();
+        assertTrue(output.contains("You won the round!"));
+    }
+
+    @Test
+    void testDetermineWinnerOutputsDealerWins() {
+        dealer.takeCard(new Card(Card.Suit.HEARTS, Card.Rank.TEN));
+        player.takeCard(new Card(Card.Suit.HEARTS, Card.Rank.NINE));
+
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        blackjack.determineWinner();
+
+        String output = outContent.toString();
+        assertTrue(output.contains("You lost the round!"));
+    }
+
+    @Test
+    void testDetermineWinnerOutputsTie() {
+        player.takeCard(new Card(Card.Suit.HEARTS, Card.Rank.TEN));
+        dealer.takeCard(new Card(Card.Suit.HEARTS, Card.Rank.TEN));
+
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        blackjack.determineWinner();
+
+        String output = outContent.toString();
+        assertTrue(output.contains("It's a tie!"));
+    }
 
 }
