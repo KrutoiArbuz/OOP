@@ -41,6 +41,7 @@ public class Blackjack {
         System.out.println("Dealer's cards: ");
         dealer.showHand();
     }
+
     private void statusInitialGame() {
         System.out.println("Your cards: ");
         player.showHand();
