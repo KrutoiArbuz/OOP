@@ -34,7 +34,7 @@ public class Participant {
     }
 
     public void showInitialHand() {
-        System.out.print("[" + hand.getCards().getFirst() + ", <face-down card> ]\n");
+        System.out.print("[" + hand.getCards().get(0) + ", <face-down card> ]\n");
     }
 
     public void clearHand() {
