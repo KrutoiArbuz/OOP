@@ -1,13 +1,13 @@
 package ru.nsu.masolygin;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Hand {
     private final List<Card> cards;
 
     public Hand() {
-        cards = new ArrayList<>();
+        cards = new LinkedList<>();
     }
 
     public void addCard(Card card) {
