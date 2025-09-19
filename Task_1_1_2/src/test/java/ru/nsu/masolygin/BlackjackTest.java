@@ -1,16 +1,16 @@
 package ru.nsu.masolygin;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class BlackjackTest {
 
@@ -90,10 +90,10 @@ class BlackjackTest {
 
     @Test
     void testDetermineWinnerPlayerWins() {
-        Card playerCard1 = new Card(Suit.HEARTS, Rank.TEN);
-        Card playerCard2 = new Card(Suit.CLUBS, Rank.KING);
-        Card dealerCard1 = new Card(Suit.DIAMONDS, Rank.NINE);
-        Card dealerCard2 = new Card(Suit.SPADES, Rank.EIGHT);
+        final Card playerCard1 = new Card(Suit.HEARTS, Rank.TEN);
+        final Card playerCard2 = new Card(Suit.CLUBS, Rank.KING);
+        final Card dealerCard1 = new Card(Suit.DIAMONDS, Rank.NINE);
+        final Card dealerCard2 = new Card(Suit.SPADES, Rank.EIGHT);
 
         player.takeCard(playerCard1);
         player.takeCard(playerCard2);
@@ -109,10 +109,10 @@ class BlackjackTest {
 
     @Test
     void testDetermineWinnerDealerWins() {
-        Card playerCard1 = new Card(Suit.HEARTS, Rank.TEN);
-        Card playerCard2 = new Card(Suit.CLUBS, Rank.FIVE);
-        Card dealerCard1 = new Card(Suit.DIAMONDS, Rank.QUEEN);
-        Card dealerCard2 = new Card(Suit.SPADES, Rank.SEVEN);
+        final Card playerCard1 = new Card(Suit.HEARTS, Rank.TEN);
+        final Card playerCard2 = new Card(Suit.CLUBS, Rank.FIVE);
+        final Card dealerCard1 = new Card(Suit.DIAMONDS, Rank.QUEEN);
+        final Card dealerCard2 = new Card(Suit.SPADES, Rank.SEVEN);
 
         player.takeCard(playerCard1);
         player.takeCard(playerCard2);
@@ -128,10 +128,10 @@ class BlackjackTest {
 
     @Test
     void testDetermineWinnerTie() {
-        Card playerCard1 = new Card(Suit.HEARTS, Rank.TEN);
-        Card playerCard2 = new Card(Suit.CLUBS, Rank.SEVEN);
-        Card dealerCard1 = new Card(Suit.DIAMONDS, Rank.NINE);
-        Card dealerCard2 = new Card(Suit.SPADES, Rank.EIGHT);
+        final Card playerCard1 = new Card(Suit.HEARTS, Rank.TEN);
+        final Card playerCard2 = new Card(Suit.CLUBS, Rank.SEVEN);
+        final Card dealerCard1 = new Card(Suit.DIAMONDS, Rank.NINE);
+        final Card dealerCard2 = new Card(Suit.SPADES, Rank.EIGHT);
 
         player.takeCard(playerCard1);
         player.takeCard(playerCard2);
