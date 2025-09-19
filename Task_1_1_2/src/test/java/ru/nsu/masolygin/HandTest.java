@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class HandTest {
 
@@ -17,15 +18,15 @@ class HandTest {
 
     @Test
     void testAddCard() {
-        Card card = new Card(Card.Suit.HEARTS, Card.Rank.TEN);
+        Card card = new Card(Suit.HEARTS, Rank.TEN);
         hand.addCard(card);
         assertEquals(1, hand.getCards().size());
     }
 
     @Test
     void testCalculateScoreWithNoAces() {
-        Card card1 = new Card(Card.Suit.HEARTS, Card.Rank.TEN);
-        Card card2 = new Card(Card.Suit.CLUBS, Card.Rank.FIVE);
+        Card card1 = new Card(Suit.HEARTS, Rank.TEN);
+        Card card2 = new Card(Suit.CLUBS, Rank.FIVE);
         hand.addCard(card1);
         hand.addCard(card2);
         assertEquals(15, hand.calculateScore());
@@ -33,8 +34,8 @@ class HandTest {
 
     @Test
     void testCalculateScoreWithAces() {
-        Card card1 = new Card(Card.Suit.HEARTS, Card.Rank.ACE);
-        Card card2 = new Card(Card.Suit.CLUBS, Card.Rank.TEN);
+        Card card1 = new Card(Suit.HEARTS, Rank.ACE);
+        Card card2 = new Card(Suit.CLUBS, Rank.TEN);
         hand.addCard(card1);
         hand.addCard(card2);
         assertEquals(21, hand.calculateScore());
@@ -42,9 +43,9 @@ class HandTest {
 
     @Test
     void testCalculateScoreWithMultipleAces() {
-        Card card1 = new Card(Card.Suit.HEARTS, Card.Rank.ACE);
-        Card card2 = new Card(Card.Suit.CLUBS, Card.Rank.ACE);
-        Card card3 = new Card(Card.Suit.DIAMONDS, Card.Rank.NINE);
+        Card card1 = new Card(Suit.HEARTS, Rank.ACE);
+        Card card2 = new Card(Suit.CLUBS, Rank.ACE);
+        Card card3 = new Card(Suit.DIAMONDS, Rank.NINE);
         hand.addCard(card1);
         hand.addCard(card2);
         hand.addCard(card3);
@@ -53,9 +54,9 @@ class HandTest {
 
     @Test
     void testCalculateScoreWithBust() {
-        Card card1 = new Card(Card.Suit.HEARTS, Card.Rank.TEN);
-        Card card2 = new Card(Card.Suit.CLUBS, Card.Rank.TEN);
-        Card card3 = new Card(Card.Suit.DIAMONDS, Card.Rank.TEN);
+        Card card1 = new Card(Suit.HEARTS, Rank.TEN);
+        Card card2 = new Card(Suit.CLUBS, Rank.TEN);
+        Card card3 = new Card(Suit.DIAMONDS, Rank.TEN);
         hand.addCard(card1);
         hand.addCard(card2);
         hand.addCard(card3);
@@ -64,10 +65,10 @@ class HandTest {
 
     @Test
     void testCalculateScoreWithAceAndBust() {
-        Card card1 = new Card(Card.Suit.HEARTS, Card.Rank.ACE);
-        Card card2 = new Card(Card.Suit.CLUBS, Card.Rank.QUEEN);
-        Card card3 = new Card(Card.Suit.DIAMONDS, Card.Rank.TEN);
-        Card card4 = new Card(Card.Suit.DIAMONDS, Card.Rank.TEN);
+        Card card1 = new Card(Suit.HEARTS, Rank.ACE);
+        Card card2 = new Card(Suit.CLUBS, Rank.QUEEN);
+        Card card3 = new Card(Suit.DIAMONDS, Rank.TEN);
+        Card card4 = new Card(Suit.DIAMONDS, Rank.TEN);
 
         hand.addCard(card1);
         hand.addCard(card2);
@@ -78,8 +79,8 @@ class HandTest {
 
     @Test
     void testIsBlackjack() {
-        Card card1 = new Card(Card.Suit.HEARTS, Card.Rank.ACE);
-        Card card2 = new Card(Card.Suit.CLUBS, Card.Rank.KING);
+        Card card1 = new Card(Suit.HEARTS, Rank.ACE);
+        Card card2 = new Card(Suit.CLUBS, Rank.KING);
         hand.addCard(card1);
         hand.addCard(card2);
         assertTrue(hand.isBlackjack());
@@ -87,9 +88,9 @@ class HandTest {
 
     @Test
     void testIsNotBlackjack() {
-        Card card1 = new Card(Card.Suit.HEARTS, Card.Rank.ACE);
-        Card card2 = new Card(Card.Suit.CLUBS, Card.Rank.TEN);
-        Card card3 = new Card(Card.Suit.DIAMONDS, Card.Rank.FIVE);
+        Card card1 = new Card(Suit.HEARTS, Rank.ACE);
+        Card card2 = new Card(Suit.CLUBS, Rank.TEN);
+        Card card3 = new Card(Suit.DIAMONDS, Rank.FIVE);
         hand.addCard(card1);
         hand.addCard(card2);
         hand.addCard(card3);
@@ -98,7 +99,7 @@ class HandTest {
 
     @Test
     void testClearHand() {
-        Card card1 = new Card(Card.Suit.HEARTS, Card.Rank.ACE);
+        Card card1 = new Card(Suit.HEARTS, Rank.ACE);
         hand.addCard(card1);
         hand.clear();
         assertTrue(hand.getCards().isEmpty());
@@ -106,18 +107,20 @@ class HandTest {
 
     @Test
     void testShowHand() {
-        Card card1 = new Card(Card.Suit.HEARTS, Card.Rank.ACE);
-        Card card2 = new Card(Card.Suit.CLUBS, Card.Rank.KING);
+        Card card1 = new Card(Suit.HEARTS, Rank.KING);
+        Card card2 = new Card(Suit.SPADES, Rank.ACE);
+
         hand.addCard(card1);
         hand.addCard(card2);
-        hand.showHand();  // Test to ensure the method works correctly
+
+        assertDoesNotThrow(() -> hand.getHandDisplay());
     }
 
     @Test
     void testMultipleCards() {
-        Card card1 = new Card(Card.Suit.HEARTS, Card.Rank.TWO);
-        Card card2 = new Card(Card.Suit.CLUBS, Card.Rank.THREE);
-        Card card3 = new Card(Card.Suit.DIAMONDS, Card.Rank.FOUR);
+        Card card1 = new Card(Suit.HEARTS, Rank.TWO);
+        Card card2 = new Card(Suit.CLUBS, Rank.THREE);
+        Card card3 = new Card(Suit.DIAMONDS, Rank.FOUR);
         hand.addCard(card1);
         hand.addCard(card2);
         hand.addCard(card3);

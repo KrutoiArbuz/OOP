@@ -14,8 +14,8 @@ public class Deck {
     }
 
     private void createDeck() {
-        for (Card.Suit suit : Card.Suit.values()) {
-            for (Card.Rank rank : Card.Rank.values()) {
+        for (Suit suit : Suit.values()) {
+            for (Rank rank : Rank.values()) {
                 cards.add(new Card(suit, rank));
             }
         }

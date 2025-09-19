@@ -3,65 +3,122 @@ package ru.nsu.masolygin;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ParticipantTest {
 
-    private Participant player;
+    private Player player;
+    private Dealer dealer;
 
     @BeforeEach
     void setUp() {
-        player = new Participant("Player");
+        player = new Player("Test Player");
+        dealer = new Dealer();
     }
 
     @Test
-    void testGetName() {
-        assertEquals("Player", player.getName());
+    void testPlayerConstructor() {
+        assertEquals("Test Player", player.getName());
+        assertEquals(0, player.getScore());
+        assertFalse(player.isBusted());
+        assertFalse(player.isBlackjack());
+        assertFalse(player.isDealer());
     }
 
+    @Test
+    void testDealerConstructor() {
+        assertEquals("Dealer", dealer.getName());
+        assertEquals(0, dealer.getScore());
+        assertFalse(dealer.isBusted());
+        assertFalse(dealer.isBlackjack());
+        assertTrue(dealer.isDealer());
+    }
+
+    @Test
+    void testTakeCard() {
+        Card card = new Card(Suit.HEARTS, Rank.KING);
+        player.takeCard(card);
+
+        assertEquals(10, player.getScore());
+        assertFalse(player.isBusted());
+        assertFalse(player.isBlackjack());
+    }
 
     @Test
     void testGetScore() {
-        Card card1 = new Card(Card.Suit.HEARTS, Card.Rank.TEN);
-        Card card2 = new Card(Card.Suit.CLUBS, Card.Rank.FIVE);
-        player.takeCard(card1);
-        player.takeCard(card2);
-        assertEquals(15, player.getScore());
+        assertEquals(0, player.getScore());
+
+        player.takeCard(new Card(Suit.HEARTS, Rank.ACE));
+        assertEquals(11, player.getScore());
+
+        player.takeCard(new Card(Suit.SPADES, Rank.NINE));
+        assertEquals(20, player.getScore());
     }
 
     @Test
     void testIsBusted() {
-        Card card1 = new Card(Card.Suit.HEARTS, Card.Rank.TEN);
-        Card card2 = new Card(Card.Suit.CLUBS, Card.Rank.TEN);
-        Card card3 = new Card(Card.Suit.DIAMONDS, Card.Rank.FIVE);
-        player.takeCard(card1);
-        player.takeCard(card2);
-        player.takeCard(card3);
+        assertFalse(player.isBusted());
+
+        player.takeCard(new Card(Suit.HEARTS, Rank.KING));
+        player.takeCard(new Card(Suit.SPADES, Rank.QUEEN));
+        player.takeCard(new Card(Suit.DIAMONDS, Rank.FIVE));
+
         assertTrue(player.isBusted());
+        assertEquals(25, player.getScore());
     }
 
     @Test
     void testIsBlackjack() {
-        Card card1 = new Card(Card.Suit.HEARTS, Card.Rank.ACE);
-        Card card2 = new Card(Card.Suit.CLUBS, Card.Rank.KING);
-        player.takeCard(card1);
-        player.takeCard(card2);
+        assertFalse(player.isBlackjack());
+
+        player.takeCard(new Card(Suit.HEARTS, Rank.ACE));
+        player.takeCard(new Card(Suit.SPADES, Rank.KING));
+
         assertTrue(player.isBlackjack());
+        assertEquals(21, player.getScore());
     }
 
     @Test
     void testClearHand() {
-        Card card1 = new Card(Card.Suit.HEARTS, Card.Rank.ACE);
-        player.takeCard(card1);
+        player.takeCard(new Card(Suit.HEARTS, Rank.KING));
+        player.takeCard(new Card(Suit.SPADES, Rank.ACE));
+
+        assertEquals(21, player.getScore());
+        assertTrue(player.isBlackjack());
+
         player.clearHand();
+
         assertEquals(0, player.getScore());
+        assertFalse(player.isBusted());
+        assertFalse(player.isBlackjack());
     }
 
     @Test
-    void testShowInitialHand() {
-        Card card1 = new Card(Card.Suit.HEARTS, Card.Rank.ACE);
-        player.takeCard(card1);
-        player.showInitialHand();
+    void testShowMethods() {
+        player.takeCard(new Card(Suit.HEARTS, Rank.KING));
+        player.takeCard(new Card(Suit.SPADES, Rank.ACE));
+
+        assertDoesNotThrow(() -> player.getHandDisplay());
+        assertDoesNotThrow(() -> player.getInitialHandDisplay());
+    }
+
+    @Test
+    void testDealerBehavior() {
+        GameConsole console = new GameConsole();
+
+        dealer.takeCard(new Card(Suit.HEARTS, Rank.TEN));
+        dealer.takeCard(new Card(Suit.SPADES, Rank.FIVE));
+        assertTrue(dealer.shouldTakeCard(console));
+
+        dealer.takeCard(new Card(Suit.DIAMONDS, Rank.TWO));
+        assertFalse(dealer.shouldTakeCard(console));
+    }
+
+    @Test
+    void testPlayerShowInitialHand() {
+        dealer.takeCard(new Card(Suit.HEARTS, Rank.KING));
+        dealer.takeCard(new Card(Suit.SPADES, Rank.ACE));
+
+        assertDoesNotThrow(() -> dealer.getInitialHandDisplay());
     }
 }

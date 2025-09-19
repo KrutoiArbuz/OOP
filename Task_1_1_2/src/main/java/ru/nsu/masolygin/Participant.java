@@ -1,6 +1,6 @@
 package ru.nsu.masolygin;
 
-public class Participant {
+public abstract class Participant {
     private final Hand hand;
     private final String name;
 
@@ -29,13 +29,21 @@ public class Participant {
         return hand.isBlackjack();
     }
 
-    public void showHand() {
-        hand.showHand();
+    public String getHandDisplay() {
+        return hand.getHandDisplay();
     }
 
-    public void showInitialHand() {
-        System.out.print("[" + hand.getCards().get(0) + ", <face-down card> ]\n");
+    public String getInitialHandDisplay() {
+        return hand.getInitialHandDisplay();
     }
+
+    public abstract boolean shouldTakeCard(GameConsole console);
+
+    public abstract void playTurn(Deck deck, GameConsole console);
+
+    protected abstract void onCardDrawn(Card card, GameConsole console);
+
+    public abstract boolean isDealer();
 
     public void clearHand() {
         hand.clear();

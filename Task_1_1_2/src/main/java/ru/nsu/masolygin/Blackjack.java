@@ -1,132 +1,109 @@
 package ru.nsu.masolygin;
 
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Blackjack {
     private final Deck deck;
-    private final Player player;
-    private final Dealer dealer;
+    private final List<Participant> participants;
+    private final GameConsole console;
     private int round;
 
     public Blackjack() {
         this.deck = new Deck();
-        this.player = new Player("Player");
-        this.dealer = new Dealer();
+        this.participants = new ArrayList<>();
+        this.console = new GameConsole();
         this.round = 1;
+
+        participants.add(new Player("Player 1"));
+        participants.add(new Player("Player 2"));
+        participants.add(new Dealer());
     }
 
     public void startGame() {
-        System.out.println("Welcome to Blackjack!");
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
+        console.printWelcome();
 
-            System.out.println("\nRound " + round);
+        while (true) {
+            console.printRound(round);
             deck.shuffleDeck();
             dealInitialCards();
 
-            playerTurn(scanner);
-            dealerTurn();
+            for (Participant participant : participants) {
+                participant.playTurn(deck, console);
+                if (participant.isDealer()) {
+                    showFinalStatus();
+                } else {
+                    showGameStatus();
+                }
+            }
+
             determineWinner();
-
-            player.clearHand();
-            dealer.clearHand();
-
+            clearAllHands();
             round++;
         }
     }
 
-    private void statusGame() {
-        System.out.println("Your cards: ");
-        player.showHand();
-        System.out.println("Dealer's cards: ");
-        dealer.showHand();
-    }
-
-    private void statusInitialGame() {
-        System.out.println("Your cards: ");
-        player.showHand();
-        System.out.println("Dealer's cards: ");
-        dealer.showInitialHand();
-    }
-
     private void dealInitialCards() {
-        System.out.println("The dealer dealt the cards");
+        console.printCardsDealt();
 
-
-        player.takeCard(deck.dealCard());
-        dealer.takeCard(deck.dealCard());
-        player.takeCard(deck.dealCard());
-        dealer.takeCard(deck.dealCard());
-
-
-        statusInitialGame();
-    }
-
-    private void playerTurn(Scanner scanner) {
-        boolean playerStopped = false;
-        while (!playerStopped) {
-            System.out.println("Your turn");
-            System.out.println("-------");
-            System.out.println("Enter 1 to take a card, and 0 to stand.");
-            int choice = scanner.nextInt();
-            if (choice == 1) {
-                Card card = deck.dealCard();
-                player.takeCard(card);
-                System.out.println("You drew " + card);
-                statusInitialGame();
-            } else if (choice == 0) {
-                playerStopped = true;
-            }
-
-            if (player.isBusted()) {
-                System.out.println("You busted!");
-                break;
-            } else if (player.isBlackjack()) {
-                System.out.println("You got a blackjack!");
-                break;
+        for (int i = 0; i < 2; i++) {
+            for (Participant participant : participants) {
+                participant.takeCard(deck.dealCard());
             }
         }
+
+        console.printInitialGameStatus(participants);
     }
 
-    private void dealerTurn() {
-        System.out.println("Dealer's turn");
-        System.out.println("-------");
+    private void showGameStatus() {
+        console.printInitialGameStatus(participants);
+    }
 
-        while (dealer.shouldTakeCard()) {
-            Card card = deck.dealCard();
-            dealer.takeCard(card);
-            System.out.println("The dealer reveals " + card);
-            statusGame();
-        }
+    private void showFinalStatus() {
+        console.printGameStatus(participants);
+    }
 
-        if (dealer.isBusted()) {
-            System.out.println("The dealer busted!");
+    public Dealer getDealer() {
+        return (Dealer) participants.stream()
+                .filter(Participant::isDealer)
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException("No dealer found"));
+    }
+
+    private void clearAllHands() {
+        for (Participant participant : participants) {
+            participant.clearHand();
         }
     }
 
     public void determineWinner() {
-        System.out.println("Player's score: " + player.getScore());
-        System.out.println("Dealer's score: " + dealer.getScore());
+        for (Participant participant : participants) {
+            console.printScore(participant.getName(), participant.getScore());
+        }
 
-        if (dealer.isBusted()) {
-            System.out.println("You won the round! The dealer busted.");
-        } else if (player.isBusted()) {
-            System.out.println("You lost the round! You busted.");
-        } else if (player.getScore() > dealer.getScore()) {
-            System.out.println("You won the round!");
-        } else if (player.getScore() < dealer.getScore()) {
-            System.out.println("You lost the round!");
-        } else {
-            System.out.println("It's a tie!");
+        Dealer dealer = getDealer();
+
+        for (Participant participant : participants) {
+            if (participant.isDealer()) {
+                continue;
+            }
+
+            if (dealer.isBusted()) {
+                console.printWinner(participant.getName() + " won! The dealer busted.");
+            } else if (participant.isBusted()) {
+                console.printLoser(participant.getName() + " lost! You busted.");
+            } else if (participant.getScore() > dealer.getScore()) {
+                console.printWinner(participant.getName());
+            } else if (participant.getScore() < dealer.getScore()) {
+                console.printLoser(participant.getName());
+            } else {
+                console.printTie();
+            }
         }
     }
-    
-    public Player getPlayer() {
-        return player;
-    }
 
-    public Dealer getDealer() {
-        return dealer;
+    public List<Participant> getParticipants() {
+        return participants;
     }
 
     public Deck getDeck() {

@@ -23,7 +23,7 @@ public class Hand {
         int aceCount = 0;
         for (Card card : cards) {
             score += card.getValue();
-            if (card.getRank() == Card.Rank.ACE) {
+            if (card.getRank() == Rank.ACE) {
                 aceCount++;
             }
         }
@@ -42,12 +42,21 @@ public class Hand {
         return cards.size() == 2 && calculateScore() == 21;
     }
 
-    public void showHand() {
-        System.out.print("[");
-        for (Card card : cards) {
-            System.out.print(card + ", ");
+    public String getInitialHandDisplay() {
+        if (cards.isEmpty()) {
+            return "[<no cards>]";
         }
-        System.out.println("] > " + calculateScore());
+        return "[" + cards.get(0) + ", <face-down card>]";
+    }
+
+    public String getHandDisplay() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        for (Card card : cards) {
+            sb.append(card).append(", ");
+        }
+        sb.append("] > ").append(calculateScore());
+        return sb.toString();
     }
 
     public void clear() {

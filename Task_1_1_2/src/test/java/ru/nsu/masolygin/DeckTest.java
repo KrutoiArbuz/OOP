@@ -40,4 +40,33 @@ class DeckTest {
         }
         assertThrows(IllegalStateException.class, () -> deck.dealCard());
     }
+
+    @Test
+    void testDeckConsistency() {
+        int[] suitCounts = new int[4];
+
+        for (int i = 0; i < 52; i++) {
+            Card card = deck.dealCard();
+            Suit suit = card.getSuit();
+
+            switch (suit) {
+                case HEARTS:
+                    suitCounts[0]++;
+                    break;
+                case CLUBS:
+                    suitCounts[1]++;
+                    break;
+                case DIAMONDS:
+                    suitCounts[2]++;
+                    break;
+                case SPADES:
+                    suitCounts[3]++;
+                    break;
+            }
+        }
+
+        for (int count : suitCounts) {
+            assertEquals(13, count);
+        }
+    }
 }

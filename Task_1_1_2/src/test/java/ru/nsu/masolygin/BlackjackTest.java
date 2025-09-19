@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -22,15 +23,17 @@ class BlackjackTest {
     void setUp() {
         blackjack = new Blackjack();
         deck = blackjack.getDeck();
-        player = blackjack.getPlayer();
+
+        List<Participant> participants = blackjack.getParticipants();
+        player = (Player) participants.stream().filter(p -> !p.isDealer()).findFirst().orElse(null);
         dealer = blackjack.getDealer();
     }
 
     @Test
     void testPlayerBusts() {
-        Card card1 = new Card(Card.Suit.HEARTS, Card.Rank.TEN);
-        Card card2 = new Card(Card.Suit.CLUBS, Card.Rank.KING);
-        Card card3 = new Card(Card.Suit.DIAMONDS, Card.Rank.EIGHT);
+        Card card1 = new Card(Suit.HEARTS, Rank.TEN);
+        Card card2 = new Card(Suit.CLUBS, Rank.KING);
+        Card card3 = new Card(Suit.DIAMONDS, Rank.EIGHT);
 
         player.takeCard(card1);
         player.takeCard(card2);
@@ -41,8 +44,8 @@ class BlackjackTest {
 
     @Test
     void testPlayerBlackjack() {
-        Card card1 = new Card(Card.Suit.HEARTS, Card.Rank.ACE);
-        Card card2 = new Card(Card.Suit.CLUBS, Card.Rank.KING);
+        Card card1 = new Card(Suit.HEARTS, Rank.ACE);
+        Card card2 = new Card(Suit.CLUBS, Rank.KING);
 
         player.takeCard(card1);
         player.takeCard(card2);
@@ -52,9 +55,9 @@ class BlackjackTest {
 
     @Test
     void testDealerBusts() {
-        Card card1 = new Card(Card.Suit.HEARTS, Card.Rank.TEN);
-        Card card2 = new Card(Card.Suit.CLUBS, Card.Rank.TEN);
-        Card card3 = new Card(Card.Suit.DIAMONDS, Card.Rank.FIVE);
+        Card card1 = new Card(Suit.HEARTS, Rank.TEN);
+        Card card2 = new Card(Suit.CLUBS, Rank.TEN);
+        Card card3 = new Card(Suit.DIAMONDS, Rank.FIVE);
 
         dealer.takeCard(card1);
         dealer.takeCard(card2);
@@ -65,30 +68,32 @@ class BlackjackTest {
 
     @Test
     void testDealerDecisionToTakeCard() {
-        Card card1 = new Card(Card.Suit.HEARTS, Card.Rank.TEN);
-        Card card2 = new Card(Card.Suit.CLUBS, Card.Rank.SIX);
+        Card card1 = new Card(Suit.HEARTS, Rank.TEN);
+        Card card2 = new Card(Suit.CLUBS, Rank.SIX);
         dealer.takeCard(card1);
         dealer.takeCard(card2);
 
-        assertTrue(dealer.shouldTakeCard());
+        GameConsole console = new GameConsole();
+        assertTrue(dealer.shouldTakeCard(console));
     }
 
     @Test
     void testDealerStand() {
-        Card card1 = new Card(Card.Suit.HEARTS, Card.Rank.TEN);
-        Card card2 = new Card(Card.Suit.CLUBS, Card.Rank.SEVEN);
+        Card card1 = new Card(Suit.HEARTS, Rank.TEN);
+        Card card2 = new Card(Suit.CLUBS, Rank.SEVEN);
         dealer.takeCard(card1);
         dealer.takeCard(card2);
 
-        assertFalse(dealer.shouldTakeCard());
+        GameConsole console = new GameConsole();
+        assertFalse(dealer.shouldTakeCard(console));
     }
 
     @Test
     void testDetermineWinnerPlayerWins() {
-        Card playerCard1 = new Card(Card.Suit.HEARTS, Card.Rank.TEN);
-        Card playerCard2 = new Card(Card.Suit.CLUBS, Card.Rank.KING);
-        Card dealerCard1 = new Card(Card.Suit.DIAMONDS, Card.Rank.NINE);
-    final Card dealerCard2 = new Card(Card.Suit.SPADES, Card.Rank.EIGHT);
+        Card playerCard1 = new Card(Suit.HEARTS, Rank.TEN);
+        Card playerCard2 = new Card(Suit.CLUBS, Rank.KING);
+        Card dealerCard1 = new Card(Suit.DIAMONDS, Rank.NINE);
+        Card dealerCard2 = new Card(Suit.SPADES, Rank.EIGHT);
 
         player.takeCard(playerCard1);
         player.takeCard(playerCard2);
@@ -104,10 +109,10 @@ class BlackjackTest {
 
     @Test
     void testDetermineWinnerDealerWins() {
-        Card playerCard1 = new Card(Card.Suit.HEARTS, Card.Rank.TEN);
-        Card playerCard2 = new Card(Card.Suit.CLUBS, Card.Rank.FIVE);
-        Card dealerCard1 = new Card(Card.Suit.DIAMONDS, Card.Rank.QUEEN);
-    final Card dealerCard2 = new Card(Card.Suit.SPADES, Card.Rank.SEVEN);
+        Card playerCard1 = new Card(Suit.HEARTS, Rank.TEN);
+        Card playerCard2 = new Card(Suit.CLUBS, Rank.FIVE);
+        Card dealerCard1 = new Card(Suit.DIAMONDS, Rank.QUEEN);
+        Card dealerCard2 = new Card(Suit.SPADES, Rank.SEVEN);
 
         player.takeCard(playerCard1);
         player.takeCard(playerCard2);
@@ -123,10 +128,10 @@ class BlackjackTest {
 
     @Test
     void testDetermineWinnerTie() {
-        Card playerCard1 = new Card(Card.Suit.HEARTS, Card.Rank.TEN);
-        Card playerCard2 = new Card(Card.Suit.CLUBS, Card.Rank.SEVEN);
-        Card dealerCard1 = new Card(Card.Suit.DIAMONDS, Card.Rank.NINE);
-        Card dealerCard2 = new Card(Card.Suit.SPADES, Card.Rank.EIGHT);
+        Card playerCard1 = new Card(Suit.HEARTS, Rank.TEN);
+        Card playerCard2 = new Card(Suit.CLUBS, Rank.SEVEN);
+        Card dealerCard1 = new Card(Suit.DIAMONDS, Rank.NINE);
+        Card dealerCard2 = new Card(Suit.SPADES, Rank.EIGHT);
 
         player.takeCard(playerCard1);
         player.takeCard(playerCard2);
@@ -142,8 +147,8 @@ class BlackjackTest {
 
     @Test
     void testPlayerScoreCalculation() {
-        Card card1 = new Card(Card.Suit.HEARTS, Card.Rank.ACE);
-        Card card2 = new Card(Card.Suit.CLUBS, Card.Rank.TEN);
+        Card card1 = new Card(Suit.HEARTS, Rank.ACE);
+        Card card2 = new Card(Suit.CLUBS, Rank.TEN);
 
         player.takeCard(card1);
         player.takeCard(card2);
@@ -153,8 +158,8 @@ class BlackjackTest {
 
     @Test
     void testDealerScoreCalculation() {
-        Card card1 = new Card(Card.Suit.HEARTS, Card.Rank.TEN);
-        Card card2 = new Card(Card.Suit.CLUBS, Card.Rank.EIGHT);
+        Card card1 = new Card(Suit.HEARTS, Rank.TEN);
+        Card card2 = new Card(Suit.CLUBS, Rank.EIGHT);
         dealer.takeCard(card1);
         dealer.takeCard(card2);
 
@@ -163,17 +168,17 @@ class BlackjackTest {
 
     @Test
     void testDeckDepletion() {
-        while (deck.size() > 0) {
+        for (int i = 0; i < 52; i++) {
             deck.dealCard();
         }
-        assertThrows(IllegalStateException.class, () -> deck.dealCard());
+        assertThrows(RuntimeException.class, () -> deck.dealCard());
     }
 
     @Test
     void testDetermineWinnerOutputsDealerBusts() {
-        dealer.takeCard(new Card(Card.Suit.HEARTS, Card.Rank.TEN));
-        dealer.takeCard(new Card(Card.Suit.CLUBS, Card.Rank.TEN));
-        dealer.takeCard(new Card(Card.Suit.DIAMONDS, Card.Rank.FIVE));
+        dealer.takeCard(new Card(Suit.HEARTS, Rank.TEN));
+        dealer.takeCard(new Card(Suit.CLUBS, Rank.TEN));
+        dealer.takeCard(new Card(Suit.DIAMONDS, Rank.FIVE));
 
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
@@ -181,14 +186,14 @@ class BlackjackTest {
         blackjack.determineWinner();
 
         String output = outContent.toString();
-        assertTrue(output.contains("You won the round! The dealer busted."));
+        assertTrue(output.contains("won! The dealer busted."));
     }
 
     @Test
     void testDetermineWinnerOutputsPlayerBusts() {
-        player.takeCard(new Card(Card.Suit.HEARTS, Card.Rank.TEN));
-        player.takeCard(new Card(Card.Suit.CLUBS, Card.Rank.TEN));
-        player.takeCard(new Card(Card.Suit.DIAMONDS, Card.Rank.TWO));
+        player.takeCard(new Card(Suit.HEARTS, Rank.TEN));
+        player.takeCard(new Card(Suit.CLUBS, Rank.TEN));
+        player.takeCard(new Card(Suit.DIAMONDS, Rank.TWO));
 
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
@@ -196,14 +201,15 @@ class BlackjackTest {
         blackjack.determineWinner();
 
         String output = outContent.toString();
-    assertTrue(output.contains("You lost the round!"),
-           "Expected output to contain player bust message, but was: " + output);
+        assertTrue(output.contains("lost! You busted."));
     }
 
     @Test
     void testDetermineWinnerOutputsPlayerWins() {
-        player.takeCard(new Card(Card.Suit.HEARTS, Card.Rank.TEN));
-        dealer.takeCard(new Card(Card.Suit.HEARTS, Card.Rank.NINE));
+        player.takeCard(new Card(Suit.HEARTS, Rank.TEN));
+        player.takeCard(new Card(Suit.SPADES, Rank.TEN));
+        dealer.takeCard(new Card(Suit.CLUBS, Rank.NINE));
+        dealer.takeCard(new Card(Suit.DIAMONDS, Rank.EIGHT));
 
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
@@ -211,13 +217,15 @@ class BlackjackTest {
         blackjack.determineWinner();
 
         String output = outContent.toString();
-        assertTrue(output.contains("You won the round!"));
+        assertTrue(output.contains("won the round!"));
     }
 
     @Test
     void testDetermineWinnerOutputsDealerWins() {
-        dealer.takeCard(new Card(Card.Suit.HEARTS, Card.Rank.TEN));
-        player.takeCard(new Card(Card.Suit.HEARTS, Card.Rank.NINE));
+        dealer.takeCard(new Card(Suit.HEARTS, Rank.TEN));
+        dealer.takeCard(new Card(Suit.SPADES, Rank.NINE));
+        player.takeCard(new Card(Suit.CLUBS, Rank.EIGHT));
+        player.takeCard(new Card(Suit.DIAMONDS, Rank.SEVEN));
 
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
@@ -225,13 +233,15 @@ class BlackjackTest {
         blackjack.determineWinner();
 
         String output = outContent.toString();
-        assertTrue(output.contains("You lost the round!"));
+        assertTrue(output.contains("lost the round!"));
     }
 
     @Test
     void testDetermineWinnerOutputsTie() {
-        player.takeCard(new Card(Card.Suit.HEARTS, Card.Rank.TEN));
-        dealer.takeCard(new Card(Card.Suit.HEARTS, Card.Rank.TEN));
+        player.takeCard(new Card(Suit.HEARTS, Rank.TEN));
+        player.takeCard(new Card(Suit.SPADES, Rank.SEVEN));
+        dealer.takeCard(new Card(Suit.CLUBS, Rank.TEN));
+        dealer.takeCard(new Card(Suit.DIAMONDS, Rank.SEVEN));
 
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
@@ -241,5 +251,4 @@ class BlackjackTest {
         String output = outContent.toString();
         assertTrue(output.contains("It's a tie!"));
     }
-
 }
