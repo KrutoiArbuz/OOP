@@ -80,6 +80,8 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public abstract class </span><span class="element-name type-name-label">Participant</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Abstract class for a blackjack game participant.
+ Contains common functionality for player and dealer.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -92,7 +94,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String)" class="member-name-link">Participant</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Creates a new participant with the specified name.</div>
+</div>
 </div>
 </section>
 </li>
@@ -109,42 +113,66 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#clearHand()" class="member-name-link">clearHand</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Clears the participant's hand for a new game.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getHandDisplay()" class="member-name-link">getHandDisplay</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns string representation of the participant's hand.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getInitialHandDisplay()" class="member-name-link">getInitialHandDisplay</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns initial hand display for dealer.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getName()" class="member-name-link">getName</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the participant's name.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getScore()" class="member-name-link">getScore</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the participant's current score.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isBlackjack()" class="member-name-link">isBlackjack</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Checks if the participant has blackjack.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isBusted()" class="member-name-link">isBusted</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Checks if the participant has exceeded 21 points.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#isDealer()" class="member-name-link">isDealer</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Checks if the participant is a dealer.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>protected abstract void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#onCardDrawn(ru.nsu.masolygin.Card,ru.nsu.masolygin.GameConsole)" class="member-name-link">onCardDrawn</a><wbr>(<a href="Card.html" title="class in ru.nsu.masolygin">Card</a>&nbsp;card,
  <a href="GameConsole.html" title="class in ru.nsu.masolygin">GameConsole</a>&nbsp;console)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Handles receiving a new card.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#playTurn(ru.nsu.masolygin.Deck,ru.nsu.masolygin.GameConsole)" class="member-name-link">playTurn</a><wbr>(<a href="Deck.html" title="class in ru.nsu.masolygin">Deck</a>&nbsp;deck,
  <a href="GameConsole.html" title="class in ru.nsu.masolygin">GameConsole</a>&nbsp;console)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Executes the participant's turn.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#shouldTakeCard(ru.nsu.masolygin.GameConsole)" class="member-name-link">shouldTakeCard</a><wbr>(<a href="GameConsole.html" title="class in ru.nsu.masolygin">GameConsole</a>&nbsp;console)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Determines if the participant should take another card.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#takeCard(ru.nsu.masolygin.Card)" class="member-name-link">takeCard</a><wbr>(<a href="Card.html" title="class in ru.nsu.masolygin">Card</a>&nbsp;card)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Adds a card to the participant's hand.</div>
+</div>
 </div>
 </div>
 </div>
@@ -166,6 +194,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;(java.lang.String)">
 <h3>Participant</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Participant</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</span></div>
+<div class="block">Creates a new participant with the specified name.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>name</code> - participant name</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -180,48 +213,90 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getName()">
 <h3>getName</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getName</span>()</div>
+<div class="block">Returns the participant's name.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>participant name</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="takeCard(ru.nsu.masolygin.Card)">
 <h3>takeCard</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">takeCard</span><wbr><span class="parameters">(<a href="Card.html" title="class in ru.nsu.masolygin">Card</a>&nbsp;card)</span></div>
+<div class="block">Adds a card to the participant's hand.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>card</code> - card to add</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getScore()">
 <h3>getScore</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getScore</span>()</div>
+<div class="block">Returns the participant's current score.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>participant score</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="isBusted()">
 <h3>isBusted</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isBusted</span>()</div>
+<div class="block">Checks if the participant has exceeded 21 points.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true if score is greater than 21</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="isBlackjack()">
 <h3>isBlackjack</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isBlackjack</span>()</div>
+<div class="block">Checks if the participant has blackjack.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true if participant has blackjack</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getHandDisplay()">
 <h3>getHandDisplay</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getHandDisplay</span>()</div>
+<div class="block">Returns string representation of the participant's hand.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>hand display</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getInitialHandDisplay()">
 <h3>getInitialHandDisplay</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getInitialHandDisplay</span>()</div>
+<div class="block">Returns initial hand display for dealer.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>initial hand display</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="shouldTakeCard(ru.nsu.masolygin.GameConsole)">
 <h3>shouldTakeCard</h3>
 <div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">shouldTakeCard</span><wbr><span class="parameters">(<a href="GameConsole.html" title="class in ru.nsu.masolygin">GameConsole</a>&nbsp;console)</span></div>
+<div class="block">Determines if the participant should take another card.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>console</code> - console for interaction</dd>
+<dt>Returns:</dt>
+<dd>true if should take card</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -229,6 +304,12 @@ loadScripts(document, 'script');</script>
 <h3>playTurn</h3>
 <div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">playTurn</span><wbr><span class="parameters">(<a href="Deck.html" title="class in ru.nsu.masolygin">Deck</a>&nbsp;deck,
  <a href="GameConsole.html" title="class in ru.nsu.masolygin">GameConsole</a>&nbsp;console)</span></div>
+<div class="block">Executes the participant's turn.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>deck</code> - deck of cards</dd>
+<dd><code>console</code> - console for interaction</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -236,18 +317,30 @@ loadScripts(document, 'script');</script>
 <h3>onCardDrawn</h3>
 <div class="member-signature"><span class="modifiers">protected abstract</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onCardDrawn</span><wbr><span class="parameters">(<a href="Card.html" title="class in ru.nsu.masolygin">Card</a>&nbsp;card,
  <a href="GameConsole.html" title="class in ru.nsu.masolygin">GameConsole</a>&nbsp;console)</span></div>
+<div class="block">Handles receiving a new card.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>card</code> - received card</dd>
+<dd><code>console</code> - console for output</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="isDealer()">
 <h3>isDealer</h3>
 <div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isDealer</span>()</div>
+<div class="block">Checks if the participant is a dealer.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true if participant is dealer</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="clearHand()">
 <h3>clearHand</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">clearHand</span>()</div>
+<div class="block">Clears the participant's hand for a new game.</div>
 </section>
 </li>
 </ul>
