@@ -1,10 +1,24 @@
 package ru.nsu.masolygin;
 
+/**
+ * Player in blackjack game.
+ */
 public class Player extends Participant {
+    /**
+     * Creates a new player with the name.
+     *
+     * @param name player name
+     */
     public Player(String name) {
         super(name);
     }
 
+    /**
+     * Determines if the player wants to take another card.
+     *
+     * @param console console for player interaction
+     * @return true if player wants to take a card
+     */
     @Override
     public boolean shouldTakeCard(GameConsole console) {
         console.printPlayerTurn(getName());
@@ -12,6 +26,12 @@ public class Player extends Participant {
         return choice == 1;
     }
 
+    /**
+     * Executes the player's turn.
+     *
+     * @param deck deck of cards
+     * @param console console for interaction
+     */
     @Override
     public void playTurn(Deck deck, GameConsole console) {
         boolean playerStopped = false;
@@ -34,11 +54,22 @@ public class Player extends Participant {
         }
     }
 
+    /**
+     * Handles the player receiving a new card.
+     *
+     * @param card received card
+     * @param console console for output
+     */
     @Override
     protected void onCardDrawn(Card card, GameConsole console) {
         console.printCardDrawn(getName(), card);
     }
 
+    /**
+     * Checks if the participant is a dealer.
+     *
+     * @return false, since this is a player
+     */
     @Override
     public boolean isDealer() {
         return false;

@@ -3,12 +3,19 @@ package ru.nsu.masolygin;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Main class for the blackjack game.
+ * Manages the game process and interaction between participants.
+ */
 public class Blackjack {
     private final Deck deck;
     private final List<Participant> participants;
     private final GameConsole console;
     private int round;
 
+    /**
+     * Creates a new blackjack game with two players and a dealer.
+     */
     public Blackjack() {
         this.deck = new Deck();
         this.participants = new ArrayList<>();
@@ -20,6 +27,9 @@ public class Blackjack {
         participants.add(new Dealer());
     }
 
+    /**
+     * Starts the game and manages the game loop.
+     */
     public void startGame() {
         console.printWelcome();
 
@@ -43,6 +53,9 @@ public class Blackjack {
         }
     }
 
+    /**
+     * Deals initial cards to all participants.
+     */
     private void dealInitialCards() {
         console.printCardsDealt();
 
@@ -55,14 +68,26 @@ public class Blackjack {
         console.printInitialGameStatus(participants);
     }
 
+    /**
+     * Shows initial game status.
+     */
     private void showGameStatus() {
         console.printInitialGameStatus(participants);
     }
 
+    /**
+     * Shows final game status.
+     */
     private void showFinalStatus() {
         console.printGameStatus(participants);
     }
 
+    /**
+     * Returns the dealer from the participants list.
+     *
+     * @return dealer
+     * @throws IllegalStateException if no dealer is found
+     */
     public Dealer getDealer() {
         return (Dealer) participants.stream()
                 .filter(Participant::isDealer)
@@ -70,12 +95,18 @@ public class Blackjack {
                 .orElseThrow(() -> new IllegalStateException("No dealer found"));
     }
 
+    /**
+     * Clears all participants' hands.
+     */
     private void clearAllHands() {
         for (Participant participant : participants) {
             participant.clearHand();
         }
     }
 
+    /**
+     * Determines the round winner and displays results.
+     */
     public void determineWinner() {
         for (Participant participant : participants) {
             console.printScore(participant.getName(), participant.getScore());
@@ -102,14 +133,29 @@ public class Blackjack {
         }
     }
 
+    /**
+     * Returns the list of all game participants.
+     *
+     * @return list of participants
+     */
     public List<Participant> getParticipants() {
         return participants;
     }
 
+    /**
+     * Returns the deck of cards.
+     *
+     * @return deck of cards
+     */
     public Deck getDeck() {
         return deck;
     }
 
+    /**
+     * Main method to start the game.
+     *
+     * @param args command line arguments
+     */
     public static void main(String[] args) {
         Blackjack blackjack = new Blackjack();
         blackjack.startGame();
