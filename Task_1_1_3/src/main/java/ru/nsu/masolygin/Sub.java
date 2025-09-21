@@ -7,6 +7,7 @@ public class Sub extends BinaryExpression {
 
     /**
      * Creates a new subtraction expression.
+     *
      * @param left the left operand
      * @param right the right operand
      */
@@ -28,6 +29,7 @@ public class Sub extends BinaryExpression {
 
     /**
      * Computes the derivative of subtraction.
+     *
      * @param variable the variable to differentiate by
      * @return derivative of left - derivative of right
      */
@@ -38,6 +40,7 @@ public class Sub extends BinaryExpression {
 
     /**
      * Evaluates the subtraction.
+     *
      * @param assignments variable assignments
      * @return difference of left and right values
      */
@@ -48,6 +51,7 @@ public class Sub extends BinaryExpression {
 
     /**
      * Simplifies the subtraction expression.
+     *
      * @return simplified expression
      */
     @Override
@@ -56,7 +60,8 @@ public class Sub extends BinaryExpression {
         Expression simplifiedRight = right.simplify();
 
         if (simplifiedLeft instanceof Number && simplifiedRight instanceof Number) {
-            int result = ((Number) simplifiedLeft).getValue() - ((Number) simplifiedRight).getValue();
+            int result = ((Number) simplifiedLeft).getValue()
+                - ((Number) simplifiedRight).getValue();
             return new Number(result);
         }
 
@@ -73,6 +78,7 @@ public class Sub extends BinaryExpression {
 
     /**
      * Checks if two expressions are equal.
+     *
      * @param expr1 first expression
      * @param expr2 second expression
      * @return true if expressions are equal
@@ -93,29 +99,29 @@ public class Sub extends BinaryExpression {
         if (expr1 instanceof Add) {
             Add add1 = (Add) expr1;
             Add add2 = (Add) expr2;
-            return areExpressionsEqual(add1.getLeft(), add2.getLeft()) &&
-                   areExpressionsEqual(add1.getRight(), add2.getRight());
+            return areExpressionsEqual(add1.getLeft(), add2.getLeft())
+                && areExpressionsEqual(add1.getRight(), add2.getRight());
         }
 
         if (expr1 instanceof Sub) {
             Sub sub1 = (Sub) expr1;
             Sub sub2 = (Sub) expr2;
-            return areExpressionsEqual(sub1.getLeft(), sub2.getLeft()) &&
-                   areExpressionsEqual(sub1.getRight(), sub2.getRight());
+            return areExpressionsEqual(sub1.getLeft(), sub2.getLeft())
+                && areExpressionsEqual(sub1.getRight(), sub2.getRight());
         }
 
         if (expr1 instanceof Mul) {
             Mul mul1 = (Mul) expr1;
             Mul mul2 = (Mul) expr2;
-            return areExpressionsEqual(mul1.getLeft(), mul2.getLeft()) &&
-                   areExpressionsEqual(mul1.getRight(), mul2.getRight());
+            return areExpressionsEqual(mul1.getLeft(), mul2.getLeft())
+                && areExpressionsEqual(mul1.getRight(), mul2.getRight());
         }
 
         if (expr1 instanceof Div) {
             Div div1 = (Div) expr1;
             Div div2 = (Div) expr2;
-            return areExpressionsEqual(div1.getLeft(), div2.getLeft()) &&
-                   areExpressionsEqual(div1.getRight(), div2.getRight());
+            return areExpressionsEqual(div1.getLeft(), div2.getLeft())
+                && areExpressionsEqual(div1.getRight(), div2.getRight());
         }
 
         return false;

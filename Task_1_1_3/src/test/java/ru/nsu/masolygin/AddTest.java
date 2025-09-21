@@ -1,7 +1,12 @@
 package ru.nsu.masolygin;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 class AddTest {
 
@@ -39,20 +44,20 @@ class AddTest {
         assertEquals(1, ((Number) addDerivative.getRight()).getValue());
 
         // (x + y)'  x = 1 + 0
-        Expression exprXY = new Add(new Variable("x"), new Variable("y"));
-        Expression derivativeX = exprXY.derivative("x");
+        Expression exprWithTwoVars = new Add(new Variable("x"), new Variable("y"));
+        Expression derivativeX = exprWithTwoVars.derivative("x");
         assertTrue(derivativeX instanceof Add);
     }
 
     @Test
     void testEval() {
-        // 3 + x  x = 5  8
+        // 3 + x when x = 5 should be 8
         Expression expr = new Add(new Number(3), new Variable("x"));
         assertEquals(8, expr.eval("x = 5"));
 
-        // x + y  x = 10, y = 20  30
-        Expression exprXY = new Add(new Variable("x"), new Variable("y"));
-        assertEquals(30, exprXY.eval("x = 10; y = 20"));
+        // x + y when x = 10, y = 20 should be 30
+        Expression exprWithTwoVars = new Add(new Variable("x"), new Variable("y"));
+        assertEquals(30, exprWithTwoVars.eval("x = 10; y = 20"));
 
         // 5 + 7 = 12
         Expression numbers = new Add(new Number(5), new Number(7));

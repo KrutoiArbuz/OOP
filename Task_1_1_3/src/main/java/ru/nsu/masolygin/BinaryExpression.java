@@ -11,6 +11,7 @@ public abstract class BinaryExpression extends Expression {
 
     /**
      * Creates a new binary expression.
+     *
      * @param left the left operand
      * @param right the right operand
      */
@@ -21,6 +22,7 @@ public abstract class BinaryExpression extends Expression {
 
     /**
      * Gets the left operand.
+     *
      * @return the left expression
      */
     public Expression getLeft() {
@@ -29,6 +31,7 @@ public abstract class BinaryExpression extends Expression {
 
     /**
      * Gets the right operand.
+     *
      * @return the right expression
      */
     public Expression getRight() {

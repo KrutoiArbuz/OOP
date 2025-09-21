@@ -1,7 +1,13 @@
 package ru.nsu.masolygin;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 class NumberTest {
 
@@ -20,7 +26,6 @@ class NumberTest {
     @Test
     void testPrint() {
         Number num = new Number(123);
-
         assertDoesNotThrow(() -> num.print());
     }
 
@@ -32,7 +37,6 @@ class NumberTest {
         assertTrue(derivative instanceof Number);
         assertEquals(0, ((Number) derivative).getValue());
 
-
         Expression derivativeY = num.derivative("y");
         assertTrue(derivativeY instanceof Number);
         assertEquals(0, ((Number) derivativeY).getValue());
@@ -41,7 +45,6 @@ class NumberTest {
     @Test
     void testEval() {
         Number num = new Number(100);
-
 
         assertEquals(100, num.eval("x = 5; y = 10"));
         assertEquals(100, num.eval(""));
@@ -53,16 +56,13 @@ class NumberTest {
         Number num = new Number(77);
         Expression simplified = num.simplify();
 
-
         assertSame(num, simplified);
     }
 
     @Test
     void testNotBinaryExpression() {
-
         Expression num = new Number(42);
         assertFalse(num instanceof BinaryExpression);
-
 
         assertThrows(ClassCastException.class, () -> {
             BinaryExpression binExpr = (BinaryExpression) num;

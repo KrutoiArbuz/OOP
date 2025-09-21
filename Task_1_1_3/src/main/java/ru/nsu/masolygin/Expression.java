@@ -19,6 +19,7 @@ public abstract class Expression {
 
     /**
      * Computes the derivative with respect to the given variable.
+     *
      * @param variable the variable to differentiate by
      * @return the derivative expression
      */
@@ -26,6 +27,7 @@ public abstract class Expression {
 
     /**
      * Evaluates the expression with given variable assignments.
+     *
      * @param assignments variable assignments in format "x = 5; y = 10"
      * @return the result value
      */
@@ -33,6 +35,7 @@ public abstract class Expression {
 
     /**
      * Simplifies the expression using algebraic rules.
+     *
      * @return the simplified expression
      */
     public abstract Expression simplify();

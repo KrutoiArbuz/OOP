@@ -7,6 +7,7 @@ public class Div extends BinaryExpression {
 
     /**
      * Creates a new division expression.
+     *
      * @param left the left operand (numerator)
      * @param right the right operand (denominator)
      */
@@ -28,6 +29,7 @@ public class Div extends BinaryExpression {
 
     /**
      * Computes the derivative of division using quotient rule.
+     *
      * @param variable the variable to differentiate by
      * @return (left' * right - left * right') / (right^2)
      */
@@ -44,6 +46,7 @@ public class Div extends BinaryExpression {
 
     /**
      * Evaluates the division.
+     *
      * @param assignments variable assignments
      * @return quotient of left and right values
      */
@@ -58,6 +61,7 @@ public class Div extends BinaryExpression {
 
     /**
      * Simplifies the division expression.
+     *
      * @return simplified expression
      */
     @Override
@@ -74,12 +78,14 @@ public class Div extends BinaryExpression {
             return new Number(result);
         }
 
-        if (simplifiedRight instanceof Number && ((Number) simplifiedRight).getValue() == 1) {
+        if (simplifiedRight instanceof Number
+            && ((Number) simplifiedRight).getValue() == 1) {
             return simplifiedLeft;
         }
 
         if (simplifiedLeft instanceof Number && ((Number) simplifiedLeft).getValue() == 0) {
-            if (!(simplifiedRight instanceof Number) || ((Number) simplifiedRight).getValue() != 0) {
+            if (!(simplifiedRight instanceof Number)
+                || ((Number) simplifiedRight).getValue() != 0) {
                 return new Number(0);
             }
         }

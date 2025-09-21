@@ -1,7 +1,13 @@
 package ru.nsu.masolygin;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 class VariableTest {
 
@@ -20,25 +26,22 @@ class VariableTest {
     @Test
     void testPrint() {
         Variable var = new Variable("test");
-
         assertDoesNotThrow(() -> var.print());
     }
 
     @Test
     void testDerivative() {
         Variable x = new Variable("x");
-        Variable y = new Variable("y");
-
 
         Expression dxdx = x.derivative("x");
         assertTrue(dxdx instanceof Number);
         assertEquals(1, ((Number) dxdx).getValue());
 
-
         Expression dxdy = x.derivative("y");
         assertTrue(dxdy instanceof Number);
         assertEquals(0, ((Number) dxdy).getValue());
 
+        Variable y = new Variable("y");
         Expression dydy = y.derivative("y");
         assertTrue(dydy instanceof Number);
         assertEquals(1, ((Number) dydy).getValue());
@@ -49,11 +52,9 @@ class VariableTest {
         Variable x = new Variable("x");
         Variable y = new Variable("y");
 
-
         assertEquals(10, x.eval("x = 10; y = 5"));
         assertEquals(5, y.eval("x = 10; y = 5"));
         assertEquals(42, x.eval("x = 42"));
-
 
         assertEquals(15, x.eval("x=15"));
         assertEquals(20, x.eval(" x = 20 "));
@@ -62,7 +63,6 @@ class VariableTest {
     @Test
     void testEvalVariableNotFound() {
         Variable x = new Variable("x");
-
 
         assertThrows(IllegalArgumentException.class, () -> x.eval("y = 5"));
         assertThrows(IllegalArgumentException.class, () -> x.eval(""));
@@ -73,7 +73,6 @@ class VariableTest {
     void testSimplify() {
         Variable var = new Variable("x");
         Expression simplified = var.simplify();
-
 
         assertSame(var, simplified);
     }

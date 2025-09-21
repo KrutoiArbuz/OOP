@@ -1,7 +1,12 @@
 package ru.nsu.masolygin;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 class MulTest {
 
@@ -32,21 +37,21 @@ class MulTest {
 
         assertTrue(derivative instanceof Add);
 
-        // (x*y)'  x = x'*y + x*y' = 1*y + x*0 = y
-        Expression exprXY = new Mul(new Variable("x"), new Variable("y"));
-        Expression derivativeX = exprXY.derivative("x");
+        // (x*y)' by x = x'*y + x*y' = 1*y + x*0 = y
+        Expression exprWithTwoVars = new Mul(new Variable("x"), new Variable("y"));
+        Expression derivativeX = exprWithTwoVars.derivative("x");
         assertTrue(derivativeX instanceof Add);
     }
 
     @Test
     void testEval() {
-        // 3 * x  x = 4   12
+        // 3 * x when x = 4 should be 12
         Expression expr = new Mul(new Number(3), new Variable("x"));
         assertEquals(12, expr.eval("x = 4"));
 
-        // x * y  x = 5, y = 6   30
-        Expression exprXY = new Mul(new Variable("x"), new Variable("y"));
-        assertEquals(30, exprXY.eval("x = 5; y = 6"));
+        // x * y when x = 5, y = 6 should be 30
+        Expression exprWithTwoVars = new Mul(new Variable("x"), new Variable("y"));
+        assertEquals(30, exprWithTwoVars.eval("x = 5; y = 6"));
 
         // 7 * 8 = 56
         Expression numbers = new Mul(new Number(7), new Number(8));

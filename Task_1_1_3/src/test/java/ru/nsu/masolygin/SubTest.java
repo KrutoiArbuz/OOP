@@ -1,7 +1,12 @@
 package ru.nsu.masolygin;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 class SubTest {
 
@@ -42,13 +47,13 @@ class SubTest {
 
     @Test
     void testEval() {
-        // 10 - x  x = 3   7
+        // 10 - x when x = 3 should be 7
         Expression expr = new Sub(new Number(10), new Variable("x"));
         assertEquals(7, expr.eval("x = 3"));
 
-        // x - y  x = 15, y = 5   10
-        Expression exprXY = new Sub(new Variable("x"), new Variable("y"));
-        assertEquals(10, exprXY.eval("x = 15; y = 5"));
+        // x - y when x = 15, y = 5 should be 10
+        Expression exprWithTwoVars = new Sub(new Variable("x"), new Variable("y"));
+        assertEquals(10, exprWithTwoVars.eval("x = 15; y = 5"));
 
         // 20 - 8 = 12
         Expression numbers = new Sub(new Number(20), new Number(8));

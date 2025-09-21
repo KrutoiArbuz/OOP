@@ -1,7 +1,13 @@
 package ru.nsu.masolygin;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 class DivTest {
 
@@ -40,13 +46,13 @@ class DivTest {
 
     @Test
     void testEval() {
-        // 12 / x  x = 3   4
+        // 12 / x when x = 3 should be 4
         Expression expr = new Div(new Number(12), new Variable("x"));
         assertEquals(4, expr.eval("x = 3"));
 
-        // x / y  x = 20, y = 4   5
-        Expression exprXY = new Div(new Variable("x"), new Variable("y"));
-        assertEquals(5, exprXY.eval("x = 20; y = 4"));
+        // x / y when x = 20, y = 4 should be 5
+        Expression exprWithTwoVars = new Div(new Variable("x"), new Variable("y"));
+        assertEquals(5, exprWithTwoVars.eval("x = 20; y = 4"));
 
         // 15 / 3 = 5
         Expression numbers = new Div(new Number(15), new Number(3));

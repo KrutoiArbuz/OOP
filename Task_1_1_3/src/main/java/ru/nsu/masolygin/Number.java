@@ -9,6 +9,7 @@ public class Number extends Expression {
 
     /**
      * Creates a new number with the given value.
+     *
      * @param value the number value
      */
     public Number(int value) {
@@ -17,6 +18,7 @@ public class Number extends Expression {
 
     /**
      * Gets the number value.
+     *
      * @return the number value
      */
     public int getValue() {

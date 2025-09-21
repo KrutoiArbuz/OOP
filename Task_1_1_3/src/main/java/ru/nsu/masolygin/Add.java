@@ -7,6 +7,7 @@ public class Add extends BinaryExpression {
 
     /**
      * Creates a new addition expression.
+     *
      * @param left the left operand
      * @param right the right operand
      */
@@ -28,6 +29,7 @@ public class Add extends BinaryExpression {
 
     /**
      * Computes the derivative of addition.
+     *
      * @param variable the variable to differentiate by
      * @return derivative of left + derivative of right
      */
@@ -38,6 +40,7 @@ public class Add extends BinaryExpression {
 
     /**
      * Evaluates the addition.
+     *
      * @param assignments variable assignments
      * @return sum of left and right values
      */
@@ -48,6 +51,7 @@ public class Add extends BinaryExpression {
 
     /**
      * Simplifies the addition expression.
+     *
      * @return simplified expression
      */
     @Override
