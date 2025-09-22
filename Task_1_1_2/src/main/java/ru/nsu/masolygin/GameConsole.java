@@ -1,5 +1,6 @@
 package ru.nsu.masolygin;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -190,7 +191,18 @@ public class GameConsole {
      * @return player's choice (1 - take card, 0 - stand)
      */
     public int getPlayerChoice() {
-        return scanner.nextInt();
+        try {
+            int value = scanner.nextInt();
+            if (value != 0 && value != 1) {
+                printIncorrectInput();
+                return getPlayerChoice();
+            }
+            return value;
+        } catch (InputMismatchException e) {
+            scanner.nextLine();
+            printIncorrectInput();
+            return getPlayerChoice();
+        }
     }
 
     /**
