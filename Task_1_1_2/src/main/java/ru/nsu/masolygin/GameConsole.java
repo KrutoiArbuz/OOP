@@ -123,6 +123,14 @@ public class GameConsole {
         System.out.println("The dealer reveals " + card);
     }
 
+
+    /**
+     * Prints warning about incorrect input
+     */
+    public void printIncorrectInput(){
+        System.out.println("Incorrect input");
+    }
+
     /**
      * Prints bust message.
      *
