@@ -23,7 +23,7 @@ public class Player extends Participant {
     public boolean shouldTakeCard(GameConsole console) {
         console.printPlayerTurn(getName());
         int choice = console.getPlayerChoice();
-        if (choice != 1 && choice != 2) {
+        if (choice != 1 && choice != 0) {
             console.printIncorrectInput();
             return shouldTakeCard(console);
         }
