@@ -35,7 +35,8 @@ public class ExpressionBuilder {
             switch (token.getType()) {
                 case NUMBER:
                     try {
-                        stack.push(new ru.nsu.masolygin.Expressions.Number(Integer.parseInt(token.getValue())));
+                        stack.push(new ru.nsu.masolygin.Expressions.Number(
+                            Integer.parseInt(token.getValue())));
                     } catch (NumberFormatException e) {
                         throw new ParseException("Invalid number format: " + token.getValue());
                     }
@@ -48,21 +49,26 @@ public class ExpressionBuilder {
                     break;
                 case OPERATOR:
                     if (stack.size() < 2) {
-                        throw new ParseException("Not enough operands for operator: " + token.getValue());
+                        throw new ParseException(
+                            "Not enough operands for operator: " + token.getValue());
                     }
                     if (token.getOperation() != null) {
                         Expression right = stack.pop();
                         Expression left = stack.pop();
                         stack.push(token.getOperation().apply(left, right));
                     } else {
-                        throw new IllegalArgumentException("Unsupported operator: " + token.getValue());
+                        throw new IllegalArgumentException(
+                            "Unsupported operator: " + token.getValue());
                     }
                     break;
+                default:
+                    throw new IllegalArgumentException("Unknown token type: " + token.getType());
             }
         }
 
         if (stack.size() != 1) {
-            throw new ParseException("Invalid expression: expected single result, got " + stack.size() + " results");
+            throw new ParseException("Invalid expression: expected single result, got "
+                + stack.size() + " results");
         }
 
         return stack.pop();

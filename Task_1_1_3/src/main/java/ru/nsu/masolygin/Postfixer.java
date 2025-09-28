@@ -38,14 +38,16 @@ public class Postfixer {
                     break;
                 case OPERATOR:
                     if (i == 0 && !token.getValue().equals("-")) {
-                        throw new ParseException("Expression cannot start with operator: " + token.getValue());
+                        throw new ParseException(
+                            "Expression cannot start with operator: " + token.getValue());
                     }
                     if (i == tokens.size() - 1) {
-                        throw new ParseException("Expression cannot end with operator: " + token.getValue());
+                        throw new ParseException(
+                            "Expression cannot end with operator: " + token.getValue());
                     }
 
-                    while (!stack.isEmpty() && stack.peek().getType() == Token.Type.OPERATOR &&
-                            precedence(stack.peek().getValue()) >= precedence(token.getValue())) {
+                    while (!stack.isEmpty() && stack.peek().getType() == Token.Type.OPERATOR
+                            && precedence(stack.peek().getValue()) >= precedence(token.getValue())) {
                         output.add(stack.pop());
                     }
                     stack.push(token);
@@ -66,6 +68,8 @@ public class Postfixer {
                         throw new ParseException("Unmatched closing parenthesis");
                     }
                     break;
+                default:
+                    throw new IllegalArgumentException("Unknown token type: " + token.getType());
             }
         }
 

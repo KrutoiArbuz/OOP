@@ -1,8 +1,12 @@
 package ru.nsu.masolygin;
 
-import ru.nsu.masolygin.Expressions.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import ru.nsu.masolygin.Expressions.Add;
+import ru.nsu.masolygin.Expressions.Div;
+import ru.nsu.masolygin.Expressions.Mul;
+import ru.nsu.masolygin.Expressions.Sub;
 
 /**
  * Разбивает строку на токены.
@@ -32,16 +36,23 @@ public class StringTokenizer {
                 i++;
                 continue;
             }
-            if (Character.isDigit(c) || (c == '-' && i + 1 < input.length() && Character.isDigit(input.charAt(i + 1)))) {
+            if (Character.isDigit(c) || (c == '-' && i + 1 < input.length()
+                    && Character.isDigit(input.charAt(i + 1)))) {
                 int start = i;
-                if (c == '-') i++;
-                while (i < input.length() && Character.isDigit(input.charAt(i))) i++;
+                if (c == '-') {
+                    i++;
+                }
+                while (i < input.length() && Character.isDigit(input.charAt(i))) {
+                    i++;
+                }
                 tokens.add(new Token(Token.Type.NUMBER, input.substring(start, i)));
                 continue;
             }
             if (Character.isLetter(c)) {
                 int start = i;
-                while (i < input.length() && Character.isLetter(input.charAt(i))) i++;
+                while (i < input.length() && Character.isLetter(input.charAt(i))) {
+                    i++;
+                }
                 tokens.add(new Token(Token.Type.VARIABLE, input.substring(start, i)));
                 continue;
             }
@@ -61,8 +72,12 @@ public class StringTokenizer {
                 case '^':
                     tokens.add(new Token(Token.Type.OPERATOR, "^"));
                     break;
-                case '(': tokens.add(new Token(Token.Type.LPAREN, "(")); break;
-                case ')': tokens.add(new Token(Token.Type.RPAREN, ")")); break;
+                case '(':
+                    tokens.add(new Token(Token.Type.LPAREN, "("));
+                    break;
+                case ')':
+                    tokens.add(new Token(Token.Type.RPAREN, ")"));
+                    break;
                 default:
                     throw new IllegalArgumentException("Unknown character: " + c);
             }

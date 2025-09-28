@@ -44,7 +44,8 @@ public class Token {
      * @param value значение токена
      * @param operation операция
      */
-    public Token(Type type, String value, BiFunction<Expression, Expression, Expression> operation) {
+    public Token(Type type, String value,
+                 BiFunction<Expression, Expression, Expression> operation) {
         this.type = type;
         this.value = value;
         this.operation = operation;

@@ -136,25 +136,30 @@ public class Console {
             return true;
         }
 
-
         int parenCount = 0;
         for (char c : input.toCharArray()) {
-            if (c == '(') parenCount++;
-            else if (c == ')') parenCount--;
-            if (parenCount < 0) return true;
+            if (c == '(') {
+                parenCount++;
+            } else if (c == ')') {
+                parenCount--;
+            }
+            if (parenCount < 0) {
+                return true;
+            }
         }
 
+        if (parenCount != 0) {
+            return true;
+        }
 
-        if (parenCount != 0) return true;
+        if (input.contains("()")) {
+            return true;
+        }
 
-
-        if (input.contains("()")) return true;
-
-
-        if (input.contains("++") || input.contains("--") ||
-            input.contains("**") || input.contains("//") ||
-            input.contains("(+") || input.contains("(-)") ||
-            input.contains("(*") || input.contains("(/)")) {
+        if (input.contains("++") || input.contains("--")
+                || input.contains("**") || input.contains("//")
+                || input.contains("(+") || input.contains("(-)")
+                || input.contains("(*") || input.contains("(/)")) {
             return true;
         }
 

@@ -1,11 +1,19 @@
 package ru.nsu.masolygin;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
-import ru.nsu.masolygin.Expressions.*;
 import java.util.Arrays;
 import java.util.Collections;
-import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import ru.nsu.masolygin.Expressions.Add;
+import ru.nsu.masolygin.Expressions.Expression;
+import ru.nsu.masolygin.Expressions.Mul;
+import ru.nsu.masolygin.Expressions.Variable;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ExpressionBuilderTest {
     private ExpressionBuilder builder;
