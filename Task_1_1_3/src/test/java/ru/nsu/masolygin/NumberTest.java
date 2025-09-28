@@ -8,43 +8,46 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+import ru.nsu.masolygin.Expressions.BinaryExpression;
+import ru.nsu.masolygin.Expressions.Expression;
+import ru.nsu.masolygin.Expressions.Number;
 
 class NumberTest {
 
     @Test
     void testConstructorAndGetValue() {
-        Number num = new Number(42);
+        ru.nsu.masolygin.Expressions.Number num = new ru.nsu.masolygin.Expressions.Number(42);
         assertEquals(42, num.getValue());
 
-        Number negativeNum = new Number(-15);
+        ru.nsu.masolygin.Expressions.Number negativeNum = new ru.nsu.masolygin.Expressions.Number(-15);
         assertEquals(-15, negativeNum.getValue());
 
-        Number zero = new Number(0);
+        ru.nsu.masolygin.Expressions.Number zero = new ru.nsu.masolygin.Expressions.Number(0);
         assertEquals(0, zero.getValue());
     }
 
     @Test
     void testPrint() {
-        Number num = new Number(123);
+        ru.nsu.masolygin.Expressions.Number num = new ru.nsu.masolygin.Expressions.Number(123);
         assertDoesNotThrow(() -> num.print());
     }
 
     @Test
     void testDerivative() {
-        Number num = new Number(42);
+        ru.nsu.masolygin.Expressions.Number num = new ru.nsu.masolygin.Expressions.Number(42);
         Expression derivative = num.derivative("x");
 
-        assertTrue(derivative instanceof Number);
-        assertEquals(0, ((Number) derivative).getValue());
+        assertTrue(derivative instanceof ru.nsu.masolygin.Expressions.Number);
+        assertEquals(0, ((ru.nsu.masolygin.Expressions.Number) derivative).getValue());
 
         Expression derivativeY = num.derivative("y");
-        assertTrue(derivativeY instanceof Number);
-        assertEquals(0, ((Number) derivativeY).getValue());
+        assertTrue(derivativeY instanceof ru.nsu.masolygin.Expressions.Number);
+        assertEquals(0, ((ru.nsu.masolygin.Expressions.Number) derivativeY).getValue());
     }
 
     @Test
     void testEval() {
-        Number num = new Number(100);
+        ru.nsu.masolygin.Expressions.Number num = new ru.nsu.masolygin.Expressions.Number(100);
 
         assertEquals(100, num.eval("x = 5; y = 10"));
         assertEquals(100, num.eval(""));
@@ -53,7 +56,7 @@ class NumberTest {
 
     @Test
     void testSimplify() {
-        Number num = new Number(77);
+        ru.nsu.masolygin.Expressions.Number num = new ru.nsu.masolygin.Expressions.Number(77);
         Expression simplified = num.simplify();
 
         assertSame(num, simplified);

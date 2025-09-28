@@ -1,32 +1,31 @@
-package ru.nsu.masolygin;
+package ru.nsu.masolygin.Expressions;
 
 /**
- * Represents a number in a mathematical expression.
+ * Число в выражении.
  */
 public class Number extends Expression {
-    /** The constant integer value stored in this expression. */
     private final int value;
 
     /**
-     * Creates a new number with the given value.
+     * Создает число.
      *
-     * @param value the number value
+     * @param value значение числа
      */
     public Number(int value) {
         this.value = value;
     }
 
     /**
-     * Gets the number value.
+     * Возвращает значение числа.
      *
-     * @return the number value
+     * @return значение числа
      */
     public int getValue() {
         return value;
     }
 
     /**
-     * Prints the number value.
+     * Печатает число.
      */
     @Override
     public void print() {
@@ -34,10 +33,10 @@ public class Number extends Expression {
     }
 
     /**
-     * Returns the derivative of a constant (always 0).
+     * Вычисляет производную числа.
      *
-     * @param variable the variable to differentiate by
-     * @return zero
+     * @param variable переменная
+     * @return ноль
      */
     @Override
     public Expression derivative(String variable) {
@@ -45,10 +44,10 @@ public class Number extends Expression {
     }
 
     /**
-     * Evaluates the number (returns its value).
+     * Вычисляет значение числа.
      *
-     * @param assignments not used for constants
-     * @return the number value
+     * @param assignments не используется
+     * @return значение числа
      */
     @Override
     public int eval(String assignments) {
@@ -56,9 +55,9 @@ public class Number extends Expression {
     }
 
     /**
-     * Simplifies the number (returns itself).
+     * Упрощает число.
      *
-     * @return this number
+     * @return число
      */
     @Override
     public Expression simplify() {

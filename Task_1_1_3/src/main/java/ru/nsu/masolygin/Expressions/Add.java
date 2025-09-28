@@ -1,22 +1,22 @@
-package ru.nsu.masolygin;
+package ru.nsu.masolygin.Expressions;
 
 /**
- * Represents addition of two expressions.
+ * Сложение двух выражений.
  */
 public class Add extends BinaryExpression {
 
     /**
-     * Creates a new addition expression.
+     * Создает сложение.
      *
-     * @param left the left operand
-     * @param right the right operand
+     * @param left левое выражение
+     * @param right правое выражение
      */
     public Add(Expression left, Expression right) {
         super(left, right);
     }
 
     /**
-     * Prints the addition in format (left+right).
+     * Печатает сложение.
      */
     @Override
     public void print() {
@@ -28,21 +28,21 @@ public class Add extends BinaryExpression {
     }
 
     /**
-     * Computes the derivative of addition.
+     * Вычисляет производную сложения.
      *
-     * @param variable the variable to differentiate by
-     * @return derivative of left + derivative of right
+     * @param variable переменная
+     * @return производная
      */
     @Override
     public Expression derivative(String variable) {
-        return new Add(getLeft().derivative(variable), getRight().derivative(variable));
+        return new Add(getLeft().derivative(variable), getRight().derivative(variable)).simplify();
     }
 
     /**
-     * Evaluates the addition.
+     * Вычисляет значение сложения.
      *
-     * @param assignments variable assignments
-     * @return sum of left and right values
+     * @param assignments значения переменных
+     * @return результат
      */
     @Override
     public int eval(String assignments) {
@@ -50,9 +50,9 @@ public class Add extends BinaryExpression {
     }
 
     /**
-     * Simplifies the addition expression.
+     * Упрощает сложение.
      *
-     * @return simplified expression
+     * @return упрощенное выражение
      */
     @Override
     public Expression simplify() {

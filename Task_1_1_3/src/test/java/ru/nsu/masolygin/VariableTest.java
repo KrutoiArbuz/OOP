@@ -8,6 +8,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+import ru.nsu.masolygin.Expressions.BinaryExpression;
+import ru.nsu.masolygin.Expressions.Expression;
+import ru.nsu.masolygin.Expressions.Number;
+import ru.nsu.masolygin.Expressions.Variable;
 
 class VariableTest {
 
@@ -34,16 +38,16 @@ class VariableTest {
         Variable x = new Variable("x");
 
         Expression dxdx = x.derivative("x");
-        assertTrue(dxdx instanceof Number);
-        assertEquals(1, ((Number) dxdx).getValue());
+        assertTrue(dxdx instanceof ru.nsu.masolygin.Expressions.Number);
+        assertEquals(1, ((ru.nsu.masolygin.Expressions.Number) dxdx).getValue());
 
         Expression dxdy = x.derivative("y");
-        assertTrue(dxdy instanceof Number);
-        assertEquals(0, ((Number) dxdy).getValue());
+        assertTrue(dxdy instanceof ru.nsu.masolygin.Expressions.Number);
+        assertEquals(0, ((ru.nsu.masolygin.Expressions.Number) dxdy).getValue());
 
         Variable y = new Variable("y");
         Expression dydy = y.derivative("y");
-        assertTrue(dydy instanceof Number);
+        assertTrue(dydy instanceof ru.nsu.masolygin.Expressions.Number);
         assertEquals(1, ((Number) dydy).getValue());
     }
 

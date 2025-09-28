@@ -1,22 +1,22 @@
-package ru.nsu.masolygin;
+package ru.nsu.masolygin.Expressions;
 
 /**
- * Represents subtraction of two expressions.
+ * Вычитание двух выражений.
  */
 public class Sub extends BinaryExpression {
 
     /**
-     * Creates a new subtraction expression.
+     * Создает вычитание.
      *
-     * @param left the left operand
-     * @param right the right operand
+     * @param left левое выражение
+     * @param right правое выражение
      */
     public Sub(Expression left, Expression right) {
         super(left, right);
     }
 
     /**
-     * Prints the subtraction in format (left-right).
+     * Печатает вычитание.
      */
     @Override
     public void print() {
@@ -28,21 +28,21 @@ public class Sub extends BinaryExpression {
     }
 
     /**
-     * Computes the derivative of subtraction.
+     * Вычисляет производную вычитания.
      *
-     * @param variable the variable to differentiate by
-     * @return derivative of left - derivative of right
+     * @param variable переменная
+     * @return производная
      */
     @Override
     public Expression derivative(String variable) {
-        return new Sub(left.derivative(variable), right.derivative(variable));
+        return new Sub(left.derivative(variable), right.derivative(variable)).simplify();
     }
 
     /**
-     * Evaluates the subtraction.
+     * Вычисляет значение вычитания.
      *
-     * @param assignments variable assignments
-     * @return difference of left and right values
+     * @param assignments значения переменных
+     * @return результат
      */
     @Override
     public int eval(String assignments) {
@@ -50,9 +50,9 @@ public class Sub extends BinaryExpression {
     }
 
     /**
-     * Simplifies the subtraction expression.
+     * Упрощает вычитание.
      *
-     * @return simplified expression
+     * @return упрощенное выражение
      */
     @Override
     public Expression simplify() {
@@ -77,11 +77,11 @@ public class Sub extends BinaryExpression {
     }
 
     /**
-     * Checks if two expressions are equal.
+     * Проверяет равенство двух выражений.
      *
-     * @param expr1 first expression
-     * @param expr2 second expression
-     * @return true if expressions are equal
+     * @param expr1 первое выражение
+     * @param expr2 второе выражение
+     * @return true если выражения равны
      */
     private boolean areExpressionsEqual(Expression expr1, Expression expr2) {
         if (expr1.getClass() != expr2.getClass()) {

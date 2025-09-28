@@ -1,22 +1,22 @@
-package ru.nsu.masolygin;
+package ru.nsu.masolygin.Expressions;
 
 /**
- * Represents multiplication of two expressions.
+ * Умножение двух выражений.
  */
 public class Mul extends BinaryExpression {
 
     /**
-     * Creates a new multiplication expression.
+     * Создает умножение.
      *
-     * @param left the left operand
-     * @param right the right operand
+     * @param left левое выражение
+     * @param right правое выражение
      */
     public Mul(Expression left, Expression right) {
         super(left, right);
     }
 
     /**
-     * Prints the multiplication in format (left*right).
+     * Печатает умножение.
      */
     @Override
     public void print() {
@@ -28,22 +28,22 @@ public class Mul extends BinaryExpression {
     }
 
     /**
-     * Computes the derivative of multiplication using product rule.
+     * Вычисляет производную умножения.
      *
-     * @param variable the variable to differentiate by
-     * @return (left' * right) + (left * right')
+     * @param variable переменная
+     * @return производная
      */
     @Override
     public Expression derivative(String variable) {
         return new Add(new Mul(left.derivative(variable), right),
-            new Mul(left, right.derivative(variable)));
+            new Mul(left, right.derivative(variable))).simplify();
     }
 
     /**
-     * Evaluates the multiplication.
+     * Вычисляет значение умножения.
      *
-     * @param assignments variable assignments
-     * @return product of left and right values
+     * @param assignments значения переменных
+     * @return результат
      */
     @Override
     public int eval(String assignments) {
@@ -51,9 +51,9 @@ public class Mul extends BinaryExpression {
     }
 
     /**
-     * Simplifies the multiplication expression.
+     * Упрощает умножение.
      *
-     * @return simplified expression
+     * @return упрощенное выражение
      */
     @Override
     public Expression simplify() {

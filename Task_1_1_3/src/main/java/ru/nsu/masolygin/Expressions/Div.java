@@ -1,22 +1,22 @@
-package ru.nsu.masolygin;
+package ru.nsu.masolygin.Expressions;
 
 /**
- * Represents division of two expressions.
+ * Деление двух выражений.
  */
 public class Div extends BinaryExpression {
 
     /**
-     * Creates a new division expression.
+     * Создает деление.
      *
-     * @param left the left operand (numerator)
-     * @param right the right operand (denominator)
+     * @param left левое выражение
+     * @param right правое выражение
      */
     public Div(Expression left, Expression right) {
         super(left, right);
     }
 
     /**
-     * Prints the division in format (left/right).
+     * Печатает деление.
      */
     @Override
     public void print() {
@@ -28,10 +28,10 @@ public class Div extends BinaryExpression {
     }
 
     /**
-     * Computes the derivative of division using quotient rule.
+     * Вычисляет производную деления.
      *
-     * @param variable the variable to differentiate by
-     * @return (left' * right - left * right') / (right^2)
+     * @param variable переменная
+     * @return производная
      */
     @Override
     public Expression derivative(String variable) {
@@ -41,14 +41,14 @@ public class Div extends BinaryExpression {
                 new Mul(left, right.derivative(variable))
             ),
             new Mul(right, right)
-        );
+        ).simplify();
     }
 
     /**
-     * Evaluates the division.
+     * Вычисляет значение деления.
      *
-     * @param assignments variable assignments
-     * @return quotient of left and right values
+     * @param assignments значения переменных
+     * @return результат
      */
     @Override
     public int eval(String assignments) {
@@ -60,9 +60,9 @@ public class Div extends BinaryExpression {
     }
 
     /**
-     * Simplifies the division expression.
+     * Упрощает деление.
      *
-     * @return simplified expression
+     * @return упрощенное выражение
      */
     @Override
     public Expression simplify() {
