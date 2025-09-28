@@ -15,7 +15,11 @@
 <script type="text/javascript" src="../../../script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="package-declaration-page">
-<script type="text/javascript">var pathtoroot = "../../../";
+<script type="text/javascript">var evenRowColor = "even-row-color";
+var oddRowColor = "odd-row-color";
+var tableTab = "table-tab";
+var activeTableTab = "active-table-tab";
+var pathtoroot = "../../../";
 loadScripts(document, 'script');</script>
 <noscript>
 <div>JavaScript is disabled on your browser.</div>
@@ -27,6 +31,7 @@ loadScripts(document, 'script');</script>
 <div class="top-nav" id="navbar-top">
 <div class="skip-nav"><a href="#skip-navbar-top" title="Skip navigation links">Skip navigation links</a></div>
 <ul id="navbar-top-firstrow" class="nav-list" title="Navigation">
+<li><a href="../../../index.html">Overview</a></li>
 <li class="nav-bar-cell1-rev">Package</li>
 <li>Class</li>
 <li><a href="package-tree.html">Tree</a></li>
@@ -39,7 +44,7 @@ loadScripts(document, 'script');</script>
 <ul class="sub-nav-list">
 <li>Package:&nbsp;</li>
 <li>Description&nbsp;|&nbsp;</li>
-<li>Related Packages&nbsp;|&nbsp;</li>
+<li><a href="#related-package-summary">Related Packages</a>&nbsp;|&nbsp;</li>
 <li><a href="#class-summary">Classes and Interfaces</a></li>
 </ul>
 </div>
@@ -61,42 +66,55 @@ loadScripts(document, 'script');</script>
 <section class="summary">
 <ul class="summary-list">
 <li>
+<div id="related-package-summary">
+<div class="caption"><span>Related Packages</span></div>
+<div class="summary-table two-column-summary">
+<div class="table-header col-first">Package</div>
+<div class="table-header col-last">Description</div>
+<div class="col-first even-row-color"><a href="Expressions/package-summary.html">ru.nsu.masolygin.Expressions</a></div>
+<div class="col-last even-row-color">&nbsp;</div>
+</div>
+</div>
+</li>
+<li>
 <div id="class-summary">
-<div class="caption"><span>Classes</span></div>
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="class-summary-tab0" role="tab" aria-selected="true" aria-controls="class-summary.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('class-summary', 'class-summary', 2)" class="active-table-tab">All Classes and Interfaces</button><button id="class-summary-tab2" role="tab" aria-selected="false" aria-controls="class-summary.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('class-summary', 'class-summary-tab2', 2)" class="table-tab">Classes</button><button id="class-summary-tab3" role="tab" aria-selected="false" aria-controls="class-summary.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('class-summary', 'class-summary-tab3', 2)" class="table-tab">Enum Classes</button><button id="class-summary-tab5" role="tab" aria-selected="false" aria-controls="class-summary.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('class-summary', 'class-summary-tab5', 2)" class="table-tab">Exceptions</button></div>
+<div id="class-summary.tabpanel" role="tabpanel" aria-labelledby="class-summary-tab0">
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Class</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color class-summary class-summary-tab2"><a href="Add.html" title="class in ru.nsu.masolygin">Add</a></div>
+<div class="col-first even-row-color class-summary class-summary-tab2"><a href="Calculator.html" title="class in ru.nsu.masolygin">Calculator</a></div>
 <div class="col-last even-row-color class-summary class-summary-tab2">
-<div class="block">Represents addition of two expressions.</div>
+<div class="block">Основной калькулятор выражений.</div>
 </div>
-<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="BinaryExpression.html" title="class in ru.nsu.masolygin">BinaryExpression</a></div>
+<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="Console.html" title="class in ru.nsu.masolygin">Console</a></div>
 <div class="col-last odd-row-color class-summary class-summary-tab2">
-<div class="block">Abstract class for binary operations that have left and right operands.</div>
+<div class="block">Консоль для ввода и вывода.</div>
 </div>
-<div class="col-first even-row-color class-summary class-summary-tab2"><a href="Div.html" title="class in ru.nsu.masolygin">Div</a></div>
+<div class="col-first even-row-color class-summary class-summary-tab2"><a href="ExpressionBuilder.html" title="class in ru.nsu.masolygin">ExpressionBuilder</a></div>
 <div class="col-last even-row-color class-summary class-summary-tab2">
-<div class="block">Represents division of two expressions.</div>
+<div class="block">Строит выражения из токенов.</div>
 </div>
-<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="Expression.html" title="class in ru.nsu.masolygin">Expression</a></div>
-<div class="col-last odd-row-color class-summary class-summary-tab2">
-<div class="block">Abstract base class for mathematical expressions.</div>
+<div class="col-first odd-row-color class-summary class-summary-tab5"><a href="ParseException.html" title="class in ru.nsu.masolygin">ParseException</a></div>
+<div class="col-last odd-row-color class-summary class-summary-tab5">
+<div class="block">Ошибка парсинга выражений.</div>
 </div>
-<div class="col-first even-row-color class-summary class-summary-tab2"><a href="Mul.html" title="class in ru.nsu.masolygin">Mul</a></div>
+<div class="col-first even-row-color class-summary class-summary-tab2"><a href="Postfixer.html" title="class in ru.nsu.masolygin">Postfixer</a></div>
 <div class="col-last even-row-color class-summary class-summary-tab2">
-<div class="block">Represents multiplication of two expressions.</div>
+<div class="block">Преобразует инфиксную запись в постфиксную.</div>
 </div>
-<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="Number.html" title="class in ru.nsu.masolygin">Number</a></div>
+<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="StringTokenizer.html" title="class in ru.nsu.masolygin">StringTokenizer</a></div>
 <div class="col-last odd-row-color class-summary class-summary-tab2">
-<div class="block">Represents a number in a mathematical expression.</div>
+<div class="block">Разбивает строку на токены.</div>
 </div>
-<div class="col-first even-row-color class-summary class-summary-tab2"><a href="Sub.html" title="class in ru.nsu.masolygin">Sub</a></div>
+<div class="col-first even-row-color class-summary class-summary-tab2"><a href="Token.html" title="class in ru.nsu.masolygin">Token</a></div>
 <div class="col-last even-row-color class-summary class-summary-tab2">
-<div class="block">Represents subtraction of two expressions.</div>
+<div class="block">Токен для парсинга выражений.</div>
 </div>
-<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="Variable.html" title="class in ru.nsu.masolygin">Variable</a></div>
-<div class="col-last odd-row-color class-summary class-summary-tab2">
-<div class="block">Represents a variable in a mathematical expression.</div>
+<div class="col-first odd-row-color class-summary class-summary-tab3"><a href="Token.Type.html" title="enum class in ru.nsu.masolygin">Token.Type</a></div>
+<div class="col-last odd-row-color class-summary class-summary-tab3">
+<div class="block">Тип токена.</div>
+</div>
 </div>
 </div>
 </div>
