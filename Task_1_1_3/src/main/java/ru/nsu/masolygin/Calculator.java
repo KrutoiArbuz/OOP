@@ -1,14 +1,16 @@
 package ru.nsu.masolygin;
 
-import ru.nsu.masolygin.Expressions.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import ru.nsu.masolygin.Expressions.Add;
 import ru.nsu.masolygin.Expressions.Div;
-
+import ru.nsu.masolygin.Expressions.Expression;
 import ru.nsu.masolygin.Expressions.Mul;
 import ru.nsu.masolygin.Expressions.Sub;
+import ru.nsu.masolygin.Expressions.Variable;
+
 /**
  * Основной калькулятор выражений.
  */

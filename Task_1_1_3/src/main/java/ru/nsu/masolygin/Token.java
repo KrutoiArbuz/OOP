@@ -1,7 +1,8 @@
 package ru.nsu.masolygin;
 
-import ru.nsu.masolygin.Expressions.*;
 import java.util.function.BiFunction;
+
+import ru.nsu.masolygin.Expressions.Expression;
 
 /**
  * Токен для парсинга выражений.

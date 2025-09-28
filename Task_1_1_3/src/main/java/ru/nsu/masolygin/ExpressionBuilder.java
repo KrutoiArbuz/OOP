@@ -1,12 +1,12 @@
 package ru.nsu.masolygin;
 
-import ru.nsu.masolygin.Expressions.Expression;
-import ru.nsu.masolygin.Expressions.Variable;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
+
+import ru.nsu.masolygin.Expressions.Expression;
+import ru.nsu.masolygin.Expressions.Variable;
 
 /**
  * Строит выражения из токенов.

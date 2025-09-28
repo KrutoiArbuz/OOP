@@ -47,7 +47,8 @@ public class Postfixer {
                     }
 
                     while (!stack.isEmpty() && stack.peek().getType() == Token.Type.OPERATOR
-                            && precedence(stack.peek().getValue()) >= precedence(token.getValue())) {
+                            && precedence(stack.peek().getValue())
+                            >= precedence(token.getValue())) {
                         output.add(stack.pop());
                     }
                     stack.push(token);

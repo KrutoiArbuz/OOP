@@ -166,4 +166,165 @@ class ConsoleTest {
         assertTrue(console.hasErrors("(x+y))"));
         assertTrue(console.hasErrors(")(x+y)("));
     }
+
+    @Test
+    void testRequestDerivativeVariable() {
+        String input = "x\n";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        Console testConsole = new Console();
+
+        String result = testConsole.requestDerivativeVariable();
+        assertEquals("x", result);
+
+        String output = outputStream.toString();
+        assertTrue(output.contains("Calculate derivative"));
+    }
+
+    @Test
+    void testRequestDerivativeVariableEmpty() {
+        String input = "\n";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        Console testConsole = new Console();
+
+        String result = testConsole.requestDerivativeVariable();
+        assertEquals("", result);
+    }
+
+    @Test
+    void testConfirmDerivativeEvaluationYes() {
+        String input = "y\n";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        Console testConsole = new Console();
+
+        boolean result = testConsole.confirmDerivativeEvaluation();
+        assertTrue(result);
+
+        String output = outputStream.toString();
+        assertTrue(output.contains("Evaluate derivative"));
+    }
+
+    @Test
+    void testConfirmDerivativeEvaluationNo() {
+        String input = "n\n";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        Console testConsole = new Console();
+
+        boolean result = testConsole.confirmDerivativeEvaluation();
+        assertFalse(result);
+    }
+
+    @Test
+    void testConfirmDerivativeEvaluationCaseInsensitive() {
+        String inputYes = "Y\n";
+        System.setIn(new ByteArrayInputStream(inputYes.getBytes()));
+        Console testConsole1 = new Console();
+        assertTrue(testConsole1.confirmDerivativeEvaluation());
+
+        String inputNo = "N\n";
+        System.setIn(new ByteArrayInputStream(inputNo.getBytes()));
+        Console testConsole2 = new Console();
+        assertFalse(testConsole2.confirmDerivativeEvaluation());
+    }
+
+    @Test
+    void testConfirmDerivativeEvaluationInvalidInput() {
+        String input = "invalid\n";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        Console testConsole = new Console();
+
+        boolean result = testConsole.confirmDerivativeEvaluation();
+        assertFalse(result);
+    }
+
+    @Test
+    void testHasErrorsNestedParentheses() {
+        assertFalse(console.hasErrors("((x+y))"));
+        assertFalse(console.hasErrors("(((x)))"));
+        assertTrue(console.hasErrors("(((x))"));
+        assertTrue(console.hasErrors("((x)))"));
+    }
+
+    @Test
+    void testHasErrorsComplexValid() {
+        assertFalse(console.hasErrors("((a+b)*(c-d))"));
+        assertFalse(console.hasErrors("(x+y-z)"));
+        assertFalse(console.hasErrors("(a*b+c*d)"));
+        assertFalse(console.hasErrors("((x+y)/(z-w))"));
+    }
+
+    @Test
+    void testHasErrorsInvalidPatterns() {
+        assertTrue(console.hasErrors("(x++)"));
+        assertTrue(console.hasErrors("(x--)"));
+        assertTrue(console.hasErrors("(x**)"));
+        assertTrue(console.hasErrors("(x//)"));
+        assertTrue(console.hasErrors("(x+())"));
+        assertTrue(console.hasErrors("(()x)"));
+    }
+
+    @Test
+    void testHasErrorsNumbers() {
+        assertFalse(console.hasErrors("(123+456)"));
+        assertFalse(console.hasErrors("(x+123)"));
+        assertFalse(console.hasErrors("(0*x)"));
+        assertTrue(console.hasErrors("(x@123)"));
+    }
+
+    @Test
+    void testPrintExpressionMultipleCalls() {
+        console.printExpression("First");
+        console.printExpression("Second");
+
+        String output = outputStream.toString();
+        assertTrue(output.contains("First: "));
+        assertTrue(output.contains("Second: "));
+    }
+
+    @Test
+    void testPrintInfoMultipleMessages() {
+        console.printInfo("Message 1");
+        console.printInfo("Message 2");
+        console.printInfo("Message 3");
+
+        String output = outputStream.toString();
+        assertTrue(output.contains("Message 1"));
+        assertTrue(output.contains("Message 2"));
+        assertTrue(output.contains("Message 3"));
+
+        String[] lines = output.split(System.lineSeparator());
+        assertEquals(3, lines.length);
+    }
+
+    @Test
+    void testPrintErrorMultipleErrors() {
+        console.printError("Error 1");
+        console.printError("Error 2");
+
+        String errorOutput = errorStream.toString();
+        assertTrue(errorOutput.contains("Error: Error 1"));
+        assertTrue(errorOutput.contains("Error: Error 2"));
+    }
+
+    @Test
+    void testIsExitCommandEdgeCases() {
+        assertTrue(console.isExitCommand("  EXIT  "));
+        assertTrue(console.isExitCommand("\texit\t"));
+        assertTrue(console.isExitCommand("Exit"));
+        assertTrue(console.isExitCommand("eXiT"));
+
+        assertFalse(console.isExitCommand("exits"));
+        assertFalse(console.isExitCommand("exitt"));
+        assertFalse(console.isExitCommand("quit"));
+        assertFalse(console.isExitCommand("stop"));
+        assertFalse(console.isExitCommand(""));
+        assertFalse(console.isExitCommand("   "));
+    }
+
+    @Test
+    void testHasErrorsVariableNames() {
+        assertFalse(console.hasErrors("(alpha+beta)"));
+        assertFalse(console.hasErrors("(longVariableName+x)"));
+        assertFalse(console.hasErrors("(a+b+c+d)"));
+        assertTrue(console.hasErrors("(x+y@z)"));
+    }
 }
