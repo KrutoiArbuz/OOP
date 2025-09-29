@@ -1,0 +1,95 @@
+package ru.nsu.masolygin;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+import ru.nsu.masolygin.Expressions.BinaryExpression;
+import ru.nsu.masolygin.Expressions.Expression;
+import ru.nsu.masolygin.Expressions.Number;
+import ru.nsu.masolygin.Expressions.Variable;
+
+class VariableTest {
+
+    @Test
+    void testConstructorAndGetName() {
+        Variable var = new Variable("x");
+        assertEquals("x", var.getName());
+
+        Variable multiChar = new Variable("variable");
+        assertEquals("variable", multiChar.getName());
+
+        Variable singleChar = new Variable("y");
+        assertEquals("y", singleChar.getName());
+    }
+
+    @Test
+    void testPrint() {
+        Variable var = new Variable("test");
+        assertDoesNotThrow(() -> var.print());
+    }
+
+    @Test
+    void testDerivative() {
+        Variable x = new Variable("x");
+
+        Expression dxdx = x.derivative("x");
+        assertTrue(dxdx instanceof ru.nsu.masolygin.Expressions.Number);
+        assertEquals(1, ((ru.nsu.masolygin.Expressions.Number) dxdx).getValue());
+
+        Expression dxdy = x.derivative("y");
+        assertTrue(dxdy instanceof ru.nsu.masolygin.Expressions.Number);
+        assertEquals(0, ((ru.nsu.masolygin.Expressions.Number) dxdy).getValue());
+
+        Variable y = new Variable("y");
+        Expression dydy = y.derivative("y");
+        assertTrue(dydy instanceof ru.nsu.masolygin.Expressions.Number);
+        assertEquals(1, ((Number) dydy).getValue());
+    }
+
+    @Test
+    void testEval() {
+        Variable x = new Variable("x");
+        Variable y = new Variable("y");
+
+        assertEquals(10, x.eval("x = 10; y = 5"));
+        assertEquals(5, y.eval("x = 10; y = 5"));
+        assertEquals(42, x.eval("x = 42"));
+
+        assertEquals(15, x.eval("x=15"));
+        assertEquals(20, x.eval(" x = 20 "));
+    }
+
+    @Test
+    void testEvalVariableNotFound() {
+        Variable x = new Variable("x");
+
+        assertThrows(IllegalArgumentException.class, () -> x.eval("y = 5"));
+        assertThrows(IllegalArgumentException.class, () -> x.eval(""));
+        assertThrows(IllegalArgumentException.class, () -> x.eval("z = 10; y = 20"));
+    }
+
+    @Test
+    void testSimplify() {
+        Variable var = new Variable("x");
+        Expression simplified = var.simplify();
+
+        assertSame(var, simplified);
+    }
+
+    @Test
+    void testNotBinaryExpression() {
+        Expression var = new Variable("x");
+        assertFalse(var instanceof BinaryExpression);
+
+        assertThrows(ClassCastException.class, () -> {
+            BinaryExpression binExpr = (BinaryExpression) var;
+        });
+    }
+
+
+}
