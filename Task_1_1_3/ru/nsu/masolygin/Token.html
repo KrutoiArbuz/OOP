@@ -77,7 +77,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Token</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
-<div class="block">Токен для парсинга выражений.</div>
+<div class="block">Токен выражения.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -134,7 +134,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BiFunction.html" title="class or interface in java.util.function" class="external-link">BiFunction</a>&lt;<a href="Expressions/Expression.html" title="class in ru.nsu.masolygin.Expressions">Expression</a>,<wbr><a href="Expressions/Expression.html" title="class in ru.nsu.masolygin.Expressions">Expression</a>,<wbr><a href="Expressions/Expression.html" title="class in ru.nsu.masolygin.Expressions">Expression</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getOperation()" class="member-name-link">getOperation</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Возвращает операцию.</div>
+<div class="block">Возвращает операцию токена.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Token.Type.html" title="enum class in ru.nsu.masolygin">Token.Type</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getType()" class="member-name-link">getType</a>()</code></div>
@@ -187,7 +187,7 @@ loadScripts(document, 'script');</script>
 <dt>Parameters:</dt>
 <dd><code>type</code> - тип токена</dd>
 <dd><code>value</code> - значение токена</dd>
-<dd><code>operation</code> - операция</dd>
+<dd><code>operation</code> - функция операции</dd>
 </dl>
 </section>
 </li>
@@ -225,10 +225,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getOperation()">
 <h3>getOperation</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BiFunction.html" title="class or interface in java.util.function" class="external-link">BiFunction</a>&lt;<a href="Expressions/Expression.html" title="class in ru.nsu.masolygin.Expressions">Expression</a>,<wbr><a href="Expressions/Expression.html" title="class in ru.nsu.masolygin.Expressions">Expression</a>,<wbr><a href="Expressions/Expression.html" title="class in ru.nsu.masolygin.Expressions">Expression</a>&gt;</span>&nbsp;<span class="element-name">getOperation</span>()</div>
-<div class="block">Возвращает операцию.</div>
+<div class="block">Возвращает операцию токена.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>операция</dd>
+<dd>операция токена</dd>
 </dl>
 </section>
 </li>
