@@ -58,10 +58,12 @@ public class Postfixer {
                     break;
                 case RPAREN:
                     boolean foundLeftParen = false;
-                    while (!stack.isEmpty() && stack.peek().getType() != Token.Type.LPAREN) {
+                    while (!stack.isEmpty()
+                           && stack.peek().getType() != Token.Type.LPAREN) {
                         output.add(stack.pop());
                     }
-                    if (!stack.isEmpty() && stack.peek().getType() == Token.Type.LPAREN) {
+                    if (!stack.isEmpty()
+                        && stack.peek().getType() == Token.Type.LPAREN) {
                         stack.pop();
                         foundLeftParen = true;
                     }
@@ -70,7 +72,8 @@ public class Postfixer {
                     }
                     break;
                 default:
-                    throw new IllegalArgumentException("Unknown token type: " + token.getType());
+                    throw new IllegalArgumentException("Unknown token type: "
+                                                     + token.getType());
             }
         }
 

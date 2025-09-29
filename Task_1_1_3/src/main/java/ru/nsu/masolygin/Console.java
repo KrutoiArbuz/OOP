@@ -158,8 +158,7 @@ public class Console {
 
         if (input.contains("++") || input.contains("--")
                 || input.contains("**") || input.contains("//")
-                || input.contains("(+") || input.contains("(-)")
-                || input.contains("(*") || input.contains("(/)")) {
+                || input.contains("(+") || input.contains("(-)")) {
             return true;
         }
 

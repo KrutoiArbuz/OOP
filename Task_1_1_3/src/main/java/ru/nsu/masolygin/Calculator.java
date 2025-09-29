@@ -3,7 +3,6 @@ package ru.nsu.masolygin;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import ru.nsu.masolygin.Expressions.Add;
 import ru.nsu.masolygin.Expressions.Div;
 import ru.nsu.masolygin.Expressions.Expression;
@@ -12,7 +11,7 @@ import ru.nsu.masolygin.Expressions.Sub;
 import ru.nsu.masolygin.Expressions.Variable;
 
 /**
- * Основной калькулятор выражений.
+ * Калькулятор математических выражений.
  */
 public class Calculator {
     private final Console console;

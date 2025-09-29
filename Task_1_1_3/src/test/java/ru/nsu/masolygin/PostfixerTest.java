@@ -1,18 +1,16 @@
 package ru.nsu.masolygin;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import ru.nsu.masolygin.Expressions.Add;
 import ru.nsu.masolygin.Expressions.Div;
 import ru.nsu.masolygin.Expressions.Mul;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class PostfixerTest {
     private Postfixer postfixer;

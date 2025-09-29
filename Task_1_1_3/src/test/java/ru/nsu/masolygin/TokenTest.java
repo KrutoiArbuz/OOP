@@ -1,17 +1,18 @@
 package ru.nsu.masolygin;
 
-import java.util.function.BiFunction;
-
-import org.junit.jupiter.api.Test;
-
-import ru.nsu.masolygin.Expressions.Add;
-import ru.nsu.masolygin.Expressions.Expression;
-import ru.nsu.masolygin.Expressions.Mul;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.function.BiFunction;
+import org.junit.jupiter.api.Test;
+import ru.nsu.masolygin.Expressions.Add;
+import ru.nsu.masolygin.Expressions.Div;
+import ru.nsu.masolygin.Expressions.Expression;
+import ru.nsu.masolygin.Expressions.Mul;
+import ru.nsu.masolygin.Expressions.Number;
+import ru.nsu.masolygin.Expressions.Sub;
 
 class TokenTest {
 

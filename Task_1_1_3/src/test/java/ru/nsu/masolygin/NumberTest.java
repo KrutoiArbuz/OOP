@@ -28,17 +28,17 @@ class NumberTest {
 
     @Test
     void testPrint() {
-        ru.nsu.masolygin.Expressions.Number num = new ru.nsu.masolygin.Expressions.Number(123);
+        Number num = new Number(123);
         assertDoesNotThrow(() -> num.print());
     }
 
     @Test
     void testDerivative() {
-        ru.nsu.masolygin.Expressions.Number num = new ru.nsu.masolygin.Expressions.Number(42);
+        Number num = new Number(42);
         Expression derivative = num.derivative("x");
 
-        assertTrue(derivative instanceof ru.nsu.masolygin.Expressions.Number);
-        assertEquals(0, ((ru.nsu.masolygin.Expressions.Number) derivative).getValue());
+        assertTrue(derivative instanceof Number);
+        assertEquals(0, ((Number) derivative).getValue());
 
         Expression derivativeY = num.derivative("y");
         assertTrue(derivativeY instanceof ru.nsu.masolygin.Expressions.Number);

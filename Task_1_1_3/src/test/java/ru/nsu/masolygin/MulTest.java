@@ -14,7 +14,7 @@ class MulTest {
 
     @Test
     void testConstructorAndGetters() {
-        Expression left = new ru.nsu.masolygin.Expressions.Number(3);
+        Expression left = new Number(3);
         Expression right = new Variable("x");
         Mul mul = new Mul(left, right);
 
@@ -24,7 +24,7 @@ class MulTest {
 
     @Test
     void testPrint() {
-        Expression left = new ru.nsu.masolygin.Expressions.Number(2);
+        Expression left = new Number(2);
         Expression right = new Variable("y");
         Mul mul = new Mul(left, right);
 
@@ -34,7 +34,7 @@ class MulTest {
     @Test
     void testDerivative() {
         // (3*x)' = 3
-        Expression expr = new Mul(new ru.nsu.masolygin.Expressions.Number(3), new Variable("x"));
+        Expression expr = new Mul(new Number(3), new Variable("x"));
         Expression derivative = expr.derivative("x");
 
         assertTrue(derivative instanceof ru.nsu.masolygin.Expressions.Number);
@@ -135,3 +135,4 @@ class MulTest {
         assertEquals(0, ((Number) simplifiedNested).getValue());
     }
 }
+

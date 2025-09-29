@@ -2,14 +2,13 @@ package ru.nsu.masolygin;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import ru.nsu.masolygin.Expressions.Add;
 import ru.nsu.masolygin.Expressions.Div;
 import ru.nsu.masolygin.Expressions.Mul;
 import ru.nsu.masolygin.Expressions.Sub;
 
 /**
- * Разбивает строку на токены.
+ * Токенизатор строк.
  */
 public class StringTokenizer {
     private final List<Token> tokens = new ArrayList<>();

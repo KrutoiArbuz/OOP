@@ -4,12 +4,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
-
+import ru.nsu.masolygin.Expressions.Add;
+import ru.nsu.masolygin.Expressions.Div;
 import ru.nsu.masolygin.Expressions.Expression;
+import ru.nsu.masolygin.Expressions.Mul;
+import ru.nsu.masolygin.Expressions.Number;
+import ru.nsu.masolygin.Expressions.Sub;
 import ru.nsu.masolygin.Expressions.Variable;
 
 /**
- * Строит выражения из токенов.
+ * Строитель выражений из постфиксной записи.
  */
 public class ExpressionBuilder {
 

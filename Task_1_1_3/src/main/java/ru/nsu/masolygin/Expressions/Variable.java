@@ -95,7 +95,7 @@ public class Variable extends Expression {
                     return Integer.parseInt(valueStr);
                 } catch (NumberFormatException e) {
                     throw new IllegalArgumentException("Invalid number format for variable "
-                        + name + ": " + valueStr);
+                            + name + ": " + valueStr);
                 }
             }
         }

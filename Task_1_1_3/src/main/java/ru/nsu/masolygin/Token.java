@@ -1,26 +1,39 @@
 package ru.nsu.masolygin;
 
 import java.util.function.BiFunction;
-
+import ru.nsu.masolygin.Expressions.Add;
+import ru.nsu.masolygin.Expressions.Div;
 import ru.nsu.masolygin.Expressions.Expression;
+import ru.nsu.masolygin.Expressions.Mul;
+import ru.nsu.masolygin.Expressions.Sub;
 
 /**
- * Токен для парсинга выражений.
+ * Токен выражения.
  */
 public class Token {
     /**
      * Тип токена.
      */
     public enum Type {
-        /** Число. */
+        /**
+         * Число.
+         */
         NUMBER,
-        /** Переменная. */
+        /**
+         * Переменная.
+         */
         VARIABLE,
-        /** Операция. */
+        /**
+         * Оператор.
+         */
         OPERATOR,
-        /** Левая скобка. */
+        /**
+         * Левая скобка.
+         */
         LPAREN,
-        /** Правая скобка. */
+        /**
+         * Правая скобка.
+         */
         RPAREN
     }
 
@@ -35,7 +48,9 @@ public class Token {
      * @param value значение токена
      */
     public Token(Type type, String value) {
-        this(type, value, null);
+        this.type = type;
+        this.value = value;
+        this.operation = null;
     }
 
     /**
@@ -43,7 +58,7 @@ public class Token {
      *
      * @param type тип токена
      * @param value значение токена
-     * @param operation операция
+     * @param operation функция операции
      */
     public Token(Type type, String value,
                  BiFunction<Expression, Expression, Expression> operation) {
@@ -71,9 +86,9 @@ public class Token {
     }
 
     /**
-     * Возвращает операцию.
+     * Возвращает операцию токена.
      *
-     * @return операция
+     * @return операция токена
      */
     public BiFunction<Expression, Expression, Expression> getOperation() {
         return operation;
