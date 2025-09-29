@@ -16,13 +16,13 @@ class NumberTest {
 
     @Test
     void testConstructorAndGetValue() {
-        ru.nsu.masolygin.Expressions.Number num = new ru.nsu.masolygin.Expressions.Number(42);
+        Number num = new Number(42);
         assertEquals(42, num.getValue());
 
-        ru.nsu.masolygin.Expressions.Number negativeNum = new ru.nsu.masolygin.Expressions.Number(-15);
+        Number negativeNum = new Number(-15);
         assertEquals(-15, negativeNum.getValue());
 
-        ru.nsu.masolygin.Expressions.Number zero = new ru.nsu.masolygin.Expressions.Number(0);
+        Number zero = new Number(0);
         assertEquals(0, zero.getValue());
     }
 
@@ -41,13 +41,13 @@ class NumberTest {
         assertEquals(0, ((Number) derivative).getValue());
 
         Expression derivativeY = num.derivative("y");
-        assertTrue(derivativeY instanceof ru.nsu.masolygin.Expressions.Number);
-        assertEquals(0, ((ru.nsu.masolygin.Expressions.Number) derivativeY).getValue());
+        assertTrue(derivativeY instanceof Number);
+        assertEquals(0, ((Number) derivativeY).getValue());
     }
 
     @Test
     void testEval() {
-        ru.nsu.masolygin.Expressions.Number num = new ru.nsu.masolygin.Expressions.Number(100);
+        Number num = new Number(100);
 
         assertEquals(100, num.eval("x = 5; y = 10"));
         assertEquals(100, num.eval(""));
@@ -56,7 +56,7 @@ class NumberTest {
 
     @Test
     void testSimplify() {
-        ru.nsu.masolygin.Expressions.Number num = new ru.nsu.masolygin.Expressions.Number(77);
+        Number num = new Number(77);
         Expression simplified = num.simplify();
 
         assertSame(num, simplified);
