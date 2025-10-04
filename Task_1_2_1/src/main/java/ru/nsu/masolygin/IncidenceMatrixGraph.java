@@ -20,6 +20,7 @@ public class IncidenceMatrixGraph implements Graph {
 
         /**
          * Конструктор ребра.
+         *
          * @param from начальная вершина
          * @param to конечная вершина
          */
@@ -30,8 +31,12 @@ public class IncidenceMatrixGraph implements Graph {
 
         @Override
         public boolean equals(Object o) {
-            if (this == o) return true;
-            if (!(o instanceof Edge)) return false;
+            if (this == o) {
+                return true;
+            }
+            if (!(o instanceof Edge)) {
+                return false;
+            }
             Edge edge = (Edge) o;
             return from == edge.from && to == edge.to;
         }
@@ -46,6 +51,11 @@ public class IncidenceMatrixGraph implements Graph {
         matrix = new ArrayList<>();
     }
 
+    /**
+     * Добавить вершину.
+     *
+     * @param vertex номер вершины
+     */
     public void addVertex(int vertex) {
         if (vertex < 0) {
             throw new IllegalArgumentException("Vertex must be non-negative");
@@ -56,6 +66,11 @@ public class IncidenceMatrixGraph implements Graph {
         }
     }
 
+    /**
+     * Удалить вершину.
+     *
+     * @param vertex номер вершины
+     */
     public void removeVertex(int vertex) {
         if (!vertices.contains(vertex)) {
             return;
@@ -66,6 +81,12 @@ public class IncidenceMatrixGraph implements Graph {
         rebuildMatrix();
     }
 
+    /**
+     * Добавить ребро.
+     *
+     * @param from откуда
+     * @param to куда
+     */
     public void addEdge(int from, int to) {
         if (!vertices.contains(from) || !vertices.contains(to)) {
             throw new IllegalArgumentException("Both vertices must exist in the graph");
@@ -78,6 +99,12 @@ public class IncidenceMatrixGraph implements Graph {
         }
     }
 
+    /**
+     * Удалить ребро.
+     *
+     * @param from откуда
+     * @param to куда
+     */
     public void removeEdge(int from, int to) {
         Edge edgeToRemove = new Edge(from, to);
         if (edges.remove(edgeToRemove)) {
@@ -85,6 +112,12 @@ public class IncidenceMatrixGraph implements Graph {
         }
     }
 
+    /**
+     * Получить список соседей вершины.
+     *
+     * @param vertex номер вершины
+     * @return список соседей
+     */
     public List<Integer> getNeighbors(int vertex) {
         if (!vertices.contains(vertex)) {
             throw new IllegalArgumentException("Vertex does not exist in the graph");
@@ -99,22 +132,49 @@ public class IncidenceMatrixGraph implements Graph {
         return neighbors;
     }
 
+    /**
+     * Получить список всех вершин.
+     *
+     * @return список вершин
+     */
     public List<Integer> getVertices() {
         return new ArrayList<>(vertices);
     }
 
+    /**
+     * Топологическая сортировка (Кан).
+     *
+     * @return список вершин в топологическом порядке
+     */
     public List<Integer> topologicalSort() {
         return TopologicalSorter.khanTopologicalSort(this);
     }
 
+    /**
+     * Проверить наличие ребра.
+     *
+     * @param from откуда
+     * @param to куда
+     * @return true если есть ребро
+     */
     public boolean hasEdge(int from, int to) {
         return edges.contains(new Edge(from, to));
     }
 
+    /**
+     * Получить количество вершин.
+     *
+     * @return число вершин
+     */
     public int getVertexCount() {
         return vertices.size();
     }
 
+    /**
+     * Строковое представление графа.
+     *
+     * @return строка
+     */
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("IncidenceMatrixGraph:\n");
@@ -159,10 +219,20 @@ public class IncidenceMatrixGraph implements Graph {
         }
     }
 
+    /**
+     * Проверка на равенство графов.
+     *
+     * @param o объект
+     * @return true если графы равны
+     */
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Graph)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Graph)) {
+            return false;
+        }
 
         Graph other = (Graph) o;
 

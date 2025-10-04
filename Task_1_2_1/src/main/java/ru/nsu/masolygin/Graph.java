@@ -11,18 +11,21 @@ import java.util.List;
 public interface Graph {
     /**
      * Добавить вершину.
+     *
      * @param vertex номер вершины
      */
     void addVertex(int vertex);
 
     /**
      * Удалить вершину.
+     *
      * @param vertex номер вершины
      */
     void removeVertex(int vertex);
 
     /**
      * Добавить ребро.
+     *
      * @param from откуда
      * @param to куда
      */
@@ -30,6 +33,7 @@ public interface Graph {
 
     /**
      * Удалить ребро.
+     *
      * @param from откуда
      * @param to куда
      */
@@ -37,6 +41,7 @@ public interface Graph {
 
     /**
      * Получить список соседей вершины.
+     *
      * @param vertex номер вершины
      * @return список соседей
      */
@@ -44,18 +49,21 @@ public interface Graph {
 
     /**
      * Получить список всех вершин.
+     *
      * @return список вершин
      */
     List<Integer> getVertices();
 
     /**
      * Топологическая сортировка.
+     *
      * @return список вершин в топологическом порядке
      */
     List<Integer> topologicalSort();
 
     /**
      * Проверить наличие ребра.
+     *
      * @param from откуда
      * @param to куда
      * @return true если есть ребро
@@ -64,18 +72,21 @@ public interface Graph {
 
     /**
      * Получить количество вершин.
+     *
      * @return число вершин
      */
     int getVertexCount();
 
     /**
      * Строковое представление графа.
+     *
      * @return строка
      */
     String toString();
 
     /**
      * Проверка на равенство графов.
+     *
      * @param o объект
      * @return true если графы равны
      */
@@ -83,6 +94,7 @@ public interface Graph {
 
     /**
      * Прочитать граф из файла фиксированного формата.
+     *
      * @param filename имя файла
      * @throws IOException ошибка ввода-вывода
      */

@@ -15,9 +15,9 @@ public class AdjacencyListGraph implements Graph {
         int id;
         List<Integer> neighbors;
 
-
         /**
          * Конструктор вершины.
+         *
          * @param id идентификатор вершины
          */
         Vertex(int id) {
@@ -28,7 +28,6 @@ public class AdjacencyListGraph implements Graph {
 
     private List<Vertex> vertices;
 
-
     /**
      * Конструктор графа.
      */
@@ -36,7 +35,11 @@ public class AdjacencyListGraph implements Graph {
         vertices = new ArrayList<>();
     }
 
-
+    /**
+     * Добавить вершину.
+     *
+     * @param vertex номер вершины
+     */
     public void addVertex(int vertex) {
         if (vertex < 0) {
             throw new IllegalArgumentException("Vertex must be non-negative");
@@ -46,7 +49,11 @@ public class AdjacencyListGraph implements Graph {
         }
     }
 
-
+    /**
+     * Удалить вершину.
+     *
+     * @param vertex номер вершины
+     */
     public void removeVertex(int vertex) {
         Vertex v = findVertex(vertex);
         if (v == null) {
@@ -60,7 +67,12 @@ public class AdjacencyListGraph implements Graph {
         vertices.remove(v);
     }
 
-
+    /**
+     * Добавить ребро.
+     *
+     * @param from откуда
+     * @param to куда
+     */
     public void addEdge(int from, int to) {
         Vertex fromVertex = findVertex(from);
         Vertex toVertex = findVertex(to);
@@ -74,7 +86,12 @@ public class AdjacencyListGraph implements Graph {
         }
     }
 
-
+    /**
+     * Удалить ребро.
+     *
+     * @param from откуда
+     * @param to куда
+     */
     public void removeEdge(int from, int to) {
         Vertex fromVertex = findVertex(from);
         if (fromVertex != null) {
@@ -82,7 +99,12 @@ public class AdjacencyListGraph implements Graph {
         }
     }
 
-
+    /**
+     * Получить список соседей вершины.
+     *
+     * @param vertex номер вершины
+     * @return список соседей
+     */
     public List<Integer> getNeighbors(int vertex) {
         Vertex v = findVertex(vertex);
         if (v == null) {
@@ -91,7 +113,11 @@ public class AdjacencyListGraph implements Graph {
         return new ArrayList<>(v.neighbors);
     }
 
-
+    /**
+     * Получить список всех вершин.
+     *
+     * @return список вершин
+     */
     public List<Integer> getVertices() {
         List<Integer> result = new ArrayList<>();
         for (Vertex v : vertices) {
@@ -100,12 +126,22 @@ public class AdjacencyListGraph implements Graph {
         return result;
     }
 
-
+    /**
+     * Топологическая сортировка (DFS).
+     *
+     * @return список вершин в топологическом порядке
+     */
     public List<Integer> topologicalSort() {
         return TopologicalSorter.dfsTopologicalSort(this);
     }
 
-
+    /**
+     * Проверить наличие ребра.
+     *
+     * @param from откуда
+     * @param to куда
+     * @return true если есть ребро
+     */
     public boolean hasEdge(int from, int to) {
         Vertex fromVertex = findVertex(from);
         if (fromVertex == null) {
@@ -114,12 +150,20 @@ public class AdjacencyListGraph implements Graph {
         return fromVertex.neighbors.contains(to);
     }
 
-
+    /**
+     * Получить количество вершин.
+     *
+     * @return число вершин
+     */
     public int getVertexCount() {
         return vertices.size();
     }
 
-
+    /**
+     * Строковое представление графа.
+     *
+     * @return строка
+     */
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("AdjacencyListGraph:\n");
@@ -135,9 +179,9 @@ public class AdjacencyListGraph implements Graph {
         return sb.toString();
     }
 
-
     /**
      * Найти вершину по идентификатору.
+     *
      * @param id номер вершины
      * @return вершина или null если не найдена
      */
@@ -150,10 +194,20 @@ public class AdjacencyListGraph implements Graph {
         return null;
     }
 
+    /**
+     * Проверка на равенство графов.
+     *
+     * @param o объект
+     * @return true если графы равны
+     */
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Graph)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Graph)) {
+            return false;
+        }
 
         Graph other = (Graph) o;
 

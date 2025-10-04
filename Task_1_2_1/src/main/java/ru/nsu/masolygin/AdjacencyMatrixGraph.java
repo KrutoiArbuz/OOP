@@ -18,6 +18,11 @@ public class AdjacencyMatrixGraph implements Graph {
         vertices = new ArrayList<>();
     }
 
+    /**
+     * Добавить вершину.
+     *
+     * @param vertex номер вершины
+     */
     public void addVertex(int vertex) {
         if (vertex < 0) {
             throw new IllegalArgumentException("Vertex must be non-negative");
@@ -28,6 +33,11 @@ public class AdjacencyMatrixGraph implements Graph {
         }
     }
 
+    /**
+     * Удалить вершину.
+     *
+     * @param vertex номер вершины
+     */
     public void removeVertex(int vertex) {
         if (!vertices.contains(vertex)) {
             return;
@@ -46,6 +56,12 @@ public class AdjacencyMatrixGraph implements Graph {
         }
     }
 
+    /**
+     * Добавить ребро.
+     *
+     * @param from откуда
+     * @param to куда
+     */
     public void addEdge(int from, int to) {
         if (!vertices.contains(from) || !vertices.contains(to)) {
             throw new IllegalArgumentException("Both vertices must exist in the graph");
@@ -54,12 +70,24 @@ public class AdjacencyMatrixGraph implements Graph {
         matrix.get(from).set(to, true);
     }
 
+    /**
+     * Удалить ребро.
+     *
+     * @param from откуда
+     * @param to куда
+     */
     public void removeEdge(int from, int to) {
         if (from >= 0 && from < matrix.size() && to >= 0 && to < matrix.get(from).size()) {
             matrix.get(from).set(to, false);
         }
     }
 
+    /**
+     * Получить список соседей вершины.
+     *
+     * @param vertex номер вершины
+     * @return список соседей
+     */
     public List<Integer> getNeighbors(int vertex) {
         if (!vertices.contains(vertex)) {
             throw new IllegalArgumentException("Vertex does not exist in the graph");
@@ -75,14 +103,31 @@ public class AdjacencyMatrixGraph implements Graph {
         return neighbors;
     }
 
+    /**
+     * Получить список всех вершин.
+     *
+     * @return список вершин
+     */
     public List<Integer> getVertices() {
         return new ArrayList<>(vertices);
     }
 
+    /**
+     * Топологическая сортировка (DFS).
+     *
+     * @return список вершин в топологическом порядке
+     */
     public List<Integer> topologicalSort() {
         return TopologicalSorter.dfsTopologicalSort(this);
     }
 
+    /**
+     * Проверить наличие ребра.
+     *
+     * @param from откуда
+     * @param to куда
+     * @return true если есть ребро
+     */
     public boolean hasEdge(int from, int to) {
         if (from < 0 || from >= matrix.size() || to < 0 || to >= matrix.get(from).size()) {
             return false;
@@ -90,10 +135,20 @@ public class AdjacencyMatrixGraph implements Graph {
         return matrix.get(from).get(to);
     }
 
+    /**
+     * Получить количество вершин.
+     *
+     * @return число вершин
+     */
     public int getVertexCount() {
         return vertices.size();
     }
 
+    /**
+     * Строковое представление графа.
+     *
+     * @return строка
+     */
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("AdjacencyMatrixGraph:\n");
@@ -113,6 +168,7 @@ public class AdjacencyMatrixGraph implements Graph {
 
     /**
      * Расширить матрицу при необходимости.
+     *
      * @param maxIndex максимальный индекс
      */
     private void expandMatrixIfNeeded(int maxIndex) {
@@ -127,10 +183,20 @@ public class AdjacencyMatrixGraph implements Graph {
         }
     }
 
+    /**
+     * Проверка на равенство графов.
+     *
+     * @param o объект
+     * @return true если графы равны
+     */
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Graph)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Graph)) {
+            return false;
+        }
 
         Graph other = (Graph) o;
 

@@ -9,6 +9,7 @@ import java.util.List;
 public class Main {
     /**
      * Главный метод программы.
+     *
      * @param args аргументы командной строки
      */
     public static void main(String[] args) {
@@ -37,7 +38,9 @@ public class Main {
 
     /**
      * Создает образец графа.
+     *
      * @param graph граф для заполнения
+     * @param graph graph to fill
      */
     private static void createSampleGraph(Graph graph) {
         graph.addVertex(1);

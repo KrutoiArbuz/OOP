@@ -9,7 +9,7 @@ import java.util.List;
 public class TopologicalSorter {
 
     /**
-     * Приватный конструктор.
+     * Приватный конструктор для предотвращения создания экземпляров утилитного класса.
      */
     private TopologicalSorter() {
         throw new UnsupportedOperationException("Utility class");
@@ -17,6 +17,7 @@ public class TopologicalSorter {
 
     /**
      * Топологическая сортировка с использованием DFS.
+     *
      * @param graph граф для сортировки
      * @return список вершин в топологическом порядке
      */
@@ -43,13 +44,15 @@ public class TopologicalSorter {
 
     /**
      * Рекурсивный обход в глубину для DFS топологической сортировки.
+     *
      * @param graph граф
      * @param vertex текущая вершина
      * @param visited массив посещенных вершин
      * @param inStack массив вершин в стеке вызовов
      * @param result список результата
      */
-    private static void dfsVisit(Graph graph, int vertex, boolean[] visited, boolean[] inStack, List<Integer> result) {
+    private static void dfsVisit(Graph graph, int vertex, boolean[] visited,
+                                boolean[] inStack, List<Integer> result) {
         visited[vertex] = true;
         inStack[vertex] = true;
 
@@ -69,6 +72,7 @@ public class TopologicalSorter {
 
     /**
      * Топологическая сортировка с использованием алгоритма Кана.
+     *
      * @param graph граф для сортировки
      * @return список вершин в топологическом порядке
      */
@@ -115,6 +119,7 @@ public class TopologicalSorter {
 
     /**
      * Найти максимальный номер вершины в списке.
+     *
      * @param vertices список вершин
      * @return максимальный номер вершины
      */
