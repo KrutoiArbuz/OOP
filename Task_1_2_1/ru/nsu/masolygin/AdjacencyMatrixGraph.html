@@ -162,7 +162,7 @@ implements <a href="Graph.html" title="interface in ru.nsu.masolygin">Graph</a><
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#topologicalSort()" class="member-name-link">topologicalSort</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Топологическая сортировка.</div>
+<div class="block">Топологическая сортировка (DFS).</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
@@ -208,7 +208,6 @@ implements <a href="Graph.html" title="interface in ru.nsu.masolygin">Graph</a><
 <section class="detail" id="addVertex(int)">
 <h3>addVertex</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addVertex</span><wbr><span class="parameters">(int&nbsp;vertex)</span></div>
-<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Graph.html#addVertex(int)">Graph</a></code></span></div>
 <div class="block">Добавить вершину.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
@@ -222,7 +221,6 @@ implements <a href="Graph.html" title="interface in ru.nsu.masolygin">Graph</a><
 <section class="detail" id="removeVertex(int)">
 <h3>removeVertex</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">removeVertex</span><wbr><span class="parameters">(int&nbsp;vertex)</span></div>
-<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Graph.html#removeVertex(int)">Graph</a></code></span></div>
 <div class="block">Удалить вершину.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
@@ -237,7 +235,6 @@ implements <a href="Graph.html" title="interface in ru.nsu.masolygin">Graph</a><
 <h3>addEdge</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addEdge</span><wbr><span class="parameters">(int&nbsp;from,
  int&nbsp;to)</span></div>
-<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Graph.html#addEdge(int,int)">Graph</a></code></span></div>
 <div class="block">Добавить ребро.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
@@ -253,7 +250,6 @@ implements <a href="Graph.html" title="interface in ru.nsu.masolygin">Graph</a><
 <h3>removeEdge</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">removeEdge</span><wbr><span class="parameters">(int&nbsp;from,
  int&nbsp;to)</span></div>
-<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Graph.html#removeEdge(int,int)">Graph</a></code></span></div>
 <div class="block">Удалить ребро.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
@@ -268,7 +264,6 @@ implements <a href="Graph.html" title="interface in ru.nsu.masolygin">Graph</a><
 <section class="detail" id="getNeighbors(int)">
 <h3>getNeighbors</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</span>&nbsp;<span class="element-name">getNeighbors</span><wbr><span class="parameters">(int&nbsp;vertex)</span></div>
-<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Graph.html#getNeighbors(int)">Graph</a></code></span></div>
 <div class="block">Получить список соседей вершины.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
@@ -284,7 +279,6 @@ implements <a href="Graph.html" title="interface in ru.nsu.masolygin">Graph</a><
 <section class="detail" id="getVertices()">
 <h3>getVertices</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</span>&nbsp;<span class="element-name">getVertices</span>()</div>
-<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Graph.html#getVertices()">Graph</a></code></span></div>
 <div class="block">Получить список всех вершин.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
@@ -298,8 +292,7 @@ implements <a href="Graph.html" title="interface in ru.nsu.masolygin">Graph</a><
 <section class="detail" id="topologicalSort()">
 <h3>topologicalSort</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</span>&nbsp;<span class="element-name">topologicalSort</span>()</div>
-<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Graph.html#topologicalSort()">Graph</a></code></span></div>
-<div class="block">Топологическая сортировка.</div>
+<div class="block">Топологическая сортировка (DFS).</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Graph.html#topologicalSort()">topologicalSort</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.masolygin">Graph</a></code></dd>
@@ -313,7 +306,6 @@ implements <a href="Graph.html" title="interface in ru.nsu.masolygin">Graph</a><
 <h3>hasEdge</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">hasEdge</span><wbr><span class="parameters">(int&nbsp;from,
  int&nbsp;to)</span></div>
-<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Graph.html#hasEdge(int,int)">Graph</a></code></span></div>
 <div class="block">Проверить наличие ребра.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
@@ -330,7 +322,6 @@ implements <a href="Graph.html" title="interface in ru.nsu.masolygin">Graph</a><
 <section class="detail" id="getVertexCount()">
 <h3>getVertexCount</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getVertexCount</span>()</div>
-<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Graph.html#getVertexCount()">Graph</a></code></span></div>
 <div class="block">Получить количество вершин.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
@@ -344,7 +335,6 @@ implements <a href="Graph.html" title="interface in ru.nsu.masolygin">Graph</a><
 <section class="detail" id="toString()">
 <h3>toString</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">toString</span>()</div>
-<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Graph.html#toString()">Graph</a></code></span></div>
 <div class="block">Строковое представление графа.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
@@ -360,7 +350,6 @@ implements <a href="Graph.html" title="interface in ru.nsu.masolygin">Graph</a><
 <section class="detail" id="equals(java.lang.Object)">
 <h3>equals</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">equals</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;o)</span></div>
-<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="Graph.html#equals(java.lang.Object)">Graph</a></code></span></div>
 <div class="block">Проверка на равенство графов.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
