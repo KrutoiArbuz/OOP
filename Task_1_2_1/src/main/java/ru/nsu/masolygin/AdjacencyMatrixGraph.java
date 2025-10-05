@@ -1,9 +1,9 @@
 package ru.nsu.masolygin;
 
-import ru.nsu.masolygin.strategy.TopologicalSortStrategy;
-import ru.nsu.masolygin.strategy.DfsTopologicalSort;
 import java.util.ArrayList;
 import java.util.List;
+import ru.nsu.masolygin.strategy.DfsTopologicalSort;
+import ru.nsu.masolygin.strategy.TopologicalSortStrategy;
 
 /**
  * Реализация графа с помощью матрицы смежности.

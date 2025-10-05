@@ -1,11 +1,11 @@
 package ru.nsu.masolygin;
 
+import java.io.IOException;
+import java.util.List;
 import ru.nsu.masolygin.parser.FileGraphReader;
 import ru.nsu.masolygin.parser.GraphReader;
 import ru.nsu.masolygin.strategy.DfsTopologicalSort;
 import ru.nsu.masolygin.strategy.KhanTopologicalSort;
-import java.io.IOException;
-import java.util.List;
 
 /**
  * Главный класс для демонстрации работы с графом.

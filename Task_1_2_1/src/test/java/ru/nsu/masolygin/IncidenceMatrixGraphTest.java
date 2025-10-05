@@ -10,11 +10,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-
 import ru.nsu.masolygin.parser.FileGraphReader;
 import ru.nsu.masolygin.parser.GraphReader;
 import ru.nsu.masolygin.strategy.DfsTopologicalSort;
@@ -273,7 +271,7 @@ class IncidenceMatrixGraphTest {
 
     @Test
     void testEquality() {
-        IncidenceMatrixGraph graph2 = new IncidenceMatrixGraph();
+        final IncidenceMatrixGraph graph2 = new IncidenceMatrixGraph();
 
         graph.addVertex(1);
         graph.addVertex(2);

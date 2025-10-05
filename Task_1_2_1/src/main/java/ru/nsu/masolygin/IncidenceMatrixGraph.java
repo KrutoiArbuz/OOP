@@ -1,10 +1,10 @@
 package ru.nsu.masolygin;
 
-import ru.nsu.masolygin.model.Edge;
-import ru.nsu.masolygin.strategy.TopologicalSortStrategy;
-import ru.nsu.masolygin.strategy.KhanTopologicalSort;
 import java.util.ArrayList;
 import java.util.List;
+import ru.nsu.masolygin.model.Edge;
+import ru.nsu.masolygin.strategy.KhanTopologicalSort;
+import ru.nsu.masolygin.strategy.TopologicalSortStrategy;
 
 /**
  * Реализация графа с помощью матрицы инцидентности.

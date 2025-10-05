@@ -1,8 +1,8 @@
 package ru.nsu.masolygin.strategy;
 
-import ru.nsu.masolygin.Graph;
 import java.util.ArrayList;
 import java.util.List;
+import ru.nsu.masolygin.Graph;
 
 /**
  * Реализация топологической сортировки с использованием алгоритма Кана.

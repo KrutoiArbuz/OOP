@@ -1,7 +1,7 @@
 package ru.nsu.masolygin;
 
-import ru.nsu.masolygin.strategy.TopologicalSortStrategy;
 import java.util.List;
+import ru.nsu.masolygin.strategy.TopologicalSortStrategy;
 
 /**
  * Интерфейс графа с основными операциями.

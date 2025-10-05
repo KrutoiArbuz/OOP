@@ -10,11 +10,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-
 import ru.nsu.masolygin.parser.FileGraphReader;
 import ru.nsu.masolygin.parser.GraphReader;
 import ru.nsu.masolygin.strategy.DfsTopologicalSort;
@@ -251,7 +249,7 @@ class AdjacencyListGraphTest {
 
     @Test
     void testEquality() {
-        AdjacencyListGraph graph2 = new AdjacencyListGraph();
+        final AdjacencyListGraph graph2 = new AdjacencyListGraph();
 
         graph.addVertex(1);
         graph.addVertex(2);

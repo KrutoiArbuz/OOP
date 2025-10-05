@@ -1,7 +1,7 @@
 package ru.nsu.masolygin.parser;
 
-import ru.nsu.masolygin.Graph;
 import java.io.IOException;
+import ru.nsu.masolygin.Graph;
 
 /**
  * Интерфейс для парсинга графов из различных источников.

@@ -10,11 +10,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-
 import ru.nsu.masolygin.parser.FileGraphReader;
 import ru.nsu.masolygin.parser.GraphReader;
 import ru.nsu.masolygin.strategy.DfsTopologicalSort;
@@ -255,7 +253,7 @@ class AdjacencyMatrixGraphTest {
 
     @Test
     void testEquality() {
-        AdjacencyMatrixGraph graph2 = new AdjacencyMatrixGraph();
+        final AdjacencyMatrixGraph graph2 = new AdjacencyMatrixGraph();
 
         graph.addVertex(1);
         graph.addVertex(2);

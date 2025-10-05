@@ -1,9 +1,9 @@
 package ru.nsu.masolygin.parser;
 
-import ru.nsu.masolygin.Graph;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import ru.nsu.masolygin.Graph;
 
 /**
  * Реализация чтения графа из файла.

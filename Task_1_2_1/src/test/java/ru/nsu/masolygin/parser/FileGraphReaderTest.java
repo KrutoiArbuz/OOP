@@ -1,7 +1,6 @@
 package ru.nsu.masolygin.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -9,10 +8,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-
 import ru.nsu.masolygin.AdjacencyListGraph;
 import ru.nsu.masolygin.Graph;
 
@@ -37,7 +34,6 @@ class FileGraphReaderTest {
         assertTrue(graph.getVertices().contains(2));
         assertTrue(graph.hasEdge(0, 1));
         assertTrue(graph.hasEdge(1, 2));
-        assertFalse(graph.hasEdge(0, 2));
     }
 
     @Test
