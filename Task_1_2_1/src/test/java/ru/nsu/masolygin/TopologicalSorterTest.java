@@ -8,19 +8,17 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import ru.nsu.masolygin.strategy.DfsTopologicalSort;
+import ru.nsu.masolygin.strategy.KhanTopologicalSort;
 
 class TopologicalSorterTest {
 
     @Test
-    void testDfsTopologicalSortSimple() {
-        Graph graph = new AdjacencyMatrixGraph();
-        graph.addVertex(1);
-        graph.addVertex(2);
-        graph.addVertex(3);
-        graph.addEdge(1, 2);
-        graph.addEdge(2, 3);
+    void testDfsStrategyWithAdjacencyMatrix() {
+        Graph graph = new AdjacencyMatrixGraph(new DfsTopologicalSort());
+        setupSimpleGraph(graph);
 
-        List<Integer> sorted = TopologicalSorter.dfsTopologicalSort(graph);
+        List<Integer> sorted = graph.topologicalSort();
 
         assertEquals(3, sorted.size());
         assertTrue(sorted.indexOf(1) < sorted.indexOf(2));
@@ -28,9 +26,88 @@ class TopologicalSorterTest {
     }
 
     @Test
-    void testDfsTopologicalSortComplex() {
+    void testKhanStrategyWithAdjacencyList() {
+        Graph graph = new AdjacencyListGraph(new KhanTopologicalSort());
+        setupComplexGraph(graph);
+
+        List<Integer> sorted = graph.topologicalSort();
+
+        assertEquals(6, sorted.size());
+        assertTrue(sorted.indexOf(5) < sorted.indexOf(2));
+        assertTrue(sorted.indexOf(5) < sorted.indexOf(0));
+        assertTrue(sorted.indexOf(4) < sorted.indexOf(0));
+        assertTrue(sorted.indexOf(4) < sorted.indexOf(1));
+        assertTrue(sorted.indexOf(2) < sorted.indexOf(3));
+        assertTrue(sorted.indexOf(3) < sorted.indexOf(1));
+    }
+
+    @Test
+    void testDfsStrategyWithIncidenceMatrix() {
+        Graph graph = new IncidenceMatrixGraph(new DfsTopologicalSort());
+        setupSimpleGraph(graph);
+
+        List<Integer> sorted = graph.topologicalSort();
+
+        assertEquals(3, sorted.size());
+        assertTrue(sorted.indexOf(1) < sorted.indexOf(2));
+        assertTrue(sorted.indexOf(2) < sorted.indexOf(3));
+    }
+
+    @Test
+    void testStrategySwitching() {
+        Graph graph = new AdjacencyMatrixGraph();
+        setupSimpleGraph(graph);
+
+        List<Integer> dfsResult = graph.topologicalSort();
+        assertEquals(3, dfsResult.size());
+
+        graph.setTopologicalSortStrategy(new KhanTopologicalSort());
+        List<Integer> khanResult = graph.topologicalSort();
+        assertEquals(3, khanResult.size());
+
+        assertTrue(dfsResult.indexOf(1) < dfsResult.indexOf(2));
+        assertTrue(dfsResult.indexOf(2) < dfsResult.indexOf(3));
+        assertTrue(khanResult.indexOf(1) < khanResult.indexOf(2));
+        assertTrue(khanResult.indexOf(2) < khanResult.indexOf(3));
+    }
+
+    @Test
+    void testCycleDetectionAcrossStrategies() {
         Graph graph = new AdjacencyListGraph();
+        graph.addVertex(1);
+        graph.addVertex(2);
+        graph.addVertex(3);
+        graph.addEdge(1, 2);
+        graph.addEdge(2, 3);
+        graph.addEdge(3, 1);
 
+        graph.setTopologicalSortStrategy(new DfsTopologicalSort());
+        assertThrows(IllegalStateException.class, () -> graph.topologicalSort());
+
+        graph.setTopologicalSortStrategy(new KhanTopologicalSort());
+        assertThrows(IllegalStateException.class, () -> graph.topologicalSort());
+    }
+
+    @Test
+    void testEmptyGraphAcrossStrategies() {
+        Graph graph = new AdjacencyMatrixGraph();
+
+        graph.setTopologicalSortStrategy(new DfsTopologicalSort());
+        assertTrue(graph.topologicalSort().isEmpty());
+
+        graph.setTopologicalSortStrategy(new KhanTopologicalSort());
+        assertTrue(graph.topologicalSort().isEmpty());
+    }
+
+    private void setupSimpleGraph(Graph graph) {
+        graph.addVertex(1);
+        graph.addVertex(2);
+        graph.addVertex(3);
+        graph.addEdge(1, 2);
+        graph.addEdge(2, 3);
+    }
+
+    private void setupComplexGraph(Graph graph) {
         for (int i = 0; i <= 5; i++) {
             graph.addVertex(i);
         }
@@ -41,155 +118,5 @@ class TopologicalSorterTest {
         graph.addEdge(4, 1);
         graph.addEdge(2, 3);
         graph.addEdge(3, 1);
-
-        List<Integer> sorted = TopologicalSorter.dfsTopologicalSort(graph);
-
-        assertTrue(sorted.indexOf(5) < sorted.indexOf(2));
-        assertTrue(sorted.indexOf(5) < sorted.indexOf(0));
-        assertTrue(sorted.indexOf(4) < sorted.indexOf(0));
-        assertTrue(sorted.indexOf(4) < sorted.indexOf(1));
-        assertTrue(sorted.indexOf(2) < sorted.indexOf(3));
-        assertTrue(sorted.indexOf(3) < sorted.indexOf(1));
-    }
-
-    @Test
-    void testDfsTopologicalSortWithCycle() {
-        Graph graph = new AdjacencyMatrixGraph();
-        graph.addVertex(1);
-        graph.addVertex(2);
-        graph.addVertex(3);
-        graph.addEdge(1, 2);
-        graph.addEdge(2, 3);
-        graph.addEdge(3, 1);
-
-        assertThrows(IllegalStateException.class,
-            () -> TopologicalSorter.dfsTopologicalSort(graph));
-    }
-
-    @Test
-    void testDfsTopologicalSortEmpty() {
-        Graph graph = new AdjacencyMatrixGraph();
-        List<Integer> sorted = TopologicalSorter.dfsTopologicalSort(graph);
-        assertTrue(sorted.isEmpty());
-    }
-
-    @Test
-    void testDfsTopologicalSortSingleVertex() {
-        Graph graph = new AdjacencyMatrixGraph();
-        graph.addVertex(42);
-
-        List<Integer> sorted = TopologicalSorter.dfsTopologicalSort(graph);
-        assertEquals(1, sorted.size());
-        assertEquals(42, sorted.get(0));
-    }
-
-    @Test
-    void testKhanTopologicalSortSimple() {
-        Graph graph = new IncidenceMatrixGraph();
-        graph.addVertex(1);
-        graph.addVertex(2);
-        graph.addVertex(3);
-        graph.addEdge(1, 2);
-        graph.addEdge(2, 3);
-
-        List<Integer> sorted = TopologicalSorter.khanTopologicalSort(graph);
-
-        assertEquals(3, sorted.size());
-        assertTrue(sorted.indexOf(1) < sorted.indexOf(2));
-        assertTrue(sorted.indexOf(2) < sorted.indexOf(3));
-    }
-
-    @Test
-    void testKhanTopologicalSortComplex() {
-        Graph graph = new IncidenceMatrixGraph();
-
-        for (int i = 0; i <= 5; i++) {
-            graph.addVertex(i);
-        }
-
-        graph.addEdge(5, 2);
-        graph.addEdge(5, 0);
-        graph.addEdge(4, 0);
-        graph.addEdge(4, 1);
-        graph.addEdge(2, 3);
-        graph.addEdge(3, 1);
-
-        List<Integer> sorted = TopologicalSorter.khanTopologicalSort(graph);
-
-        assertTrue(sorted.indexOf(5) < sorted.indexOf(2));
-        assertTrue(sorted.indexOf(5) < sorted.indexOf(0));
-        assertTrue(sorted.indexOf(4) < sorted.indexOf(0));
-        assertTrue(sorted.indexOf(4) < sorted.indexOf(1));
-        assertTrue(sorted.indexOf(2) < sorted.indexOf(3));
-        assertTrue(sorted.indexOf(3) < sorted.indexOf(1));
-    }
-
-    @Test
-    void testKhanTopologicalSortWithCycle() {
-        Graph graph = new IncidenceMatrixGraph();
-        graph.addVertex(1);
-        graph.addVertex(2);
-        graph.addVertex(3);
-        graph.addEdge(1, 2);
-        graph.addEdge(2, 3);
-        graph.addEdge(3, 1);
-
-        assertThrows(IllegalStateException.class,
-            () -> TopologicalSorter.khanTopologicalSort(graph));
-    }
-
-    @Test
-    void testKhanTopologicalSortEmpty() {
-        Graph graph = new IncidenceMatrixGraph();
-        List<Integer> sorted = TopologicalSorter.khanTopologicalSort(graph);
-        assertTrue(sorted.isEmpty());
-    }
-
-    @Test
-    void testKhanTopologicalSortSingleVertex() {
-        Graph graph = new IncidenceMatrixGraph();
-        graph.addVertex(42);
-
-        List<Integer> sorted = TopologicalSorter.khanTopologicalSort(graph);
-        assertEquals(1, sorted.size());
-        assertEquals(42, sorted.get(0));
-    }
-
-    @Test
-    void testBothAlgorithmsGiveSameResult() {
-        Graph graph1 = new AdjacencyMatrixGraph();
-        Graph graph2 = new IncidenceMatrixGraph();
-
-        for (int i = 0; i < 5; i++) {
-            graph1.addVertex(i);
-            graph2.addVertex(i);
-        }
-
-        graph1.addEdge(0, 1);
-        graph1.addEdge(0, 2);
-        graph1.addEdge(1, 3);
-        graph1.addEdge(2, 3);
-        graph1.addEdge(3, 4);
-
-        graph2.addEdge(0, 1);
-        graph2.addEdge(0, 2);
-        graph2.addEdge(1, 3);
-        graph2.addEdge(2, 3);
-        graph2.addEdge(3, 4);
-
-        List<Integer> sorted1 = TopologicalSorter.dfsTopologicalSort(graph1);
-        List<Integer> sorted2 = TopologicalSorter.khanTopologicalSort(graph2);
-
-        assertTrue(sorted1.indexOf(0) < sorted1.indexOf(1));
-        assertTrue(sorted1.indexOf(0) < sorted1.indexOf(2));
-        assertTrue(sorted1.indexOf(1) < sorted1.indexOf(3));
-        assertTrue(sorted1.indexOf(2) < sorted1.indexOf(3));
-        assertTrue(sorted1.indexOf(3) < sorted1.indexOf(4));
-
-        assertTrue(sorted2.indexOf(0) < sorted2.indexOf(1));
-        assertTrue(sorted2.indexOf(0) < sorted2.indexOf(2));
-        assertTrue(sorted2.indexOf(1) < sorted2.indexOf(3));
-        assertTrue(sorted2.indexOf(2) < sorted2.indexOf(3));
-        assertTrue(sorted2.indexOf(3) < sorted2.indexOf(4));
     }
 }

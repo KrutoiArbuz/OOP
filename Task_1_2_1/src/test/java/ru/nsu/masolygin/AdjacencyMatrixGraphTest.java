@@ -15,6 +15,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import ru.nsu.masolygin.parser.FileGraphReader;
+import ru.nsu.masolygin.parser.GraphReader;
+import ru.nsu.masolygin.strategy.DfsTopologicalSort;
+import ru.nsu.masolygin.strategy.KhanTopologicalSort;
 
 class AdjacencyMatrixGraphTest {
     private AdjacencyMatrixGraph graph;
@@ -155,6 +159,38 @@ class AdjacencyMatrixGraphTest {
     }
 
     @Test
+    void testTopologicalSortStrategy() {
+        graph.addVertex(0);
+        graph.addVertex(1);
+        graph.addVertex(2);
+        graph.addEdge(0, 1);
+        graph.addEdge(1, 2);
+
+        graph.setTopologicalSortStrategy(new DfsTopologicalSort());
+        List<Integer> dfsResult = graph.topologicalSort();
+        assertEquals(3, dfsResult.size());
+        assertTrue(dfsResult.indexOf(0) < dfsResult.indexOf(1));
+        assertTrue(dfsResult.indexOf(1) < dfsResult.indexOf(2));
+
+        graph.setTopologicalSortStrategy(new KhanTopologicalSort());
+        List<Integer> khanResult = graph.topologicalSort();
+        assertEquals(3, khanResult.size());
+        assertTrue(khanResult.indexOf(0) < khanResult.indexOf(1));
+        assertTrue(khanResult.indexOf(1) < khanResult.indexOf(2));
+    }
+
+    @Test
+    void testConstructorWithStrategy() {
+        Graph strategyGraph = new AdjacencyMatrixGraph(new KhanTopologicalSort());
+        strategyGraph.addVertex(0);
+        strategyGraph.addVertex(1);
+        strategyGraph.addEdge(0, 1);
+
+        List<Integer> result = strategyGraph.topologicalSort();
+        assertEquals(List.of(0, 1), result);
+    }
+
+    @Test
     void testReadFromFile(@TempDir Path tempDir) throws IOException {
         File testFile = tempDir.resolve("graph.txt").toFile();
         try (FileWriter writer = new FileWriter(testFile)) {
@@ -164,11 +200,33 @@ class AdjacencyMatrixGraphTest {
             writer.write("2 3\n");
         }
 
-        graph.readFromFile(testFile.getAbsolutePath());
+        FileGraphReader reader = new FileGraphReader(testFile.getAbsolutePath());
+        reader.readGraph(graph);
         assertEquals(4, graph.getVertexCount());
         assertTrue(graph.hasEdge(0, 1));
-        assertTrue(graph.hasEdge(1, 2));
+
+        FileGraphReader reader2 = new FileGraphReader(testFile.getAbsolutePath());
+        reader2.readGraph(graph);
         assertTrue(graph.hasEdge(2, 3));
+    }
+
+    @Test
+    void testReadFromFileWithFileGraphReader(@TempDir Path tempDir) throws IOException {
+        File tempFile = tempDir.resolve("test_graph.txt").toFile();
+        try (FileWriter writer = new FileWriter(tempFile)) {
+            writer.write("0 1 2\n");
+            writer.write("0 1\n");
+            writer.write("1 2\n");
+        }
+
+        AdjacencyMatrixGraph fileGraph = new AdjacencyMatrixGraph();
+        GraphReader reader = new FileGraphReader(tempFile.getAbsolutePath());
+        reader.readGraph(fileGraph);
+
+        assertEquals(3, fileGraph.getVertexCount());
+        assertTrue(fileGraph.hasEdge(0, 1));
+        assertTrue(fileGraph.hasEdge(1, 2));
+        assertFalse(fileGraph.hasEdge(0, 2));
     }
 
     @Test

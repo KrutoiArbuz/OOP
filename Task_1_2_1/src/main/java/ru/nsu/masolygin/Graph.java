@@ -1,8 +1,6 @@
 package ru.nsu.masolygin;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import ru.nsu.masolygin.strategy.TopologicalSortStrategy;
 import java.util.List;
 
 /**
@@ -93,36 +91,9 @@ public interface Graph {
     boolean equals(Object o);
 
     /**
-     * Прочитать граф из файла фиксированного формата.
+     * Установить стратегию топологической сортировки.
      *
-     * @param filename имя файла
-     * @throws IOException ошибка ввода-вывода
+     * @param strategy стратегия сортировки
      */
-    default void readFromFile(String filename) throws IOException {
-        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
-            String line = reader.readLine();
-            if (line == null) {
-                throw new IOException("Empty file");
-            }
-
-            String[] vertexStrings = line.trim().split("\\s+");
-            for (String v : vertexStrings) {
-                addVertex(Integer.parseInt(v));
-            }
-
-            while ((line = reader.readLine()) != null) {
-                line = line.trim();
-                if (line.isEmpty()) {
-                    continue;
-                }
-                String[] parts = line.split("\\s+");
-                if (parts.length != 2) {
-                    throw new IOException("Invalid edge format: " + line);
-                }
-                int from = Integer.parseInt(parts[0]);
-                int to = Integer.parseInt(parts[1]);
-                addEdge(from, to);
-            }
-        }
-    }
+    void setTopologicalSortStrategy(TopologicalSortStrategy strategy);
 }

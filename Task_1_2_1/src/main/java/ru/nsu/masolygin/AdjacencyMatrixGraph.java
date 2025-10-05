@@ -1,5 +1,7 @@
 package ru.nsu.masolygin;
 
+import ru.nsu.masolygin.strategy.TopologicalSortStrategy;
+import ru.nsu.masolygin.strategy.DfsTopologicalSort;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +11,7 @@ import java.util.List;
 public class AdjacencyMatrixGraph implements Graph {
     private List<List<Boolean>> matrix;
     private List<Integer> vertices;
+    private TopologicalSortStrategy topologicalSortStrategy;
 
     /**
      * Конструктор графа.
@@ -16,6 +19,18 @@ public class AdjacencyMatrixGraph implements Graph {
     public AdjacencyMatrixGraph() {
         matrix = new ArrayList<>();
         vertices = new ArrayList<>();
+        topologicalSortStrategy = new DfsTopologicalSort();
+    }
+
+    /**
+     * Конструктор графа со стратегией топологической сортировки.
+     *
+     * @param strategy стратегия топологической сортировки
+     */
+    public AdjacencyMatrixGraph(TopologicalSortStrategy strategy) {
+        matrix = new ArrayList<>();
+        vertices = new ArrayList<>();
+        topologicalSortStrategy = strategy;
     }
 
     /**
@@ -113,15 +128,6 @@ public class AdjacencyMatrixGraph implements Graph {
     }
 
     /**
-     * Топологическая сортировка (DFS).
-     *
-     * @return список вершин в топологическом порядке
-     */
-    public List<Integer> topologicalSort() {
-        return TopologicalSorter.dfsTopologicalSort(this);
-    }
-
-    /**
      * Проверить наличие ребра.
      *
      * @param from откуда
@@ -200,27 +206,44 @@ public class AdjacencyMatrixGraph implements Graph {
 
         Graph other = (Graph) o;
 
-        if (this.getVertexCount() != other.getVertexCount()) {
+        List<Integer> thisVertices = this.getVertices();
+        List<Integer> otherVertices = other.getVertices();
+        thisVertices.sort(Integer::compareTo);
+        otherVertices.sort(Integer::compareTo);
+
+        if (!thisVertices.equals(otherVertices)) {
             return false;
         }
 
-        List<Integer> thisVertices = this.getVertices();
-        List<Integer> otherVertices = other.getVertices();
-
-        for (Integer v : thisVertices) {
-            if (!otherVertices.contains(v)) {
+        for (Integer vertex : thisVertices) {
+            List<Integer> thisNeighbors = this.getNeighbors(vertex);
+            List<Integer> otherNeighbors = other.getNeighbors(vertex);
+            thisNeighbors.sort(Integer::compareTo);
+            otherNeighbors.sort(Integer::compareTo);
+            if (!thisNeighbors.equals(otherNeighbors)) {
                 return false;
-            }
-        }
-
-        for (Integer from : thisVertices) {
-            for (Integer to : thisVertices) {
-                if (this.hasEdge(from, to) != other.hasEdge(from, to)) {
-                    return false;
-                }
             }
         }
 
         return true;
     }
+
+    /**
+     * Топологическая сортировка (DFS).
+     *
+     * @return список вершин в топологическом порядке
+     */
+    public List<Integer> topologicalSort() {
+        return topologicalSortStrategy.sort(this);
+    }
+
+    /**
+     * Установить стратегию топологической сортировки.
+     *
+     * @param strategy стратегия топологической сортировки
+     */
+    public void setTopologicalSortStrategy(TopologicalSortStrategy strategy) {
+        this.topologicalSortStrategy = strategy;
+    }
+
 }

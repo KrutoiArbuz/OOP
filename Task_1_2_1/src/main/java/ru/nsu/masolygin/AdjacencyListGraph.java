@@ -1,5 +1,8 @@
 package ru.nsu.masolygin;
 
+import ru.nsu.masolygin.model.Vertex;
+import ru.nsu.masolygin.strategy.TopologicalSortStrategy;
+import ru.nsu.masolygin.strategy.DfsTopologicalSort;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,32 +10,25 @@ import java.util.List;
  * Реализация графа с помощью списка смежности.
  */
 public class AdjacencyListGraph implements Graph {
-
-    /**
-     * Вершина графа.
-     */
-    private static class Vertex {
-        int id;
-        List<Integer> neighbors;
-
-        /**
-         * Конструктор вершины.
-         *
-         * @param id идентификатор вершины
-         */
-        Vertex(int id) {
-            this.id = id;
-            this.neighbors = new ArrayList<>();
-        }
-    }
-
     private List<Vertex> vertices;
+    private TopologicalSortStrategy topologicalSortStrategy;
 
     /**
      * Конструктор графа.
      */
     public AdjacencyListGraph() {
         vertices = new ArrayList<>();
+        topologicalSortStrategy = new DfsTopologicalSort();
+    }
+
+    /**
+     * Конструктор графа со стратегией топологической сортировки.
+     *
+     * @param strategy стратегия топологической сортировки
+     */
+    public AdjacencyListGraph(TopologicalSortStrategy strategy) {
+        vertices = new ArrayList<>();
+        topologicalSortStrategy = strategy;
     }
 
     /**
@@ -61,7 +57,7 @@ public class AdjacencyListGraph implements Graph {
         }
 
         for (Vertex otherVertex : vertices) {
-            otherVertex.neighbors.remove(Integer.valueOf(vertex));
+            otherVertex.removeNeighbor(vertex);
         }
 
         vertices.remove(v);
@@ -81,9 +77,7 @@ public class AdjacencyListGraph implements Graph {
             throw new IllegalArgumentException("Both vertices must exist in the graph");
         }
 
-        if (!fromVertex.neighbors.contains(to)) {
-            fromVertex.neighbors.add(to);
-        }
+        fromVertex.addNeighbor(to);
     }
 
     /**
@@ -95,7 +89,7 @@ public class AdjacencyListGraph implements Graph {
     public void removeEdge(int from, int to) {
         Vertex fromVertex = findVertex(from);
         if (fromVertex != null) {
-            fromVertex.neighbors.remove(Integer.valueOf(to));
+            fromVertex.removeNeighbor(to);
         }
     }
 
@@ -110,7 +104,7 @@ public class AdjacencyListGraph implements Graph {
         if (v == null) {
             throw new IllegalArgumentException("Vertex does not exist in the graph");
         }
-        return new ArrayList<>(v.neighbors);
+        return new ArrayList<>(v.getNeighbors());
     }
 
     /**
@@ -121,18 +115,9 @@ public class AdjacencyListGraph implements Graph {
     public List<Integer> getVertices() {
         List<Integer> result = new ArrayList<>();
         for (Vertex v : vertices) {
-            result.add(v.id);
+            result.add(v.getId());
         }
         return result;
-    }
-
-    /**
-     * Топологическая сортировка (DFS).
-     *
-     * @return список вершин в топологическом порядке
-     */
-    public List<Integer> topologicalSort() {
-        return TopologicalSorter.dfsTopologicalSort(this);
     }
 
     /**
@@ -147,7 +132,7 @@ public class AdjacencyListGraph implements Graph {
         if (fromVertex == null) {
             return false;
         }
-        return fromVertex.neighbors.contains(to);
+        return fromVertex.getNeighbors().contains(to);
     }
 
     /**
@@ -164,6 +149,7 @@ public class AdjacencyListGraph implements Graph {
      *
      * @return строка
      */
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("AdjacencyListGraph:\n");
@@ -171,8 +157,8 @@ public class AdjacencyListGraph implements Graph {
         sb.append("Edges:\n");
 
         for (Vertex v : vertices) {
-            for (Integer neighbor : v.neighbors) {
-                sb.append("  ").append(v.id).append(" -> ").append(neighbor).append("\n");
+            for (Integer neighbor : v.getNeighbors()) {
+                sb.append("  ").append(v.getId()).append(" -> ").append(neighbor).append("\n");
             }
         }
 
@@ -187,7 +173,7 @@ public class AdjacencyListGraph implements Graph {
      */
     private Vertex findVertex(int id) {
         for (Vertex v : vertices) {
-            if (v.id == id) {
+            if (v.getId() == id) {
                 return v;
             }
         }
@@ -205,33 +191,47 @@ public class AdjacencyListGraph implements Graph {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Graph)) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
 
-        Graph other = (Graph) o;
-
-        if (this.getVertexCount() != other.getVertexCount()) {
-            return false;
-        }
+        AdjacencyListGraph that = (AdjacencyListGraph) o;
 
         List<Integer> thisVertices = this.getVertices();
-        List<Integer> otherVertices = other.getVertices();
+        List<Integer> thatVertices = that.getVertices();
 
-        for (Integer v : thisVertices) {
-            if (!otherVertices.contains(v)) {
+        if (!thisVertices.equals(thatVertices)) {
+            return false;
+        }
+
+        for (Integer vertex : thisVertices) {
+            List<Integer> thisNeighbors = this.getNeighbors(vertex);
+            List<Integer> thatNeighbors = that.getNeighbors(vertex);
+            thisNeighbors.sort(Integer::compareTo);
+            thatNeighbors.sort(Integer::compareTo);
+            if (!thisNeighbors.equals(thatNeighbors)) {
                 return false;
             }
         }
 
-        for (Integer from : thisVertices) {
-            for (Integer to : thisVertices) {
-                if (this.hasEdge(from, to) != other.hasEdge(from, to)) {
-                    return false;
-                }
-            }
-        }
-
         return true;
+    }
+
+    /**
+     * Топологическая сортировка.
+     *
+     * @return список вершин в топологическом порядке
+     */
+    public List<Integer> topologicalSort() {
+        return topologicalSortStrategy.sort(this);
+    }
+
+    /**
+     * Установить стратегию топологической сортировки.
+     *
+     * @param strategy стратегия сортировки
+     */
+    public void setTopologicalSortStrategy(TopologicalSortStrategy strategy) {
+        this.topologicalSortStrategy = strategy;
     }
 }

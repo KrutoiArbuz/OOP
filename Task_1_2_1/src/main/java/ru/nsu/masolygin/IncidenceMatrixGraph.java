@@ -1,5 +1,8 @@
 package ru.nsu.masolygin;
 
+import ru.nsu.masolygin.model.Edge;
+import ru.nsu.masolygin.strategy.TopologicalSortStrategy;
+import ru.nsu.masolygin.strategy.KhanTopologicalSort;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,37 +13,7 @@ public class IncidenceMatrixGraph implements Graph {
     private List<Integer> vertices;
     private List<Edge> edges;
     private List<List<Integer>> matrix;
-
-    /**
-     * Класс ребра графа.
-     */
-    private static class Edge {
-        int from;
-        int to;
-
-        /**
-         * Конструктор ребра.
-         *
-         * @param from начальная вершина
-         * @param to конечная вершина
-         */
-        Edge(int from, int to) {
-            this.from = from;
-            this.to = to;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) {
-                return true;
-            }
-            if (!(o instanceof Edge)) {
-                return false;
-            }
-            Edge edge = (Edge) o;
-            return from == edge.from && to == edge.to;
-        }
-    }
+    private TopologicalSortStrategy topologicalSortStrategy;
 
     /**
      * Конструктор графа.
@@ -49,6 +22,19 @@ public class IncidenceMatrixGraph implements Graph {
         vertices = new ArrayList<>();
         edges = new ArrayList<>();
         matrix = new ArrayList<>();
+        topologicalSortStrategy = new KhanTopologicalSort();
+    }
+
+    /**
+     * Конструктор графа со стратегией топологической сортировки.
+     *
+     * @param strategy стратегия топологической сортировки
+     */
+    public IncidenceMatrixGraph(TopologicalSortStrategy strategy) {
+        vertices = new ArrayList<>();
+        edges = new ArrayList<>();
+        matrix = new ArrayList<>();
+        topologicalSortStrategy = strategy;
     }
 
     /**
@@ -76,7 +62,7 @@ public class IncidenceMatrixGraph implements Graph {
             return;
         }
 
-        edges.removeIf(edge -> edge.from == vertex || edge.to == vertex);
+        edges.removeIf(edge -> edge.getFrom() == vertex || edge.getTo() == vertex);
         vertices.remove(Integer.valueOf(vertex));
         rebuildMatrix();
     }
@@ -125,8 +111,8 @@ public class IncidenceMatrixGraph implements Graph {
 
         List<Integer> neighbors = new ArrayList<>();
         for (Edge edge : edges) {
-            if (edge.from == vertex && !neighbors.contains(edge.to)) {
-                neighbors.add(edge.to);
+            if (edge.getFrom() == vertex && !neighbors.contains(edge.getTo())) {
+                neighbors.add(edge.getTo());
             }
         }
         return neighbors;
@@ -139,15 +125,6 @@ public class IncidenceMatrixGraph implements Graph {
      */
     public List<Integer> getVertices() {
         return new ArrayList<>(vertices);
-    }
-
-    /**
-     * Топологическая сортировка (Кан).
-     *
-     * @return список вершин в топологическом порядке
-     */
-    public List<Integer> topologicalSort() {
-        return TopologicalSorter.khanTopologicalSort(this);
     }
 
     /**
@@ -175,6 +152,7 @@ public class IncidenceMatrixGraph implements Graph {
      *
      * @return строка
      */
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("IncidenceMatrixGraph:\n");
@@ -182,7 +160,7 @@ public class IncidenceMatrixGraph implements Graph {
         sb.append("Edges:\n");
 
         for (Edge edge : edges) {
-            sb.append("  ").append(edge.from).append(" -> ").append(edge.to).append("\n");
+            sb.append("  ").append(edge.getFrom()).append(" -> ").append(edge.getTo()).append("\n");
         }
 
         return sb.toString();
@@ -200,31 +178,20 @@ public class IncidenceMatrixGraph implements Graph {
         for (int i = 0; i < n; i++) {
             List<Integer> row = new ArrayList<>();
             for (int j = 0; j < m; j++) {
-                row.add(0);
+                Edge edge = edges.get(j);
+                int vertexId = vertices.get(i);
+                if (edge.getFrom() == vertexId) {
+                    row.add(1);
+                } else if (edge.getTo() == vertexId) {
+                    row.add(-1);
+                } else {
+                    row.add(0);
+                }
             }
             matrix.add(row);
         }
-
-        for (int j = 0; j < m; j++) {
-            Edge edge = edges.get(j);
-            int fromIndex = vertices.indexOf(edge.from);
-            int toIndex = vertices.indexOf(edge.to);
-
-            if (fromIndex != -1) {
-                matrix.get(fromIndex).set(j, 1);
-            }
-            if (toIndex != -1) {
-                matrix.get(toIndex).set(j, -1);
-            }
-        }
     }
 
-    /**
-     * Проверка на равенство графов.
-     *
-     * @param o объект
-     * @return true если графы равны
-     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -236,27 +203,44 @@ public class IncidenceMatrixGraph implements Graph {
 
         Graph other = (Graph) o;
 
-        if (this.getVertexCount() != other.getVertexCount()) {
+        List<Integer> thisVertices = this.getVertices();
+        List<Integer> otherVertices = other.getVertices();
+        thisVertices.sort(Integer::compareTo);
+        otherVertices.sort(Integer::compareTo);
+
+        if (!thisVertices.equals(otherVertices)) {
             return false;
         }
 
-        List<Integer> thisVertices = this.getVertices();
-        List<Integer> otherVertices = other.getVertices();
-
-        for (Integer v : thisVertices) {
-            if (!otherVertices.contains(v)) {
+        for (Integer vertex : thisVertices) {
+            List<Integer> thisNeighbors = this.getNeighbors(vertex);
+            List<Integer> otherNeighbors = other.getNeighbors(vertex);
+            thisNeighbors.sort(Integer::compareTo);
+            otherNeighbors.sort(Integer::compareTo);
+            if (!thisNeighbors.equals(otherNeighbors)) {
                 return false;
-            }
-        }
-
-        for (Integer from : thisVertices) {
-            for (Integer to : thisVertices) {
-                if (this.hasEdge(from, to) != other.hasEdge(from, to)) {
-                    return false;
-                }
             }
         }
 
         return true;
     }
+
+    /**
+     * Топологическая сортировка.
+     *
+     * @return список вершин в топологическом порядке
+     */
+    public List<Integer> topologicalSort() {
+        return topologicalSortStrategy.sort(this);
+    }
+
+    /**
+     * Установить стратегию топологической сортировки.
+     *
+     * @param strategy стратегия сортировки
+     */
+    public void setTopologicalSortStrategy(TopologicalSortStrategy strategy) {
+        this.topologicalSortStrategy = strategy;
+    }
+
 }
