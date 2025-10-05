@@ -31,6 +31,7 @@ loadScripts(document, 'script');</script>
 <div class="top-nav" id="navbar-top">
 <div class="skip-nav"><a href="#skip-navbar-top" title="Skip navigation links">Skip navigation links</a></div>
 <ul id="navbar-top-firstrow" class="nav-list" title="Navigation">
+<li><a href="../../../index.html">Overview</a></li>
 <li><a href="package-summary.html">Package</a></li>
 <li class="nav-bar-cell1-rev">Class</li>
 <li><a href="package-tree.html">Tree</a></li>
@@ -97,6 +98,10 @@ implements <a href="Graph.html" title="interface in ru.nsu.masolygin">Graph</a><
 <div class="col-last even-row-color">
 <div class="block">Конструктор графа.</div>
 </div>
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(ru.nsu.masolygin.strategy.TopologicalSortStrategy)" class="member-name-link">AdjacencyMatrixGraph</a><wbr>(<a href="strategy/TopologicalSortStrategy.html" title="interface in ru.nsu.masolygin.strategy">TopologicalSortStrategy</a>&nbsp;strategy)</code></div>
+<div class="col-last odd-row-color">
+<div class="block">Конструктор графа со стратегией топологической сортировки.</div>
+</div>
 </div>
 </section>
 </li>
@@ -159,14 +164,19 @@ implements <a href="Graph.html" title="interface in ru.nsu.masolygin">Graph</a><
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Удалить вершину.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#topologicalSort()" class="member-name-link">topologicalSort</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setTopologicalSortStrategy(ru.nsu.masolygin.strategy.TopologicalSortStrategy)" class="member-name-link">setTopologicalSortStrategy</a><wbr>(<a href="strategy/TopologicalSortStrategy.html" title="interface in ru.nsu.masolygin.strategy">TopologicalSortStrategy</a>&nbsp;strategy)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Установить стратегию топологической сортировки.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#topologicalSort()" class="member-name-link">topologicalSort</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Топологическая сортировка (DFS).</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Строковое представление графа.</div>
 </div>
 </div>
@@ -175,9 +185,6 @@ implements <a href="Graph.html" title="interface in ru.nsu.masolygin">Graph</a><
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
-<div class="inherited-list">
-<h3 id="methods-inherited-from-class-ru.nsu.masolygin.Graph">Methods inherited from interface&nbsp;ru.nsu.masolygin.<a href="Graph.html" title="interface in ru.nsu.masolygin">Graph</a></h3>
-<code><a href="Graph.html#readFromFile(java.lang.String)">readFromFile</a></code></div>
 </section>
 </li>
 </ul>
@@ -194,6 +201,17 @@ implements <a href="Graph.html" title="interface in ru.nsu.masolygin">Graph</a><
 <h3>AdjacencyMatrixGraph</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">AdjacencyMatrixGraph</span>()</div>
 <div class="block">Конструктор графа.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="&lt;init&gt;(ru.nsu.masolygin.strategy.TopologicalSortStrategy)">
+<h3>AdjacencyMatrixGraph</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">AdjacencyMatrixGraph</span><wbr><span class="parameters">(<a href="strategy/TopologicalSortStrategy.html" title="interface in ru.nsu.masolygin.strategy">TopologicalSortStrategy</a>&nbsp;strategy)</span></div>
+<div class="block">Конструктор графа со стратегией топологической сортировки.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>strategy</code> - стратегия топологической сортировки</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -289,19 +307,6 @@ implements <a href="Graph.html" title="interface in ru.nsu.masolygin">Graph</a><
 </section>
 </li>
 <li>
-<section class="detail" id="topologicalSort()">
-<h3>topologicalSort</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</span>&nbsp;<span class="element-name">topologicalSort</span>()</div>
-<div class="block">Топологическая сортировка (DFS).</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="Graph.html#topologicalSort()">topologicalSort</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.masolygin">Graph</a></code></dd>
-<dt>Returns:</dt>
-<dd>список вершин в топологическом порядке</dd>
-</dl>
-</section>
-</li>
-<li>
 <section class="detail" id="hasEdge(int,int)">
 <h3>hasEdge</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">hasEdge</span><wbr><span class="parameters">(int&nbsp;from,
@@ -360,6 +365,32 @@ implements <a href="Graph.html" title="interface in ru.nsu.masolygin">Graph</a><
 <dd><code>o</code> - объект</dd>
 <dt>Returns:</dt>
 <dd>true если графы равны</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="topologicalSort()">
+<h3>topologicalSort</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</span>&nbsp;<span class="element-name">topologicalSort</span>()</div>
+<div class="block">Топологическая сортировка (DFS).</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="Graph.html#topologicalSort()">topologicalSort</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.masolygin">Graph</a></code></dd>
+<dt>Returns:</dt>
+<dd>список вершин в топологическом порядке</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setTopologicalSortStrategy(ru.nsu.masolygin.strategy.TopologicalSortStrategy)">
+<h3>setTopologicalSortStrategy</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setTopologicalSortStrategy</span><wbr><span class="parameters">(<a href="strategy/TopologicalSortStrategy.html" title="interface in ru.nsu.masolygin.strategy">TopologicalSortStrategy</a>&nbsp;strategy)</span></div>
+<div class="block">Установить стратегию топологической сортировки.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="Graph.html#setTopologicalSortStrategy(ru.nsu.masolygin.strategy.TopologicalSortStrategy)">setTopologicalSortStrategy</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.masolygin">Graph</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>strategy</code> - стратегия топологической сортировки</dd>
 </dl>
 </section>
 </li>

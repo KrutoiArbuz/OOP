@@ -27,7 +27,8 @@ loadScripts(document, 'script');</script>
 <div class="top-nav" id="navbar-top">
 <div class="skip-nav"><a href="#skip-navbar-top" title="Skip navigation links">Skip navigation links</a></div>
 <ul id="navbar-top-firstrow" class="nav-list" title="Navigation">
-<li><a href="ru/nsu/masolygin/package-summary.html">Package</a></li>
+<li><a href="index.html">Overview</a></li>
+<li>Package</li>
 <li>Class</li>
 <li><a href="overview-tree.html">Tree</a></li>
 <li class="nav-bar-cell1-rev">Index</li>
@@ -48,7 +49,7 @@ loadScripts(document, 'script');</script>
 <div class="header">
 <h1>Index</h1>
 </div>
-<a href="#I:A">A</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:T">T</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a>
+<a href="#I:A">A</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a>
 <h2 class="title" id="I:A">A</h2>
 <dl class="index">
 <dt><a href="ru/nsu/masolygin/AdjacencyListGraph.html#addEdge(int,int)" class="member-name-link">addEdge(int, int)</a> - Method in class ru.nsu.masolygin.<a href="ru/nsu/masolygin/AdjacencyListGraph.html" title="class in ru.nsu.masolygin">AdjacencyListGraph</a></dt>
@@ -66,6 +67,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="ru/nsu/masolygin/IncidenceMatrixGraph.html#addEdge(int,int)" class="member-name-link">addEdge(int, int)</a> - Method in class ru.nsu.masolygin.<a href="ru/nsu/masolygin/IncidenceMatrixGraph.html" title="class in ru.nsu.masolygin">IncidenceMatrixGraph</a></dt>
 <dd>
 <div class="block">Добавить ребро.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/model/Vertex.html#addNeighbor(int)" class="member-name-link">addNeighbor(int)</a> - Method in class ru.nsu.masolygin.model.<a href="ru/nsu/masolygin/model/Vertex.html" title="class in ru.nsu.masolygin.model">Vertex</a></dt>
+<dd>
+<div class="block">Добавить соседа.</div>
 </dd>
 <dt><a href="ru/nsu/masolygin/AdjacencyListGraph.html#addVertex(int)" class="member-name-link">addVertex(int)</a> - Method in class ru.nsu.masolygin.<a href="ru/nsu/masolygin/AdjacencyListGraph.html" title="class in ru.nsu.masolygin">AdjacencyListGraph</a></dt>
 <dd>
@@ -91,6 +96,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Конструктор графа.</div>
 </dd>
+<dt><a href="ru/nsu/masolygin/AdjacencyListGraph.html#%3Cinit%3E(ru.nsu.masolygin.strategy.TopologicalSortStrategy)" class="member-name-link">AdjacencyListGraph(TopologicalSortStrategy)</a> - Constructor for class ru.nsu.masolygin.<a href="ru/nsu/masolygin/AdjacencyListGraph.html" title="class in ru.nsu.masolygin">AdjacencyListGraph</a></dt>
+<dd>
+<div class="block">Конструктор графа со стратегией топологической сортировки.</div>
+</dd>
 <dt><a href="ru/nsu/masolygin/AdjacencyMatrixGraph.html" class="type-name-link" title="class in ru.nsu.masolygin">AdjacencyMatrixGraph</a> - Class in <a href="ru/nsu/masolygin/package-summary.html">ru.nsu.masolygin</a></dt>
 <dd>
 <div class="block">Реализация графа с помощью матрицы смежности.</div>
@@ -99,16 +108,32 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Конструктор графа.</div>
 </dd>
+<dt><a href="ru/nsu/masolygin/AdjacencyMatrixGraph.html#%3Cinit%3E(ru.nsu.masolygin.strategy.TopologicalSortStrategy)" class="member-name-link">AdjacencyMatrixGraph(TopologicalSortStrategy)</a> - Constructor for class ru.nsu.masolygin.<a href="ru/nsu/masolygin/AdjacencyMatrixGraph.html" title="class in ru.nsu.masolygin">AdjacencyMatrixGraph</a></dt>
+<dd>
+<div class="block">Конструктор графа со стратегией топологической сортировки.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:D">D</h2>
 <dl class="index">
-<dt><a href="ru/nsu/masolygin/TopologicalSorter.html#dfsTopologicalSort(ru.nsu.masolygin.Graph)" class="member-name-link">dfsTopologicalSort(Graph)</a> - Static method in class ru.nsu.masolygin.<a href="ru/nsu/masolygin/TopologicalSorter.html" title="class in ru.nsu.masolygin">TopologicalSorter</a></dt>
+<dt><a href="ru/nsu/masolygin/strategy/DfsTopologicalSort.html" class="type-name-link" title="class in ru.nsu.masolygin.strategy">DfsTopologicalSort</a> - Class in <a href="ru/nsu/masolygin/strategy/package-summary.html">ru.nsu.masolygin.strategy</a></dt>
 <dd>
-<div class="block">Топологическая сортировка с использованием DFS.</div>
+<div class="block">Реализация топологической сортировки с использованием DFS.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/strategy/DfsTopologicalSort.html#%3Cinit%3E()" class="member-name-link">DfsTopologicalSort()</a> - Constructor for class ru.nsu.masolygin.strategy.<a href="ru/nsu/masolygin/strategy/DfsTopologicalSort.html" title="class in ru.nsu.masolygin.strategy">DfsTopologicalSort</a></dt>
+<dd>
+<div class="block">Создает новый экземпляр стратегии топологической сортировки DFS.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:E">E</h2>
 <dl class="index">
+<dt><a href="ru/nsu/masolygin/model/Edge.html" class="type-name-link" title="class in ru.nsu.masolygin.model">Edge</a> - Class in <a href="ru/nsu/masolygin/model/package-summary.html">ru.nsu.masolygin.model</a></dt>
+<dd>
+<div class="block">Ребро графа.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/model/Edge.html#%3Cinit%3E(int,int)" class="member-name-link">Edge(int, int)</a> - Constructor for class ru.nsu.masolygin.model.<a href="ru/nsu/masolygin/model/Edge.html" title="class in ru.nsu.masolygin.model">Edge</a></dt>
+<dd>
+<div class="block">Конструктор ребра.</div>
+</dd>
 <dt><a href="ru/nsu/masolygin/AdjacencyListGraph.html#equals(java.lang.Object)" class="member-name-link">equals(Object)</a> - Method in class ru.nsu.masolygin.<a href="ru/nsu/masolygin/AdjacencyListGraph.html" title="class in ru.nsu.masolygin">AdjacencyListGraph</a></dt>
 <dd>
 <div class="block">Проверка на равенство графов.</div>
@@ -122,12 +147,35 @@ loadScripts(document, 'script');</script>
 <div class="block">Проверка на равенство графов.</div>
 </dd>
 <dt><a href="ru/nsu/masolygin/IncidenceMatrixGraph.html#equals(java.lang.Object)" class="member-name-link">equals(Object)</a> - Method in class ru.nsu.masolygin.<a href="ru/nsu/masolygin/IncidenceMatrixGraph.html" title="class in ru.nsu.masolygin">IncidenceMatrixGraph</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/masolygin/model/Edge.html#equals(java.lang.Object)" class="member-name-link">equals(Object)</a> - Method in class ru.nsu.masolygin.model.<a href="ru/nsu/masolygin/model/Edge.html" title="class in ru.nsu.masolygin.model">Edge</a></dt>
+<dd>&nbsp;</dd>
+</dl>
+<h2 class="title" id="I:F">F</h2>
+<dl class="index">
+<dt><a href="ru/nsu/masolygin/parser/FileGraphReader.html" class="type-name-link" title="class in ru.nsu.masolygin.parser">FileGraphReader</a> - Class in <a href="ru/nsu/masolygin/parser/package-summary.html">ru.nsu.masolygin.parser</a></dt>
 <dd>
-<div class="block">Проверка на равенство графов.</div>
+<div class="block">Реализация чтения графа из файла.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/parser/FileGraphReader.html#%3Cinit%3E(java.lang.String)" class="member-name-link">FileGraphReader(String)</a> - Constructor for class ru.nsu.masolygin.parser.<a href="ru/nsu/masolygin/parser/FileGraphReader.html" title="class in ru.nsu.masolygin.parser">FileGraphReader</a></dt>
+<dd>
+<div class="block">Конструктор для чтения графа из файла.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:G">G</h2>
 <dl class="index">
+<dt><a href="ru/nsu/masolygin/model/Edge.html#getFrom()" class="member-name-link">getFrom()</a> - Method in class ru.nsu.masolygin.model.<a href="ru/nsu/masolygin/model/Edge.html" title="class in ru.nsu.masolygin.model">Edge</a></dt>
+<dd>
+<div class="block">Получить начальную вершину.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/model/Vertex.html#getId()" class="member-name-link">getId()</a> - Method in class ru.nsu.masolygin.model.<a href="ru/nsu/masolygin/model/Vertex.html" title="class in ru.nsu.masolygin.model">Vertex</a></dt>
+<dd>
+<div class="block">Получить идентификатор вершины.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/model/Vertex.html#getNeighbors()" class="member-name-link">getNeighbors()</a> - Method in class ru.nsu.masolygin.model.<a href="ru/nsu/masolygin/model/Vertex.html" title="class in ru.nsu.masolygin.model">Vertex</a></dt>
+<dd>
+<div class="block">Получить список соседей.</div>
+</dd>
 <dt><a href="ru/nsu/masolygin/AdjacencyListGraph.html#getNeighbors(int)" class="member-name-link">getNeighbors(int)</a> - Method in class ru.nsu.masolygin.<a href="ru/nsu/masolygin/AdjacencyListGraph.html" title="class in ru.nsu.masolygin">AdjacencyListGraph</a></dt>
 <dd>
 <div class="block">Получить список соседей вершины.</div>
@@ -143,6 +191,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="ru/nsu/masolygin/IncidenceMatrixGraph.html#getNeighbors(int)" class="member-name-link">getNeighbors(int)</a> - Method in class ru.nsu.masolygin.<a href="ru/nsu/masolygin/IncidenceMatrixGraph.html" title="class in ru.nsu.masolygin">IncidenceMatrixGraph</a></dt>
 <dd>
 <div class="block">Получить список соседей вершины.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/model/Edge.html#getTo()" class="member-name-link">getTo()</a> - Method in class ru.nsu.masolygin.model.<a href="ru/nsu/masolygin/model/Edge.html" title="class in ru.nsu.masolygin.model">Edge</a></dt>
+<dd>
+<div class="block">Получить конечную вершину.</div>
 </dd>
 <dt><a href="ru/nsu/masolygin/AdjacencyListGraph.html#getVertexCount()" class="member-name-link">getVertexCount()</a> - Method in class ru.nsu.masolygin.<a href="ru/nsu/masolygin/AdjacencyListGraph.html" title="class in ru.nsu.masolygin">AdjacencyListGraph</a></dt>
 <dd>
@@ -180,6 +232,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Интерфейс графа с основными операциями.</div>
 </dd>
+<dt><a href="ru/nsu/masolygin/parser/GraphReader.html" class="type-name-link" title="interface in ru.nsu.masolygin.parser">GraphReader</a> - Interface in <a href="ru/nsu/masolygin/parser/package-summary.html">ru.nsu.masolygin.parser</a></dt>
+<dd>
+<div class="block">Интерфейс для парсинга графов из различных источников.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:H">H</h2>
 <dl class="index">
@@ -210,12 +266,20 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Конструктор графа.</div>
 </dd>
+<dt><a href="ru/nsu/masolygin/IncidenceMatrixGraph.html#%3Cinit%3E(ru.nsu.masolygin.strategy.TopologicalSortStrategy)" class="member-name-link">IncidenceMatrixGraph(TopologicalSortStrategy)</a> - Constructor for class ru.nsu.masolygin.<a href="ru/nsu/masolygin/IncidenceMatrixGraph.html" title="class in ru.nsu.masolygin">IncidenceMatrixGraph</a></dt>
+<dd>
+<div class="block">Конструктор графа со стратегией топологической сортировки.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:K">K</h2>
 <dl class="index">
-<dt><a href="ru/nsu/masolygin/TopologicalSorter.html#khanTopologicalSort(ru.nsu.masolygin.Graph)" class="member-name-link">khanTopologicalSort(Graph)</a> - Static method in class ru.nsu.masolygin.<a href="ru/nsu/masolygin/TopologicalSorter.html" title="class in ru.nsu.masolygin">TopologicalSorter</a></dt>
+<dt><a href="ru/nsu/masolygin/strategy/KhanTopologicalSort.html" class="type-name-link" title="class in ru.nsu.masolygin.strategy">KhanTopologicalSort</a> - Class in <a href="ru/nsu/masolygin/strategy/package-summary.html">ru.nsu.masolygin.strategy</a></dt>
 <dd>
-<div class="block">Топологическая сортировка с использованием алгоритма Кана.</div>
+<div class="block">Реализация топологической сортировки с использованием алгоритма Кана.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/strategy/KhanTopologicalSort.html#%3Cinit%3E()" class="member-name-link">KhanTopologicalSort()</a> - Constructor for class ru.nsu.masolygin.strategy.<a href="ru/nsu/masolygin/strategy/KhanTopologicalSort.html" title="class in ru.nsu.masolygin.strategy">KhanTopologicalSort</a></dt>
+<dd>
+<div class="block">Создает новый экземпляр стратегии топологической сортировки Кана.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:M">M</h2>
@@ -228,14 +292,16 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Главный класс для демонстрации работы с графом.</div>
 </dd>
-<dt><a href="ru/nsu/masolygin/Main.html#%3Cinit%3E()" class="member-name-link">Main()</a> - Constructor for class ru.nsu.masolygin.<a href="ru/nsu/masolygin/Main.html" title="class in ru.nsu.masolygin">Main</a></dt>
-<dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:R">R</h2>
 <dl class="index">
-<dt><a href="ru/nsu/masolygin/Graph.html#readFromFile(java.lang.String)" class="member-name-link">readFromFile(String)</a> - Method in interface ru.nsu.masolygin.<a href="ru/nsu/masolygin/Graph.html" title="interface in ru.nsu.masolygin">Graph</a></dt>
+<dt><a href="ru/nsu/masolygin/parser/FileGraphReader.html#readGraph(ru.nsu.masolygin.Graph)" class="member-name-link">readGraph(Graph)</a> - Method in class ru.nsu.masolygin.parser.<a href="ru/nsu/masolygin/parser/FileGraphReader.html" title="class in ru.nsu.masolygin.parser">FileGraphReader</a></dt>
 <dd>
-<div class="block">Прочитать граф из файла фиксированного формата.</div>
+<div class="block">Прочитать граф из файла.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/parser/GraphReader.html#readGraph(ru.nsu.masolygin.Graph)" class="member-name-link">readGraph(Graph)</a> - Method in interface ru.nsu.masolygin.parser.<a href="ru/nsu/masolygin/parser/GraphReader.html" title="interface in ru.nsu.masolygin.parser">GraphReader</a></dt>
+<dd>
+<div class="block">Прочитать граф из источника.</div>
 </dd>
 <dt><a href="ru/nsu/masolygin/AdjacencyListGraph.html#removeEdge(int,int)" class="member-name-link">removeEdge(int, int)</a> - Method in class ru.nsu.masolygin.<a href="ru/nsu/masolygin/AdjacencyListGraph.html" title="class in ru.nsu.masolygin">AdjacencyListGraph</a></dt>
 <dd>
@@ -252,6 +318,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="ru/nsu/masolygin/IncidenceMatrixGraph.html#removeEdge(int,int)" class="member-name-link">removeEdge(int, int)</a> - Method in class ru.nsu.masolygin.<a href="ru/nsu/masolygin/IncidenceMatrixGraph.html" title="class in ru.nsu.masolygin">IncidenceMatrixGraph</a></dt>
 <dd>
 <div class="block">Удалить ребро.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/model/Vertex.html#removeNeighbor(int)" class="member-name-link">removeNeighbor(int)</a> - Method in class ru.nsu.masolygin.model.<a href="ru/nsu/masolygin/model/Vertex.html" title="class in ru.nsu.masolygin.model">Vertex</a></dt>
+<dd>
+<div class="block">Удалить соседа.</div>
 </dd>
 <dt><a href="ru/nsu/masolygin/AdjacencyListGraph.html#removeVertex(int)" class="member-name-link">removeVertex(int)</a> - Method in class ru.nsu.masolygin.<a href="ru/nsu/masolygin/AdjacencyListGraph.html" title="class in ru.nsu.masolygin">AdjacencyListGraph</a></dt>
 <dd>
@@ -271,12 +341,49 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="ru/nsu/masolygin/package-summary.html">ru.nsu.masolygin</a> - package ru.nsu.masolygin</dt>
 <dd>&nbsp;</dd>
+<dt><a href="ru/nsu/masolygin/model/package-summary.html">ru.nsu.masolygin.model</a> - package ru.nsu.masolygin.model</dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/masolygin/parser/package-summary.html">ru.nsu.masolygin.parser</a> - package ru.nsu.masolygin.parser</dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/masolygin/strategy/package-summary.html">ru.nsu.masolygin.strategy</a> - package ru.nsu.masolygin.strategy</dt>
+<dd>&nbsp;</dd>
+</dl>
+<h2 class="title" id="I:S">S</h2>
+<dl class="index">
+<dt><a href="ru/nsu/masolygin/AdjacencyListGraph.html#setTopologicalSortStrategy(ru.nsu.masolygin.strategy.TopologicalSortStrategy)" class="member-name-link">setTopologicalSortStrategy(TopologicalSortStrategy)</a> - Method in class ru.nsu.masolygin.<a href="ru/nsu/masolygin/AdjacencyListGraph.html" title="class in ru.nsu.masolygin">AdjacencyListGraph</a></dt>
+<dd>
+<div class="block">Установить стратегию топологической сортировки.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/AdjacencyMatrixGraph.html#setTopologicalSortStrategy(ru.nsu.masolygin.strategy.TopologicalSortStrategy)" class="member-name-link">setTopologicalSortStrategy(TopologicalSortStrategy)</a> - Method in class ru.nsu.masolygin.<a href="ru/nsu/masolygin/AdjacencyMatrixGraph.html" title="class in ru.nsu.masolygin">AdjacencyMatrixGraph</a></dt>
+<dd>
+<div class="block">Установить стратегию топологической сортировки.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/Graph.html#setTopologicalSortStrategy(ru.nsu.masolygin.strategy.TopologicalSortStrategy)" class="member-name-link">setTopologicalSortStrategy(TopologicalSortStrategy)</a> - Method in interface ru.nsu.masolygin.<a href="ru/nsu/masolygin/Graph.html" title="interface in ru.nsu.masolygin">Graph</a></dt>
+<dd>
+<div class="block">Установить стратегию топологической сортировки.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/IncidenceMatrixGraph.html#setTopologicalSortStrategy(ru.nsu.masolygin.strategy.TopologicalSortStrategy)" class="member-name-link">setTopologicalSortStrategy(TopologicalSortStrategy)</a> - Method in class ru.nsu.masolygin.<a href="ru/nsu/masolygin/IncidenceMatrixGraph.html" title="class in ru.nsu.masolygin">IncidenceMatrixGraph</a></dt>
+<dd>
+<div class="block">Установить стратегию топологической сортировки.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/strategy/DfsTopologicalSort.html#sort(ru.nsu.masolygin.Graph)" class="member-name-link">sort(Graph)</a> - Method in class ru.nsu.masolygin.strategy.<a href="ru/nsu/masolygin/strategy/DfsTopologicalSort.html" title="class in ru.nsu.masolygin.strategy">DfsTopologicalSort</a></dt>
+<dd>
+<div class="block">Выполнить топологическую сортировку графа с использованием DFS.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/strategy/KhanTopologicalSort.html#sort(ru.nsu.masolygin.Graph)" class="member-name-link">sort(Graph)</a> - Method in class ru.nsu.masolygin.strategy.<a href="ru/nsu/masolygin/strategy/KhanTopologicalSort.html" title="class in ru.nsu.masolygin.strategy">KhanTopologicalSort</a></dt>
+<dd>
+<div class="block">Выполнить топологическую сортировку графа с использованием алгоритма Кана.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/strategy/TopologicalSortStrategy.html#sort(ru.nsu.masolygin.Graph)" class="member-name-link">sort(Graph)</a> - Method in interface ru.nsu.masolygin.strategy.<a href="ru/nsu/masolygin/strategy/TopologicalSortStrategy.html" title="interface in ru.nsu.masolygin.strategy">TopologicalSortStrategy</a></dt>
+<dd>
+<div class="block">Выполнить топологическую сортировку графа.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:T">T</h2>
 <dl class="index">
 <dt><a href="ru/nsu/masolygin/AdjacencyListGraph.html#topologicalSort()" class="member-name-link">topologicalSort()</a> - Method in class ru.nsu.masolygin.<a href="ru/nsu/masolygin/AdjacencyListGraph.html" title="class in ru.nsu.masolygin">AdjacencyListGraph</a></dt>
 <dd>
-<div class="block">Топологическая сортировка (DFS).</div>
+<div class="block">Топологическая сортировка.</div>
 </dd>
 <dt><a href="ru/nsu/masolygin/AdjacencyMatrixGraph.html#topologicalSort()" class="member-name-link">topologicalSort()</a> - Method in class ru.nsu.masolygin.<a href="ru/nsu/masolygin/AdjacencyMatrixGraph.html" title="class in ru.nsu.masolygin">AdjacencyMatrixGraph</a></dt>
 <dd>
@@ -288,11 +395,11 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="ru/nsu/masolygin/IncidenceMatrixGraph.html#topologicalSort()" class="member-name-link">topologicalSort()</a> - Method in class ru.nsu.masolygin.<a href="ru/nsu/masolygin/IncidenceMatrixGraph.html" title="class in ru.nsu.masolygin">IncidenceMatrixGraph</a></dt>
 <dd>
-<div class="block">Топологическая сортировка (Кан).</div>
+<div class="block">Топологическая сортировка.</div>
 </dd>
-<dt><a href="ru/nsu/masolygin/TopologicalSorter.html" class="type-name-link" title="class in ru.nsu.masolygin">TopologicalSorter</a> - Class in <a href="ru/nsu/masolygin/package-summary.html">ru.nsu.masolygin</a></dt>
+<dt><a href="ru/nsu/masolygin/strategy/TopologicalSortStrategy.html" class="type-name-link" title="interface in ru.nsu.masolygin.strategy">TopologicalSortStrategy</a> - Interface in <a href="ru/nsu/masolygin/strategy/package-summary.html">ru.nsu.masolygin.strategy</a></dt>
 <dd>
-<div class="block">Класс для выполнения топологической сортировки графов.</div>
+<div class="block">Интерфейс стратегии топологической сортировки.</div>
 </dd>
 <dt><a href="ru/nsu/masolygin/AdjacencyListGraph.html#toString()" class="member-name-link">toString()</a> - Method in class ru.nsu.masolygin.<a href="ru/nsu/masolygin/AdjacencyListGraph.html" title="class in ru.nsu.masolygin">AdjacencyListGraph</a></dt>
 <dd>
@@ -310,8 +417,21 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Строковое представление графа.</div>
 </dd>
+<dt><a href="ru/nsu/masolygin/model/Edge.html#toString()" class="member-name-link">toString()</a> - Method in class ru.nsu.masolygin.model.<a href="ru/nsu/masolygin/model/Edge.html" title="class in ru.nsu.masolygin.model">Edge</a></dt>
+<dd>&nbsp;</dd>
 </dl>
-<a href="#I:A">A</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:T">T</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a></main>
+<h2 class="title" id="I:V">V</h2>
+<dl class="index">
+<dt><a href="ru/nsu/masolygin/model/Vertex.html" class="type-name-link" title="class in ru.nsu.masolygin.model">Vertex</a> - Class in <a href="ru/nsu/masolygin/model/package-summary.html">ru.nsu.masolygin.model</a></dt>
+<dd>
+<div class="block">Вершина графа.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/model/Vertex.html#%3Cinit%3E(int)" class="member-name-link">Vertex(int)</a> - Constructor for class ru.nsu.masolygin.model.<a href="ru/nsu/masolygin/model/Vertex.html" title="class in ru.nsu.masolygin.model">Vertex</a></dt>
+<dd>
+<div class="block">Конструктор вершины.</div>
+</dd>
+</dl>
+<a href="#I:A">A</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a></main>
 </div>
 </div>
 </body>
