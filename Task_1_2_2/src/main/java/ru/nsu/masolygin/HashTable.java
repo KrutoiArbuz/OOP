@@ -33,13 +33,13 @@ public class HashTable<K, V> implements Iterable<HashTableEntry<K, V>> {
     @SuppressWarnings("unchecked")
     public HashTable(int initialCapacity, float loadFactor) {
         if (initialCapacity < 0) {
-            throw new IllegalArgumentException("Недопустимая начальная емкость: " + initialCapacity);
+            throw new IllegalArgumentException("Unacceptable initial capacity:" + initialCapacity);
         }
         if (initialCapacity > MAX_CAPACITY) {
             initialCapacity = MAX_CAPACITY;
         }
         if (loadFactor <= 0 || Float.isNaN(loadFactor)) {
-            throw new IllegalArgumentException("Недопустимый коэффициент загрузки: " + loadFactor);
+            throw new IllegalArgumentException("Unacceptable load factor:" + loadFactor);
         }
 
         this.loadFactor = loadFactor;
