@@ -52,23 +52,12 @@ public class HashTable<K, V> implements Iterable<HashTableEntry<K, V>> {
     }
 
     /**
-     * Вычисляет индекс в таблице для ключа.
-     *
-     * @param key ключ
-     * @return индекс в таблице
-     */
-    private int hash(K key) {
-        return (key == null) ? 0 : Math.abs(key.hashCode() % table.length);
-    }
-
-    /**
      * Добавляет новую пару ключ-значение в таблицу.
      *
      * @param key   ключ
      * @param value значение
-     * @return предыдущее значение или null, если такого ключа не было
      */
-    public V put(K key, V value) {
+    public void put(K key, V value) {
         if (size >= threshold) {
             resize(2 * table.length);
         }
@@ -79,9 +68,8 @@ public class HashTable<K, V> implements Iterable<HashTableEntry<K, V>> {
         while (current != null) {
             if ((key == null && current.getKey() == null)
                     || (key != null && key.equals(current.getKey()))) {
-                V oldValue = current.getValue();
                 current.setValue(value);
-                return oldValue;
+                return;
             }
             current = current.getNext();
         }
@@ -89,7 +77,6 @@ public class HashTable<K, V> implements Iterable<HashTableEntry<K, V>> {
         table[index] = new HashTableEntry<>(key, value, table[index]);
         size++;
         modCount++;
-        return null;
     }
 
     /**
@@ -221,37 +208,6 @@ public class HashTable<K, V> implements Iterable<HashTableEntry<K, V>> {
     }
 
     /**
-     * Изменяет размер хеш-таблицы.
-     *
-     * @param newCapacity новая емкость таблицы
-     */
-    @SuppressWarnings("unchecked")
-    private void resize(int newCapacity) {
-        if (newCapacity > MAX_CAPACITY) {
-            newCapacity = MAX_CAPACITY;
-        }
-
-        HashTableEntry<K, V>[] oldTable = table;
-        HashTableEntry<K, V>[] newTable =
-                (HashTableEntry<K, V>[]) new HashTableEntry<?, ?>[newCapacity];
-
-        for (HashTableEntry<K, V> entry : oldTable) {
-            while (entry != null) {
-                HashTableEntry<K, V> next = entry.getNext();
-                int newIndex = (entry.getKey() == null) ? 0
-                        : Math.abs(entry.getKey().hashCode() % newCapacity);
-
-                entry.setNext(newTable[newIndex]);
-                newTable[newIndex] = entry;
-                entry = next;
-            }
-        }
-
-        table = newTable;
-        threshold = (int) (newCapacity * loadFactor);
-    }
-
-    /**
      * Возвращает счетчик модификаций для итератора.
      *
      * @return счетчик модификаций
@@ -359,5 +315,46 @@ public class HashTable<K, V> implements Iterable<HashTableEntry<K, V>> {
 
         sb.append("}");
         return sb.toString();
+    }
+
+    /**
+     * Вычисляет индекс в таблице для ключа.
+     *
+     * @param key ключ
+     * @return индекс в таблице
+     */
+    private int hash(K key) {
+        return (key == null) ? 0 : Math.abs(key.hashCode() % table.length);
+    }
+
+    /**
+     * Изменяет размер хеш-таблицы.
+     *
+     * @param newCapacity новая емкость таблицы
+     */
+    @SuppressWarnings("unchecked")
+    private void resize(int newCapacity) {
+        if (newCapacity > MAX_CAPACITY) {
+            newCapacity = MAX_CAPACITY;
+        }
+
+        HashTableEntry<K, V>[] oldTable = table;
+        HashTableEntry<K, V>[] newTable =
+                (HashTableEntry<K, V>[]) new HashTableEntry<?, ?>[newCapacity];
+
+        for (HashTableEntry<K, V> entry : oldTable) {
+            while (entry != null) {
+                HashTableEntry<K, V> next = entry.getNext();
+                int newIndex = (entry.getKey() == null) ? 0
+                        : Math.abs(entry.getKey().hashCode() % newCapacity);
+
+                entry.setNext(newTable[newIndex]);
+                newTable[newIndex] = entry;
+                entry = next;
+            }
+        }
+
+        table = newTable;
+        threshold = (int) (newCapacity * loadFactor);
     }
 }
