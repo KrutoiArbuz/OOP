@@ -3,8 +3,11 @@ package ru.nsu.masolygin;
 import java.util.Iterator;
 
 /**
- * Параметризованный контейнер HashTable<K, V> для добавления, поиска и удаления
+ * Параметризованный контейнер HashTable для добавления, поиска и удаления
  * объектов V по ключу K за константное время.
+ *
+ * @param <K> тип ключа
+ * @param <V> тип значения
  */
 public class HashTable<K, V> implements Iterable<HashTableEntry<K, V>> {
     private static final int DEFAULT_CAPACITY = 16;
@@ -18,14 +21,14 @@ public class HashTable<K, V> implements Iterable<HashTableEntry<K, V>> {
     private int modCount;
 
     /**
-     * Создает пустую хеш-таблицу с размером по умолчанию
+     * Создает пустую хеш-таблицу с размером по умолчанию.
      */
     public HashTable() {
         this(DEFAULT_CAPACITY, DEFAULT_LOAD_FACTOR);
     }
 
     /**
-     * Создает пустую хеш-таблицу с указанной емкостью и коэффициентом загрузки
+     * Создает пустую хеш-таблицу с указанной емкостью и коэффициентом загрузки.
      *
      * @param initialCapacity начальная емкость
      * @param loadFactor      коэффициент загрузки
@@ -33,7 +36,8 @@ public class HashTable<K, V> implements Iterable<HashTableEntry<K, V>> {
     @SuppressWarnings("unchecked")
     public HashTable(int initialCapacity, float loadFactor) {
         if (initialCapacity < 0) {
-            throw new IllegalArgumentException("Unacceptable initial capacity:" + initialCapacity);
+            throw new IllegalArgumentException("Unacceptable initial capacity:"
+                    + initialCapacity);
         }
         if (initialCapacity > MAX_CAPACITY) {
             initialCapacity = MAX_CAPACITY;
@@ -48,14 +52,17 @@ public class HashTable<K, V> implements Iterable<HashTableEntry<K, V>> {
     }
 
     /**
-     * Вычисляет индекс в таблице для ключа
+     * Вычисляет индекс в таблице для ключа.
+     *
+     * @param key ключ
+     * @return индекс в таблице
      */
     private int hash(K key) {
         return (key == null) ? 0 : Math.abs(key.hashCode() % table.length);
     }
 
     /**
-     * Добавляет новую пару ключ-значение в таблицу
+     * Добавляет новую пару ключ-значение в таблицу.
      *
      * @param key   ключ
      * @param value значение
@@ -70,8 +77,8 @@ public class HashTable<K, V> implements Iterable<HashTableEntry<K, V>> {
         HashTableEntry<K, V> current = table[index];
 
         while (current != null) {
-            if ((key == null && current.getKey() == null) ||
-                    (key != null && key.equals(current.getKey()))) {
+            if ((key == null && current.getKey() == null)
+                    || (key != null && key.equals(current.getKey()))) {
                 V oldValue = current.getValue();
                 current.setValue(value);
                 return oldValue;
@@ -86,7 +93,7 @@ public class HashTable<K, V> implements Iterable<HashTableEntry<K, V>> {
     }
 
     /**
-     * Обновляет значение для указанного ключа
+     * Обновляет значение для указанного ключа.
      *
      * @param key   ключ
      * @param value новое значение
@@ -97,8 +104,8 @@ public class HashTable<K, V> implements Iterable<HashTableEntry<K, V>> {
         HashTableEntry<K, V> current = table[index];
 
         while (current != null) {
-            if ((key == null && current.getKey() == null) ||
-                    (key != null && key.equals(current.getKey()))) {
+            if ((key == null && current.getKey() == null)
+                    || (key != null && key.equals(current.getKey()))) {
                 current.setValue(value);
                 return true;
             }
@@ -109,7 +116,7 @@ public class HashTable<K, V> implements Iterable<HashTableEntry<K, V>> {
     }
 
     /**
-     * Возвращает значение по ключу
+     * Возвращает значение по ключу.
      *
      * @param key ключ
      * @return значение или null, если ключ не найден
@@ -119,8 +126,8 @@ public class HashTable<K, V> implements Iterable<HashTableEntry<K, V>> {
         HashTableEntry<K, V> current = table[index];
 
         while (current != null) {
-            if ((key == null && current.getKey() == null) ||
-                    (key != null && key.equals(current.getKey()))) {
+            if ((key == null && current.getKey() == null)
+                    || (key != null && key.equals(current.getKey()))) {
                 return current.getValue();
             }
             current = current.getNext();
@@ -130,7 +137,7 @@ public class HashTable<K, V> implements Iterable<HashTableEntry<K, V>> {
     }
 
     /**
-     * Проверяет наличие ключа в таблице
+     * Проверяет наличие ключа в таблице.
      *
      * @param key ключ
      * @return true если ключ найден
@@ -140,8 +147,8 @@ public class HashTable<K, V> implements Iterable<HashTableEntry<K, V>> {
         HashTableEntry<K, V> current = table[index];
 
         while (current != null) {
-            if ((key == null && current.getKey() == null) ||
-                    (key != null && key.equals(current.getKey()))) {
+            if ((key == null && current.getKey() == null)
+                    || (key != null && key.equals(current.getKey()))) {
                 return true;
             }
             current = current.getNext();
@@ -151,7 +158,7 @@ public class HashTable<K, V> implements Iterable<HashTableEntry<K, V>> {
     }
 
     /**
-     * Удаляет запись с указанным ключом
+     * Удаляет запись с указанным ключом.
      *
      * @param key ключ
      * @return удаленное значение или null, если ключ не найден
@@ -162,9 +169,9 @@ public class HashTable<K, V> implements Iterable<HashTableEntry<K, V>> {
         HashTableEntry<K, V> prev = null;
 
         while (current != null) {
-            if ((key == null && current.getKey() == null) ||
-                    (key != null && key.equals(current.getKey()))) {
-                V removedValue = current.getValue();
+            if ((key == null && current.getKey() == null)
+                    || (key != null && key.equals(current.getKey()))) {
+                final V removedValue = current.getValue();
 
                 if (prev == null) {
                     table[index] = current.getNext();
@@ -185,21 +192,25 @@ public class HashTable<K, V> implements Iterable<HashTableEntry<K, V>> {
     }
 
     /**
-     * Возвращает количество элементов в таблице
+     * Возвращает количество элементов в таблице.
+     *
+     * @return количество элементов
      */
     public int size() {
         return size;
     }
 
     /**
-     * Проверяет, пуста ли таблица
+     * Проверяет, пуста ли таблица.
+     *
+     * @return true если таблица пуста
      */
     public boolean isEmpty() {
         return size == 0;
     }
 
     /**
-     * Очищает таблицу
+     * Очищает таблицу.
      */
     @SuppressWarnings("unchecked")
     public void clear() {
@@ -210,7 +221,9 @@ public class HashTable<K, V> implements Iterable<HashTableEntry<K, V>> {
     }
 
     /**
-     * Изменяет размер хеш-таблицы
+     * Изменяет размер хеш-таблицы.
+     *
+     * @param newCapacity новая емкость таблицы
      */
     @SuppressWarnings("unchecked")
     private void resize(int newCapacity) {
@@ -219,12 +232,14 @@ public class HashTable<K, V> implements Iterable<HashTableEntry<K, V>> {
         }
 
         HashTableEntry<K, V>[] oldTable = table;
-        HashTableEntry<K, V>[] newTable = (HashTableEntry<K, V>[]) new HashTableEntry<?, ?>[newCapacity];
+        HashTableEntry<K, V>[] newTable =
+                (HashTableEntry<K, V>[]) new HashTableEntry<?, ?>[newCapacity];
 
         for (HashTableEntry<K, V> entry : oldTable) {
             while (entry != null) {
                 HashTableEntry<K, V> next = entry.getNext();
-                int newIndex = (entry.getKey() == null) ? 0 : Math.abs(entry.getKey().hashCode() % newCapacity);
+                int newIndex = (entry.getKey() == null) ? 0
+                        : Math.abs(entry.getKey().hashCode() % newCapacity);
 
                 entry.setNext(newTable[newIndex]);
                 newTable[newIndex] = entry;
@@ -237,7 +252,7 @@ public class HashTable<K, V> implements Iterable<HashTableEntry<K, V>> {
     }
 
     /**
-     * Возвращает счетчик модификаций для итератора
+     * Возвращает счетчик модификаций для итератора.
      *
      * @return счетчик модификаций
      */
@@ -246,7 +261,7 @@ public class HashTable<K, V> implements Iterable<HashTableEntry<K, V>> {
     }
 
     /**
-     * Возвращает итератор для обхода элементов таблицы
+     * Возвращает итератор для обхода элементов таблицы.
      *
      * @return итератор
      */
@@ -256,7 +271,7 @@ public class HashTable<K, V> implements Iterable<HashTableEntry<K, V>> {
     }
 
     /**
-     * Сравнивает эту хеш-таблицу с другим объектом на равенство
+     * Сравнивает эту хеш-таблицу с другим объектом на равенство.
      *
      * @param obj объект для сравнения
      * @return true если таблицы равны
@@ -299,7 +314,7 @@ public class HashTable<K, V> implements Iterable<HashTableEntry<K, V>> {
     }
 
     /**
-     * Возвращает хеш-код таблицы
+     * Возвращает хеш-код таблицы.
      *
      * @return хеш-код
      */
@@ -307,14 +322,14 @@ public class HashTable<K, V> implements Iterable<HashTableEntry<K, V>> {
     public int hashCode() {
         int hash = 0;
         for (HashTableEntry<K, V> entry : this) {
-            hash += (entry.getKey() == null ? 0 : entry.getKey().hashCode()) ^
-                    (entry.getValue() == null ? 0 : entry.getValue().hashCode());
+            hash += (entry.getKey() == null ? 0 : entry.getKey().hashCode())
+                    ^ (entry.getValue() == null ? 0 : entry.getValue().hashCode());
         }
         return hash;
     }
 
     /**
-     * Возвращает строковое представление хеш-таблицы
+     * Возвращает строковое представление хеш-таблицы.
      *
      * @return строковое представление
      */

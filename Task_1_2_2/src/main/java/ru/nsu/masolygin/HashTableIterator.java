@@ -5,7 +5,10 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * Итератор для хеш-таблицы
+ * Итератор для хеш-таблицы.
+ *
+ * @param <K> тип ключа
+ * @param <V> тип значения
  */
 public class HashTableIterator<K, V> implements Iterator<HashTableEntry<K, V>> {
     private HashTableEntry<K, V> current;
@@ -16,7 +19,16 @@ public class HashTableIterator<K, V> implements Iterator<HashTableEntry<K, V>> {
     private final int size;
     private final HashTable<K, V> hashTable;
 
-    public HashTableIterator(HashTableEntry<K, V>[] table, int size, int modCount, HashTable<K, V> hashTable) {
+    /**
+     * Создает новый итератор для хеш-таблицы.
+     *
+     * @param table массив корзин хеш-таблицы
+     * @param size размер таблицы
+     * @param modCount счетчик модификаций
+     * @param hashTable ссылка на хеш-таблицу
+     */
+    public HashTableIterator(HashTableEntry<K, V>[] table, int size, int modCount,
+                           HashTable<K, V> hashTable) {
         this.table = table;
         this.size = size;
         this.expectedModCount = modCount;
@@ -48,7 +60,9 @@ public class HashTableIterator<K, V> implements Iterator<HashTableEntry<K, V>> {
         next = current.getNext();
 
         if (next == null) {
-            while (++index < table.length && (next = table[index]) == null);
+            while (++index < table.length && (next = table[index]) == null) {
+                // Поиск следующего непустого элемента
+            }
         }
 
         return current;

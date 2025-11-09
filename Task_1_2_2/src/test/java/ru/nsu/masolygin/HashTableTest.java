@@ -35,14 +35,18 @@ class HashTableTest {
 
     @Test
     void testConstructorWithNegativeCapacity() {
-        assertThrows(IllegalArgumentException.class, () -> new HashTable<String, String>(-1, 0.75f));
+        assertThrows(IllegalArgumentException.class,
+                () -> new HashTable<String, String>(-1, 0.75f));
     }
 
     @Test
     void testConstructorWithInvalidLoadFactor() {
-        assertThrows(IllegalArgumentException.class, () -> new HashTable<String, String>(16, 0.0f));
-        assertThrows(IllegalArgumentException.class, () -> new HashTable<String, String>(16, -0.5f));
-        assertThrows(IllegalArgumentException.class, () -> new HashTable<String, String>(16, Float.NaN));
+        assertThrows(IllegalArgumentException.class,
+                () -> new HashTable<String, String>(16, 0.0f));
+        assertThrows(IllegalArgumentException.class,
+                () -> new HashTable<String, String>(16, -0.5f));
+        assertThrows(IllegalArgumentException.class,
+                () -> new HashTable<String, String>(16, Float.NaN));
     }
 
     @Test
