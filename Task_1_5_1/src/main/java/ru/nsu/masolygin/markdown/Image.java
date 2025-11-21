@@ -3,7 +3,7 @@ package ru.nsu.masolygin.markdown;
 import java.util.Objects;
 
 /**
- * Изображение: ![alt](url)
+ * Изображение: ![alt](url).
  */
 public class Image extends Element {
     private final String altText;
@@ -27,8 +27,12 @@ public class Image extends Element {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         Image image = (Image) obj;
         return Objects.equals(altText, image.altText) && Objects.equals(url, image.url);
     }

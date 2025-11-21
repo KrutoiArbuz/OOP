@@ -39,9 +39,9 @@ class CodeBlockTest {
 
     @Test
     void testCodeBlockMultiline() {
-        String code = "public static void main(String[] args) {\n" +
-                      "    System.out.println(\"Hello\");\n" +
-                      "}";
+        String code = "public static void main(String[] args) {\n"
+                      + "    System.out.println(\"Hello\");\n"
+                      + "}";
         CodeBlock codeBlock = new CodeBlock(code, "java");
         assertEquals("```java\n" + code + "\n```", codeBlock.toMarkdown());
     }
@@ -104,4 +104,3 @@ class CodeBlockTest {
         assertEquals("```java\ncode\n```", block.toString());
     }
 }
-

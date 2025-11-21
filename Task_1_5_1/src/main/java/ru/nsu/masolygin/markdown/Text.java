@@ -30,8 +30,12 @@ public class Text extends Element {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         Text text = (Text) obj;
         return Objects.equals(content, text.content);
     }
@@ -42,7 +46,7 @@ public class Text extends Element {
     }
 
     /**
-     * Жирный текст: **текст**
+     * Жирный текст: **текст**.
      */
     public static class Bold extends Text {
         /**
@@ -66,7 +70,7 @@ public class Text extends Element {
     }
 
     /**
-     * Курсивный текст: *текст*
+     * Курсивный текст: *текст*.
      */
     public static class Italic extends Text {
         /**
@@ -90,7 +94,7 @@ public class Text extends Element {
     }
 
     /**
-     * Зачеркнутый текст: ~~текст~~
+     * Зачеркнутый текст: ~~текст~~.
      */
     public static class Strikethrough extends Text {
         /**
@@ -114,7 +118,7 @@ public class Text extends Element {
     }
 
     /**
-     * Однострочный код: `код`
+     * Однострочный код: `код`.
      */
     public static class Code extends Text {
         /**

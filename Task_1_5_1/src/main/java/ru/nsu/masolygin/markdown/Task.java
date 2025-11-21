@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Список задач с чекбоксами: - [x] или - [ ]
+ * Список задач с чекбоксами: - [x] или - [ ].
  */
 public class Task extends Element {
     private final List<TaskItem> items;
@@ -29,8 +29,12 @@ public class Task extends Element {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         Task task = (Task) obj;
         return Objects.equals(items, task.items);
     }
@@ -54,8 +58,12 @@ public class Task extends Element {
 
         @Override
         public boolean equals(Object obj) {
-            if (this == obj) return true;
-            if (obj == null || getClass() != obj.getClass()) return false;
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null || getClass() != obj.getClass()) {
+                return false;
+            }
             TaskItem taskItem = (TaskItem) obj;
             return checked == taskItem.checked && Objects.equals(text, taskItem.text);
         }

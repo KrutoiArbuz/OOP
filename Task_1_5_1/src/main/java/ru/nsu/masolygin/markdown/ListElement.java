@@ -42,8 +42,12 @@ public class ListElement extends Element {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         ListElement that = (ListElement) obj;
         return ordered == that.ordered && Objects.equals(items, that.items);
     }

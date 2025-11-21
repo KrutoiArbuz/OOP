@@ -1,6 +1,7 @@
 package ru.nsu.masolygin;
 
-import ru.nsu.masolygin.markdown.*;
+import ru.nsu.masolygin.markdown.Table;
+import ru.nsu.masolygin.markdown.Text;
 
 /**
  * Демонстрация библиотеки генерации Markdown.

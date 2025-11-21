@@ -8,11 +8,11 @@ import java.util.Objects;
  * Таблица в Markdown.
  */
 public class Table extends Element {
-    /** Выравнивание по левому краю */
+    /** Выравнивание по левому краю. */
     public static final int ALIGN_LEFT = 0;
-    /** Выравнивание по центру */
+    /** Выравнивание по центру. */
     public static final int ALIGN_CENTER = 1;
-    /** Выравнивание по правому краю */
+    /** Выравнивание по правому краю. */
     public static final int ALIGN_RIGHT = 2;
 
     private final List<List<Object>> rows;
@@ -110,12 +110,16 @@ public class Table extends Element {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         Table table = (Table) obj;
-        return rowLimit == table.rowLimit &&
-               Objects.equals(rows, table.rows) &&
-               Objects.deepEquals(alignments, table.alignments);
+        return rowLimit == table.rowLimit
+               && Objects.equals(rows, table.rows)
+               && Objects.deepEquals(alignments, table.alignments);
     }
 
     @Override

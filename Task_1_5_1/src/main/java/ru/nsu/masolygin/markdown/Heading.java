@@ -46,8 +46,12 @@ public class Heading extends Element {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         Heading heading = (Heading) obj;
         return level == heading.level && Objects.equals(content, heading.content);
     }

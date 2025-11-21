@@ -42,8 +42,12 @@ public class CodeBlock extends Element {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         CodeBlock codeBlock = (CodeBlock) obj;
         return Objects.equals(code, codeBlock.code) && Objects.equals(language, codeBlock.language);
     }

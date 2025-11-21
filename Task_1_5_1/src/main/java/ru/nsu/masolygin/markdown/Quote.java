@@ -48,8 +48,12 @@ public class Quote extends Element {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         Quote quote = (Quote) obj;
         return Objects.equals(content, quote.content);
     }

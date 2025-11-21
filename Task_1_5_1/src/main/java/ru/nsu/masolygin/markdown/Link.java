@@ -3,7 +3,7 @@ package ru.nsu.masolygin.markdown;
 import java.util.Objects;
 
 /**
- * Ссылка: [текст](url)
+ * Ссылка: [текст](url).
  */
 public class Link extends Element {
     private final Element text;
@@ -37,8 +37,12 @@ public class Link extends Element {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         Link link = (Link) obj;
         return Objects.equals(text, link.text) && Objects.equals(url, link.url);
     }
