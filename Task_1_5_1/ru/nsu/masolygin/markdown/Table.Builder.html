@@ -193,10 +193,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="addRow(java.lang.Object...)">
 <h3>addRow</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Table.Builder.html" title="class in ru.nsu.masolygin.markdown">Table.Builder</a></span>&nbsp;<span class="element-name">addRow</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>...&nbsp;cells)</span></div>
-<div class="block">Добавляет строку в таблицу.</div>
+<div class="block">Добавляет строку в таблицу.
+ Примитивные типы автоматически конвертируются в Text.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>cells</code> - ячейки строки</dd>
+<dd><code>cells</code> - ячейки строки (Element или любой объект для конвертации в Text)</dd>
 <dt>Returns:</dt>
 <dd>строитель для цепочки вызовов</dd>
 </dl>

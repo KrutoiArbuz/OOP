@@ -189,10 +189,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="addItem(java.lang.Object)">
 <h3>addItem</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="ListElement.Builder.html" title="class in ru.nsu.masolygin.markdown">ListElement.Builder</a></span>&nbsp;<span class="element-name">addItem</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;item)</span></div>
-<div class="block">Добавляет элемент в список.</div>
+<div class="block">Добавляет элемент в список.
+ Примитивные типы автоматически конвертируются в Text.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>item</code> - элемент списка</dd>
+<dd><code>item</code> - элемент списка (Element или любой объект для конвертации в Text)</dd>
 <dt>Returns:</dt>
 <dd>строитель для цепочки вызовов</dd>
 </dl>
