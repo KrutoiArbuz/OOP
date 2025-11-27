@@ -8,10 +8,10 @@ import java.util.Objects;
  * Список (упорядоченный или неупорядоченный).
  */
 public class ListElement extends Element {
-    private final List<Object> items;
+    private final List<Element> items;
     private final boolean ordered;
 
-    private ListElement(List<Object> items, boolean ordered) {
+    private ListElement(List<Element> items, boolean ordered) {
         this.items = new ArrayList<>(items);
         this.ordered = ordered;
     }
@@ -26,12 +26,8 @@ public class ListElement extends Element {
                 result.append("- ");
             }
 
-            Object item = items.get(i);
-            if (item instanceof Element) {
-                result.append(((Element) item).toMarkdown());
-            } else {
-                result.append(item.toString());
-            }
+            Element item = items.get(i);
+            result.append(item.toMarkdown());
 
             if (i < items.size() - 1) {
                 result.append("\n");
@@ -61,7 +57,7 @@ public class ListElement extends Element {
      * Строитель для создания списка.
      */
     public static class Builder {
-        private final List<Object> items = new ArrayList<>();
+        private final List<Element> items = new ArrayList<>();
         private boolean ordered = false;
 
         /**
@@ -92,12 +88,17 @@ public class ListElement extends Element {
 
         /**
          * Добавляет элемент в список.
+         * Примитивные типы автоматически конвертируются в Text.
          *
-         * @param item элемент списка
+         * @param item элемент списка (Element или любой объект для конвертации в Text)
          * @return строитель для цепочки вызовов
          */
         public Builder addItem(Object item) {
-            this.items.add(item);
+            if (item instanceof Element) {
+                this.items.add((Element) item);
+            } else {
+                this.items.add(new Text(item != null ? item.toString() : ""));
+            }
             return this;
         }
 

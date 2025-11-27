@@ -15,11 +15,11 @@ public class Table extends Element {
     /** Выравнивание по правому краю. */
     public static final int ALIGN_RIGHT = 2;
 
-    private final List<List<Object>> rows;
+    private final List<List<Element>> rows;
     private final int[] alignments;
     private final int rowLimit;
 
-    private Table(List<List<Object>> rows, int[] alignments, int rowLimit) {
+    private Table(List<List<Element>> rows, int[] alignments, int rowLimit) {
         this.rows = new ArrayList<>(rows);
         this.alignments = alignments != null ? alignments.clone() : null;
         this.rowLimit = rowLimit;
@@ -34,13 +34,13 @@ public class Table extends Element {
         StringBuilder result = new StringBuilder();
 
         int maxColumns = 0;
-        for (List<Object> row : rows) {
+        for (List<Element> row : rows) {
             maxColumns = Math.max(maxColumns, row.size());
         }
 
         int[] columnWidths = new int[maxColumns];
         for (int col = 0; col < maxColumns; col++) {
-            for (List<Object> row : rows) {
+            for (List<Element> row : rows) {
                 if (col < row.size()) {
                     String cellContent = getCellContent(row.get(col));
                     columnWidths[col] = Math.max(columnWidths[col], cellContent.length());
@@ -52,7 +52,7 @@ public class Table extends Element {
         int actualRowCount = rowLimit > 0 ? Math.min(rows.size(), rowLimit) : rows.size();
 
         for (int i = 0; i < actualRowCount; i++) {
-            List<Object> row = rows.get(i);
+            List<Element> row = rows.get(i);
             result.append("|");
             for (int col = 0; col < maxColumns; col++) {
                 result.append(" ");
@@ -82,11 +82,8 @@ public class Table extends Element {
         return result.toString().trim();
     }
 
-    private String getCellContent(Object cell) {
-        if (cell instanceof Element) {
-            return ((Element) cell).toMarkdown();
-        }
-        return cell != null ? cell.toString() : "";
+    private String getCellContent(Element cell) {
+        return cell != null ? cell.toMarkdown() : "";
     }
 
     private String padCell(String content, int width) {
@@ -131,7 +128,7 @@ public class Table extends Element {
      * Строитель для создания таблицы.
      */
     public static class Builder {
-        private final List<List<Object>> rows = new ArrayList<>();
+        private final List<List<Element>> rows = new ArrayList<>();
         private int[] alignments = null;
         private int rowLimit = 0;
 
@@ -165,14 +162,19 @@ public class Table extends Element {
 
         /**
          * Добавляет строку в таблицу.
+         * Примитивные типы автоматически конвертируются в Text.
          *
-         * @param cells ячейки строки
+         * @param cells ячейки строки (Element или любой объект для конвертации в Text)
          * @return строитель для цепочки вызовов
          */
         public Builder addRow(Object... cells) {
-            List<Object> row = new ArrayList<>();
+            List<Element> row = new ArrayList<>();
             for (Object cell : cells) {
-                row.add(cell);
+                if (cell instanceof Element) {
+                    row.add((Element) cell);
+                } else {
+                    row.add(new Text(cell != null ? cell.toString() : ""));
+                }
             }
             rows.add(row);
             return this;
