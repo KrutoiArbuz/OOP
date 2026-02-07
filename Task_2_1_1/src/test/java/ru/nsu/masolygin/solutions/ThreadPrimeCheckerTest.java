@@ -21,21 +21,21 @@ class ThreadPrimeCheckerTest {
     void testSingleThread() {
         ThreadPrimeChecker singleThreadChecker = new ThreadPrimeChecker(1);
         int[] numbers = {2, 4, 6, 8, 10};
-        assertTrue(singleThreadChecker.hasNoPrime(numbers));
+        assertTrue(singleThreadChecker.containsComposite(numbers));
     }
 
     @Test
     void testMultipleThreads() {
         ThreadPrimeChecker multiThreadChecker = new ThreadPrimeChecker(8);
         int[] numbers = {3, 5, 7, 11, 13};
-        assertFalse(multiThreadChecker.hasNoPrime(numbers));
+        assertFalse(multiThreadChecker.containsComposite(numbers));
     }
 
     @Test
     void testMoreThreadsThanElements() {
         ThreadPrimeChecker manyThreadsChecker = new ThreadPrimeChecker(10);
         int[] numbers = {4, 6};
-        assertTrue(manyThreadsChecker.hasNoPrime(numbers));
+        assertTrue(manyThreadsChecker.containsComposite(numbers));
     }
 
     @Test
@@ -47,10 +47,10 @@ class ThreadPrimeCheckerTest {
         ThreadPrimeChecker checker4 = new ThreadPrimeChecker(4);
         ThreadPrimeChecker checker8 = new ThreadPrimeChecker(8);
 
-        boolean result1 = checker1.hasNoPrime(testArray);
-        boolean result2 = checker2.hasNoPrime(testArray);
-        boolean result4 = checker4.hasNoPrime(testArray);
-        boolean result8 = checker8.hasNoPrime(testArray);
+        boolean result1 = checker1.containsComposite(testArray);
+        boolean result2 = checker2.containsComposite(testArray);
+        boolean result4 = checker4.containsComposite(testArray);
+        boolean result8 = checker8.containsComposite(testArray);
 
         assertEquals(result1, result2);
         assertEquals(result2, result4);
@@ -67,7 +67,7 @@ class ThreadPrimeCheckerTest {
         }
 
         long start = System.currentTimeMillis();
-        assertTrue(threadChecker.hasNoPrime(largeArray));
+        assertTrue(threadChecker.containsComposite(largeArray));
         long end = System.currentTimeMillis();
 
         assertTrue(end - start < 1000, "Should terminate early when non-prime is found");
@@ -77,7 +77,7 @@ class ThreadPrimeCheckerTest {
     void testWithZeroThreads() {
         ThreadPrimeChecker zeroThreadChecker = new ThreadPrimeChecker(0);
         int[] numbers = {4, 6, 8};
-        assertFalse(zeroThreadChecker.hasNoPrime(numbers));
+        assertFalse(zeroThreadChecker.containsComposite(numbers));
     }
 
     @Test

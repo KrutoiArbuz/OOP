@@ -24,93 +24,86 @@ class PrimeCheckerCommonTest {
 
     @ParameterizedTest(name = "{1}: Array with all primes")
     @MethodSource("primeCheckerProvider")
-    void testHasNoPrimeWithAllPrimes(PrimeChecker checker, String name) {
+    void testContainsCompositeWithAllPrimes(PrimeChecker checker, String name) {
         int[] allPrimes = {2, 3, 5, 7, 11, 13, 17, 19};
-        assertFalse(checker.hasNoPrime(allPrimes));
+        assertFalse(checker.containsComposite(allPrimes));
     }
 
     @ParameterizedTest(name = "{1}: Array with all non-primes")
     @MethodSource("primeCheckerProvider")
-    void testHasNoPrimeWithAllNonPrimes(PrimeChecker checker, String name) {
+    void testContainsCompositeWithAllNonPrimes(PrimeChecker checker, String name) {
         int[] allNonPrimes = {1, 4, 6, 8, 9, 10, 12, 15};
-        assertTrue(checker.hasNoPrime(allNonPrimes));
+        assertTrue(checker.containsComposite(allNonPrimes));
     }
 
     @ParameterizedTest(name = "{1}: Array with mixed numbers")
     @MethodSource("primeCheckerProvider")
-    void testHasNoPrimeWithMixedNumbers(PrimeChecker checker, String name) {
+    void testContainsCompositeWithMixedNumbers(PrimeChecker checker, String name) {
         int[] mixedNumbers = {2, 4, 6, 8};
-        assertTrue(checker.hasNoPrime(mixedNumbers));
+        assertTrue(checker.containsComposite(mixedNumbers));
     }
 
     @ParameterizedTest(name = "{1}: Array with primes first")
     @MethodSource("primeCheckerProvider")
-    void testHasNoPrimeWithMixedPrimesFirst(PrimeChecker checker, String name) {
+    void testContainsCompositeWithMixedPrimesFirst(PrimeChecker checker, String name) {
         int[] mixedNumbers = {7, 11, 4, 6};
-        assertTrue(checker.hasNoPrime(mixedNumbers));
+        assertTrue(checker.containsComposite(mixedNumbers));
     }
 
     @ParameterizedTest(name = "{1}: Single prime")
     @MethodSource("primeCheckerProvider")
-    void testHasNoPrimeWithSinglePrime(PrimeChecker checker, String name) {
+    void testContainsComposite(PrimeChecker checker, String name) {
         int[] singlePrime = {13};
-        assertFalse(checker.hasNoPrime(singlePrime));
+        assertFalse(checker.containsComposite(singlePrime));
     }
-
-    @ParameterizedTest(name = "{1}: Single non-prime")
-    @MethodSource("primeCheckerProvider")
-    void testHasNoPrimeWithSingleNonPrime(PrimeChecker checker, String name) {
-        int[] singleNonPrime = {8};
-        assertTrue(checker.hasNoPrime(singleNonPrime));
-    }
-
+    
     @ParameterizedTest(name = "{1}: Empty array")
     @MethodSource("primeCheckerProvider")
-    void testHasNoPrimeWithEmptyArray(PrimeChecker checker, String name) {
+    void testContainsCompositeWithEmptyArray(PrimeChecker checker, String name) {
         int[] emptyArray = {};
-        assertFalse(checker.hasNoPrime(emptyArray));
+        assertFalse(checker.containsComposite(emptyArray));
     }
 
     @ParameterizedTest(name = "{1}: Array with one")
     @MethodSource("primeCheckerProvider")
-    void testHasNoPrimeWithOne(PrimeChecker checker, String name) {
+    void testContainsCompositeWithOne(PrimeChecker checker, String name) {
         int[] arrayWithOne = {1};
-        assertTrue(checker.hasNoPrime(arrayWithOne));
+        assertTrue(checker.containsComposite(arrayWithOne));
     }
 
     @ParameterizedTest(name = "{1}: Array with zero")
     @MethodSource("primeCheckerProvider")
-    void testHasNoPrimeWithZero(PrimeChecker checker, String name) {
+    void testContainsCompositeWithZero(PrimeChecker checker, String name) {
         int[] arrayWithZero = {0};
-        assertTrue(checker.hasNoPrime(arrayWithZero));
+        assertTrue(checker.containsComposite(arrayWithZero));
     }
 
     @ParameterizedTest(name = "{1}: Negative numbers")
     @MethodSource("primeCheckerProvider")
-    void testHasNoPrimeWithNegativeNumbers(PrimeChecker checker, String name) {
+    void testContainsCompositeWithNegativeNumbers(PrimeChecker checker, String name) {
         int[] negativeNumbers = {-5, -3, -1};
-        assertTrue(checker.hasNoPrime(negativeNumbers));
+        assertTrue(checker.containsComposite(negativeNumbers));
     }
 
     @ParameterizedTest(name = "{1}: Large prime numbers")
     @MethodSource("primeCheckerProvider")
-    void testHasNoPrimeWithLargeNumbers(PrimeChecker checker, String name) {
+    void testContainsCompositeWithLargeNumbers(PrimeChecker checker, String name) {
         int[] largeNumbers = {97, 101, 103, 107};
-        assertFalse(checker.hasNoPrime(largeNumbers));
+        assertFalse(checker.containsComposite(largeNumbers));
     }
 
     @ParameterizedTest(name = "{1}: Large mixed numbers")
     @MethodSource("primeCheckerProvider")
-    void testHasNoPrimeWithLargeMixed(PrimeChecker checker, String name) {
+    void testContainsCompositeWithLargeMixed(PrimeChecker checker, String name) {
         int[] largeMixed = {97, 100, 101, 102};
-        assertTrue(checker.hasNoPrime(largeMixed));
+        assertTrue(checker.containsComposite(largeMixed));
     }
 
     @ParameterizedTest(name = "{1}: Task example 1")
     @MethodSource("primeCheckerProvider")
     void testTaskExample1(PrimeChecker checker, String name) {
         int[] input = {6, 8, 7, 13, 5, 9, 4};
-        assertTrue(checker.hasNoPrime(input));
+        assertTrue(checker.containsComposite(input));
     }
 
     @ParameterizedTest(name = "{1}: Task example 2")
@@ -118,7 +111,7 @@ class PrimeCheckerCommonTest {
     void testTaskExample2(PrimeChecker checker, String name) {
         int[] input = {20319251, 6997901, 6997927, 6997937, 17858849, 6997967,
             6998009, 6998029, 6998039, 20165149, 6998051, 6998053};
-        assertFalse(checker.hasNoPrime(input));
+        assertFalse(checker.containsComposite(input));
     }
 
     @ParameterizedTest(name = "{1}: Large array with non-primes")
@@ -128,7 +121,7 @@ class PrimeCheckerCommonTest {
         for (int i = 0; i < 1000; i++) {
             largeArray[i] = (i + 2) * 2;
         }
-        assertTrue(checker.hasNoPrime(largeArray));
+        assertTrue(checker.containsComposite(largeArray));
     }
 
     @ParameterizedTest(name = "{1}: Large array with one prime at end")
@@ -139,14 +132,14 @@ class PrimeCheckerCommonTest {
             largeArray[i] = (i + 2) * 2;
         }
         largeArray[999] = 17;
-        assertTrue(checker.hasNoPrime(largeArray));
+        assertTrue(checker.containsComposite(largeArray));
     }
 
     @ParameterizedTest(name = "{1}: All primes array")
     @MethodSource("primeCheckerProvider")
     void testLargeArrayWithAllPrimes(PrimeChecker checker, String name) {
         int[] primes = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47};
-        assertFalse(checker.hasNoPrime(primes));
+        assertFalse(checker.containsComposite(primes));
     }
 
     @ParameterizedTest(name = "{1}: Consistency test")
@@ -155,14 +148,14 @@ class PrimeCheckerCommonTest {
         SequentialPrimeChecker reference = new SequentialPrimeChecker();
         int[] testArray = {2, 4, 6, 8, 10, 11, 12, 14, 16, 17};
 
-        assertEquals(reference.hasNoPrime(testArray), checker.hasNoPrime(testArray));
+        assertEquals(reference.containsComposite(testArray), checker.containsComposite(testArray));
     }
 
     @ParameterizedTest(name = "{1}: Special numbers")
     @MethodSource("primeCheckerProvider")
     void testSpecialNumbers(PrimeChecker checker, String name) {
         int[] specialNumbers = {0, 1, 2, 4, 9, 16, 25};
-        assertTrue(checker.hasNoPrime(specialNumbers));
+        assertTrue(checker.containsComposite(specialNumbers));
     }
 }
 

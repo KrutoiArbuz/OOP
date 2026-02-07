@@ -14,7 +14,7 @@ public class ParallelPrimeChecker implements PrimeChecker {
      * @return true, если есть не простое число, иначе false
      */
     @Override
-    public boolean hasNoPrime(int[] arr) {
+    public boolean containsComposite(int[] arr) {
 
         return Arrays.stream(arr).parallel().anyMatch(num -> !PrimeChecker.isPrime(num));
     }

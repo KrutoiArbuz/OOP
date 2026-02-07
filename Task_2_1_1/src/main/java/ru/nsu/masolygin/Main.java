@@ -57,7 +57,7 @@ public class Main {
     public static void tester(PrimeChecker checker, int[] data, String name) {
         Timer timer = new Timer();
         timer.start();
-        boolean result = checker.hasNoPrime(data);
+        boolean result = checker.containsComposite(data);
         timer.stop();
         System.out.println(name + ": " + result + ", Time: " + timer.getTime() + " ms");
     }

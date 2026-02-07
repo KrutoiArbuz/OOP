@@ -28,7 +28,7 @@ public class ThreadPrimeChecker implements PrimeChecker {
      * @return true, если есть не простое число, иначе false
      */
     @Override
-    public boolean hasNoPrime(int[] arr) {
+    public boolean containsComposite(int[] arr) {
 
         hasPrime = false;
 

@@ -12,7 +12,7 @@ public class SequentialPrimeChecker implements PrimeChecker {
      * @return true, если есть не простое число, иначе false
      */
     @Override
-    public boolean hasNoPrime(int[] arr) {
+    public boolean containsComposite(int[] arr) {
         for (int num : arr) {
             if (!PrimeChecker.isPrime(num)) {
                 return true;

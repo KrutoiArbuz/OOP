@@ -11,7 +11,7 @@ public interface PrimeChecker {
      * @param arr массив целых чисел
      * @return true, если есть не простое число, иначе false
      */
-    boolean hasNoPrime(int[] arr);
+    boolean containsComposite(int[] arr);
 
     /**
      * Проверяет, является ли число простым.

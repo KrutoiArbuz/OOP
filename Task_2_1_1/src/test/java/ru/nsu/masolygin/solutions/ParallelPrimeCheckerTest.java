@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 class ParallelPrimeCheckerTest {
 
@@ -24,7 +24,7 @@ class ParallelPrimeCheckerTest {
         }
 
         long start = System.currentTimeMillis();
-        boolean result = checker.hasNoPrime(largeArray);
+        boolean result = checker.containsComposite(largeArray);
         long end = System.currentTimeMillis();
 
         assertTrue(result);
@@ -40,7 +40,7 @@ class ParallelPrimeCheckerTest {
         }
 
         long start = System.currentTimeMillis();
-        assertTrue(checker.hasNoPrime(arrayWithEarlyNonPrime));
+        assertTrue(checker.containsComposite(arrayWithEarlyNonPrime));
         long end = System.currentTimeMillis();
 
         assertTrue(end - start < 1000, "Should terminate early when non-prime is found");
@@ -57,7 +57,7 @@ class ParallelPrimeCheckerTest {
             }
         }
 
-        assertTrue(checker.hasNoPrime(mixedArray));
+        assertTrue(checker.containsComposite(mixedArray));
     }
 
     @Test
@@ -67,7 +67,8 @@ class ParallelPrimeCheckerTest {
 
         int[] testArray = {2, 4, 6, 8, 10, 11, 12, 14, 16, 17};
 
-        assertEquals(seqChecker.hasNoPrime(testArray), parallelChecker.hasNoPrime(testArray));
+        assertEquals(seqChecker.containsComposite(testArray),
+            parallelChecker.containsComposite(testArray));
     }
 
     @Test
@@ -77,7 +78,8 @@ class ParallelPrimeCheckerTest {
 
         int[] testArray = {3, 6, 9, 12, 15, 18, 21, 24, 27, 30};
 
-        assertEquals(threadChecker.hasNoPrime(testArray), parallelChecker.hasNoPrime(testArray));
+        assertEquals(threadChecker.containsComposite(testArray),
+            parallelChecker.containsComposite(testArray));
     }
 
     @Test
