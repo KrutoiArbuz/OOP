@@ -22,7 +22,7 @@ package "ru.nsu.masolygin" {
         - isOpen: boolean {volatile}
         - bakers: Baker[]
         - couriers: Courier[]
-        - ordersDB: List<Order>
+        - ordersDb: List<Order>
         - threads: List<Thread>
 
         + Pizzeria(timeEnd: int, warehouseCapacity: int, orderLogger: OrderLogger, bakers: Baker[], couriers: Courier[])
@@ -118,7 +118,7 @@ package "ru.nsu.masolygin.view" {
     }
 }
 
-package "ru.nsu.masolygin.fileLoader" {
+package "ru.nsu.masolygin.fileloader" {
     class ConfigLoader {
         + load(path: String): PizzeriaConfig
     }
@@ -181,7 +181,7 @@ Pizzeria *-- Warehouse : contains
 Pizzeria o-- OrderLogger : uses
 Pizzeria o-- Baker : manages
 Pizzeria o-- Courier : manages
-Pizzeria *-- Order : stores in ordersDB
+Pizzeria *-- Order : stores in ordersDb
 
 OrderGenerator --> Pizzeria : generates orders for
 
