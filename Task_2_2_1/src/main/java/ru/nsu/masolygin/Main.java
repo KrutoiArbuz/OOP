@@ -3,25 +3,36 @@ package ru.nsu.masolygin;
 import ru.nsu.masolygin.actor.Baker;
 import ru.nsu.masolygin.actor.Courier;
 import ru.nsu.masolygin.actor.OrderGenerator;
+import ru.nsu.masolygin.fileLoader.ConfigLoader;
+import ru.nsu.masolygin.fileLoader.PizzeriaConfig;
 import ru.nsu.masolygin.view.OrderLogger;
 
 public class Main {
 
     public static void main(String[] args) {
 
+        ConfigLoader loader = new ConfigLoader();
+        PizzeriaConfig config = loader.load("src/main/resources/config.json");
+
         OrderLogger orderLogger = new OrderLogger();
 
-        Baker[] bakers = {new Baker(1, 400), new Baker(2, 550)};
-        Courier[] couriers = {new Courier(1, 200, 2), new Courier(2, 250, 2)};
+        Baker[] bakers = config.getBakers().stream()
+        .map(bakerConfig -> new Baker(bakerConfig.getId(), bakerConfig.getCookingTime()))
+        .toArray(Baker[]::new);
 
-        Pizzeria pizzeria = new Pizzeria(10000, 10, orderLogger, bakers, couriers);
+        Courier[] couriers = config.getCouriers().stream()
+        .map(courierConfig -> new Courier(courierConfig.getId(), courierConfig.getDeliveryTime(),
+        courierConfig.getBackpackCapacity()))
+        .toArray(Courier[]::new);
+
+        Pizzeria pizzeria = new Pizzeria( config.getWorkTime(), config.getWarehouseCapacity(), orderLogger, bakers, couriers);
 
         OrderGenerator ordersGenerator = new OrderGenerator(pizzeria);
 
         Thread generatorThread = new Thread(ordersGenerator);
         generatorThread.start();
 
-        pizzeria.work();
+        pizzeria.workGracefulShutdown();
 
         generatorThread.interrupt();
 

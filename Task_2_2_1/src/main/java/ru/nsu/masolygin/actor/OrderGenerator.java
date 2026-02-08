@@ -1,9 +1,7 @@
 package ru.nsu.masolygin.actor;
 
-import java.util.List;
 import ru.nsu.masolygin.Pizzeria;
 import ru.nsu.masolygin.dto.Order;
-import ru.nsu.masolygin.dto.OrderState;
 
 public class OrderGenerator implements Runnable {
 
