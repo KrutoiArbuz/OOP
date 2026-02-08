@@ -61,6 +61,7 @@ class CourierTest {
             try {
                 courier.run();
             } catch (IllegalStateException e) {
+                // Expected
             }
         });
 
@@ -95,6 +96,7 @@ class CourierTest {
             try {
                 courier.run();
             } catch (IllegalStateException e) {
+                // Expected
             }
         });
 
@@ -131,6 +133,7 @@ class CourierTest {
             try {
                 courier.run();
             } catch (IllegalStateException e) {
+                // Expected
             }
         });
 
@@ -155,6 +158,7 @@ class CourierTest {
             try {
                 courier.run();
             } catch (IllegalStateException e) {
+                // Expected
             }
         });
 
@@ -186,6 +190,7 @@ class CourierTest {
             try {
                 courier1.run();
             } catch (IllegalStateException e) {
+                // Expected
             }
         });
 
@@ -193,6 +198,7 @@ class CourierTest {
             try {
                 courier2.run();
             } catch (IllegalStateException e) {
+                // Expected
             }
         });
 
@@ -226,6 +232,7 @@ class CourierTest {
             try {
                 courier.run();
             } catch (IllegalStateException e) {
+                // Expected
             }
         });
 
@@ -257,6 +264,7 @@ class CourierTest {
             try {
                 courier.run();
             } catch (IllegalStateException e) {
+                // Expected
             }
         });
 

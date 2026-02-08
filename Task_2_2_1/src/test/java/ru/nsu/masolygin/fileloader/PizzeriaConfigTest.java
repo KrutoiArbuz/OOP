@@ -168,7 +168,7 @@ class PizzeriaConfigTest {
         bakers.add(baker);
         config.setBakers(bakers);
 
-        List<PizzeriaConfig.CourierConfig> couriers = new ArrayList<>();
+        final List<PizzeriaConfig.CourierConfig> couriers = new ArrayList<>();
         PizzeriaConfig.CourierConfig courier = new PizzeriaConfig.CourierConfig();
         courier.setId(1);
         courier.setDeliveryTime(1500);

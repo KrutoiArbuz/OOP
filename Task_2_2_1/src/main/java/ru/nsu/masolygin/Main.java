@@ -25,15 +25,15 @@ public class Main {
         OrderLogger orderLogger = new OrderLogger();
 
         Baker[] bakers = config.getBakers().stream()
-        .map(bakerConfig -> new Baker(bakerConfig.getId(), bakerConfig.getCookingTime()))
-        .toArray(Baker[]::new);
+            .map(bakerConfig -> new Baker(bakerConfig.getId(), bakerConfig.getCookingTime()))
+            .toArray(Baker[]::new);
 
         Courier[] couriers = config.getCouriers().stream()
-        .map(courierConfig -> new Courier(
-            courierConfig.getId(),
-            courierConfig.getDeliveryTime(),
-            courierConfig.getBackpackCapacity()))
-        .toArray(Courier[]::new);
+            .map(courierConfig -> new Courier(
+                courierConfig.getId(),
+                courierConfig.getDeliveryTime(),
+                courierConfig.getBackpackCapacity()))
+            .toArray(Courier[]::new);
 
         Pizzeria pizzeria = new Pizzeria(
             config.getWorkTime(),

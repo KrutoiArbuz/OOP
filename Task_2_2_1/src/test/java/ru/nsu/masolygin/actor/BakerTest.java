@@ -1,6 +1,7 @@
 package ru.nsu.masolygin.actor;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -63,6 +64,7 @@ class BakerTest {
             try {
                 baker.run();
             } catch (IllegalStateException e) {
+                // Expected
             }
         });
 
@@ -98,6 +100,7 @@ class BakerTest {
             try {
                 baker.run();
             } catch (IllegalStateException e) {
+                // Expected
             }
         });
 
@@ -123,6 +126,7 @@ class BakerTest {
             try {
                 baker.run();
             } catch (IllegalStateException e) {
+                // Expected
             }
         });
 
@@ -131,7 +135,7 @@ class BakerTest {
         bakerThread.interrupt();
         bakerThread.join(1000);
 
-        assertEquals(false, bakerThread.isAlive());
+        assertFalse(bakerThread.isAlive());
     }
 
     @Test
@@ -155,6 +159,7 @@ class BakerTest {
             try {
                 baker1.run();
             } catch (IllegalStateException e) {
+                // Expected
             }
         });
 
@@ -162,6 +167,7 @@ class BakerTest {
             try {
                 baker2.run();
             } catch (IllegalStateException e) {
+                // Expected
             }
         });
 

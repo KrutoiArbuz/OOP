@@ -1,6 +1,7 @@
 package ru.nsu.masolygin.view;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -37,12 +38,12 @@ class OrderLoggerTest {
         Order order = new Order();
         order.setInfo(1, OrderState.IN_QUEUE);
 
-        logger.log(order, "Test message");
+        logger.log(order, "Baker finished cooking");
 
         String output = outContent.toString();
-        assert(output.contains("[1]"));
-        assert(output.contains("[In Queue]"));
-        assert(output.contains("Test message"));
+        assertTrue(output.contains("[7]"));
+        assertTrue(output.contains("[Cooked]"));
+        assertTrue(output.contains("Baker finished cooking"));
     }
 
     @Test
@@ -54,9 +55,9 @@ class OrderLoggerTest {
         logger.log(order, "Baker started cooking");
 
         String output = outContent.toString();
-        assert(output.contains("[5]"));
-        assert(output.contains("[Cooking]"));
-        assert(output.contains("Baker started cooking"));
+        assert (output.contains("[5]"));
+        assert (output.contains("[Cooking]"));
+        assert (output.contains("Baker started cooking"));
     }
 
     @Test
@@ -71,10 +72,10 @@ class OrderLoggerTest {
         logger.log(order2, "Second message");
 
         String output = outContent.toString();
-        assert(output.contains("[1]"));
-        assert(output.contains("First message"));
-        assert(output.contains("[2]"));
-        assert(output.contains("Second message"));
+        assertTrue(output.contains("[1]"));
+        assertTrue(output.contains("First message"));
+        assertTrue(output.contains("[2]"));
+        assertTrue(output.contains("Second message"));
     }
 
     @Test
@@ -86,9 +87,9 @@ class OrderLoggerTest {
         logger.log(order, "Order delivered");
 
         String output = outContent.toString();
-        assert(output.contains("[10]"));
-        assert(output.contains("[Delivered]"));
-        assert(output.contains("Order delivered"));
+        assertTrue(output.contains("[10]"));
+        assertTrue(output.contains("[Delivered]"));
+        assertTrue(output.contains("Order delivered"));
     }
 
     @Test
@@ -100,9 +101,9 @@ class OrderLoggerTest {
         logger.log(order, "Baker finished cooking");
 
         String output = outContent.toString();
-        assert(output.contains("[7]"));
-        assert(output.contains("[Cooked]"));
-        assert(output.contains("Baker finished cooking"));
+        assert (output.contains("[7]"));
+        assert (output.contains("[Cooked]"));
+        assert (output.contains("Baker finished cooking"));
     }
 
     @Test
@@ -114,9 +115,9 @@ class OrderLoggerTest {
         logger.log(order, "Courier delivering");
 
         String output = outContent.toString();
-        assert(output.contains("[15]"));
-        assert(output.contains("[Delivering]"));
-        assert(output.contains("Courier delivering"));
+        assertTrue(output.contains("[15]"));
+        assertTrue(output.contains("[Delivering]"));
+        assertTrue(output.contains("Courier delivering"));
     }
 }
 

@@ -2,6 +2,7 @@ package ru.nsu.masolygin;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -35,6 +36,7 @@ class MainTest {
             try {
                 Main.main(new String[]{});
             } catch (Exception e) {
+                // Expected
             }
         });
 
@@ -57,6 +59,7 @@ class MainTest {
             try {
                 Main.main(new String[]{});
             } catch (Exception e) {
+                // Expected
             }
         });
 
@@ -80,6 +83,7 @@ class MainTest {
             try {
                 Main.main(new String[]{});
             } catch (Exception e) {
+                // Expected
             }
         });
 
@@ -103,6 +107,7 @@ class MainTest {
             try {
                 Main.main(new String[]{});
             } catch (Exception e) {
+                // Expected
             }
         });
 
@@ -126,6 +131,7 @@ class MainTest {
                 try {
                     Main.main(new String[]{});
                 } catch (Exception e) {
+                    // Expected
                 }
             });
             mainThread.start();
@@ -141,6 +147,7 @@ class MainTest {
             try {
                 Main.main(new String[]{});
             } catch (Exception e) {
+                // Expected
             }
         });
 
@@ -155,7 +162,7 @@ class MainTest {
         }
 
         String output = outContent.toString();
-        assert(output.contains("Pizzeria is starting work") || output.length() >= 0);
+        assertNotNull(output);
     }
 
     @Test
@@ -164,6 +171,7 @@ class MainTest {
             try {
                 Main.main(new String[]{});
             } catch (Exception e) {
+                // Expected
             }
         });
 
@@ -181,6 +189,7 @@ class MainTest {
             try {
                 Main.main(new String[]{});
             } catch (Exception e) {
+                // Expected
             }
         });
 
@@ -203,6 +212,7 @@ class MainTest {
             try {
                 Main.main(new String[]{});
             } catch (Exception e) {
+                // Expected
             }
         });
 

@@ -30,7 +30,7 @@ class OrderQueueTest {
 
     @Test
     void testAddMultipleOrders() throws InterruptedException {
-        OrderQueue queue = new OrderQueue();
+        final OrderQueue queue = new OrderQueue();
         Order order1 = new Order();
         order1.setInfo(1, OrderState.IN_QUEUE);
         Order order2 = new Order();
