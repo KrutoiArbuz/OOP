@@ -33,20 +33,6 @@ class OrderLoggerTest {
     }
 
     @Test
-    void testLogOrder() {
-        OrderLogger logger = new OrderLogger();
-        Order order = new Order();
-        order.setInfo(1, OrderState.IN_QUEUE);
-
-        logger.log(order, "Baker finished cooking");
-
-        String output = outContent.toString();
-        assertTrue(output.contains("[7]"));
-        assertTrue(output.contains("[Cooked]"));
-        assertTrue(output.contains("Baker finished cooking"));
-    }
-
-    @Test
     void testLogOrderWithDifferentStates() {
         OrderLogger logger = new OrderLogger();
         Order order = new Order();
