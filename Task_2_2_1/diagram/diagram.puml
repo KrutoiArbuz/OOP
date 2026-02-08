@@ -1,0 +1,205 @@
+@startuml Pizzeria
+
+!theme plain
+skinparam classAttributeIconSize 0
+skinparam class {
+    BackgroundColor White
+    BorderColor Black
+    ArrowColor Black
+}
+
+package "ru.nsu.masolygin" {
+    class Main {
+        + {static} main(args: String[]): void
+    }
+
+    class Pizzeria {
+        - timeEnd: int
+        - orderQueue: OrderQueue
+        - warehouse: Warehouse
+        - orderLogger: OrderLogger
+        - numberOfOrders: int
+        - isOpen: boolean {volatile}
+        - bakers: Baker[]
+        - couriers: Courier[]
+        - ordersDB: List<Order>
+        - threads: List<Thread>
+
+        + Pizzeria(timeEnd: int, warehouseCapacity: int, orderLogger: OrderLogger, bakers: Baker[], couriers: Courier[])
+        + acceptOrder(order: Order): void
+        + workGracefulShutdown(): void
+        - employPeople(): void
+        - start(): void
+        - stop(): void
+        - gracefulShutdown(): void
+    }
+}
+
+package "ru.nsu.masolygin.actor" {
+    class Baker implements Runnable {
+        - id: int
+        - cookingTime: int
+        - orderQueue: OrderQueue
+        - warehouse: Warehouse
+        - orderLogger: OrderLogger
+
+        + Baker(id: int, cookingTime: int)
+        + employ(orderQueue: OrderQueue, warehouse: Warehouse, orderLogger: OrderLogger): void
+        + run(): void
+    }
+
+    class Courier implements Runnable {
+        - id: int
+        - deliveryTime: int
+        - backpackCapacity: int
+        - warehouse: Warehouse
+        - orderLogger: OrderLogger
+
+        + Courier(id: int, deliveryTime: int, backpackCapacity: int)
+        + employ(warehouse: Warehouse, orderLogger: OrderLogger): void
+        + run(): void
+    }
+
+    class OrderGenerator implements Runnable {
+        - pizzeria: Pizzeria
+
+        + OrderGenerator(pizzeria: Pizzeria)
+        + run(): void
+    }
+}
+
+package "ru.nsu.masolygin.dto" {
+    class Order {
+        - id: int
+        - state: OrderState
+
+        + Order()
+        + setInfo(id: int, state: OrderState): void
+        + getId(): int
+        + setState(state: OrderState): void
+        + getState(): OrderState
+    }
+
+    enum OrderState {
+        IN_QUEUE
+        COOKING
+        COOKED
+        DELIVERING
+        DELIVERED
+
+        - displayName: String
+
+        + getDisplayName(): String
+    }
+}
+
+package "ru.nsu.masolygin.monitor" {
+    class OrderQueue {
+        - orders: Queue<Order>
+
+        + OrderQueue()
+        + addOrder(order: Order): void
+        + takeOrder(): Order
+    }
+
+    class Warehouse {
+        - capacity: int
+        - orders: Queue<Order>
+
+        + Warehouse(capacity: int)
+        + addOrder(order: Order): void
+        + takeOrders(maxCount: int): List<Order>
+    }
+}
+
+package "ru.nsu.masolygin.view" {
+    class OrderLogger {
+        + log(order: Order, message: String): void
+    }
+}
+
+package "ru.nsu.masolygin.fileLoader" {
+    class ConfigLoader {
+        + load(path: String): PizzeriaConfig
+    }
+
+    class PizzeriaConfig {
+        - workTime: int
+        - warehouseCapacity: int
+        - bakers: List<BakerConfig>
+        - couriers: List<CourierConfig>
+
+        + getWorkTime(): int
+        + setWorkTime(workTime: int): void
+        + getWarehouseCapacity(): int
+        + setWarehouseCapacity(warehouseCapacity: int): void
+        + getBakers(): List<BakerConfig>
+        + setBakers(bakers: List<BakerConfig>): void
+        + getCouriers(): List<CourierConfig>
+        + setCouriers(couriers: List<CourierConfig>): void
+    }
+
+    class BakerConfig {
+        - id: int
+        - cookingTime: int
+
+        + getId(): int
+        + setId(id: int): void
+        + getCookingTime(): int
+        + setCookingTime(cookingTime: int): void
+    }
+
+    class CourierConfig {
+        - id: int
+        - deliveryTime: int
+        - backpackCapacity: int
+
+        + getId(): int
+        + setId(id: int): void
+        + getDeliveryTime(): int
+        + setDeliveryTime(deliveryTime: int): void
+        + getBackpackCapacity(): int
+        + setBackpackCapacity(backpackCapacity: int): void
+    }
+
+    PizzeriaConfig +-- BakerConfig
+    PizzeriaConfig +-- CourierConfig
+    ConfigLoader ..> PizzeriaConfig : loads
+}
+
+' Relationships
+Main ..> ConfigLoader : uses
+Main ..> PizzeriaConfig : uses
+Main ..> Pizzeria : creates
+Main ..> Baker : creates
+Main ..> Courier : creates
+Main ..> OrderGenerator : creates
+Main ..> OrderLogger : creates
+
+Pizzeria *-- OrderQueue : contains
+Pizzeria *-- Warehouse : contains
+Pizzeria o-- OrderLogger : uses
+Pizzeria o-- Baker : manages
+Pizzeria o-- Courier : manages
+Pizzeria *-- Order : stores in ordersDB
+
+OrderGenerator --> Pizzeria : generates orders for
+
+Baker --> OrderQueue : takes orders from
+Baker --> Warehouse : puts orders to
+Baker --> OrderLogger : logs to
+
+Courier --> Warehouse : takes orders from
+Courier --> OrderLogger : logs to
+
+OrderQueue o-- Order : stores
+Warehouse o-- Order : stores
+
+Order --> OrderState : has state
+
+OrderLogger --> Order : logs
+
+
+
+@enduml
+
