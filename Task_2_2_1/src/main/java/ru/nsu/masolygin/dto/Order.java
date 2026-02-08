@@ -1,10 +1,13 @@
 package ru.nsu.masolygin.dto;
 
 public class Order {
-    private final int id;
+    private int id;
     private OrderState state;
 
-    public Order(int id, OrderState state) {
+    public Order() {
+    }
+
+    public synchronized void setInfo(int id, OrderState state) {
         this.id = id;
         this.state = state;
     }

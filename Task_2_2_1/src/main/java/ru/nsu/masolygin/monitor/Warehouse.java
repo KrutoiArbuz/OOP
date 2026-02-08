@@ -1,20 +1,22 @@
 package ru.nsu.masolygin.monitor;
 
+import java.util.Queue;
 import ru.nsu.masolygin.dto.Order;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Warehouse {
+
     private final int capacity;
-    private final ArrayDeque<Order> orders;
+    private final Queue<Order> orders;
 
     public Warehouse(int capacity) {
         this.capacity = capacity;
         this.orders = new ArrayDeque<>();
     }
 
-    public synchronized void addOrder(Order order) throws InterruptedException{
+    public synchronized void addOrder(Order order) throws InterruptedException {
         while (orders.size() >= capacity) {
             wait();
         }
@@ -22,7 +24,7 @@ public class Warehouse {
         notifyAll();
     }
 
-    public synchronized List<Order> takeOrders(int maxCount) throws InterruptedException{
+    public synchronized List<Order> takeOrders(int maxCount) throws InterruptedException {
         while (orders.isEmpty()) {
             wait();
         }
