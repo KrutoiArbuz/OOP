@@ -1,10 +1,10 @@
 package ru.nsu.masolygin.actor;
 
-import ru.nsu.masolygin.view.OrderLogger;
+import java.util.List;
 import ru.nsu.masolygin.dto.Order;
 import ru.nsu.masolygin.dto.OrderState;
 import ru.nsu.masolygin.monitor.Warehouse;
-import java.util.List;
+import ru.nsu.masolygin.view.OrderLogger;
 
 /**
  * Класс курьера.
@@ -20,8 +20,8 @@ public class Courier implements Runnable {
     /**
      * Конструктор.
      *
-     * @param id идентификатор курьера
-     * @param deliveryTime время доставки
+     * @param id               идентификатор курьера
+     * @param deliveryTime     время доставки
      * @param backpackCapacity вместимость рюкзака
      */
     public Courier(int id, int deliveryTime, int backpackCapacity) {
@@ -33,7 +33,7 @@ public class Courier implements Runnable {
     /**
      * Нанимает курьера.
      *
-     * @param warehouse склад
+     * @param warehouse   склад
      * @param orderLogger логгер заказов
      */
     public void employ(Warehouse warehouse, OrderLogger orderLogger) {

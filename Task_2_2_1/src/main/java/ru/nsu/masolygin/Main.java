@@ -3,8 +3,8 @@ package ru.nsu.masolygin;
 import ru.nsu.masolygin.actor.Baker;
 import ru.nsu.masolygin.actor.Courier;
 import ru.nsu.masolygin.actor.OrderGenerator;
-import ru.nsu.masolygin.fileLoader.ConfigLoader;
-import ru.nsu.masolygin.fileLoader.PizzeriaConfig;
+import ru.nsu.masolygin.fileloader.ConfigLoader;
+import ru.nsu.masolygin.fileloader.PizzeriaConfig;
 import ru.nsu.masolygin.view.OrderLogger;
 
 /**
@@ -29,11 +29,18 @@ public class Main {
         .toArray(Baker[]::new);
 
         Courier[] couriers = config.getCouriers().stream()
-        .map(courierConfig -> new Courier(courierConfig.getId(), courierConfig.getDeliveryTime(),
-        courierConfig.getBackpackCapacity()))
+        .map(courierConfig -> new Courier(
+            courierConfig.getId(),
+            courierConfig.getDeliveryTime(),
+            courierConfig.getBackpackCapacity()))
         .toArray(Courier[]::new);
 
-        Pizzeria pizzeria = new Pizzeria( config.getWorkTime(), config.getWarehouseCapacity(), orderLogger, bakers, couriers);
+        Pizzeria pizzeria = new Pizzeria(
+            config.getWorkTime(),
+            config.getWarehouseCapacity(),
+            orderLogger,
+            bakers,
+            couriers);
 
         OrderGenerator ordersGenerator = new OrderGenerator(pizzeria);
 

@@ -27,17 +27,17 @@ public class Pizzeria {
     private final Baker[] bakers;
     private final Courier[] couriers;
 
-    private final List<Order> ordersDB = synchronizedList(new ArrayList<>());
+    private final List<Order> ordersDb = synchronizedList(new ArrayList<>());
     private final List<Thread> threads;
 
     /**
      * Конструктор.
      *
-     * @param timeEnd время работы пиццерии
+     * @param timeEnd           время работы пиццерии
      * @param warehouseCapacity вместимость склада
-     * @param orderLogger логгер заказов
-     * @param bakers массив пекарей
-     * @param couriers массив курьеров
+     * @param orderLogger       логгер заказов
+     * @param bakers            массив пекарей
+     * @param couriers          массив курьеров
      */
     public Pizzeria(int timeEnd, int warehouseCapacity, OrderLogger orderLogger, Baker[] bakers,
     Courier[] couriers) {
@@ -64,7 +64,7 @@ public class Pizzeria {
         }
         order.setInfo(numberOfOrders++, OrderState.IN_QUEUE);
 
-        ordersDB.add(order);
+        ordersDb.add(order);
 
         orderLogger.log(order, "Order accepted in pizzeria");
         orderQueue.addOrder(order);
@@ -139,8 +139,8 @@ public class Pizzeria {
 
             allDelivered = true;
 
-            synchronized (ordersDB) {
-                for (Order order : ordersDB) {
+            synchronized (ordersDb) {
+                for (Order order : ordersDb) {
                     if (order.getState() != OrderState.DELIVERED) {
                         allDelivered = false;
                         break;
@@ -160,7 +160,7 @@ public class Pizzeria {
 
         stop();
 
-        ordersDB.clear();
+        ordersDb.clear();
     }
 
 }

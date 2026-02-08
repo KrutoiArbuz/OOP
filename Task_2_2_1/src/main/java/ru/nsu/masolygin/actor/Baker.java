@@ -20,7 +20,7 @@ public class Baker implements Runnable {
     /**
      * Конструктор.
      *
-     * @param id идентификатор пекаря
+     * @param id          идентификатор пекаря
      * @param cookingTime время приготовления
      */
     public Baker(int id, int cookingTime) {
@@ -31,8 +31,8 @@ public class Baker implements Runnable {
     /**
      * Нанимает пекаря.
      *
-     * @param orderQueue очередь заказов
-     * @param warehouse склад
+     * @param orderQueue  очередь заказов
+     * @param warehouse   склад
      * @param orderLogger логгер заказов
      */
     public void employ(OrderQueue orderQueue, Warehouse warehouse, OrderLogger orderLogger) {

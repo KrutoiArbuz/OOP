@@ -1,10 +1,10 @@
 package ru.nsu.masolygin.monitor;
 
-import java.util.Queue;
-import ru.nsu.masolygin.dto.Order;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
+import ru.nsu.masolygin.dto.Order;
 
 /**
  * Класс склада заказов.

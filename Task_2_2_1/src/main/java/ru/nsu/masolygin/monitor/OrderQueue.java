@@ -9,6 +9,7 @@ import java.util.Queue;
  * Класс очереди заказов.
  */
 public class OrderQueue {
+
     private final Queue<Order> orders;
 
     /**

@@ -4,6 +4,7 @@ package ru.nsu.masolygin.dto;
  * Класс заказа.
  */
 public class Order {
+
     private int id;
     private OrderState state;
 
@@ -16,7 +17,7 @@ public class Order {
     /**
      * Устанавливает информацию о заказе.
      *
-     * @param id идентификатор заказа
+     * @param id    идентификатор заказа
      * @param state состояние заказа
      */
     public synchronized void setInfo(int id, OrderState state) {

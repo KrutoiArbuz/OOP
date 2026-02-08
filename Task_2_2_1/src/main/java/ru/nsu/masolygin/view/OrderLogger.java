@@ -10,10 +10,16 @@ public class OrderLogger {
     /**
      * Логирует информацию о заказе.
      *
-     * @param order заказ
+     * @param order   заказ
      * @param message сообщение
      */
     public synchronized void log(Order order, String message) {
-        System.out.println("["+order.getId()+"] ["+order.getState().getDisplayName()+"] - " + message);
+        System.out.println(
+            "["
+            + order.getId()
+            + "] ["
+            + order.getState().getDisplayName()
+            + "] - "
+            + message);
     }
 }

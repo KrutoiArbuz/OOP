@@ -1,4 +1,4 @@
-package ru.nsu.masolygin.fileLoader;
+package ru.nsu.masolygin.fileloader;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
