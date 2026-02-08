@@ -7,8 +7,16 @@ import ru.nsu.masolygin.fileLoader.ConfigLoader;
 import ru.nsu.masolygin.fileLoader.PizzeriaConfig;
 import ru.nsu.masolygin.view.OrderLogger;
 
+/**
+ * Main класс.
+ */
 public class Main {
 
+    /**
+     * Main.
+     *
+     * @param args аргументы командной строки
+     */
     public static void main(String[] args) {
 
         ConfigLoader loader = new ConfigLoader();

@@ -6,6 +6,9 @@ import ru.nsu.masolygin.monitor.OrderQueue;
 import ru.nsu.masolygin.monitor.Warehouse;
 import ru.nsu.masolygin.view.OrderLogger;
 
+/**
+ * Класс пекаря.
+ */
 public class Baker implements Runnable {
 
     private final int id;
@@ -14,18 +17,33 @@ public class Baker implements Runnable {
     private Warehouse warehouse;
     private OrderLogger orderLogger;
 
-
+    /**
+     * Конструктор.
+     *
+     * @param id идентификатор пекаря
+     * @param cookingTime время приготовления
+     */
     public Baker(int id, int cookingTime) {
         this.id = id;
         this.cookingTime = cookingTime;
     }
 
+    /**
+     * Нанимает пекаря.
+     *
+     * @param orderQueue очередь заказов
+     * @param warehouse склад
+     * @param orderLogger логгер заказов
+     */
     public void employ(OrderQueue orderQueue, Warehouse warehouse, OrderLogger orderLogger) {
         this.orderQueue = orderQueue;
         this.warehouse = warehouse;
         this.orderLogger = orderLogger;
     }
 
+    /**
+     * Запускает рабочий цикл пекаря.
+     */
     @Override
     public void run() {
         if (orderQueue == null || warehouse == null || orderLogger == null) {

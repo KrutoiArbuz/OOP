@@ -12,6 +12,9 @@ import ru.nsu.masolygin.monitor.OrderQueue;
 import ru.nsu.masolygin.monitor.Warehouse;
 import ru.nsu.masolygin.view.OrderLogger;
 
+/**
+ * Класс пиццерия.
+ */
 public class Pizzeria {
 
     private final int timeEnd;
@@ -27,6 +30,15 @@ public class Pizzeria {
     private final List<Order> ordersDB = synchronizedList(new ArrayList<>());
     private final List<Thread> threads;
 
+    /**
+     * Конструктор.
+     *
+     * @param timeEnd время работы пиццерии
+     * @param warehouseCapacity вместимость склада
+     * @param orderLogger логгер заказов
+     * @param bakers массив пекарей
+     * @param couriers массив курьеров
+     */
     public Pizzeria(int timeEnd, int warehouseCapacity, OrderLogger orderLogger, Baker[] bakers,
     Courier[] couriers) {
         this.timeEnd = timeEnd;
@@ -40,7 +52,11 @@ public class Pizzeria {
         employPeople();
     }
 
-
+    /**
+     * Принимает новый заказ.
+     *
+     * @param order заказ для обработки
+     */
     public void acceptOrder(Order order) {
         if (!isOpen) {
             System.out.println("Sorry, Pizzeria is closing. Order rejected.");
@@ -54,7 +70,9 @@ public class Pizzeria {
         orderQueue.addOrder(order);
     }
 
-
+    /**
+     * Запускает работу пиццерии и корректное завершение.
+     */
     public void workGracefulShutdown() {
 
         start();
@@ -68,7 +86,9 @@ public class Pizzeria {
         gracefulShutdown();
     }
 
-
+    /**
+     * Нанимает работников пиццерии.
+     */
     private void employPeople() {
         for (Baker baker : bakers) {
             baker.employ(orderQueue, warehouse, orderLogger);
@@ -78,6 +98,9 @@ public class Pizzeria {
         }
     }
 
+    /**
+     * Запускает все рабочие потоки.
+     */
     private void start() {
 
         isOpen = true;
@@ -95,13 +118,18 @@ public class Pizzeria {
         }
     }
 
+    /**
+     * Останавливает все рабочие потоки.
+     */
     private void stop() {
         for (Thread thread : threads) {
             thread.interrupt();
         }
     }
 
-
+    /**
+     * Выполняет корректное завершение работы.
+     */
     private void gracefulShutdown() {
         isOpen = false;
 

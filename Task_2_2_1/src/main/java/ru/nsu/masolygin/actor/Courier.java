@@ -6,6 +6,9 @@ import ru.nsu.masolygin.dto.OrderState;
 import ru.nsu.masolygin.monitor.Warehouse;
 import java.util.List;
 
+/**
+ * Класс курьера.
+ */
 public class Courier implements Runnable {
 
     private final int id;
@@ -14,17 +17,33 @@ public class Courier implements Runnable {
     private Warehouse warehouse;
     private OrderLogger orderLogger;
 
+    /**
+     * Конструктор.
+     *
+     * @param id идентификатор курьера
+     * @param deliveryTime время доставки
+     * @param backpackCapacity вместимость рюкзака
+     */
     public Courier(int id, int deliveryTime, int backpackCapacity) {
         this.id = id;
         this.deliveryTime = deliveryTime;
         this.backpackCapacity = backpackCapacity;
     }
 
+    /**
+     * Нанимает курьера.
+     *
+     * @param warehouse склад
+     * @param orderLogger логгер заказов
+     */
     public void employ(Warehouse warehouse, OrderLogger orderLogger) {
         this.warehouse = warehouse;
         this.orderLogger = orderLogger;
     }
 
+    /**
+     * Запускает рабочий цикл курьера.
+     */
     @Override
     public void run() {
         if (warehouse == null || orderLogger == null) {

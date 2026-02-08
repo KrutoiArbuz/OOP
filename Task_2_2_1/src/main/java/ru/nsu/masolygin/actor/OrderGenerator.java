@@ -3,14 +3,25 @@ package ru.nsu.masolygin.actor;
 import ru.nsu.masolygin.Pizzeria;
 import ru.nsu.masolygin.dto.Order;
 
+/**
+ * Класс генератора заказов.
+ */
 public class OrderGenerator implements Runnable {
 
     private final Pizzeria pizzeria;
 
+    /**
+     * Конструктор.
+     *
+     * @param pizzeria пиццерия
+     */
     public OrderGenerator(Pizzeria pizzeria) {
         this.pizzeria = pizzeria;
     }
 
+    /**
+     * Запускает генерацию заказов.
+     */
     @Override
     public void run() {
         try {

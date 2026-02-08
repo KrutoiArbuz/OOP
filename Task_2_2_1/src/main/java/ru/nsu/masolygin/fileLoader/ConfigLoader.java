@@ -4,8 +4,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Класс загрузки конфигурации.
+ */
 public class ConfigLoader {
 
+    /**
+     * Загружает конфигурацию из файла.
+     *
+     * @param path путь к файлу конфигурации
+     * @return конфигурация пиццерии
+     */
     public PizzeriaConfig load(String path) {
         ObjectMapper mapper = new ObjectMapper();
         try {
