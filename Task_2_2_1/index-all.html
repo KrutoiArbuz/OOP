@@ -49,7 +49,7 @@ loadScripts(document, 'script');</script>
 <div class="header">
 <h1>Index</h1>
 </div>
-<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:W">W</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a>
+<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:W">W</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a>
 <h2 class="title" id="I:A">A</h2>
 <dl class="index">
 <dt><a href="ru/nsu/masolygin/Pizzeria.html#acceptOrder(ru.nsu.masolygin.dto.Order)" class="member-name-link">acceptOrder(Order)</a> - Method in class ru.nsu.masolygin.<a href="ru/nsu/masolygin/Pizzeria.html" title="class in ru.nsu.masolygin">Pizzeria</a></dt>
@@ -67,39 +67,73 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:B">B</h2>
 <dl class="index">
-<dt><a href="ru/nsu/masolygin/actor/Baker.html" class="type-name-link" title="class in ru.nsu.masolygin.actor">Baker</a> - Class in <a href="ru/nsu/masolygin/actor/package-summary.html">ru.nsu.masolygin.actor</a></dt>
+<dt><a href="ru/nsu/masolygin/actor/employee/CourierProfile.html#backpackCapacity()" class="member-name-link">backpackCapacity()</a> - Method in record class ru.nsu.masolygin.actor.employee.<a href="ru/nsu/masolygin/actor/employee/CourierProfile.html" title="class in ru.nsu.masolygin.actor.employee">CourierProfile</a></dt>
 <dd>
-<div class="block">Класс пекаря.</div>
-</dd>
-<dt><a href="ru/nsu/masolygin/actor/Baker.html#%3Cinit%3E(int,int)" class="member-name-link">Baker(int, int)</a> - Constructor for class ru.nsu.masolygin.actor.<a href="ru/nsu/masolygin/actor/Baker.html" title="class in ru.nsu.masolygin.actor">Baker</a></dt>
-<dd>
-<div class="block">Конструктор.</div>
+<div class="block">Returns the value of the <a href="./ru/nsu/masolygin/actor/employee/CourierProfile.html#param-backpackCapacity"><code>backpackCapacity</code></a> record component.</div>
 </dd>
 <dt><a href="ru/nsu/masolygin/fileloader/PizzeriaConfig.BakerConfig.html#%3Cinit%3E()" class="member-name-link">BakerConfig()</a> - Constructor for class ru.nsu.masolygin.fileloader.<a href="ru/nsu/masolygin/fileloader/PizzeriaConfig.BakerConfig.html" title="class in ru.nsu.masolygin.fileloader">PizzeriaConfig.BakerConfig</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="ru/nsu/masolygin/actor/workstrategy/BakerJob.html" class="type-name-link" title="class in ru.nsu.masolygin.actor.workstrategy">BakerJob</a> - Class in <a href="ru/nsu/masolygin/actor/workstrategy/package-summary.html">ru.nsu.masolygin.actor.workstrategy</a></dt>
+<dd>
+<div class="block">Стратегия работы пекаря.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/actor/workstrategy/BakerJob.html#%3Cinit%3E()" class="member-name-link">BakerJob()</a> - Constructor for class ru.nsu.masolygin.actor.workstrategy.<a href="ru/nsu/masolygin/actor/workstrategy/BakerJob.html" title="class in ru.nsu.masolygin.actor.workstrategy">BakerJob</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/masolygin/actor/employee/BakerProfile.html" class="type-name-link" title="class in ru.nsu.masolygin.actor.employee">BakerProfile</a> - Record Class in <a href="ru/nsu/masolygin/actor/employee/package-summary.html">ru.nsu.masolygin.actor.employee</a></dt>
+<dd>
+<div class="block">Профиль пекаря.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/actor/employee/BakerProfile.html#%3Cinit%3E(int,int)" class="member-name-link">BakerProfile(int, int)</a> - Constructor for record class ru.nsu.masolygin.actor.employee.<a href="ru/nsu/masolygin/actor/employee/BakerProfile.html" title="class in ru.nsu.masolygin.actor.employee">BakerProfile</a></dt>
+<dd>
+<div class="block">Creates an instance of a <code>BakerProfile</code> record class.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/actor/employee/BakerProfile.html#bakingSpeed()" class="member-name-link">bakingSpeed()</a> - Method in record class ru.nsu.masolygin.actor.employee.<a href="ru/nsu/masolygin/actor/employee/BakerProfile.html" title="class in ru.nsu.masolygin.actor.employee">BakerProfile</a></dt>
+<dd>
+<div class="block">Returns the value of the <a href="./ru/nsu/masolygin/actor/employee/BakerProfile.html#param-bakingSpeed"><code>bakingSpeed</code></a> record component.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:C">C</h2>
 <dl class="index">
 <dt><a href="ru/nsu/masolygin/fileloader/ConfigLoader.html" class="type-name-link" title="class in ru.nsu.masolygin.fileloader">ConfigLoader</a> - Class in <a href="ru/nsu/masolygin/fileloader/package-summary.html">ru.nsu.masolygin.fileloader</a></dt>
 <dd>
-<div class="block">Класс загрузки конфигурации.</div>
+<div class="block">Загрузчик конфигурации из json файла.</div>
 </dd>
 <dt><a href="ru/nsu/masolygin/fileloader/ConfigLoader.html#%3Cinit%3E()" class="member-name-link">ConfigLoader()</a> - Constructor for class ru.nsu.masolygin.fileloader.<a href="ru/nsu/masolygin/fileloader/ConfigLoader.html" title="class in ru.nsu.masolygin.fileloader">ConfigLoader</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/masolygin/view/ConsoleLogger.html" class="type-name-link" title="class in ru.nsu.masolygin.view">ConsoleLogger</a> - Class in <a href="ru/nsu/masolygin/view/package-summary.html">ru.nsu.masolygin.view</a></dt>
+<dd>
+<div class="block">Класс логирования заказов.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/view/ConsoleLogger.html#%3Cinit%3E()" class="member-name-link">ConsoleLogger()</a> - Constructor for class ru.nsu.masolygin.view.<a href="ru/nsu/masolygin/view/ConsoleLogger.html" title="class in ru.nsu.masolygin.view">ConsoleLogger</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/masolygin/dto/OrderState.html#COOKED" class="member-name-link">COOKED</a> - Enum constant in enum class ru.nsu.masolygin.dto.<a href="ru/nsu/masolygin/dto/OrderState.html" title="enum class in ru.nsu.masolygin.dto">OrderState</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/masolygin/dto/OrderState.html#COOKING" class="member-name-link">COOKING</a> - Enum constant in enum class ru.nsu.masolygin.dto.<a href="ru/nsu/masolygin/dto/OrderState.html" title="enum class in ru.nsu.masolygin.dto">OrderState</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="ru/nsu/masolygin/actor/Courier.html" class="type-name-link" title="class in ru.nsu.masolygin.actor">Courier</a> - Class in <a href="ru/nsu/masolygin/actor/package-summary.html">ru.nsu.masolygin.actor</a></dt>
-<dd>
-<div class="block">Класс курьера.</div>
-</dd>
-<dt><a href="ru/nsu/masolygin/actor/Courier.html#%3Cinit%3E(int,int,int)" class="member-name-link">Courier(int, int, int)</a> - Constructor for class ru.nsu.masolygin.actor.<a href="ru/nsu/masolygin/actor/Courier.html" title="class in ru.nsu.masolygin.actor">Courier</a></dt>
-<dd>
-<div class="block">Конструктор.</div>
-</dd>
 <dt><a href="ru/nsu/masolygin/fileloader/PizzeriaConfig.CourierConfig.html#%3Cinit%3E()" class="member-name-link">CourierConfig()</a> - Constructor for class ru.nsu.masolygin.fileloader.<a href="ru/nsu/masolygin/fileloader/PizzeriaConfig.CourierConfig.html" title="class in ru.nsu.masolygin.fileloader">PizzeriaConfig.CourierConfig</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="ru/nsu/masolygin/actor/workstrategy/CourierJob.html" class="type-name-link" title="class in ru.nsu.masolygin.actor.workstrategy">CourierJob</a> - Class in <a href="ru/nsu/masolygin/actor/workstrategy/package-summary.html">ru.nsu.masolygin.actor.workstrategy</a></dt>
+<dd>
+<div class="block">Стратегия работы курьера.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/actor/workstrategy/CourierJob.html#%3Cinit%3E()" class="member-name-link">CourierJob()</a> - Constructor for class ru.nsu.masolygin.actor.workstrategy.<a href="ru/nsu/masolygin/actor/workstrategy/CourierJob.html" title="class in ru.nsu.masolygin.actor.workstrategy">CourierJob</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/masolygin/actor/employee/CourierProfile.html" class="type-name-link" title="class in ru.nsu.masolygin.actor.employee">CourierProfile</a> - Record Class in <a href="ru/nsu/masolygin/actor/employee/package-summary.html">ru.nsu.masolygin.actor.employee</a></dt>
+<dd>
+<div class="block">Профиль курьера.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/actor/employee/CourierProfile.html#%3Cinit%3E(int,int,int)" class="member-name-link">CourierProfile(int, int, int)</a> - Constructor for record class ru.nsu.masolygin.actor.employee.<a href="ru/nsu/masolygin/actor/employee/CourierProfile.html" title="class in ru.nsu.masolygin.actor.employee">CourierProfile</a></dt>
+<dd>
+<div class="block">Creates an instance of a <code>CourierProfile</code> record class.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/actor/employee/Worker.html#createBaker(ru.nsu.masolygin.actor.employee.BakerProfile,ru.nsu.masolygin.dto.PizzeriaContext)" class="member-name-link">createBaker(BakerProfile, PizzeriaContext)</a> - Static method in class ru.nsu.masolygin.actor.employee.<a href="ru/nsu/masolygin/actor/employee/Worker.html" title="class in ru.nsu.masolygin.actor.employee">Worker</a></dt>
+<dd>
+<div class="block">Фабричный метод для создания пекаря.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/actor/employee/Worker.html#createCourier(ru.nsu.masolygin.actor.employee.CourierProfile,ru.nsu.masolygin.dto.PizzeriaContext)" class="member-name-link">createCourier(CourierProfile, PizzeriaContext)</a> - Static method in class ru.nsu.masolygin.actor.employee.<a href="ru/nsu/masolygin/actor/employee/Worker.html" title="class in ru.nsu.masolygin.actor.employee">Worker</a></dt>
+<dd>
+<div class="block">Фабричный метод для создания курьера.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:D">D</h2>
 <dl class="index">
@@ -107,16 +141,24 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/masolygin/dto/OrderState.html#DELIVERING" class="member-name-link">DELIVERING</a> - Enum constant in enum class ru.nsu.masolygin.dto.<a href="ru/nsu/masolygin/dto/OrderState.html" title="enum class in ru.nsu.masolygin.dto">OrderState</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="ru/nsu/masolygin/actor/employee/CourierProfile.html#deliverySpeed()" class="member-name-link">deliverySpeed()</a> - Method in record class ru.nsu.masolygin.actor.employee.<a href="ru/nsu/masolygin/actor/employee/CourierProfile.html" title="class in ru.nsu.masolygin.actor.employee">CourierProfile</a></dt>
+<dd>
+<div class="block">Returns the value of the <a href="./ru/nsu/masolygin/actor/employee/CourierProfile.html#param-deliverySpeed"><code>deliverySpeed</code></a> record component.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:E">E</h2>
 <dl class="index">
-<dt><a href="ru/nsu/masolygin/actor/Baker.html#employ(ru.nsu.masolygin.monitor.OrderQueue,ru.nsu.masolygin.monitor.Warehouse,ru.nsu.masolygin.view.OrderLogger)" class="member-name-link">employ(OrderQueue, Warehouse, OrderLogger)</a> - Method in class ru.nsu.masolygin.actor.<a href="ru/nsu/masolygin/actor/Baker.html" title="class in ru.nsu.masolygin.actor">Baker</a></dt>
+<dt><a href="ru/nsu/masolygin/actor/employee/BakerProfile.html#equals(java.lang.Object)" class="member-name-link">equals(Object)</a> - Method in record class ru.nsu.masolygin.actor.employee.<a href="ru/nsu/masolygin/actor/employee/BakerProfile.html" title="class in ru.nsu.masolygin.actor.employee">BakerProfile</a></dt>
 <dd>
-<div class="block">Нанимает пекаря.</div>
+<div class="block">Indicates whether some other object is "equal to" this one.</div>
 </dd>
-<dt><a href="ru/nsu/masolygin/actor/Courier.html#employ(ru.nsu.masolygin.monitor.Warehouse,ru.nsu.masolygin.view.OrderLogger)" class="member-name-link">employ(Warehouse, OrderLogger)</a> - Method in class ru.nsu.masolygin.actor.<a href="ru/nsu/masolygin/actor/Courier.html" title="class in ru.nsu.masolygin.actor">Courier</a></dt>
+<dt><a href="ru/nsu/masolygin/actor/employee/CourierProfile.html#equals(java.lang.Object)" class="member-name-link">equals(Object)</a> - Method in record class ru.nsu.masolygin.actor.employee.<a href="ru/nsu/masolygin/actor/employee/CourierProfile.html" title="class in ru.nsu.masolygin.actor.employee">CourierProfile</a></dt>
 <dd>
-<div class="block">Нанимает курьера.</div>
+<div class="block">Indicates whether some other object is "equal to" this one.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/dto/PizzeriaContext.html#equals(java.lang.Object)" class="member-name-link">equals(Object)</a> - Method in record class ru.nsu.masolygin.dto.<a href="ru/nsu/masolygin/dto/PizzeriaContext.html" title="class in ru.nsu.masolygin.dto">PizzeriaContext</a></dt>
+<dd>
+<div class="block">Indicates whether some other object is "equal to" this one.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:G">G</h2>
@@ -170,8 +212,35 @@ loadScripts(document, 'script');</script>
 <div class="block">Возвращает время работы.</div>
 </dd>
 </dl>
+<h2 class="title" id="I:H">H</h2>
+<dl class="index">
+<dt><a href="ru/nsu/masolygin/actor/employee/BakerProfile.html#hashCode()" class="member-name-link">hashCode()</a> - Method in record class ru.nsu.masolygin.actor.employee.<a href="ru/nsu/masolygin/actor/employee/BakerProfile.html" title="class in ru.nsu.masolygin.actor.employee">BakerProfile</a></dt>
+<dd>
+<div class="block">Returns a hash code value for this object.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/actor/employee/CourierProfile.html#hashCode()" class="member-name-link">hashCode()</a> - Method in record class ru.nsu.masolygin.actor.employee.<a href="ru/nsu/masolygin/actor/employee/CourierProfile.html" title="class in ru.nsu.masolygin.actor.employee">CourierProfile</a></dt>
+<dd>
+<div class="block">Returns a hash code value for this object.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/dto/PizzeriaContext.html#hashCode()" class="member-name-link">hashCode()</a> - Method in record class ru.nsu.masolygin.dto.<a href="ru/nsu/masolygin/dto/PizzeriaContext.html" title="class in ru.nsu.masolygin.dto">PizzeriaContext</a></dt>
+<dd>
+<div class="block">Returns a hash code value for this object.</div>
+</dd>
+</dl>
 <h2 class="title" id="I:I">I</h2>
 <dl class="index">
+<dt><a href="ru/nsu/masolygin/actor/employee/BakerProfile.html#id()" class="member-name-link">id()</a> - Method in record class ru.nsu.masolygin.actor.employee.<a href="ru/nsu/masolygin/actor/employee/BakerProfile.html" title="class in ru.nsu.masolygin.actor.employee">BakerProfile</a></dt>
+<dd>
+<div class="block">Returns the value of the <a href="./ru/nsu/masolygin/actor/employee/BakerProfile.html#param-id"><code>id</code></a> record component.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/actor/employee/CourierProfile.html#id()" class="member-name-link">id()</a> - Method in record class ru.nsu.masolygin.actor.employee.<a href="ru/nsu/masolygin/actor/employee/CourierProfile.html" title="class in ru.nsu.masolygin.actor.employee">CourierProfile</a></dt>
+<dd>
+<div class="block">Returns the value of the <a href="./ru/nsu/masolygin/actor/employee/CourierProfile.html#param-id"><code>id</code></a> record component.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/actor/employee/StaffProfile.html#id()" class="member-name-link">id()</a> - Method in interface ru.nsu.masolygin.actor.employee.<a href="ru/nsu/masolygin/actor/employee/StaffProfile.html" title="interface in ru.nsu.masolygin.actor.employee">StaffProfile</a></dt>
+<dd>
+<div class="block">Возвращает уникальный идентификатор сотрудника.</div>
+</dd>
 <dt><a href="ru/nsu/masolygin/dto/OrderState.html#IN_QUEUE" class="member-name-link">IN_QUEUE</a> - Enum constant in enum class ru.nsu.masolygin.dto.<a href="ru/nsu/masolygin/dto/OrderState.html" title="enum class in ru.nsu.masolygin.dto">OrderState</a></dt>
 <dd>&nbsp;</dd>
 </dl>
@@ -181,10 +250,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Загружает конфигурацию из файла.</div>
 </dd>
-<dt><a href="ru/nsu/masolygin/view/OrderLogger.html#log(ru.nsu.masolygin.dto.Order,java.lang.String)" class="member-name-link">log(Order, String)</a> - Method in class ru.nsu.masolygin.view.<a href="ru/nsu/masolygin/view/OrderLogger.html" title="class in ru.nsu.masolygin.view">OrderLogger</a></dt>
-<dd>
-<div class="block">Логирует информацию о заказе.</div>
-</dd>
+<dt><a href="ru/nsu/masolygin/view/ConsoleLogger.html#log(ru.nsu.masolygin.dto.Order,java.lang.String)" class="member-name-link">log(Order, String)</a> - Method in class ru.nsu.masolygin.view.<a href="ru/nsu/masolygin/view/ConsoleLogger.html" title="class in ru.nsu.masolygin.view">ConsoleLogger</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/masolygin/view/OrderLogger.html#log(ru.nsu.masolygin.dto.Order,java.lang.String)" class="member-name-link">log(Order, String)</a> - Method in interface ru.nsu.masolygin.view.<a href="ru/nsu/masolygin/view/OrderLogger.html" title="interface in ru.nsu.masolygin.view">OrderLogger</a></dt>
+<dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:M">M</h2>
 <dl class="index">
@@ -217,15 +286,21 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Конструктор.</div>
 </dd>
-<dt><a href="ru/nsu/masolygin/view/OrderLogger.html" class="type-name-link" title="class in ru.nsu.masolygin.view">OrderLogger</a> - Class in <a href="ru/nsu/masolygin/view/package-summary.html">ru.nsu.masolygin.view</a></dt>
+<dt><a href="ru/nsu/masolygin/dto/PizzeriaContext.html#orderLogger()" class="member-name-link">orderLogger()</a> - Method in record class ru.nsu.masolygin.dto.<a href="ru/nsu/masolygin/dto/PizzeriaContext.html" title="class in ru.nsu.masolygin.dto">PizzeriaContext</a></dt>
 <dd>
-<div class="block">Класс логирования заказов.</div>
+<div class="block">Returns the value of the <code>orderLogger</code> record component.</div>
 </dd>
-<dt><a href="ru/nsu/masolygin/view/OrderLogger.html#%3Cinit%3E()" class="member-name-link">OrderLogger()</a> - Constructor for class ru.nsu.masolygin.view.<a href="ru/nsu/masolygin/view/OrderLogger.html" title="class in ru.nsu.masolygin.view">OrderLogger</a></dt>
-<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/masolygin/view/OrderLogger.html" class="type-name-link" title="interface in ru.nsu.masolygin.view">OrderLogger</a> - Interface in <a href="ru/nsu/masolygin/view/package-summary.html">ru.nsu.masolygin.view</a></dt>
+<dd>
+<div class="block">Логгер заказов.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/dto/PizzeriaContext.html#orderQueue()" class="member-name-link">orderQueue()</a> - Method in record class ru.nsu.masolygin.dto.<a href="ru/nsu/masolygin/dto/PizzeriaContext.html" title="class in ru.nsu.masolygin.dto">PizzeriaContext</a></dt>
+<dd>
+<div class="block">Returns the value of the <code>orderQueue</code> record component.</div>
+</dd>
 <dt><a href="ru/nsu/masolygin/monitor/OrderQueue.html" class="type-name-link" title="class in ru.nsu.masolygin.monitor">OrderQueue</a> - Class in <a href="ru/nsu/masolygin/monitor/package-summary.html">ru.nsu.masolygin.monitor</a></dt>
 <dd>
-<div class="block">Класс очереди заказов.</div>
+<div class="block">Очередь заказов.</div>
 </dd>
 <dt><a href="ru/nsu/masolygin/monitor/OrderQueue.html#%3Cinit%3E()" class="member-name-link">OrderQueue()</a> - Constructor for class ru.nsu.masolygin.monitor.<a href="ru/nsu/masolygin/monitor/OrderQueue.html" title="class in ru.nsu.masolygin.monitor">OrderQueue</a></dt>
 <dd>
@@ -242,13 +317,13 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Класс пиццерия.</div>
 </dd>
-<dt><a href="ru/nsu/masolygin/Pizzeria.html#%3Cinit%3E(int,int,ru.nsu.masolygin.view.OrderLogger,ru.nsu.masolygin.actor.Baker%5B%5D,ru.nsu.masolygin.actor.Courier%5B%5D)" class="member-name-link">Pizzeria(int, int, OrderLogger, Baker[], Courier[])</a> - Constructor for class ru.nsu.masolygin.<a href="ru/nsu/masolygin/Pizzeria.html" title="class in ru.nsu.masolygin">Pizzeria</a></dt>
+<dt><a href="ru/nsu/masolygin/Pizzeria.html#%3Cinit%3E(int,ru.nsu.masolygin.monitor.OrderQueue,ru.nsu.masolygin.view.OrderLogger,java.util.List,java.util.List)" class="member-name-link">Pizzeria(int, OrderQueue, OrderLogger, List&lt;Worker&lt;BakerProfile&gt;&gt;, List&lt;Worker&lt;CourierProfile&gt;&gt;)</a> - Constructor for class ru.nsu.masolygin.<a href="ru/nsu/masolygin/Pizzeria.html" title="class in ru.nsu.masolygin">Pizzeria</a></dt>
 <dd>
 <div class="block">Конструктор.</div>
 </dd>
 <dt><a href="ru/nsu/masolygin/fileloader/PizzeriaConfig.html" class="type-name-link" title="class in ru.nsu.masolygin.fileloader">PizzeriaConfig</a> - Class in <a href="ru/nsu/masolygin/fileloader/package-summary.html">ru.nsu.masolygin.fileloader</a></dt>
 <dd>
-<div class="block">Класс конфигурации пиццерии.</div>
+<div class="block">Конфигурация пиццерии.</div>
 </dd>
 <dt><a href="ru/nsu/masolygin/fileloader/PizzeriaConfig.html#%3Cinit%3E()" class="member-name-link">PizzeriaConfig()</a> - Constructor for class ru.nsu.masolygin.fileloader.<a href="ru/nsu/masolygin/fileloader/PizzeriaConfig.html" title="class in ru.nsu.masolygin.fileloader">PizzeriaConfig</a></dt>
 <dd>&nbsp;</dd>
@@ -260,12 +335,24 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Класс конфигурации курьера.</div>
 </dd>
+<dt><a href="ru/nsu/masolygin/dto/PizzeriaContext.html" class="type-name-link" title="class in ru.nsu.masolygin.dto">PizzeriaContext</a> - Record Class in <a href="ru/nsu/masolygin/dto/package-summary.html">ru.nsu.masolygin.dto</a></dt>
+<dd>
+<div class="block">Контекст пиццерии, содержащий очереди заказов, склад и логгер.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/dto/PizzeriaContext.html#%3Cinit%3E(ru.nsu.masolygin.monitor.OrderQueue,ru.nsu.masolygin.monitor.Warehouse,ru.nsu.masolygin.view.OrderLogger)" class="member-name-link">PizzeriaContext(OrderQueue, Warehouse, OrderLogger)</a> - Constructor for record class ru.nsu.masolygin.dto.<a href="ru/nsu/masolygin/dto/PizzeriaContext.html" title="class in ru.nsu.masolygin.dto">PizzeriaContext</a></dt>
+<dd>
+<div class="block">Creates an instance of a <code>PizzeriaContext</code> record class.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:R">R</h2>
 <dl class="index">
 <dt><a href="ru/nsu/masolygin/package-summary.html">ru.nsu.masolygin</a> - package ru.nsu.masolygin</dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/masolygin/actor/package-summary.html">ru.nsu.masolygin.actor</a> - package ru.nsu.masolygin.actor</dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/masolygin/actor/employee/package-summary.html">ru.nsu.masolygin.actor.employee</a> - package ru.nsu.masolygin.actor.employee</dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/masolygin/actor/workstrategy/package-summary.html">ru.nsu.masolygin.actor.workstrategy</a> - package ru.nsu.masolygin.actor.workstrategy</dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/masolygin/dto/package-summary.html">ru.nsu.masolygin.dto</a> - package ru.nsu.masolygin.dto</dt>
 <dd>&nbsp;</dd>
@@ -275,13 +362,9 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/masolygin/view/package-summary.html">ru.nsu.masolygin.view</a> - package ru.nsu.masolygin.view</dt>
 <dd>&nbsp;</dd>
-<dt><a href="ru/nsu/masolygin/actor/Baker.html#run()" class="member-name-link">run()</a> - Method in class ru.nsu.masolygin.actor.<a href="ru/nsu/masolygin/actor/Baker.html" title="class in ru.nsu.masolygin.actor">Baker</a></dt>
+<dt><a href="ru/nsu/masolygin/actor/employee/Worker.html#run()" class="member-name-link">run()</a> - Method in class ru.nsu.masolygin.actor.employee.<a href="ru/nsu/masolygin/actor/employee/Worker.html" title="class in ru.nsu.masolygin.actor.employee">Worker</a></dt>
 <dd>
-<div class="block">Запускает рабочий цикл пекаря.</div>
-</dd>
-<dt><a href="ru/nsu/masolygin/actor/Courier.html#run()" class="member-name-link">run()</a> - Method in class ru.nsu.masolygin.actor.<a href="ru/nsu/masolygin/actor/Courier.html" title="class in ru.nsu.masolygin.actor">Courier</a></dt>
-<dd>
-<div class="block">Запускает рабочий цикл курьера.</div>
+<div class="block">Основной цикл работы сотрудника.</div>
 </dd>
 <dt><a href="ru/nsu/masolygin/actor/OrderGenerator.html#run()" class="member-name-link">run()</a> - Method in class ru.nsu.masolygin.actor.<a href="ru/nsu/masolygin/actor/OrderGenerator.html" title="class in ru.nsu.masolygin.actor">OrderGenerator</a></dt>
 <dd>
@@ -334,6 +417,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Устанавливает время работы.</div>
 </dd>
+<dt><a href="ru/nsu/masolygin/actor/employee/StaffProfile.html" class="type-name-link" title="interface in ru.nsu.masolygin.actor.employee">StaffProfile</a> - Interface in <a href="ru/nsu/masolygin/actor/employee/package-summary.html">ru.nsu.masolygin.actor.employee</a></dt>
+<dd>
+<div class="block">Базовый интерфейс для профилей всех сотрудников пиццерии.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:T">T</h2>
 <dl class="index">
@@ -344,6 +431,18 @@ loadScripts(document, 'script');</script>
 <dt><a href="ru/nsu/masolygin/monitor/Warehouse.html#takeOrders(int)" class="member-name-link">takeOrders(int)</a> - Method in class ru.nsu.masolygin.monitor.<a href="ru/nsu/masolygin/monitor/Warehouse.html" title="class in ru.nsu.masolygin.monitor">Warehouse</a></dt>
 <dd>
 <div class="block">Извлекает заказы со склада.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/actor/employee/BakerProfile.html#toString()" class="member-name-link">toString()</a> - Method in record class ru.nsu.masolygin.actor.employee.<a href="ru/nsu/masolygin/actor/employee/BakerProfile.html" title="class in ru.nsu.masolygin.actor.employee">BakerProfile</a></dt>
+<dd>
+<div class="block">Returns a string representation of this record class.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/actor/employee/CourierProfile.html#toString()" class="member-name-link">toString()</a> - Method in record class ru.nsu.masolygin.actor.employee.<a href="ru/nsu/masolygin/actor/employee/CourierProfile.html" title="class in ru.nsu.masolygin.actor.employee">CourierProfile</a></dt>
+<dd>
+<div class="block">Returns a string representation of this record class.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/dto/PizzeriaContext.html#toString()" class="member-name-link">toString()</a> - Method in record class ru.nsu.masolygin.dto.<a href="ru/nsu/masolygin/dto/PizzeriaContext.html" title="class in ru.nsu.masolygin.dto">PizzeriaContext</a></dt>
+<dd>
+<div class="block">Returns a string representation of this record class.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:V">V</h2>
@@ -360,20 +459,42 @@ the order they are declared.</div>
 </dl>
 <h2 class="title" id="I:W">W</h2>
 <dl class="index">
+<dt><a href="ru/nsu/masolygin/dto/PizzeriaContext.html#warehouse()" class="member-name-link">warehouse()</a> - Method in record class ru.nsu.masolygin.dto.<a href="ru/nsu/masolygin/dto/PizzeriaContext.html" title="class in ru.nsu.masolygin.dto">PizzeriaContext</a></dt>
+<dd>
+<div class="block">Returns the value of the <code>warehouse</code> record component.</div>
+</dd>
 <dt><a href="ru/nsu/masolygin/monitor/Warehouse.html" class="type-name-link" title="class in ru.nsu.masolygin.monitor">Warehouse</a> - Class in <a href="ru/nsu/masolygin/monitor/package-summary.html">ru.nsu.masolygin.monitor</a></dt>
 <dd>
-<div class="block">Класс склада заказов.</div>
+<div class="block">Склад для готовых заказов.</div>
 </dd>
 <dt><a href="ru/nsu/masolygin/monitor/Warehouse.html#%3Cinit%3E(int)" class="member-name-link">Warehouse(int)</a> - Constructor for class ru.nsu.masolygin.monitor.<a href="ru/nsu/masolygin/monitor/Warehouse.html" title="class in ru.nsu.masolygin.monitor">Warehouse</a></dt>
 <dd>
 <div class="block">Конструктор.</div>
 </dd>
+<dt><a href="ru/nsu/masolygin/actor/workstrategy/BakerJob.html#work(ru.nsu.masolygin.actor.employee.BakerProfile,ru.nsu.masolygin.dto.PizzeriaContext)" class="member-name-link">work(BakerProfile, PizzeriaContext)</a> - Method in class ru.nsu.masolygin.actor.workstrategy.<a href="ru/nsu/masolygin/actor/workstrategy/BakerJob.html" title="class in ru.nsu.masolygin.actor.workstrategy">BakerJob</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/masolygin/actor/workstrategy/CourierJob.html#work(ru.nsu.masolygin.actor.employee.CourierProfile,ru.nsu.masolygin.dto.PizzeriaContext)" class="member-name-link">work(CourierProfile, PizzeriaContext)</a> - Method in class ru.nsu.masolygin.actor.workstrategy.<a href="ru/nsu/masolygin/actor/workstrategy/CourierJob.html" title="class in ru.nsu.masolygin.actor.workstrategy">CourierJob</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/masolygin/actor/workstrategy/WorkStrategy.html#work(T,ru.nsu.masolygin.dto.PizzeriaContext)" class="member-name-link">work(T, PizzeriaContext)</a> - Method in interface ru.nsu.masolygin.actor.workstrategy.<a href="ru/nsu/masolygin/actor/workstrategy/WorkStrategy.html" title="interface in ru.nsu.masolygin.actor.workstrategy">WorkStrategy</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/masolygin/actor/employee/Worker.html" class="type-name-link" title="class in ru.nsu.masolygin.actor.employee">Worker</a>&lt;<a href="ru/nsu/masolygin/actor/employee/Worker.html" title="type parameter in Worker">T</a> extends <a href="ru/nsu/masolygin/actor/employee/StaffProfile.html" title="interface in ru.nsu.masolygin.actor.employee">StaffProfile</a>&gt; - Class in <a href="ru/nsu/masolygin/actor/employee/package-summary.html">ru.nsu.masolygin.actor.employee</a></dt>
+<dd>
+<div class="block">Универсальный класс работника пиццерии.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/actor/employee/Worker.html#%3Cinit%3E(T,ru.nsu.masolygin.actor.workstrategy.WorkStrategy,ru.nsu.masolygin.dto.PizzeriaContext)" class="member-name-link">Worker(T, WorkStrategy&lt;T&gt;, PizzeriaContext)</a> - Constructor for class ru.nsu.masolygin.actor.employee.<a href="ru/nsu/masolygin/actor/employee/Worker.html" title="class in ru.nsu.masolygin.actor.employee">Worker</a></dt>
+<dd>
+<div class="block">Конструктор работника.</div>
+</dd>
 <dt><a href="ru/nsu/masolygin/Pizzeria.html#workGracefulShutdown()" class="member-name-link">workGracefulShutdown()</a> - Method in class ru.nsu.masolygin.<a href="ru/nsu/masolygin/Pizzeria.html" title="class in ru.nsu.masolygin">Pizzeria</a></dt>
 <dd>
 <div class="block">Запускает работу пиццерии и корректное завершение.</div>
 </dd>
+<dt><a href="ru/nsu/masolygin/actor/workstrategy/WorkStrategy.html" class="type-name-link" title="interface in ru.nsu.masolygin.actor.workstrategy">WorkStrategy</a>&lt;<a href="ru/nsu/masolygin/actor/workstrategy/WorkStrategy.html" title="type parameter in WorkStrategy">T</a> extends <a href="ru/nsu/masolygin/actor/employee/StaffProfile.html" title="interface in ru.nsu.masolygin.actor.employee">StaffProfile</a>&gt; - Interface in <a href="ru/nsu/masolygin/actor/workstrategy/package-summary.html">ru.nsu.masolygin.actor.workstrategy</a></dt>
+<dd>
+<div class="block">Интерфейс стратегии работы.</div>
+</dd>
 </dl>
-<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:W">W</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a></main>
+<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:W">W</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a></main>
 </div>
 </div>
 </body>

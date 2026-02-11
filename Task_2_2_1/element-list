@@ -1,5 +1,7 @@
 ru.nsu.masolygin
 ru.nsu.masolygin.actor
+ru.nsu.masolygin.actor.employee
+ru.nsu.masolygin.actor.workstrategy
 ru.nsu.masolygin.dto
 ru.nsu.masolygin.fileloader
 ru.nsu.masolygin.monitor
