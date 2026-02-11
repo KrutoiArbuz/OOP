@@ -20,10 +20,11 @@ public class Pizzeria {
     private final int timeEnd;
     private final OrderQueue orderQueue;
     private final OrderLogger orderLogger;
-    private final List<Worker<BakerProfile>> bakers;
-    private final List<Worker<CourierProfile>> couriers;
+    private final List<Worker<?>> allWorkers;
+
     private final List<Order> ordersDb = synchronizedList(new ArrayList<>());
-    private final List<Thread> threads;
+    private final List<Thread> threads = new ArrayList<>();
+
     private int numberOfOrders = 0;
     private volatile boolean isOpen = false;
 
@@ -42,9 +43,9 @@ public class Pizzeria {
         this.timeEnd = timeEnd;
         this.orderQueue = orderQueue;
         this.orderLogger = orderLogger;
-        this.bakers = bakers;
-        this.couriers = couriers;
-        this.threads = new java.util.ArrayList<>();
+        this.allWorkers = new ArrayList<>();
+        this.allWorkers.addAll(bakers);
+        this.allWorkers.addAll(couriers);
     }
 
     /**
@@ -89,17 +90,12 @@ public class Pizzeria {
 
         isOpen = true;
 
-        for (Worker<BakerProfile> baker : bakers) {
-            Thread thread = new Thread(baker);
+        for (Runnable worker: allWorkers) {
+            Thread thread = new Thread(worker);
             threads.add(thread);
             thread.start();
         }
 
-        for (Worker<CourierProfile> courier : couriers) {
-            Thread thread = new Thread(courier);
-            threads.add(thread);
-            thread.start();
-        }
     }
 
     /**
