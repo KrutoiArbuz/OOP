@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Класс загрузки конфигурации.
+ * Загрузчик конфигурации из json файла.
  */
 public class ConfigLoader {
 

@@ -1,12 +1,12 @@
 package ru.nsu.masolygin.monitor;
 
 
-import ru.nsu.masolygin.dto.Order;
 import java.util.ArrayDeque;
 import java.util.Queue;
+import ru.nsu.masolygin.dto.Order;
 
 /**
- * Класс очереди заказов.
+ * Очередь заказов.
  */
 public class OrderQueue {
 

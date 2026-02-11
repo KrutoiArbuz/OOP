@@ -7,7 +7,7 @@ import java.util.Queue;
 import ru.nsu.masolygin.dto.Order;
 
 /**
- * Класс склада заказов.
+ * Склад для готовых заказов.
  */
 public class Warehouse {
 

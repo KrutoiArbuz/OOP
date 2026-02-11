@@ -28,13 +28,13 @@ class OrderLoggerTest {
 
     @Test
     void testOrderLoggerCreation() {
-        OrderLogger logger = new OrderLogger();
+        OrderLogger logger = new ConsoleLogger();
         assertNotNull(logger);
     }
 
     @Test
     void testLogOrderWithDifferentStates() {
-        OrderLogger logger = new OrderLogger();
+        OrderLogger logger = new ConsoleLogger();
         Order order = new Order();
         order.setInfo(5, OrderState.COOKING);
 
@@ -48,7 +48,7 @@ class OrderLoggerTest {
 
     @Test
     void testLogMultipleOrders() {
-        OrderLogger logger = new OrderLogger();
+        OrderLogger logger = new ConsoleLogger();
         Order order1 = new Order();
         order1.setInfo(1, OrderState.IN_QUEUE);
         Order order2 = new Order();
@@ -66,7 +66,7 @@ class OrderLoggerTest {
 
     @Test
     void testLogWithDeliveredState() {
-        OrderLogger logger = new OrderLogger();
+        OrderLogger logger = new ConsoleLogger();
         Order order = new Order();
         order.setInfo(10, OrderState.DELIVERED);
 
@@ -80,7 +80,7 @@ class OrderLoggerTest {
 
     @Test
     void testLogWithCookedState() {
-        OrderLogger logger = new OrderLogger();
+        OrderLogger logger = new ConsoleLogger();
         Order order = new Order();
         order.setInfo(7, OrderState.COOKED);
 
@@ -94,7 +94,7 @@ class OrderLoggerTest {
 
     @Test
     void testLogWithDeliveringState() {
-        OrderLogger logger = new OrderLogger();
+        OrderLogger logger = new ConsoleLogger();
         Order order = new Order();
         order.setInfo(15, OrderState.DELIVERING);
 

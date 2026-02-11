@@ -1,10 +1,16 @@
 package ru.nsu.masolygin;
 
-import ru.nsu.masolygin.actor.Baker;
-import ru.nsu.masolygin.actor.Courier;
+import java.util.List;
 import ru.nsu.masolygin.actor.OrderGenerator;
+import ru.nsu.masolygin.actor.employee.BakerProfile;
+import ru.nsu.masolygin.actor.employee.CourierProfile;
+import ru.nsu.masolygin.actor.employee.Worker;
+import ru.nsu.masolygin.dto.PizzeriaContext;
 import ru.nsu.masolygin.fileloader.ConfigLoader;
 import ru.nsu.masolygin.fileloader.PizzeriaConfig;
+import ru.nsu.masolygin.monitor.OrderQueue;
+import ru.nsu.masolygin.monitor.Warehouse;
+import ru.nsu.masolygin.view.ConsoleLogger;
 import ru.nsu.masolygin.view.OrderLogger;
 
 /**
@@ -22,25 +28,35 @@ public class Main {
         ConfigLoader loader = new ConfigLoader();
         PizzeriaConfig config = loader.load("src/main/resources/config.json");
 
-        OrderLogger orderLogger = new OrderLogger();
+        OrderLogger orderLogger = new ConsoleLogger();
 
-        Baker[] bakers = config.getBakers().stream()
-            .map(bakerConfig -> new Baker(bakerConfig.getId(), bakerConfig.getCookingTime()))
-            .toArray(Baker[]::new);
+        OrderQueue queue = new OrderQueue();
+        Warehouse warehouse = new Warehouse(config.getWarehouseCapacity());
 
-        Courier[] couriers = config.getCouriers().stream()
-            .map(courierConfig -> new Courier(
-                courierConfig.getId(),
-                courierConfig.getDeliveryTime(),
-                courierConfig.getBackpackCapacity()))
-            .toArray(Courier[]::new);
+        PizzeriaContext context = new PizzeriaContext(queue, warehouse, orderLogger);
+
+        List<Worker<BakerProfile>> bakers = config.getBakers().stream()
+        .map(cfg -> {
+            BakerProfile profile = new BakerProfile(cfg.getId(), cfg.getCookingTime());
+            return Worker.createBaker(profile, context);
+        })
+        .toList();
+
+        // Курьеры
+        List<Worker<CourierProfile>> couriers = config.getCouriers().stream()
+        .map(cfg -> {
+            CourierProfile profile = new CourierProfile(cfg.getId(), cfg.getDeliveryTime(),
+            cfg.getBackpackCapacity());
+            return Worker.createCourier(profile, context);
+        })
+        .toList();
 
         Pizzeria pizzeria = new Pizzeria(
-            config.getWorkTime(),
-            config.getWarehouseCapacity(),
-            orderLogger,
-            bakers,
-            couriers);
+        config.getWorkTime(),
+        queue,
+        orderLogger,
+        bakers,
+        couriers);
 
         OrderGenerator ordersGenerator = new OrderGenerator(pizzeria);
 

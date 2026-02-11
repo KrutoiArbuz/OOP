@@ -35,20 +35,20 @@ public class Order {
     }
 
     /**
-     * Устанавливает состояние заказа.
-     *
-     * @param state состояние заказа
-     */
-    public synchronized void setState(OrderState state) {
-        this.state = state;
-    }
-
-    /**
      * Возвращает состояние заказа.
      *
      * @return состояние заказа
      */
     public synchronized OrderState getState() {
         return state;
+    }
+
+    /**
+     * Устанавливает состояние заказа.
+     *
+     * @param state состояние заказа
+     */
+    public synchronized void setState(OrderState state) {
+        this.state = state;
     }
 }

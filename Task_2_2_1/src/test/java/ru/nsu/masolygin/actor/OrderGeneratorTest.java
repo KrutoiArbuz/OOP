@@ -2,35 +2,75 @@ package ru.nsu.masolygin.actor;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import ru.nsu.masolygin.Pizzeria;
+import ru.nsu.masolygin.actor.employee.BakerProfile;
+import ru.nsu.masolygin.actor.employee.CourierProfile;
+import ru.nsu.masolygin.actor.employee.Worker;
+import ru.nsu.masolygin.dto.PizzeriaContext;
+import ru.nsu.masolygin.monitor.OrderQueue;
+import ru.nsu.masolygin.monitor.Warehouse;
+import ru.nsu.masolygin.view.ConsoleLogger;
 import ru.nsu.masolygin.view.OrderLogger;
 
 class OrderGeneratorTest {
 
     @Test
     void testOrderGeneratorCreation() {
-        Baker[] bakers = {new Baker(1, 1000)};
-        Courier[] couriers = {new Courier(1, 1000, 5)};
-        Pizzeria pizzeria = new Pizzeria(5000, 10, new OrderLogger(), bakers, couriers);
+        OrderLogger orderLogger = new ConsoleLogger();
+        OrderQueue queue = new OrderQueue();
+        Warehouse warehouse = new Warehouse(10);
+        PizzeriaContext context = new PizzeriaContext(queue, warehouse, orderLogger);
+
+        List<Worker<BakerProfile>> bakers = List.of(
+        Worker.createBaker(new BakerProfile(1, 1000), context)
+        );
+        List<Worker<CourierProfile>> couriers = List.of(
+        Worker.createCourier(new CourierProfile(1, 1000, 5), context)
+        );
+
+        Pizzeria pizzeria = new Pizzeria(5000, queue, orderLogger, bakers, couriers);
         OrderGenerator generator = new OrderGenerator(pizzeria);
         assertNotNull(generator);
     }
 
     @Test
     void testOrderGeneratorCreationWithDifferentPizzeria() {
-        Baker[] bakers = {new Baker(1, 500), new Baker(2, 600)};
-        Courier[] couriers = {new Courier(1, 800, 3), new Courier(2, 900, 4)};
-        Pizzeria pizzeria = new Pizzeria(10000, 20, new OrderLogger(), bakers, couriers);
+        OrderLogger orderLogger = new ConsoleLogger();
+        OrderQueue queue = new OrderQueue();
+        Warehouse warehouse = new Warehouse(20);
+        PizzeriaContext context = new PizzeriaContext(queue, warehouse, orderLogger);
+
+        List<Worker<BakerProfile>> bakers = List.of(
+        Worker.createBaker(new BakerProfile(1, 500), context),
+        Worker.createBaker(new BakerProfile(2, 600), context)
+        );
+        List<Worker<CourierProfile>> couriers = List.of(
+        Worker.createCourier(new CourierProfile(1, 800, 3), context),
+        Worker.createCourier(new CourierProfile(2, 900, 4), context)
+        );
+
+        Pizzeria pizzeria = new Pizzeria(10000, queue, orderLogger, bakers, couriers);
         OrderGenerator generator = new OrderGenerator(pizzeria);
         assertNotNull(generator);
     }
 
     @Test
     void testOrderGeneratorGeneratesOrders() throws InterruptedException {
-        Baker[] bakers = {new Baker(1, 100)};
-        Courier[] couriers = {new Courier(1, 100, 5)};
-        Pizzeria pizzeria = new Pizzeria(1000, 10, new OrderLogger(), bakers, couriers);
+        OrderLogger orderLogger = new ConsoleLogger();
+        OrderQueue queue = new OrderQueue();
+        Warehouse warehouse = new Warehouse(10);
+        PizzeriaContext context = new PizzeriaContext(queue, warehouse, orderLogger);
+
+        List<Worker<BakerProfile>> bakers = List.of(
+        Worker.createBaker(new BakerProfile(1, 100), context)
+        );
+        List<Worker<CourierProfile>> couriers = List.of(
+        Worker.createCourier(new CourierProfile(1, 100, 5), context)
+        );
+
+        Pizzeria pizzeria = new Pizzeria(1000, queue, orderLogger, bakers, couriers);
         OrderGenerator generator = new OrderGenerator(pizzeria);
 
         Thread generatorThread = new Thread(generator);
@@ -44,9 +84,19 @@ class OrderGeneratorTest {
 
     @Test
     void testOrderGeneratorStopsWhenInterrupted() throws InterruptedException {
-        Baker[] bakers = {new Baker(1, 1000)};
-        Courier[] couriers = {new Courier(1, 1000, 5)};
-        Pizzeria pizzeria = new Pizzeria(5000, 10, new OrderLogger(), bakers, couriers);
+        OrderLogger orderLogger = new ConsoleLogger();
+        OrderQueue queue = new OrderQueue();
+        Warehouse warehouse = new Warehouse(10);
+        PizzeriaContext context = new PizzeriaContext(queue, warehouse, orderLogger);
+
+        List<Worker<BakerProfile>> bakers = List.of(
+        Worker.createBaker(new BakerProfile(1, 1000), context)
+        );
+        List<Worker<CourierProfile>> couriers = List.of(
+        Worker.createCourier(new CourierProfile(1, 1000, 5), context)
+        );
+
+        Pizzeria pizzeria = new Pizzeria(5000, queue, orderLogger, bakers, couriers);
         OrderGenerator generator = new OrderGenerator(pizzeria);
 
         Thread generatorThread = new Thread(generator);
@@ -59,34 +109,48 @@ class OrderGeneratorTest {
     }
 
     @Test
-    void testMultipleOrderGenerators() throws InterruptedException {
-        Baker[] bakers = {new Baker(1, 100), new Baker(2, 100)};
-        Courier[] couriers = {new Courier(1, 100, 5), new Courier(2, 100, 5)};
-        Pizzeria pizzeria = new Pizzeria(2000, 20, new OrderLogger(), bakers, couriers);
+    void testOrderGeneratorWithMultipleWorkers() throws InterruptedException {
+        OrderLogger orderLogger = new ConsoleLogger();
+        OrderQueue queue = new OrderQueue();
+        Warehouse warehouse = new Warehouse(20);
+        PizzeriaContext context = new PizzeriaContext(queue, warehouse, orderLogger);
 
-        OrderGenerator generator1 = new OrderGenerator(pizzeria);
-        OrderGenerator generator2 = new OrderGenerator(pizzeria);
+        List<Worker<BakerProfile>> bakers = List.of(
+        Worker.createBaker(new BakerProfile(1, 100), context),
+        Worker.createBaker(new BakerProfile(2, 100), context)
+        );
+        List<Worker<CourierProfile>> couriers = List.of(
+        Worker.createCourier(new CourierProfile(1, 100, 5), context),
+        Worker.createCourier(new CourierProfile(2, 100, 5), context)
+        );
 
-        Thread generatorThread1 = new Thread(generator1);
-        Thread generatorThread2 = new Thread(generator2);
+        Pizzeria pizzeria = new Pizzeria(2000, queue, orderLogger, bakers, couriers);
+        OrderGenerator generator = new OrderGenerator(pizzeria);
 
-        generatorThread1.start();
-        generatorThread2.start();
+        Thread generatorThread = new Thread(generator);
+        generatorThread.start();
         Thread.sleep(300);
-        generatorThread1.interrupt();
-        generatorThread2.interrupt();
-        generatorThread1.join();
-        generatorThread2.join();
+        generatorThread.interrupt();
+        generatorThread.join();
 
-        assertNotNull(generator1);
-        assertNotNull(generator2);
+        assertNotNull(generator);
     }
 
     @Test
     void testOrderGeneratorWithFastGeneration() throws InterruptedException {
-        Baker[] bakers = {new Baker(1, 50)};
-        Courier[] couriers = {new Courier(1, 50, 10)};
-        Pizzeria pizzeria = new Pizzeria(1000, 50, new OrderLogger(), bakers, couriers);
+        OrderLogger orderLogger = new ConsoleLogger();
+        OrderQueue queue = new OrderQueue();
+        Warehouse warehouse = new Warehouse(50);
+        PizzeriaContext context = new PizzeriaContext(queue, warehouse, orderLogger);
+
+        List<Worker<BakerProfile>> bakers = List.of(
+        Worker.createBaker(new BakerProfile(1, 50), context)
+        );
+        List<Worker<CourierProfile>> couriers = List.of(
+        Worker.createCourier(new CourierProfile(1, 50, 10), context)
+        );
+
+        Pizzeria pizzeria = new Pizzeria(1000, queue, orderLogger, bakers, couriers);
         OrderGenerator generator = new OrderGenerator(pizzeria);
 
         Thread generatorThread = new Thread(generator);
@@ -100,9 +164,19 @@ class OrderGeneratorTest {
 
     @Test
     void testOrderGeneratorWithSlowGeneration() throws InterruptedException {
-        Baker[] bakers = {new Baker(1, 100)};
-        Courier[] couriers = {new Courier(1, 100, 5)};
-        Pizzeria pizzeria = new Pizzeria(2000, 10, new OrderLogger(), bakers, couriers);
+        OrderLogger orderLogger = new ConsoleLogger();
+        OrderQueue queue = new OrderQueue();
+        Warehouse warehouse = new Warehouse(10);
+        PizzeriaContext context = new PizzeriaContext(queue, warehouse, orderLogger);
+
+        List<Worker<BakerProfile>> bakers = List.of(
+        Worker.createBaker(new BakerProfile(1, 100), context)
+        );
+        List<Worker<CourierProfile>> couriers = List.of(
+        Worker.createCourier(new CourierProfile(1, 100, 5), context)
+        );
+
+        Pizzeria pizzeria = new Pizzeria(2000, queue, orderLogger, bakers, couriers);
         OrderGenerator generator = new OrderGenerator(pizzeria);
 
         Thread generatorThread = new Thread(generator);

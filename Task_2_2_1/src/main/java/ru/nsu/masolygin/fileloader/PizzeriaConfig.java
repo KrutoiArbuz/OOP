@@ -3,7 +3,7 @@ package ru.nsu.masolygin.fileloader;
 import java.util.List;
 
 /**
- * Класс конфигурации пиццерии.
+ * Конфигурация пиццерии.
  */
 public class PizzeriaConfig {
 
@@ -193,4 +193,3 @@ public class PizzeriaConfig {
         }
     }
 }
-

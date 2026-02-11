@@ -4,12 +4,12 @@ import static java.util.Collections.synchronizedList;
 
 import java.util.ArrayList;
 import java.util.List;
-import ru.nsu.masolygin.actor.Baker;
-import ru.nsu.masolygin.actor.Courier;
+import ru.nsu.masolygin.actor.employee.BakerProfile;
+import ru.nsu.masolygin.actor.employee.CourierProfile;
+import ru.nsu.masolygin.actor.employee.Worker;
 import ru.nsu.masolygin.dto.Order;
 import ru.nsu.masolygin.dto.OrderState;
 import ru.nsu.masolygin.monitor.OrderQueue;
-import ru.nsu.masolygin.monitor.Warehouse;
 import ru.nsu.masolygin.view.OrderLogger;
 
 /**
@@ -19,37 +19,32 @@ public class Pizzeria {
 
     private final int timeEnd;
     private final OrderQueue orderQueue;
-    private final Warehouse warehouse;
     private final OrderLogger orderLogger;
+    private final List<Worker<BakerProfile>> bakers;
+    private final List<Worker<CourierProfile>> couriers;
+    private final List<Order> ordersDb = synchronizedList(new ArrayList<>());
+    private final List<Thread> threads;
     private int numberOfOrders = 0;
     private volatile boolean isOpen = false;
 
-    private final Baker[] bakers;
-    private final Courier[] couriers;
-
-    private final List<Order> ordersDb = synchronizedList(new ArrayList<>());
-    private final List<Thread> threads;
 
     /**
      * Конструктор.
      *
-     * @param timeEnd           время работы пиццерии
-     * @param warehouseCapacity вместимость склада
-     * @param orderLogger       логгер заказов
-     * @param bakers            массив пекарей
-     * @param couriers          массив курьеров
+     * @param timeEnd     время работы пиццерии
+     * @param orderLogger логгер заказов
+     * @param bakers      массив пекарей
+     * @param couriers    массив курьеров
      */
-    public Pizzeria(int timeEnd, int warehouseCapacity, OrderLogger orderLogger, Baker[] bakers,
-    Courier[] couriers) {
+    public Pizzeria(int timeEnd, OrderQueue orderQueue,
+    OrderLogger orderLogger, List<Worker<BakerProfile>> bakers,
+    List<Worker<CourierProfile>> couriers) {
         this.timeEnd = timeEnd;
-        this.orderQueue = new OrderQueue();
-        this.warehouse = new Warehouse(warehouseCapacity);
+        this.orderQueue = orderQueue;
         this.orderLogger = orderLogger;
         this.bakers = bakers;
         this.couriers = couriers;
         this.threads = new java.util.ArrayList<>();
-
-        employPeople();
     }
 
     /**
@@ -86,17 +81,6 @@ public class Pizzeria {
         gracefulShutdown();
     }
 
-    /**
-     * Нанимает работников пиццерии.
-     */
-    private void employPeople() {
-        for (Baker baker : bakers) {
-            baker.employ(orderQueue, warehouse, orderLogger);
-        }
-        for (Courier courier : couriers) {
-            courier.employ(warehouse, orderLogger);
-        }
-    }
 
     /**
      * Запускает все рабочие потоки.
@@ -105,13 +89,13 @@ public class Pizzeria {
 
         isOpen = true;
 
-        for (Baker baker : bakers) {
+        for (Worker<BakerProfile> baker : bakers) {
             Thread thread = new Thread(baker);
             threads.add(thread);
             thread.start();
         }
 
-        for (Courier courier : couriers) {
+        for (Worker<CourierProfile> courier : couriers) {
             Thread thread = new Thread(courier);
             threads.add(thread);
             thread.start();
