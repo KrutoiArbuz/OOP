@@ -3,6 +3,7 @@ ru.nsu.masolygin.actor
 ru.nsu.masolygin.actor.employee
 ru.nsu.masolygin.actor.workstrategy
 ru.nsu.masolygin.dto
+ru.nsu.masolygin.exception
 ru.nsu.masolygin.fileloader
 ru.nsu.masolygin.monitor
 ru.nsu.masolygin.view

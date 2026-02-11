@@ -77,6 +77,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">PizzeriaBuilder</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Строитель пиццерии.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -89,7 +90,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.masolygin.fileloader.PizzeriaConfig)" class="member-name-link">PizzeriaBuilder</a><wbr>(<a href="fileloader/PizzeriaConfig.html" title="class in ru.nsu.masolygin.fileloader">PizzeriaConfig</a>&nbsp;config)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Конструктор.</div>
+</div>
 </div>
 </section>
 </li>
@@ -106,7 +109,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Pizzeria.html" title="class in ru.nsu.masolygin">Pizzeria</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#build()" class="member-name-link">build</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Создает пиццерию.</div>
+</div>
 </div>
 </div>
 </div>
@@ -128,6 +133,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;(ru.nsu.masolygin.fileloader.PizzeriaConfig)">
 <h3>PizzeriaBuilder</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">PizzeriaBuilder</span><wbr><span class="parameters">(<a href="fileloader/PizzeriaConfig.html" title="class in ru.nsu.masolygin.fileloader">PizzeriaConfig</a>&nbsp;config)</span></div>
+<div class="block">Конструктор.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>config</code> - конфигурация пиццерии</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -141,7 +151,15 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="build()">
 <h3>build</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Pizzeria.html" title="class in ru.nsu.masolygin">Pizzeria</a></span>&nbsp;<span class="element-name">build</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Pizzeria.html" title="class in ru.nsu.masolygin">Pizzeria</a></span>&nbsp;<span class="element-name">build</span>()
+               throws <span class="exceptions"><a href="exception/PizzeriaInitializationException.html" title="class in ru.nsu.masolygin.exception">PizzeriaInitializationException</a></span></div>
+<div class="block">Создает пиццерию.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>готовая пиццерия</dd>
+<dt>Throws:</dt>
+<dd><code><a href="exception/PizzeriaInitializationException.html" title="class in ru.nsu.masolygin.exception">PizzeriaInitializationException</a></code> - если конфигурация некорректна</dd>
+</dl>
 </section>
 </li>
 </ul>

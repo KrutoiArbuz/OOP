@@ -144,13 +144,16 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="load(java.lang.String)">
 <h3>load</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="PizzeriaConfig.html" title="class in ru.nsu.masolygin.fileloader">PizzeriaConfig</a></span>&nbsp;<span class="element-name">load</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;path)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="PizzeriaConfig.html" title="class in ru.nsu.masolygin.fileloader">PizzeriaConfig</a></span>&nbsp;<span class="element-name">load</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;path)</span>
+                    throws <span class="exceptions"><a href="../exception/ConfigLoadException.html" title="class in ru.nsu.masolygin.exception">ConfigLoadException</a></span></div>
 <div class="block">Загружает конфигурацию из файла.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>path</code> - путь к файлу конфигурации</dd>
 <dt>Returns:</dt>
 <dd>конфигурация пиццерии</dd>
+<dt>Throws:</dt>
+<dd><code><a href="../exception/ConfigLoadException.html" title="class in ru.nsu.masolygin.exception">ConfigLoadException</a></code> - если не удалось загрузить конфигурацию</dd>
 </dl>
 </section>
 </li>
