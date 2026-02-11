@@ -1,9 +1,11 @@
 package ru.nsu.masolygin;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 import org.junit.jupiter.api.Test;
+import ru.nsu.masolygin.exception.PizzeriaInitializationException;
 import ru.nsu.masolygin.fileloader.PizzeriaConfig;
 import ru.nsu.masolygin.fileloader.PizzeriaConfig.BakerConfig;
 import ru.nsu.masolygin.fileloader.PizzeriaConfig.CourierConfig;
@@ -14,7 +16,7 @@ import ru.nsu.masolygin.fileloader.PizzeriaConfig.CourierConfig;
 class PizzeriaBuilderTest {
 
     @Test
-    void testBuildPizzeria() {
+    void testBuildPizzeria() throws PizzeriaInitializationException {
         PizzeriaConfig config = new PizzeriaConfig();
         config.setWorkTime(10000);
         config.setWarehouseCapacity(5);
@@ -56,9 +58,8 @@ class PizzeriaBuilderTest {
         config.setCouriers(List.of());
 
         PizzeriaBuilder builder = new PizzeriaBuilder(config);
-        Pizzeria pizzeria = builder.build();
 
-        assertNotNull(pizzeria, "Pizzeria should not be null even with no workers");
+        assertThrows(PizzeriaInitializationException.class, () -> builder.build());
     }
 
     @Test
@@ -75,9 +76,8 @@ class PizzeriaBuilderTest {
         config.setCouriers(List.of());
 
         PizzeriaBuilder builder = new PizzeriaBuilder(config);
-        Pizzeria pizzeria = builder.build();
 
-        assertNotNull(pizzeria, "Pizzeria should not be null with only bakers");
+        assertThrows(PizzeriaInitializationException.class, () -> builder.build());
     }
 
     @Test
@@ -95,9 +95,146 @@ class PizzeriaBuilderTest {
         config.setCouriers(List.of(courier));
 
         PizzeriaBuilder builder = new PizzeriaBuilder(config);
-        Pizzeria pizzeria = builder.build();
 
-        assertNotNull(pizzeria, "Pizzeria should not be null with only couriers");
+        assertThrows(PizzeriaInitializationException.class, () -> builder.build());
+    }
+
+    @Test
+    void testBuildPizzeriaWithNegativeWarehouseCapacity() {
+        PizzeriaConfig config = new PizzeriaConfig();
+        config.setWorkTime(5000);
+        config.setWarehouseCapacity(-5);
+
+        BakerConfig baker = new BakerConfig();
+        baker.setId(1);
+        baker.setCookingTime(1000);
+
+        CourierConfig courier = new CourierConfig();
+        courier.setId(1);
+        courier.setDeliveryTime(1500);
+        courier.setBackpackCapacity(3);
+
+        config.setBakers(List.of(baker));
+        config.setCouriers(List.of(courier));
+
+        PizzeriaBuilder builder = new PizzeriaBuilder(config);
+
+        assertThrows(PizzeriaInitializationException.class, () -> builder.build());
+    }
+
+    @Test
+    void testBuildPizzeriaWithInvalidBakerId() {
+        PizzeriaConfig config = new PizzeriaConfig();
+        config.setWorkTime(5000);
+        config.setWarehouseCapacity(10);
+
+        BakerConfig baker = new BakerConfig();
+        baker.setId(-1);
+        baker.setCookingTime(1000);
+
+        CourierConfig courier = new CourierConfig();
+        courier.setId(1);
+        courier.setDeliveryTime(1500);
+        courier.setBackpackCapacity(3);
+
+        config.setBakers(List.of(baker));
+        config.setCouriers(List.of(courier));
+
+        PizzeriaBuilder builder = new PizzeriaBuilder(config);
+
+        assertThrows(PizzeriaInitializationException.class, () -> builder.build());
+    }
+
+    @Test
+    void testBuildPizzeriaWithInvalidBakerCookingTime() {
+        PizzeriaConfig config = new PizzeriaConfig();
+        config.setWorkTime(5000);
+        config.setWarehouseCapacity(10);
+
+        BakerConfig baker = new BakerConfig();
+        baker.setId(1);
+        baker.setCookingTime(-500);
+
+        CourierConfig courier = new CourierConfig();
+        courier.setId(1);
+        courier.setDeliveryTime(1500);
+        courier.setBackpackCapacity(3);
+
+        config.setBakers(List.of(baker));
+        config.setCouriers(List.of(courier));
+
+        PizzeriaBuilder builder = new PizzeriaBuilder(config);
+
+        assertThrows(PizzeriaInitializationException.class, () -> builder.build());
+    }
+
+    @Test
+    void testBuildPizzeriaWithInvalidCourierId() {
+        PizzeriaConfig config = new PizzeriaConfig();
+        config.setWorkTime(5000);
+        config.setWarehouseCapacity(10);
+
+        BakerConfig baker = new BakerConfig();
+        baker.setId(1);
+        baker.setCookingTime(1000);
+
+        CourierConfig courier = new CourierConfig();
+        courier.setId(0);
+        courier.setDeliveryTime(1500);
+        courier.setBackpackCapacity(3);
+
+        config.setBakers(List.of(baker));
+        config.setCouriers(List.of(courier));
+
+        PizzeriaBuilder builder = new PizzeriaBuilder(config);
+
+        assertThrows(PizzeriaInitializationException.class, () -> builder.build());
+    }
+
+    @Test
+    void testBuildPizzeriaWithInvalidCourierDeliveryTime() {
+        PizzeriaConfig config = new PizzeriaConfig();
+        config.setWorkTime(5000);
+        config.setWarehouseCapacity(10);
+
+        BakerConfig baker = new BakerConfig();
+        baker.setId(1);
+        baker.setCookingTime(1000);
+
+        CourierConfig courier = new CourierConfig();
+        courier.setId(1);
+        courier.setDeliveryTime(-1500);
+        courier.setBackpackCapacity(3);
+
+        config.setBakers(List.of(baker));
+        config.setCouriers(List.of(courier));
+
+        PizzeriaBuilder builder = new PizzeriaBuilder(config);
+
+        assertThrows(PizzeriaInitializationException.class, () -> builder.build());
+    }
+
+    @Test
+    void testBuildPizzeriaWithInvalidCourierBackpackCapacity() {
+        PizzeriaConfig config = new PizzeriaConfig();
+        config.setWorkTime(5000);
+        config.setWarehouseCapacity(10);
+
+        BakerConfig baker = new BakerConfig();
+        baker.setId(1);
+        baker.setCookingTime(1000);
+
+        CourierConfig courier = new CourierConfig();
+        courier.setId(1);
+        courier.setDeliveryTime(1500);
+        courier.setBackpackCapacity(0);
+
+        config.setBakers(List.of(baker));
+        config.setCouriers(List.of(courier));
+
+        PizzeriaBuilder builder = new PizzeriaBuilder(config);
+
+        assertThrows(PizzeriaInitializationException.class, () -> builder.build());
     }
 }
 

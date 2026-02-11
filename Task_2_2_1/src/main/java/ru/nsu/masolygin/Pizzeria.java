@@ -57,7 +57,7 @@ public class Pizzeria {
             return;
         }
 
-        synchronized (ordersDb){
+        synchronized (ordersDb) {
             order.setInfo(numberOfOrders++, OrderState.IN_QUEUE);
             ordersDb.add(order);
         }
@@ -90,7 +90,7 @@ public class Pizzeria {
 
         isOpen = true;
 
-        for (Runnable worker: allWorkers) {
+        for (Runnable worker : allWorkers) {
             Thread thread = new Thread(worker);
             threads.add(thread);
             thread.start();

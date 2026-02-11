@@ -120,7 +120,7 @@ class PizzeriaTest {
         Worker.createCourier(new CourierProfile(1, 50, 5), context)
         );
 
-        Pizzeria pizzeria = new Pizzeria(500, queue,orderLogger, bakers, couriers);
+        Pizzeria pizzeria = new Pizzeria(500, queue, orderLogger, bakers, couriers);
 
         Thread pizzeriaThread = new Thread(() -> pizzeria.workGracefulShutdown());
         pizzeriaThread.start();

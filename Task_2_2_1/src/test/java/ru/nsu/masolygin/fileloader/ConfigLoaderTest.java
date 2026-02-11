@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
+import ru.nsu.masolygin.exception.ConfigLoadException;
 
 class ConfigLoaderTest {
 
@@ -15,7 +16,7 @@ class ConfigLoaderTest {
     }
 
     @Test
-    void testLoadValidConfig() {
+    void testLoadValidConfig() throws ConfigLoadException {
         ConfigLoader loader = new ConfigLoader();
         PizzeriaConfig config = loader.load("src/main/resources/config.json");
 
@@ -25,7 +26,7 @@ class ConfigLoaderTest {
     }
 
     @Test
-    void testLoadConfigWorkTime() {
+    void testLoadConfigWorkTime() throws ConfigLoadException {
         ConfigLoader loader = new ConfigLoader();
         PizzeriaConfig config = loader.load("src/main/resources/config.json");
 
@@ -33,7 +34,7 @@ class ConfigLoaderTest {
     }
 
     @Test
-    void testLoadConfigWarehouseCapacity() {
+    void testLoadConfigWarehouseCapacity() throws ConfigLoadException {
         ConfigLoader loader = new ConfigLoader();
         PizzeriaConfig config = loader.load("src/main/resources/config.json");
 
@@ -41,7 +42,7 @@ class ConfigLoaderTest {
     }
 
     @Test
-    void testLoadConfigBakers() {
+    void testLoadConfigBakers() throws ConfigLoadException {
         ConfigLoader loader = new ConfigLoader();
         PizzeriaConfig config = loader.load("src/main/resources/config.json");
 
@@ -49,7 +50,7 @@ class ConfigLoaderTest {
     }
 
     @Test
-    void testLoadConfigCouriers() {
+    void testLoadConfigCouriers() throws ConfigLoadException {
         ConfigLoader loader = new ConfigLoader();
         PizzeriaConfig config = loader.load("src/main/resources/config.json");
 
@@ -59,17 +60,17 @@ class ConfigLoaderTest {
     @Test
     void testLoadNonExistentFile() {
         ConfigLoader loader = new ConfigLoader();
-        assertThrows(RuntimeException.class, () -> loader.load("non_existent_file.json"));
+        assertThrows(ConfigLoadException.class, () -> loader.load("non_existent_file.json"));
     }
 
     @Test
     void testLoadInvalidPath() {
         ConfigLoader loader = new ConfigLoader();
-        assertThrows(RuntimeException.class, () -> loader.load(""));
+        assertThrows(ConfigLoadException.class, () -> loader.load(""));
     }
 
     @Test
-    void testLoadConfigMultipleTimes() {
+    void testLoadConfigMultipleTimes() throws ConfigLoadException {
         ConfigLoader loader = new ConfigLoader();
         PizzeriaConfig config1 = loader.load("src/main/resources/config.json");
         PizzeriaConfig config2 = loader.load("src/main/resources/config.json");
@@ -79,7 +80,7 @@ class ConfigLoaderTest {
     }
 
     @Test
-    void testMultipleLoaderInstances() {
+    void testMultipleLoaderInstances() throws ConfigLoadException {
         ConfigLoader loader1 = new ConfigLoader();
         ConfigLoader loader2 = new ConfigLoader();
 
