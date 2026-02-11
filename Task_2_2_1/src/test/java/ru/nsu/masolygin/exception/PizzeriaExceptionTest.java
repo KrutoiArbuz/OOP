@@ -39,7 +39,7 @@ class PizzeriaExceptionTest {
     @Test
     void testConfigLoadExceptionIsSubclass() {
         ConfigLoadException exception =
-        new ConfigLoadException("Config error", new Exception());
+            new ConfigLoadException("Config error", new Exception());
 
         assertTrue(exception instanceof PizzeriaException);
     }
@@ -47,7 +47,7 @@ class PizzeriaExceptionTest {
     @Test
     void testPizzeriaInitializationExceptionIsSubclass() {
         PizzeriaInitializationException exception =
-        new PizzeriaInitializationException("Init error");
+            new PizzeriaInitializationException("Init error");
 
         assertTrue(exception instanceof PizzeriaException);
     }

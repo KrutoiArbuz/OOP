@@ -10,11 +10,11 @@ public class ConsoleLogger implements OrderLogger {
     @Override
     public synchronized void log(Order order, String message) {
         System.out.println(
-        "["
-        + order.getId()
-        + "] ["
-        + order.getState().getDisplayName()
-        + "] - "
-        + message);
+            "["
+                + order.getId()
+                + "] ["
+                + order.getState().getDisplayName()
+                + "] - "
+                + message);
     }
 }

@@ -59,7 +59,7 @@ public class Worker<T extends StaffProfile> implements Runnable {
      * @return новый экземпляр работника-курьера
      */
     public static Worker<CourierProfile> createCourier(CourierProfile profile,
-    PizzeriaContext context) {
+        PizzeriaContext context) {
         return new Worker<>(profile, new CourierJob(), context);
     }
 

@@ -46,7 +46,7 @@ public class PizzeriaBuilder {
         }
         if (config.getWorkTime() <= 0) {
             throw new PizzeriaInitializationException(
-            "We are live in boring universe, need a positive time value");
+                "We are live in boring universe, need a positive time value");
 
         }
 
@@ -61,35 +61,36 @@ public class PizzeriaBuilder {
 
         try {
             bakers = config.getBakers().stream()
-            .map(cfg -> {
-                try {
-                    validateBakerConfig(cfg);
-                    BakerProfile profile = new BakerProfile(cfg.getId(), cfg.getCookingTime());
-                    return Worker.createBaker(profile, context);
-                } catch (PizzeriaInitializationException e) {
-                    throw new RuntimeException(e);
-                }
-            })
-            .toList();
+                .map(cfg -> {
+                    try {
+                        validateBakerConfig(cfg);
+                        BakerProfile profile = new BakerProfile(cfg.getId(), cfg.getCookingTime());
+                        return Worker.createBaker(profile, context);
+                    } catch (PizzeriaInitializationException e) {
+                        throw new RuntimeException(e);
+                    }
+                })
+                .toList();
 
             couriers = config.getCouriers().stream()
-            .map(cfg -> {
-                try {
-                    validateCourierConfig(cfg);
-                    CourierProfile profile = new CourierProfile(cfg.getId(), cfg.getDeliveryTime(),
-                    cfg.getBackpackCapacity());
-                    return Worker.createCourier(profile, context);
-                } catch (PizzeriaInitializationException e) {
-                    throw new RuntimeException(e);
-                }
-            })
-            .toList();
+                .map(cfg -> {
+                    try {
+                        validateCourierConfig(cfg);
+                        CourierProfile profile = new CourierProfile(cfg.getId(),
+                            cfg.getDeliveryTime(),
+                            cfg.getBackpackCapacity());
+                        return Worker.createCourier(profile, context);
+                    } catch (PizzeriaInitializationException e) {
+                        throw new RuntimeException(e);
+                    }
+                })
+                .toList();
         } catch (RuntimeException e) {
             if (e.getCause() instanceof PizzeriaInitializationException) {
                 throw (PizzeriaInitializationException) e.getCause();
             }
             throw new PizzeriaInitializationException(
-            "Unexpected error during worker creation: " + e.getMessage(), e);
+                "Unexpected error during worker creation: " + e.getMessage(), e);
         }
 
         return new Pizzeria(config.getWorkTime(), queue, logger, bakers, couriers);
@@ -102,15 +103,15 @@ public class PizzeriaBuilder {
      * @throws PizzeriaInitializationException если параметры некорректны
      */
     private void validateBakerConfig(PizzeriaConfig.BakerConfig cfg)
-    throws PizzeriaInitializationException {
+        throws PizzeriaInitializationException {
         if (cfg.getId() <= 0) {
             throw new PizzeriaInitializationException(
-            "Baker ID must be positive, got: " + cfg.getId());
+                "Baker ID must be positive, got: " + cfg.getId());
         }
         if (cfg.getCookingTime() <= 0) {
             throw new PizzeriaInitializationException(
-            "Baker cooking time must be positive, got: " + cfg.getCookingTime()
-            + " for baker ID: " + cfg.getId());
+                "Baker cooking time must be positive, got: " + cfg.getCookingTime()
+                    + " for baker ID: " + cfg.getId());
         }
     }
 
@@ -121,20 +122,20 @@ public class PizzeriaBuilder {
      * @throws PizzeriaInitializationException если параметры некорректны
      */
     private void validateCourierConfig(PizzeriaConfig.CourierConfig cfg)
-    throws PizzeriaInitializationException {
+        throws PizzeriaInitializationException {
         if (cfg.getId() <= 0) {
             throw new PizzeriaInitializationException(
-            "Courier ID must be positive, got: " + cfg.getId());
+                "Courier ID must be positive, got: " + cfg.getId());
         }
         if (cfg.getDeliveryTime() <= 0) {
             throw new PizzeriaInitializationException(
-            "Courier delivery time must be positive, got: " + cfg.getDeliveryTime()
-            + " for courier ID: " + cfg.getId());
+                "Courier delivery time must be positive, got: " + cfg.getDeliveryTime()
+                    + " for courier ID: " + cfg.getId());
         }
         if (cfg.getBackpackCapacity() <= 0) {
             throw new PizzeriaInitializationException(
-            "Courier backpack capacity must be positive, got: " + cfg.getBackpackCapacity()
-            + " for courier ID: " + cfg.getId());
+                "Courier backpack capacity must be positive, got: " + cfg.getBackpackCapacity()
+                    + " for courier ID: " + cfg.getId());
         }
     }
 }

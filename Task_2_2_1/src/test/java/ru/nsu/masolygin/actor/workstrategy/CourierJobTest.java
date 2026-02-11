@@ -18,7 +18,7 @@ class CourierJobTest {
         CourierProfile profile = new CourierProfile(1, 100, 2);
         Warehouse warehouse = new Warehouse(2);
         PizzeriaContext context = new PizzeriaContext(new OrderQueue(), warehouse,
-        new ConsoleLogger());
+            new ConsoleLogger());
         Order order1 = new Order();
         order1.setInfo(1, OrderState.COOKED);
         Order order2 = new Order();

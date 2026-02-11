@@ -36,8 +36,8 @@ public class Pizzeria {
      * @param couriers    массив курьеров
      */
     public Pizzeria(int timeEnd, OrderQueue orderQueue,
-    OrderLogger orderLogger, List<Worker<BakerProfile>> bakers,
-    List<Worker<CourierProfile>> couriers) {
+        OrderLogger orderLogger, List<Worker<BakerProfile>> bakers,
+        List<Worker<CourierProfile>> couriers) {
         this.timeEnd = timeEnd;
         this.orderQueue = orderQueue;
         this.orderLogger = orderLogger;

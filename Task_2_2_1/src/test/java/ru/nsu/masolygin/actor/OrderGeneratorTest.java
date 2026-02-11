@@ -24,10 +24,10 @@ class OrderGeneratorTest {
         PizzeriaContext context = new PizzeriaContext(queue, warehouse, orderLogger);
 
         List<Worker<BakerProfile>> bakers = List.of(
-        Worker.createBaker(new BakerProfile(1, 1000), context)
+            Worker.createBaker(new BakerProfile(1, 1000), context)
         );
         List<Worker<CourierProfile>> couriers = List.of(
-        Worker.createCourier(new CourierProfile(1, 1000, 5), context)
+            Worker.createCourier(new CourierProfile(1, 1000, 5), context)
         );
 
         Pizzeria pizzeria = new Pizzeria(5000, queue, orderLogger, bakers, couriers);
@@ -43,12 +43,12 @@ class OrderGeneratorTest {
         PizzeriaContext context = new PizzeriaContext(queue, warehouse, orderLogger);
 
         List<Worker<BakerProfile>> bakers = List.of(
-        Worker.createBaker(new BakerProfile(1, 500), context),
-        Worker.createBaker(new BakerProfile(2, 600), context)
+            Worker.createBaker(new BakerProfile(1, 500), context),
+            Worker.createBaker(new BakerProfile(2, 600), context)
         );
         List<Worker<CourierProfile>> couriers = List.of(
-        Worker.createCourier(new CourierProfile(1, 800, 3), context),
-        Worker.createCourier(new CourierProfile(2, 900, 4), context)
+            Worker.createCourier(new CourierProfile(1, 800, 3), context),
+            Worker.createCourier(new CourierProfile(2, 900, 4), context)
         );
 
         Pizzeria pizzeria = new Pizzeria(10000, queue, orderLogger, bakers, couriers);
@@ -64,10 +64,10 @@ class OrderGeneratorTest {
         PizzeriaContext context = new PizzeriaContext(queue, warehouse, orderLogger);
 
         List<Worker<BakerProfile>> bakers = List.of(
-        Worker.createBaker(new BakerProfile(1, 100), context)
+            Worker.createBaker(new BakerProfile(1, 100), context)
         );
         List<Worker<CourierProfile>> couriers = List.of(
-        Worker.createCourier(new CourierProfile(1, 100, 5), context)
+            Worker.createCourier(new CourierProfile(1, 100, 5), context)
         );
 
         Pizzeria pizzeria = new Pizzeria(1000, queue, orderLogger, bakers, couriers);
@@ -90,10 +90,10 @@ class OrderGeneratorTest {
         PizzeriaContext context = new PizzeriaContext(queue, warehouse, orderLogger);
 
         List<Worker<BakerProfile>> bakers = List.of(
-        Worker.createBaker(new BakerProfile(1, 1000), context)
+            Worker.createBaker(new BakerProfile(1, 1000), context)
         );
         List<Worker<CourierProfile>> couriers = List.of(
-        Worker.createCourier(new CourierProfile(1, 1000, 5), context)
+            Worker.createCourier(new CourierProfile(1, 1000, 5), context)
         );
 
         Pizzeria pizzeria = new Pizzeria(5000, queue, orderLogger, bakers, couriers);
@@ -116,12 +116,12 @@ class OrderGeneratorTest {
         PizzeriaContext context = new PizzeriaContext(queue, warehouse, orderLogger);
 
         List<Worker<BakerProfile>> bakers = List.of(
-        Worker.createBaker(new BakerProfile(1, 100), context),
-        Worker.createBaker(new BakerProfile(2, 100), context)
+            Worker.createBaker(new BakerProfile(1, 100), context),
+            Worker.createBaker(new BakerProfile(2, 100), context)
         );
         List<Worker<CourierProfile>> couriers = List.of(
-        Worker.createCourier(new CourierProfile(1, 100, 5), context),
-        Worker.createCourier(new CourierProfile(2, 100, 5), context)
+            Worker.createCourier(new CourierProfile(1, 100, 5), context),
+            Worker.createCourier(new CourierProfile(2, 100, 5), context)
         );
 
         Pizzeria pizzeria = new Pizzeria(2000, queue, orderLogger, bakers, couriers);
@@ -144,10 +144,10 @@ class OrderGeneratorTest {
         PizzeriaContext context = new PizzeriaContext(queue, warehouse, orderLogger);
 
         List<Worker<BakerProfile>> bakers = List.of(
-        Worker.createBaker(new BakerProfile(1, 50), context)
+            Worker.createBaker(new BakerProfile(1, 50), context)
         );
         List<Worker<CourierProfile>> couriers = List.of(
-        Worker.createCourier(new CourierProfile(1, 50, 10), context)
+            Worker.createCourier(new CourierProfile(1, 50, 10), context)
         );
 
         Pizzeria pizzeria = new Pizzeria(1000, queue, orderLogger, bakers, couriers);
@@ -170,10 +170,10 @@ class OrderGeneratorTest {
         PizzeriaContext context = new PizzeriaContext(queue, warehouse, orderLogger);
 
         List<Worker<BakerProfile>> bakers = List.of(
-        Worker.createBaker(new BakerProfile(1, 100), context)
+            Worker.createBaker(new BakerProfile(1, 100), context)
         );
         List<Worker<CourierProfile>> couriers = List.of(
-        Worker.createCourier(new CourierProfile(1, 100, 5), context)
+            Worker.createCourier(new CourierProfile(1, 100, 5), context)
         );
 
         Pizzeria pizzeria = new Pizzeria(2000, queue, orderLogger, bakers, couriers);

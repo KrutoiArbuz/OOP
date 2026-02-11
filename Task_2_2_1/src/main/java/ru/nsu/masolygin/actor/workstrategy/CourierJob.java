@@ -18,7 +18,7 @@ public class CourierJob implements WorkStrategy<CourierProfile> {
         for (Order order : orders) {
             order.setState(OrderState.DELIVERING);
             context.orderLogger()
-            .log(order, "Courier " + profile.id() + " started delivering order");
+                .log(order, "Courier " + profile.id() + " started delivering order");
         }
 
         for (Order order : orders) {

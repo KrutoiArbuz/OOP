@@ -15,7 +15,7 @@ class PizzeriaInitializationExceptionTest {
     @Test
     void testExceptionWithMessage() {
         PizzeriaInitializationException exception =
-        new PizzeriaInitializationException("Invalid configuration");
+            new PizzeriaInitializationException("Invalid configuration");
 
         assertNotNull(exception);
         assertEquals("Invalid configuration", exception.getMessage());
@@ -26,7 +26,7 @@ class PizzeriaInitializationExceptionTest {
     void testExceptionWithMessageAndCause() {
         RuntimeException cause = new RuntimeException("Worker creation failed");
         PizzeriaInitializationException exception =
-        new PizzeriaInitializationException("Failed to build", cause);
+            new PizzeriaInitializationException("Failed to build", cause);
 
         assertNotNull(exception);
         assertEquals("Failed to build", exception.getMessage());
@@ -36,7 +36,7 @@ class PizzeriaInitializationExceptionTest {
     @Test
     void testExceptionMessage() {
         PizzeriaInitializationException exception =
-        new PizzeriaInitializationException("Warehouse capacity must be positive");
+            new PizzeriaInitializationException("Warehouse capacity must be positive");
 
         assertTrue(exception.getMessage().contains("Warehouse capacity"));
     }
@@ -45,7 +45,7 @@ class PizzeriaInitializationExceptionTest {
     void testExceptionCause() {
         RuntimeException cause = new RuntimeException("Validation error");
         PizzeriaInitializationException exception =
-        new PizzeriaInitializationException("Build failed", cause);
+            new PizzeriaInitializationException("Build failed", cause);
 
         assertNotNull(exception.getCause());
         assertTrue(exception.getCause() instanceof RuntimeException);
@@ -54,7 +54,7 @@ class PizzeriaInitializationExceptionTest {
     @Test
     void testExceptionInheritance() {
         PizzeriaInitializationException exception =
-        new PizzeriaInitializationException("Test");
+            new PizzeriaInitializationException("Test");
 
         assertTrue(exception instanceof PizzeriaException);
         assertTrue(exception instanceof Exception);
@@ -63,7 +63,7 @@ class PizzeriaInitializationExceptionTest {
     @Test
     void testExceptionWithNullCause() {
         PizzeriaInitializationException exception =
-        new PizzeriaInitializationException("Error", null);
+            new PizzeriaInitializationException("Error", null);
 
         assertNotNull(exception);
         assertEquals("Error", exception.getMessage());
