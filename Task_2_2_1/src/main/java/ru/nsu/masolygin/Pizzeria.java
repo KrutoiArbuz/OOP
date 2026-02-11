@@ -1,7 +1,5 @@
 package ru.nsu.masolygin;
 
-import static java.util.Collections.synchronizedList;
-
 import java.util.ArrayList;
 import java.util.List;
 import ru.nsu.masolygin.actor.employee.BakerProfile;
@@ -22,7 +20,7 @@ public class Pizzeria {
     private final OrderLogger orderLogger;
     private final List<Worker<?>> allWorkers;
 
-    private final List<Order> ordersDb = synchronizedList(new ArrayList<>());
+    private final List<Order> ordersDb = new ArrayList<>();
     private final List<Thread> threads = new ArrayList<>();
 
     private int numberOfOrders = 0;
@@ -58,9 +56,11 @@ public class Pizzeria {
             System.out.println("Sorry, Pizzeria is closing. Order rejected.");
             return;
         }
-        order.setInfo(numberOfOrders++, OrderState.IN_QUEUE);
 
-        ordersDb.add(order);
+        synchronized (ordersDb){
+            order.setInfo(numberOfOrders++, OrderState.IN_QUEUE);
+            ordersDb.add(order);
+        }
 
         orderLogger.log(order, "Order accepted in pizzeria");
         orderQueue.addOrder(order);
