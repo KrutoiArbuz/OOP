@@ -4,6 +4,7 @@ import java.util.List;
 import ru.nsu.masolygin.actor.employee.BakerProfile;
 import ru.nsu.masolygin.actor.employee.CourierProfile;
 import ru.nsu.masolygin.actor.employee.Worker;
+import ru.nsu.masolygin.actor.employee.WorkerFactory;
 import ru.nsu.masolygin.dto.PizzeriaContext;
 import ru.nsu.masolygin.exception.PizzeriaInitializationException;
 import ru.nsu.masolygin.fileloader.PizzeriaConfig;
@@ -65,7 +66,8 @@ public class PizzeriaBuilder {
                     try {
                         validateBakerConfig(cfg);
                         BakerProfile profile = new BakerProfile(cfg.getId(), cfg.getCookingTime());
-                        return Worker.createBaker(profile, context);
+
+                        return WorkerFactory.createBaker(profile, context);
                     } catch (PizzeriaInitializationException e) {
                         throw new RuntimeException(e);
                     }
@@ -79,7 +81,7 @@ public class PizzeriaBuilder {
                         CourierProfile profile = new CourierProfile(cfg.getId(),
                             cfg.getDeliveryTime(),
                             cfg.getBackpackCapacity());
-                        return Worker.createCourier(profile, context);
+                        return WorkerFactory.createCourier(profile, context);
                     } catch (PizzeriaInitializationException e) {
                         throw new RuntimeException(e);
                     }
