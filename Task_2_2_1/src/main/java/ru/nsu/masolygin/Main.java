@@ -36,18 +36,15 @@ public class Main {
             if (e.getCause() != null) {
                 System.err.println("Reason: " + e.getCause().getMessage());
             }
-            System.exit(1);
         } catch (PizzeriaInitializationException e) {
             System.err.println("Error start: incorrect data initialization");
             System.err.println("Details: " + e.getMessage());
             if (e.getCause() != null) {
                 System.err.println("Reason: " + e.getCause().getMessage());
             }
-            System.exit(2);
         } catch (Exception e) {
             System.err.println("CRITICAL ERROR: we're don't understand what is going");
             e.printStackTrace();
-            System.exit(3);
         }
     }
 }
