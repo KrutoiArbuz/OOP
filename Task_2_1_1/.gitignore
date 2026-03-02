@@ -1,0 +1,36 @@
+# --- Gradle ---
+.gradle/
+build/
+out/
+
+# --- IntelliJ IDEA ---
+# Игнорируем всю папку настроек IDE
+.idea/
+# Игнорируем файлы модулей
+*.iml
+*.iws
+*.ipr
+
+# --- Eclipse ---
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+
+# --- NetBeans ---
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# --- VS Code ---
+.vscode/
+
+# --- Mac OS / Windows ---
+.DS_Store
+Thumbs.db
