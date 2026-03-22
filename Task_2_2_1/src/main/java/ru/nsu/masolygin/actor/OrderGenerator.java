@@ -25,7 +25,7 @@ public class OrderGenerator implements Runnable {
     @Override
     public void run() {
         try {
-            while (!Thread.currentThread().isInterrupted()) {
+            while (pizzeria.isOpen()) {
                 Order order = new Order();
                 pizzeria.acceptOrder(order);
 

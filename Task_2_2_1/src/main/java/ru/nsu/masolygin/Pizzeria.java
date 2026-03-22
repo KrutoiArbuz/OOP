@@ -67,6 +67,15 @@ public class Pizzeria {
     }
 
     /**
+     * Возвращает текущий статус пиццерии.
+     *
+     * @return true если пиццерия открыта
+     */
+    public boolean isOpen() {
+        return isOpen;
+    }
+
+    /**
      * Запускает работу пиццерии и корректное завершение.
      */
     public void workGracefulShutdown() {

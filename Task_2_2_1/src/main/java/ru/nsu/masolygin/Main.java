@@ -25,11 +25,13 @@ public class Main {
 
             OrderGenerator ordersGenerator = new OrderGenerator(pizzeria);
             Thread generatorThread = new Thread(ordersGenerator);
+
             generatorThread.start();
 
             pizzeria.workGracefulShutdown();
 
-            generatorThread.interrupt();
+            generatorThread.join();
+
         } catch (ConfigLoadException e) {
             System.err.println("Error start: incorrect configuration");
             System.err.println("Details: " + e.getMessage());
