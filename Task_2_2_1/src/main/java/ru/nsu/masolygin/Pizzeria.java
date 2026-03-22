@@ -85,6 +85,7 @@ public class Pizzeria {
         try {
             Thread.sleep(timeEnd);
         } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
             System.out.println("Pizzeria execution interrupted unexpectedly.");
         }
         System.out.println("Pizzeria is closing");
@@ -122,34 +123,32 @@ public class Pizzeria {
     private void gracefulShutdown() {
         isOpen = false;
 
-        boolean allDelivered = false;
+        try {
+            boolean allDelivered = false;
 
-        while (!allDelivered) {
+            while (!allDelivered) {
 
-            allDelivered = true;
+                allDelivered = true;
 
-            synchronized (ordersDb) {
-                for (Order order : ordersDb) {
-                    if (order.getState() != OrderState.DELIVERED) {
-                        allDelivered = false;
-                        break;
+                synchronized (ordersDb) {
+                    for (Order order : ordersDb) {
+                        if (order.getState() != OrderState.DELIVERED) {
+                            allDelivered = false;
+                            break;
+                        }
                     }
                 }
-            }
 
-            if (!allDelivered) {
-                try {
+                if (!allDelivered) {
                     Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                    return;
                 }
             }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        } finally {
+            stop();
+            ordersDb.clear();
         }
-
-        stop();
-
-        ordersDb.clear();
     }
 
 }
