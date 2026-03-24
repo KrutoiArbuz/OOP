@@ -1,0 +1,282 @@
+@startuml Pizzeria
+
+!theme plain
+skinparam classAttributeIconSize 0
+skinparam class {
+    BackgroundColor White
+    BorderColor Black
+    ArrowColor Black
+}
+
+package "ru.nsu.masolygin" {
+    class Main {
+        + {static} main(args: String[]): void
+    }
+
+    class Pizzeria {
+        - timeEnd: int
+        - orderQueue: OrderQueue
+        - orderLogger: OrderLogger
+        - allWorkers: List<Worker<?>>
+        - ordersDb: List<Order>
+        - threads: List<Thread>
+        - numberOfOrders: int
+        - isOpen: boolean {volatile}
+
+        + Pizzeria(timeEnd: int, orderQueue: OrderQueue, orderLogger: OrderLogger, bakers: List<Worker<BakerProfile>>, couriers: List<Worker<CourierProfile>>)
+        + acceptOrder(order: Order): void
+        + workGracefulShutdown(): void
+        - start(): void
+        - stop(): void
+        - gracefulShutdown(): void
+    }
+
+    class PizzeriaBuilder {
+        - config: PizzeriaConfig
+
+        + PizzeriaBuilder(config: PizzeriaConfig)
+        + build(): Pizzeria
+        - validateBakerConfig(cfg: BakerConfig): void
+        - validateCourierConfig(cfg: CourierConfig): void
+    }
+}
+
+package "ru.nsu.masolygin.actor" {
+    class OrderGenerator implements Runnable {
+        - pizzeria: Pizzeria
+
+        + OrderGenerator(pizzeria: Pizzeria)
+        + run(): void
+    }
+}
+
+package "ru.nsu.masolygin.actor.employee" {
+    interface StaffProfile {
+        + id(): int
+    }
+
+    class "Worker<T extends StaffProfile>" as Worker implements Runnable {
+        - profile: T
+        - strategy: WorkStrategy<T>
+        - context: PizzeriaContext
+
+        + Worker(profile: T, strategy: WorkStrategy<T>, context: PizzeriaContext)
+        + {static} createBaker(profile: BakerProfile, context: PizzeriaContext): Worker<BakerProfile>
+        + {static} createCourier(profile: CourierProfile, context: PizzeriaContext): Worker<CourierProfile>
+        + run(): void
+    }
+
+    class "BakerProfile" as BakerProfile <<record>> implements StaffProfile {
+        + id: int
+        + bakingSpeed: int
+    }
+
+    class "CourierProfile" as CourierProfile <<record>> implements StaffProfile {
+        + id: int
+        + deliverySpeed: int
+        + backpackCapacity: int
+    }
+}
+
+package "ru.nsu.masolygin.actor.workstrategy" {
+    interface "WorkStrategy<T extends StaffProfile>" as WorkStrategy {
+        + work(profile: T, context: PizzeriaContext): void
+    }
+
+    class BakerJob implements WorkStrategy {
+        + work(profile: BakerProfile, context: PizzeriaContext): void
+    }
+
+    class CourierJob implements WorkStrategy {
+        + work(profile: CourierProfile, context: PizzeriaContext): void
+    }
+}
+
+package "ru.nsu.masolygin.dto" {
+    class Order {
+        - id: int
+        - state: OrderState
+
+        + Order()
+        + setInfo(id: int, state: OrderState): void
+        + getId(): int
+        + setState(state: OrderState): void
+        + getState(): OrderState
+    }
+
+    enum OrderState {
+        IN_QUEUE
+        COOKING
+        COOKED
+        DELIVERING
+        DELIVERED
+
+        - displayName: String
+
+        + getDisplayName(): String
+    }
+
+    class "PizzeriaContext" as PizzeriaContext <<record>> {
+        + orderQueue: OrderQueue
+        + warehouse: Warehouse
+        + orderLogger: OrderLogger
+    }
+}
+
+package "ru.nsu.masolygin.monitor" {
+    class OrderQueue {
+        - orders: Queue<Order>
+
+        + OrderQueue()
+        + addOrder(order: Order): void
+        + takeOrder(): Order
+    }
+
+    class Warehouse {
+        - capacity: int
+        - orders: Queue<Order>
+
+        + Warehouse(capacity: int)
+        + addOrder(order: Order): void
+        + takeOrders(maxCount: int): List<Order>
+    }
+}
+
+package "ru.nsu.masolygin.view" {
+    interface OrderLogger {
+        + log(order: Order, message: String): void
+    }
+
+    class ConsoleLogger implements OrderLogger {
+        + log(order: Order, message: String): void
+    }
+}
+
+package "ru.nsu.masolygin.fileloader" {
+    class ConfigLoader {
+        + load(path: String): PizzeriaConfig
+    }
+
+    class PizzeriaConfig {
+        - workTime: int
+        - warehouseCapacity: int
+        - bakers: List<BakerConfig>
+        - couriers: List<CourierConfig>
+
+        + getWorkTime(): int
+        + setWorkTime(workTime: int): void
+        + getWarehouseCapacity(): int
+        + setWarehouseCapacity(warehouseCapacity: int): void
+        + getBakers(): List<BakerConfig>
+        + setBakers(bakers: List<BakerConfig>): void
+        + getCouriers(): List<CourierConfig>
+        + setCouriers(couriers: List<CourierConfig>): void
+    }
+
+    class BakerConfig {
+        - id: int
+        - cookingTime: int
+
+        + getId(): int
+        + setId(id: int): void
+        + getCookingTime(): int
+        + setCookingTime(cookingTime: int): void
+    }
+
+    class CourierConfig {
+        - id: int
+        - deliveryTime: int
+        - backpackCapacity: int
+
+        + getId(): int
+        + setId(id: int): void
+        + getDeliveryTime(): int
+        + setDeliveryTime(deliveryTime: int): void
+        + getBackpackCapacity(): int
+        + setBackpackCapacity(backpackCapacity: int): void
+    }
+
+    PizzeriaConfig +-- BakerConfig
+    PizzeriaConfig +-- CourierConfig
+}
+
+package "ru.nsu.masolygin.exception" {
+    abstract class PizzeriaException extends Exception {
+        + PizzeriaException(message: String)
+        + PizzeriaException(message: String, cause: Throwable)
+    }
+
+    class ConfigLoadException extends PizzeriaException {
+        + ConfigLoadException(message: String, cause: Throwable)
+    }
+
+    class PizzeriaInitializationException extends PizzeriaException {
+        + PizzeriaInitializationException(message: String)
+        + PizzeriaInitializationException(message: String, cause: Throwable)
+    }
+}
+
+' Relationships - Main
+Main ..> ConfigLoader : uses
+Main ..> PizzeriaConfig : uses
+Main ..> PizzeriaBuilder : creates
+Main ..> Pizzeria : creates
+Main ..> OrderGenerator : creates
+Main ..> ConfigLoadException : handles
+Main ..> PizzeriaInitializationException : handles
+
+' Relationships - PizzeriaBuilder
+PizzeriaBuilder ..> PizzeriaConfig : uses
+PizzeriaBuilder ..> Pizzeria : builds
+PizzeriaBuilder ..> Worker : creates
+PizzeriaBuilder ..> BakerProfile : creates
+PizzeriaBuilder ..> CourierProfile : creates
+PizzeriaBuilder ..> PizzeriaContext : creates
+PizzeriaBuilder ..> ConsoleLogger : creates
+PizzeriaBuilder ..> OrderQueue : creates
+PizzeriaBuilder ..> Warehouse : creates
+PizzeriaBuilder ..> PizzeriaInitializationException : throws
+
+' Relationships - ConfigLoader
+ConfigLoader ..> PizzeriaConfig : loads
+ConfigLoader ..> ConfigLoadException : throws
+
+' Relationships - Pizzeria
+Pizzeria *-- OrderQueue : contains
+Pizzeria o-- OrderLogger : uses
+Pizzeria o-- Worker : manages
+Pizzeria *-- Order : stores in ordersDb
+
+' Relationships - Worker
+Worker --> WorkStrategy : uses
+Worker --> PizzeriaContext : uses
+Worker ..> BakerProfile : works with
+Worker ..> CourierProfile : works with
+
+' Relationships - WorkStrategy
+BakerJob ..> BakerProfile : uses
+BakerJob ..> PizzeriaContext : uses
+CourierJob ..> CourierProfile : uses
+CourierJob ..> PizzeriaContext : uses
+
+' Relationships - PizzeriaContext
+PizzeriaContext *-- OrderQueue : contains
+PizzeriaContext *-- Warehouse : contains
+PizzeriaContext *-- OrderLogger : contains
+
+' Relationships - OrderGenerator
+OrderGenerator --> Pizzeria : generates orders for
+
+' Relationships - OrderQueue and Warehouse
+OrderQueue o-- Order : stores
+Warehouse o-- Order : stores
+
+' Relationships - Order
+Order --> OrderState : has state
+
+' Relationships - OrderLogger
+OrderLogger ..> Order : logs
+ConsoleLogger ..> Order : logs
+
+@enduml
+

@@ -1,0 +1,30 @@
+{
+  "workTime": 10000,
+  "warehouseCapacity": 10,
+  "bakers": [
+    {
+      "id": 1,
+      "cookingTime": 100
+    },
+    {
+      "id": 2,
+      "cookingTime": 150
+    },
+    {
+      "id": 3,
+      "cookingTime": 50
+    }
+  ],
+  "couriers": [
+    {
+      "id": 1,
+      "deliveryTime": 300,
+      "backpackCapacity": 2
+    },
+    {
+      "id": 2,
+      "deliveryTime": 1000,
+      "backpackCapacity": 3
+    }
+  ]
+}
