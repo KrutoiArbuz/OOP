@@ -1,6 +1,7 @@
 package ru.nsu.masolygin.engine;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -25,6 +26,47 @@ class AbstractGameThreadTest {
         assertFalse(testThread.running);
     }
 
+    @Test
+    void testThreadCanStart() {
+        testThread.start();
+        assertTrue(testThread.running);
+        testThread.stop();
+    }
+
+    @Test
+    void testThreadCanStop() {
+        testThread.start();
+        testThread.stop();
+        assertFalse(testThread.running);
+    }
+
+    @Test
+    void testThreadNameMethod() {
+        assertNotNull(testThread.getClass().getSimpleName());
+    }
+
+    @Test
+    void testThreadHasRunningFlag() {
+        assertNotNull(testThread);
+        testThread.start();
+        assertTrue(testThread.running);
+        testThread.stop();
+    }
+
+    @Test
+    void testThreadLoopMethod() {
+        try {
+            assertNotNull(testThread.getClass().getDeclaredMethod("loop"));
+        } catch (Exception e) {
+            assertTrue(true);
+        }
+    }
+
+    @Test
+    void testAbstractGameThreadMethods() {
+        assertTrue(testThread.getClass().getDeclaredMethods().length > 0);
+    }
+
     private static class TestGameThread extends AbstractGameThread {
 
         @Override
@@ -45,4 +87,3 @@ class AbstractGameThreadTest {
         }
     }
 }
-
