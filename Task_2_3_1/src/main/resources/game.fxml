@@ -1,44 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<!--
-    FXML — язык разметки для JavaFX (XML-формат).
-
-    Основные принципы:
-      fx:id="name"          — связывает XML-элемент с @FXML-полем в контроллере
-      fx:controller="..."   — указывает класс контроллера для этого файла
-      style="..."           — встроенные CSS-стили (аналог HTML)
-
-    Тэги соответствуют JavaFX-классам:
-      <VBox>       →  javafx.scene.layout.VBox
-      <Canvas>     →  javafx.scene.canvas.Canvas
-      <Label>      →  javafx.scene.control.Label
-      <StackPane>  →  javafx.scene.layout.StackPane
-
-    StackPane укладывает дочерние элементы стопкой (один поверх другого).
-    Это позволяет сделать оверлей поверх игрового поля.
--->
-
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Label?>
 
-<!--
-    Корневой StackPane содержит два слоя:
-      1. VBox — основной макет (панель счёта + Canvas + подсказка)
-      2. overlayPane — поверх всего, показывается при паузе/конце игры
 
-    fx:controller указывает FXMLLoader, какой класс создать как контроллер.
--->
 <StackPane xmlns:fx="http://javafx.com/fxml"
            fx:controller="ru.nsu.masolygin.controller.GameController"
            style="-fx-background-color: #1e1e1e;">
 
-    <!-- СЛОЙ 1: Основной интерфейс -->
     <VBox alignment="CENTER" spacing="6">
 
-        <!-- Панель счёта: отображает текущую длину змейки -->
         <HBox alignment="CENTER" style="-fx-padding: 8 0 4 0;">
             <Label fx:id="scoreLabel"
                    text="Длина: 1"
@@ -48,14 +21,8 @@
                           -fx-font-family: 'Monospaced';"/>
         </HBox>
 
-        <!--
-            Canvas для рисования игрового поля.
-            Размер устанавливается программно в GameController.setupCanvas(),
-            т.к. зависит от конфигурации (fieldWidth * cellSize).
-        -->
         <Canvas fx:id="gameCanvas"/>
 
-        <!-- Подсказка по управлению -->
         <HBox alignment="CENTER" style="-fx-padding: 4 0 6 0;">
             <Label text="[←↑→↓ / WASD] движение   [SPACE] пауза   [R] рестарт"
                    style="-fx-text-fill: #606060;
@@ -64,22 +31,10 @@
         </HBox>
     </VBox>
 
-    <!--
-        СЛОЙ 2: Оверлей (полупрозрачная шторка поверх поля).
-        Изначально скрыт (visible="false").
-        Показывается при паузе, победе или поражении.
-
-        StackPane здесь нужен, чтобы Label был отцентрирован внутри оверлея.
-    -->
     <StackPane fx:id="overlayPane"
                visible="false"
                style="-fx-background-color: rgba(0, 0, 0, 0.70);">
 
-        <!--
-            Текст оверлея: "ПАУЗА" / "ПОБЕДА!" / "ИГРА ОКОНЧЕНА"
-            Устанавливается программно в GameController.updateOverlay().
-            -fx-text-alignment: center  — выравнивание текста внутри Label
-        -->
         <Label fx:id="statusLabel"
                text=""
                style="-fx-text-fill: white;
