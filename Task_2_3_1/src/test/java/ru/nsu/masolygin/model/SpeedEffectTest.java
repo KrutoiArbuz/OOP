@@ -51,5 +51,45 @@ class SpeedEffectTest {
         speedEffect.tick();
         assertEquals(BASE_SPEED + 50, speedEffect.getSpeedMs());
     }
-}
 
+    @Test
+    void testMultipleTicks() {
+        speedEffect.apply(50);
+        for (int i = 0; i < 30; i++) {
+            speedEffect.tick();
+        }
+        assertEquals(BASE_SPEED, speedEffect.getSpeedMs());
+    }
+
+    @Test
+    void testGetTicksLeft() {
+        speedEffect.apply(50);
+        assertNotNull(speedEffect.getTicksLeft());
+    }
+
+    @Test
+    void testApplyZeroEffect() {
+        speedEffect.apply(0);
+        assertEquals(BASE_SPEED, speedEffect.getSpeedMs());
+    }
+
+    @Test
+    void testApplyLargePositiveEffect() {
+        speedEffect.apply(1000);
+        assertEquals(800, speedEffect.getSpeedMs());
+    }
+
+    @Test
+    void testApplyLargeNegativeEffect() {
+        speedEffect.apply(-1000);
+        assertEquals(60, speedEffect.getSpeedMs());
+    }
+
+    @Test
+    void testMultipleEffects() {
+        speedEffect.apply(50);
+        speedEffect.reset();
+        speedEffect.apply(-30);
+        assertEquals(BASE_SPEED - 30, speedEffect.getSpeedMs());
+    }
+}

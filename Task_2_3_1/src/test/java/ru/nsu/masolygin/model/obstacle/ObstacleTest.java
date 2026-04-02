@@ -33,5 +33,25 @@ class ObstacleTest {
         assertEquals(10, obstacle.getPosition().getX());
         assertEquals(10, obstacle.getPosition().getY());
     }
+
+    @Test
+    void testMultipleObstacles() {
+        Obstacle obs1 = new Obstacle(new Point(5, 5));
+        Obstacle obs2 = new Obstacle(new Point(15, 15));
+        assertEquals(5, obs1.getPosition().getX());
+        assertEquals(15, obs2.getPosition().getX());
+    }
+
+    @Test
+    void testObstacleWithNegativeCoordinates() {
+        Obstacle obs = new Obstacle(new Point(-5, -10));
+        assertEquals(-5, obs.getPosition().getX());
+        assertEquals(-10, obs.getPosition().getY());
+    }
+
+    @Test
+    void testObstacleToString() {
+        assertNotNull(obstacle.toString());
+    }
 }
 
