@@ -26,20 +26,17 @@ public class GameModel {
     private final int foodCount;
     private final int winLength;
     private final SnakeConfig config;
-
-    private Snake playerSnake;
-    private List<BotSnake> botSnakes;
-
     private final List<Food> foods = new ArrayList<>();
     private final List<Obstacle> obstacles = new ArrayList<>();
     private final Set<Point> obstaclePositions = new HashSet<>();
-
-    private volatile GameState state;
     private final SpeedEffect speedEffect;
     private final AtomicReference<Direction> pendingPlayerDirection = new AtomicReference<>();
     private final AtomicReference<GameSnapshot> latestSnapshot = new AtomicReference<>();
     private final ReentrantLock tickLock = new ReentrantLock();
     private final Random random = new Random();
+    private Snake playerSnake;
+    private List<BotSnake> botSnakes;
+    private volatile GameState state;
 
     /**
      * Конструктор.
@@ -87,7 +84,8 @@ public class GameModel {
             for (SnakeConfig.BotConfig bc : config.getBots()) {
                 StrategyType type = StrategyType.valueOf(bc.getStrategy().toUpperCase());
                 Point startPos = safeSpawn(bc.getStartX(), bc.getStartY(), occupiedByBots);
-                BotSnake bot = new BotSnake(startPos, StrategyFactory.create(type), bc.getColorHex(), bc.getSpeedMs());
+                BotSnake bot = new BotSnake(startPos, StrategyFactory.create(type),
+                    bc.getColorHex(), bc.getSpeedMs());
                 botSnakes.add(bot);
                 occupiedByBots.add(startPos);
             }
@@ -192,19 +190,20 @@ public class GameModel {
      */
     private GameSnapshot buildSnapshot() {
         List<GameSnapshot.BotSnapshot> botSnaps = botSnakes.stream()
-                .map(bot -> new GameSnapshot.BotSnapshot(bot.getBody(), bot.getColorHex(), bot.isAlive()))
-                .toList();
+            .map(bot -> new GameSnapshot.BotSnapshot(bot.getBody(), bot.getColorHex(),
+                bot.isAlive()))
+            .toList();
 
         return new GameSnapshot(
-                playerSnake.getBody(),
-                List.copyOf(botSnaps),
-                List.copyOf(foods),
-                List.copyOf(obstacles),
-                state,
-                playerSnake.getLength(),
-                winLength,
-                speedEffect.getSpeedMs(),
-                speedEffect.getTicksLeft()
+            playerSnake.getBody(),
+            List.copyOf(botSnaps),
+            List.copyOf(foods),
+            List.copyOf(obstacles),
+            state,
+            playerSnake.getLength(),
+            winLength,
+            speedEffect.getSpeedMs(),
+            speedEffect.getTicksLeft()
         );
     }
 
@@ -378,8 +377,8 @@ public class GameModel {
     /**
      * Находит безопасную стартовую точку.
      *
-     * @param preferX предпочтительная X
-     * @param preferY предпочтительная Y
+     * @param preferX      предпочтительная X
+     * @param preferY      предпочтительная Y
      * @param alsoOccupied дополнительные занятые точки
      * @return найденная точка
      */
@@ -392,8 +391,8 @@ public class GameModel {
                     }
                     Point candidate = new Point(preferX + dx, preferY + dy);
                     if (!isOutOfBounds(candidate)
-                            && !obstaclePositions.contains(candidate)
-                            && !alsoOccupied.contains(candidate)) {
+                        && !obstaclePositions.contains(candidate)
+                        && !alsoOccupied.contains(candidate)) {
                         return candidate;
                     }
                 }
@@ -407,48 +406,62 @@ public class GameModel {
      *
      * @return список еды
      */
-    public List<Food> getFoods() { return Collections.unmodifiableList(foods); }
+    public List<Food> getFoods() {
+        return Collections.unmodifiableList(foods);
+    }
 
     /**
      * Возвращает список препятствий.
      *
      * @return список препятствий
      */
-    public List<Obstacle> getObstacles() { return Collections.unmodifiableList(obstacles); }
+    public List<Obstacle> getObstacles() {
+        return Collections.unmodifiableList(obstacles);
+    }
 
     /**
      * Возвращает список ботов.
      *
      * @return список ботов
      */
-    public List<BotSnake> getBotSnakes() { return Collections.unmodifiableList(botSnakes); }
+    public List<BotSnake> getBotSnakes() {
+        return Collections.unmodifiableList(botSnakes);
+    }
 
     /**
      * Возвращает состояние игры.
      *
      * @return состояние игры
      */
-    public GameState getState() { return state; }
+    public GameState getState() {
+        return state;
+    }
 
     /**
      * Возвращает ширину поля.
      *
      * @return ширина поля
      */
-    public int getWidth() { return width; }
+    public int getWidth() {
+        return width;
+    }
 
     /**
      * Возвращает высоту поля.
      *
      * @return высота поля
      */
-    public int getHeight() { return height; }
+    public int getHeight() {
+        return height;
+    }
 
     /**
      * Возвращает текущую скорость.
      *
      * @return скорость в миллисекундах
      */
-    public int getSpeedMs() { return speedEffect.getSpeedMs(); }
+    public int getSpeedMs() {
+        return speedEffect.getSpeedMs();
+    }
 
 }

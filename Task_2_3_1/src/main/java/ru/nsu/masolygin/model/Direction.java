@@ -29,14 +29,18 @@ public enum Direction {
      *
      * @return смещение по X
      */
-    public int getDx() { return dx; }
+    public int getDx() {
+        return dx;
+    }
 
     /**
      * Возвращает смещение по Y.
      *
      * @return смещение по Y
      */
-    public int getDy() { return dy; }
+    public int getDy() {
+        return dy;
+    }
 
     /**
      * Проверяет противоположность направлений.
@@ -55,10 +59,10 @@ public enum Direction {
      */
     public Direction turnRight() {
         return switch (this) {
-            case UP    -> RIGHT;
+            case UP -> RIGHT;
             case RIGHT -> DOWN;
-            case DOWN  -> LEFT;
-            case LEFT  -> UP;
+            case DOWN -> LEFT;
+            case LEFT -> UP;
         };
     }
 
@@ -69,9 +73,9 @@ public enum Direction {
      */
     public Direction turnLeft() {
         return switch (this) {
-            case UP    -> LEFT;
-            case LEFT  -> DOWN;
-            case DOWN  -> RIGHT;
+            case UP -> LEFT;
+            case LEFT -> DOWN;
+            case DOWN -> RIGHT;
             case RIGHT -> UP;
         };
     }

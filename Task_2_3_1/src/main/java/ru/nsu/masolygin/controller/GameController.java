@@ -18,10 +18,14 @@ import ru.nsu.masolygin.view.GameRenderer;
  */
 public class GameController {
 
-    @FXML private Canvas gameCanvas;
-    @FXML private Label scoreLabel;
-    @FXML private Label statusLabel;
-    @FXML private StackPane overlayPane;
+    @FXML
+    private Canvas gameCanvas;
+    @FXML
+    private Label scoreLabel;
+    @FXML
+    private Label statusLabel;
+    @FXML
+    private StackPane overlayPane;
 
     private GameModel model;
     private PlayerRunner playerRunner;
@@ -39,7 +43,8 @@ public class GameController {
         gameCanvas.setWidth((double) config.getFieldWidth() * config.getCellSize());
         gameCanvas.setHeight((double) config.getFieldHeight() * config.getCellSize());
 
-        GameRenderer renderer = new GameRenderer(gameCanvas, scoreLabel, statusLabel, overlayPane, config);
+        GameRenderer renderer = new GameRenderer(gameCanvas, scoreLabel, statusLabel, overlayPane,
+            config);
 
         botRunner = new BotRunner();
         botRunner.start(model.getBotSnakes(), model);

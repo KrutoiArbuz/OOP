@@ -26,14 +26,18 @@ public final class Point {
      *
      * @return координата X
      */
-    public int getX() { return x; }
+    public int getX() {
+        return x;
+    }
 
     /**
      * Возвращает координату Y.
      *
      * @return координата Y
      */
-    public int getY() { return y; }
+    public int getY() {
+        return y;
+    }
 
     /**
      * Возвращает новую точку со смещением.
@@ -54,8 +58,12 @@ public final class Point {
      */
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Point other)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Point other)) {
+            return false;
+        }
         return x == other.x && y == other.y;
     }
 

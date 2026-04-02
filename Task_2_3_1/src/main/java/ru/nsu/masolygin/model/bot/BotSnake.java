@@ -10,24 +10,24 @@ import ru.nsu.masolygin.model.Snake;
  */
 public class BotSnake extends Snake {
 
-    private BotStrategy strategy;
     private final String colorHex;
     private final int speedMs;
+    private BotStrategy strategy;
     private boolean alive = true;
 
     /**
      * Конструктор.
      *
      * @param startPosition стартовая позиция
-     * @param strategy стратегия
-     * @param colorHex цвет
-     * @param speedMs скорость
+     * @param strategy      стратегия
+     * @param colorHex      цвет
+     * @param speedMs       скорость
      */
     public BotSnake(Point startPosition, BotStrategy strategy, String colorHex, int speedMs) {
         super(startPosition);
         this.strategy = strategy;
         this.colorHex = colorHex;
-        this.speedMs  = speedMs;
+        this.speedMs = speedMs;
     }
 
     /**
@@ -43,28 +43,36 @@ public class BotSnake extends Snake {
     /**
      * Помечает бота мертвым.
      */
-    public void kill() { alive = false; }
+    public void kill() {
+        alive = false;
+    }
 
     /**
      * Возвращает состояние бота.
      *
      * @return true, если бот жив
      */
-    public boolean isAlive()  { return alive; }
+    public boolean isAlive() {
+        return alive;
+    }
 
     /**
      * Возвращает скорость бота.
      *
      * @return скорость в миллисекундах
      */
-    public int getSpeedMs()   { return speedMs; }
+    public int getSpeedMs() {
+        return speedMs;
+    }
 
     /**
      * Возвращает цвет бота.
      *
      * @return цвет в формате HEX
      */
-    public String getColorHex() { return colorHex; }
+    public String getColorHex() {
+        return colorHex;
+    }
 
     /**
      * Устанавливает стратегию бота.

@@ -15,11 +15,11 @@ public final class Food implements Placeable {
      * Конструктор.
      *
      * @param position позиция
-     * @param type тип еды
+     * @param type     тип еды
      */
     public Food(Point position, FoodType type) {
         this.position = position;
-        this.type     = type;
+        this.type = type;
     }
 
     /**
@@ -27,14 +27,18 @@ public final class Food implements Placeable {
      *
      * @return позиция
      */
-    public Point getPosition() { return position; }
+    public Point getPosition() {
+        return position;
+    }
 
     /**
      * Возвращает тип еды.
      *
      * @return тип еды
      */
-    public FoodType getType()  { return type; }
+    public FoodType getType() {
+        return type;
+    }
 
     /**
      * Возвращает строковое представление.

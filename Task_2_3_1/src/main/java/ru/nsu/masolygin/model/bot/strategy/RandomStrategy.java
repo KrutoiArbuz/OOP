@@ -16,14 +16,16 @@ public class RandomStrategy extends AbstractBotStrategy {
     /**
      * Выбирает направление движения.
      *
-     * @param bot бот
+     * @param bot   бот
      * @param model модель
      * @return направление
      */
     @Override
     public Direction chooseDirection(BotSnake bot, GameModel model) {
         List<Direction> safe = safeDirections(bot, model);
-        if (safe.isEmpty()) return bot.getDirection();
+        if (safe.isEmpty()) {
+            return bot.getDirection();
+        }
         return safe.get(random.nextInt(safe.size()));
     }
 }

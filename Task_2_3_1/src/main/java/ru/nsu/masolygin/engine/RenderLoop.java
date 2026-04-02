@@ -11,8 +11,8 @@ import ru.nsu.masolygin.model.GameSnapshot;
  */
 public class RenderLoop extends AbstractGameThread {
 
-    public  static final int    TARGET_FPS = 60;
-    private static final long   FRAME_MS   = 1000L / TARGET_FPS;
+    public static final int TARGET_FPS = 60;
+    private static final long FRAME_MS = 1000L / TARGET_FPS;
 
     private final GameModel model;
     private final Consumer<GameSnapshot> renderer;
@@ -21,11 +21,11 @@ public class RenderLoop extends AbstractGameThread {
     /**
      * Конструктор.
      *
-     * @param model игровая модель
+     * @param model    игровая модель
      * @param renderer функция отрисовки
      */
     public RenderLoop(GameModel model, Consumer<GameSnapshot> renderer) {
-        this.model    = model;
+        this.model = model;
         this.renderer = renderer;
     }
 
@@ -35,7 +35,9 @@ public class RenderLoop extends AbstractGameThread {
      * @return имя потока
      */
     @Override
-    protected String threadName() { return "render-loop"; }
+    protected String threadName() {
+        return "render-loop";
+    }
 
     /**
      * Выполняет цикл отрисовки.

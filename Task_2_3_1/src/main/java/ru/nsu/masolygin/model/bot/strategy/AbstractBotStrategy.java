@@ -16,14 +16,16 @@ public abstract class AbstractBotStrategy implements BotStrategy {
     /**
      * Возвращает безопасные направления.
      *
-     * @param bot бот
+     * @param bot   бот
      * @param model модель
      * @return список направлений
      */
     protected List<Direction> safeDirections(BotSnake bot, GameModel model) {
         List<Direction> safe = new ArrayList<>();
         for (Direction dir : Direction.values()) {
-            if (dir.isOpposite(bot.getDirection())) continue;
+            if (dir.isOpposite(bot.getDirection())) {
+                continue;
+            }
             if (model.isWalkable(nextPoint(bot.getHead(), dir))) {
                 safe.add(dir);
             }
@@ -34,7 +36,7 @@ public abstract class AbstractBotStrategy implements BotStrategy {
     /**
      * Возвращает любое безопасное направление.
      *
-     * @param bot бот
+     * @param bot   бот
      * @param model модель
      * @return направление
      */
@@ -47,7 +49,7 @@ public abstract class AbstractBotStrategy implements BotStrategy {
      * Возвращает соседнюю точку по направлению.
      *
      * @param from исходная точка
-     * @param dir направление
+     * @param dir  направление
      * @return новая точка
      */
     protected Point nextPoint(Point from, Direction dir) {

@@ -16,7 +16,7 @@ public class GreedyStrategy extends AbstractBotStrategy {
     /**
      * Выбирает направление движения.
      *
-     * @param bot бот
+     * @param bot   бот
      * @param model модель
      * @return направление
      */
@@ -30,7 +30,9 @@ public class GreedyStrategy extends AbstractBotStrategy {
 
         List<Direction> ranked = rankByDistance(bot, target);
         for (Direction dir : ranked) {
-            if (model.isWalkable(nextPoint(bot.getHead(), dir))) return dir;
+            if (model.isWalkable(nextPoint(bot.getHead(), dir))) {
+                return dir;
+            }
         }
 
         return bot.getDirection();
@@ -39,7 +41,7 @@ public class GreedyStrategy extends AbstractBotStrategy {
     /**
      * Находит ближайшую еду.
      *
-     * @param head позиция головы
+     * @param head  позиция головы
      * @param model модель
      * @return точка ближайшей еды
      */
@@ -60,7 +62,7 @@ public class GreedyStrategy extends AbstractBotStrategy {
     /**
      * Сортирует направления по расстоянию до цели.
      *
-     * @param bot бот
+     * @param bot    бот
      * @param target цель
      * @return отсортированный список направлений
      */
@@ -69,7 +71,9 @@ public class GreedyStrategy extends AbstractBotStrategy {
         List<Direction> dirs = new ArrayList<>(3);
 
         for (Direction dir : Direction.values()) {
-            if (!dir.isOpposite(bot.getDirection())) dirs.add(dir);
+            if (!dir.isOpposite(bot.getDirection())) {
+                dirs.add(dir);
+            }
         }
 
         dirs.sort((a, b) -> {

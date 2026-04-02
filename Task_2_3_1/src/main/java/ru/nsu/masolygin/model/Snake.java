@@ -98,7 +98,9 @@ public class Snake {
      * @param amount количество сегментов роста
      */
     public void addGrowth(int amount) {
-        if (amount > 0) pendingGrowth += amount;
+        if (amount > 0) {
+            pendingGrowth += amount;
+        }
     }
 
     /**

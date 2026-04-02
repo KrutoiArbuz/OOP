@@ -11,7 +11,7 @@ public interface BotStrategy {
     /**
      * Выбирает направление движения.
      *
-     * @param bot бот
+     * @param bot   бот
      * @param model модель
      * @return направление
      */

@@ -17,6 +17,15 @@ public class SnakeApp extends Application {
     private GameController controller;
 
     /**
+     * Точка входа JavaFX.
+     *
+     * @param args аргументы командной строки
+     */
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    /**
      * Запускает окно и инициализирует контроллер.
      *
      * @param primaryStage главное окно
@@ -29,7 +38,7 @@ public class SnakeApp extends Application {
         SnakeConfig config = configLoader.load("/config.json");
 
         FXMLLoader fxmlLoader = new FXMLLoader(
-                SnakeApp.class.getResource("/game.fxml")
+            SnakeApp.class.getResource("/game.fxml")
         );
 
         Parent root = fxmlLoader.load();
@@ -39,7 +48,7 @@ public class SnakeApp extends Application {
 
         this.controller = controller;
 
-        int sceneWidth  = config.getFieldWidth()  * config.getCellSize();
+        int sceneWidth = config.getFieldWidth() * config.getCellSize();
         int sceneHeight = config.getFieldHeight() * config.getCellSize() + 60;
 
         Scene scene = new Scene(root, sceneWidth, sceneHeight);
@@ -59,15 +68,8 @@ public class SnakeApp extends Application {
      */
     @Override
     public void stop() {
-        if (controller != null) controller.cleanup();
-    }
-
-    /**
-     * Точка входа JavaFX.
-     *
-     * @param args аргументы командной строки
-     */
-    public static void main(String[] args) {
-        launch(args);
+        if (controller != null) {
+            controller.cleanup();
+        }
     }
 }

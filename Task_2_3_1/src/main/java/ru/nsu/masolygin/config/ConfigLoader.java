@@ -19,7 +19,8 @@ public class ConfigLoader {
         ObjectMapper mapper = new ObjectMapper();
         try (InputStream is = ConfigLoader.class.getResourceAsStream(resourcePath)) {
             if (is == null) {
-                throw new ConfigLoadException("Config file not found in classpath: " + resourcePath, null);
+                throw new ConfigLoadException("Config file not found in classpath: " + resourcePath,
+                    null);
             }
             return mapper.readValue(is, SnakeConfig.class);
         } catch (ConfigLoadException e) {

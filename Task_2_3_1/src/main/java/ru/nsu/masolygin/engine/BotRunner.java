@@ -19,16 +19,16 @@ public class BotRunner extends AbstractGameThread {
     /**
      * Запускает потоки для ботов.
      *
-     * @param bots список ботов
+     * @param bots  список ботов
      * @param model игровая модель
      */
     public void start(List<BotSnake> bots, GameModel model) {
         running = true;
         for (BotSnake bot : bots) {
-            int    id = THREAD_ID.getAndIncrement();
-            Thread t  = new Thread(
-                    () -> runBot(bot, model),
-                    "bot-runner-" + id
+            int id = THREAD_ID.getAndIncrement();
+            Thread t = new Thread(
+                () -> runBot(bot, model),
+                "bot-runner-" + id
             );
             t.setDaemon(true);
             botThreads.add(t);
@@ -49,7 +49,7 @@ public class BotRunner extends AbstractGameThread {
     /**
      * Перезапускает потоки с новым набором ботов.
      *
-     * @param bots список ботов
+     * @param bots  список ботов
      * @param model игровая модель
      */
     public void restart(List<BotSnake> bots, GameModel model) {
@@ -61,7 +61,8 @@ public class BotRunner extends AbstractGameThread {
      * Заглушка для базового контракта.
      */
     @Override
-    protected void loop() {}
+    protected void loop() {
+    }
 
     /**
      * Возвращает имя потока.
@@ -69,12 +70,14 @@ public class BotRunner extends AbstractGameThread {
      * @return имя потока
      */
     @Override
-    protected String threadName() { return "bot-runner"; }
+    protected String threadName() {
+        return "bot-runner";
+    }
 
     /**
      * Выполняет цикл одного бота.
      *
-     * @param bot бот
+     * @param bot   бот
      * @param model модель
      */
     private void runBot(BotSnake bot, GameModel model) {

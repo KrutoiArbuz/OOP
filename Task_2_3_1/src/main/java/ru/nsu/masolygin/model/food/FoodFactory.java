@@ -13,7 +13,8 @@ public final class FoodFactory {
     /**
      * Конструктор.
      */
-    private FoodFactory() {}
+    private FoodFactory() {
+    }
 
     /**
      * Создает случайную еду.

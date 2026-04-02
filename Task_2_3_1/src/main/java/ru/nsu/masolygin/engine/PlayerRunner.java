@@ -25,7 +25,9 @@ public class PlayerRunner extends AbstractGameThread {
      * @return имя потока
      */
     @Override
-    protected String threadName() { return "player-runner"; }
+    protected String threadName() {
+        return "player-runner";
+    }
 
     /**
      * Выполняет цикл хода игрока.

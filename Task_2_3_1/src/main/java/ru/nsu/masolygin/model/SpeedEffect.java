@@ -7,9 +7,9 @@ public class SpeedEffect {
 
     private static final int DURATION_TICKS = 30;
 
-    private final int       baseSpeedMs;
-    private volatile int    currentSpeedMs;
-    private int             ticksLeft;
+    private final int baseSpeedMs;
+    private volatile int currentSpeedMs;
+    private int ticksLeft;
 
     /**
      * Конструктор.
@@ -17,9 +17,9 @@ public class SpeedEffect {
      * @param baseSpeedMs базовая скорость
      */
     public SpeedEffect(int baseSpeedMs) {
-        this.baseSpeedMs    = baseSpeedMs;
+        this.baseSpeedMs = baseSpeedMs;
         this.currentSpeedMs = baseSpeedMs;
-        this.ticksLeft      = 0;
+        this.ticksLeft = 0;
     }
 
     /**
@@ -28,17 +28,23 @@ public class SpeedEffect {
      * @param deltaMs изменение скорости
      */
     public void apply(int deltaMs) {
-        if (deltaMs == 0) return;
+        if (deltaMs == 0) {
+            return;
+        }
         currentSpeedMs = Math.max(60, Math.min(800, baseSpeedMs + deltaMs));
-        ticksLeft      = DURATION_TICKS;
+        ticksLeft = DURATION_TICKS;
     }
 
     /**
      * Выполняет один тик эффекта.
      */
     public void tick() {
-        if (ticksLeft <= 0) return;
-        if (--ticksLeft == 0) currentSpeedMs = baseSpeedMs;
+        if (ticksLeft <= 0) {
+            return;
+        }
+        if (--ticksLeft == 0) {
+            currentSpeedMs = baseSpeedMs;
+        }
     }
 
     /**
@@ -46,7 +52,7 @@ public class SpeedEffect {
      */
     public void reset() {
         currentSpeedMs = baseSpeedMs;
-        ticksLeft      = 0;
+        ticksLeft = 0;
     }
 
     /**
@@ -54,12 +60,16 @@ public class SpeedEffect {
      *
      * @return скорость в миллисекундах
      */
-    public int getSpeedMs()   { return currentSpeedMs; }
+    public int getSpeedMs() {
+        return currentSpeedMs;
+    }
 
     /**
      * Возвращает оставшиеся тики эффекта.
      *
      * @return количество тиков
      */
-    public int getTicksLeft() { return ticksLeft; }
+    public int getTicksLeft() {
+        return ticksLeft;
+    }
 }

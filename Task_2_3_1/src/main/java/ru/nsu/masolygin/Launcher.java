@@ -4,6 +4,7 @@ package ru.nsu.masolygin;
  * Класс запуска приложения.
  */
 public class Launcher {
+
     /**
      * Точка входа приложения.
      *

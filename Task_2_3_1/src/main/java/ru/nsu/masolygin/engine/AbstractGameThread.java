@@ -13,7 +13,7 @@ public abstract class AbstractGameThread {
      */
     public void start() {
         running = true;
-        thread  = new Thread(this::loop, threadName());
+        thread = new Thread(this::loop, threadName());
         thread.setDaemon(true);
         thread.start();
     }
@@ -23,7 +23,9 @@ public abstract class AbstractGameThread {
      */
     public void stop() {
         running = false;
-        if (thread != null) thread.interrupt();
+        if (thread != null) {
+            thread.interrupt();
+        }
     }
 
     /**
@@ -42,11 +44,11 @@ public abstract class AbstractGameThread {
      * Ждет оставшееся время шага.
      *
      * @param tickStart время начала шага
-     * @param targetMs целевая длительность шага
+     * @param targetMs  целевая длительность шага
      */
     protected void sleepRemaining(long tickStart, long targetMs) {
         long elapsed = System.currentTimeMillis() - tickStart;
-        long sleep   = Math.max(0, targetMs - elapsed);
+        long sleep = Math.max(0, targetMs - elapsed);
         try {
             Thread.sleep(sleep);
         } catch (InterruptedException e) {

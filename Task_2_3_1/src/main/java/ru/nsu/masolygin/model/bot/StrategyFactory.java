@@ -12,7 +12,8 @@ public final class StrategyFactory {
     /**
      * Конструктор.
      */
-    private StrategyFactory() {}
+    private StrategyFactory() {
+    }
 
     /**
      * Создает стратегию по типу.
@@ -22,8 +23,8 @@ public final class StrategyFactory {
      */
     public static BotStrategy create(StrategyType type) {
         return switch (type) {
-            case RANDOM      -> new RandomStrategy();
-            case GREEDY      -> new GreedyStrategy();
+            case RANDOM -> new RandomStrategy();
+            case GREEDY -> new GreedyStrategy();
             case WALL_HUGGER -> new WallHuggerStrategy();
         };
     }

@@ -13,7 +13,7 @@ public class WallHuggerStrategy extends AbstractBotStrategy {
     /**
      * Выбирает направление движения.
      *
-     * @param bot бот
+     * @param bot   бот
      * @param model модель
      * @return направление
      */
@@ -31,7 +31,9 @@ public class WallHuggerStrategy extends AbstractBotStrategy {
 
         for (Direction dir : candidates) {
             Point next = bot.getHead().translate(dir.getDx(), dir.getDy());
-            if (!model.isWalkable(next)) continue;
+            if (!model.isWalkable(next)) {
+                continue;
+            }
 
             int score = wallScore(next, model);
             if (bestSafe == null || score > bestWallScore) {
@@ -46,14 +48,14 @@ public class WallHuggerStrategy extends AbstractBotStrategy {
     /**
      * Вычисляет оценку близости к стене.
      *
-     * @param p точка
+     * @param p     точка
      * @param model модель
      * @return оценка
      */
     private int wallScore(Point p, GameModel model) {
-        int distLeft   = p.getX();
-        int distRight  = model.getWidth()  - 1 - p.getX();
-        int distTop    = p.getY();
+        int distLeft = p.getX();
+        int distRight = model.getWidth() - 1 - p.getX();
+        int distTop = p.getY();
         int distBottom = model.getHeight() - 1 - p.getY();
         int minDist = Math.min(Math.min(distLeft, distRight), Math.min(distTop, distBottom));
         return -minDist;

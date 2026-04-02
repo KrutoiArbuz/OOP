@@ -24,7 +24,9 @@ public final class Obstacle implements Placeable {
      *
      * @return позиция
      */
-    public Point getPosition() { return position; }
+    public Point getPosition() {
+        return position;
+    }
 
     /**
      * Возвращает строковое представление.
