@@ -1,0 +1,10 @@
+ru.nsu.masolygin
+ru.nsu.masolygin.config
+ru.nsu.masolygin.controller
+ru.nsu.masolygin.engine
+ru.nsu.masolygin.model
+ru.nsu.masolygin.model.bot
+ru.nsu.masolygin.model.bot.strategy
+ru.nsu.masolygin.model.food
+ru.nsu.masolygin.model.obstacle
+ru.nsu.masolygin.view
