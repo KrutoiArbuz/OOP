@@ -42,7 +42,7 @@ public abstract class AbstractBotStrategy implements BotStrategy {
      */
     protected Direction anySafe(BotSnake bot, GameModel model) {
         List<Direction> safe = safeDirections(bot, model);
-        return safe.isEmpty() ? bot.getDirection() : safe.getFirst();
+        return safe.isEmpty() ? bot.getDirection() : safe.get(0);
     }
 
     /**

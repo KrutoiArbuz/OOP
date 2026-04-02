@@ -8,6 +8,7 @@ import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.stream.Collectors;
 import ru.nsu.masolygin.config.SnakeConfig;
 import ru.nsu.masolygin.model.bot.BotSnake;
 import ru.nsu.masolygin.model.bot.StrategyFactory;
@@ -192,7 +193,7 @@ public class GameModel {
         List<GameSnapshot.BotSnapshot> botSnaps = botSnakes.stream()
             .map(bot -> new GameSnapshot.BotSnapshot(bot.getBody(), bot.getColorHex(),
                 bot.isAlive()))
-            .toList();
+            .collect(Collectors.toList());
 
         return new GameSnapshot(
             playerSnake.getBody(),
