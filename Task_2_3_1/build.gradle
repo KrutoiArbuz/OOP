@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+    id 'application'
+    // JavaFX плагин: автоматически добавляет нужные модули в classpath/modulepath
+    id 'org.openjfx.javafxplugin' version '0.1.0'
+}
+
+group = 'ru.nsu.masolygin'
+version = '1.0-SNAPSHOT'
+
+// Указываем совместимость с Java 21 (LTS)
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+// application плагин: задаёт главный класс для ./gradlew run
+// Используем Launcher, а не SnakeApp, — это стандартный JavaFX workaround:
+// если главный класс extends Application, запуск без modulepath падает с ошибкой
+// "JavaFX runtime components are missing". Launcher решает эту проблему.
+application {
+    mainClass = 'ru.nsu.masolygin.Launcher'
+}
+
+// Настройка JavaFX: версия и нужные модули
+javafx {
+    version = "21"
+    // controls — Label, Button и др.; fxml — загрузка .fxml файлов
+    modules = ['javafx.controls', 'javafx.fxml']
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Jackson — библиотека для работы с JSON (читать config.json)
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.0'
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+    }
+}
