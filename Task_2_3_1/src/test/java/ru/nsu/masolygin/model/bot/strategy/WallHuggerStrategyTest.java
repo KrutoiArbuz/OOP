@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ru.nsu.masolygin.config.SnakeConfig;
 import ru.nsu.masolygin.model.Direction;
+import ru.nsu.masolygin.model.GameModel;
 import ru.nsu.masolygin.model.Point;
 import ru.nsu.masolygin.model.bot.BotSnake;
-import ru.nsu.masolygin.config.SnakeConfig;
-import ru.nsu.masolygin.model.GameModel;
 import ru.nsu.masolygin.model.bot.BotStrategy;
 
 class WallHuggerStrategyTest {
