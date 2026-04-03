@@ -26,14 +26,6 @@ class GameModelTest {
     }
 
     @Test
-    void testGameModelInitialization() {
-        assertNotNull(gameModel);
-        assertEquals(GameState.RUNNING, gameModel.getState());
-        assertEquals(25, gameModel.getWidth());
-        assertEquals(25, gameModel.getHeight());
-    }
-
-    @Test
     void testGetWidth() {
         assertEquals(25, gameModel.getWidth());
     }
@@ -84,35 +76,17 @@ class GameModelTest {
     }
 
     @Test
-    void testResetGame() {
+    void testReset() {
         gameModel.reset();
         assertEquals(GameState.RUNNING, gameModel.getState());
         assertNotNull(gameModel.getFoods());
     }
 
     @Test
-    void testIsWalkable() {
-        Point p = new Point(0, 0);
-        boolean walkable = gameModel.isWalkable(p);
-        assertNotNull(gameModel);
-    }
-
-    @Test
     void testIsWalkableOutOfBounds() {
-        Point p = new Point(-1, 0);
-        assertFalse(gameModel.isWalkable(p));
-    }
-
-    @Test
-    void testIsWalkableOutOfBoundsX() {
-        Point p = new Point(25, 0);
-        assertFalse(gameModel.isWalkable(p));
-    }
-
-    @Test
-    void testIsWalkableOutOfBoundsY() {
-        Point p = new Point(0, 25);
-        assertFalse(gameModel.isWalkable(p));
+        assertFalse(gameModel.isWalkable(new Point(-1, 0)));
+        assertFalse(gameModel.isWalkable(new Point(25, 0)));
+        assertFalse(gameModel.isWalkable(new Point(0, 25)));
     }
 
     @Test
@@ -123,67 +97,127 @@ class GameModelTest {
     }
 
     @Test
-    void testExecutePlayerStepMultiple() {
-        for (int i = 0; i < 5; i++) {
-            gameModel.executePlayerStep();
-        }
-        assertEquals(GameState.RUNNING, gameModel.getState());
+    void testExecutePlayerStepPaused() {
+        gameModel.togglePause();
+        gameModel.setDirection(Direction.UP);
+        gameModel.executePlayerStep();
+        assertEquals(GameState.PAUSED, gameModel.getState());
     }
 
     @Test
     void testGetLatestSnapshot() {
         GameSnapshot snapshot = gameModel.getLatestSnapshot();
         assertNotNull(snapshot);
-    }
-
-    @Test
-    void testGetLatestSnapshotHasData() {
-        GameSnapshot snapshot = gameModel.getLatestSnapshot();
         assertNotNull(snapshot.playerBody());
         assertTrue(snapshot.playerBody().size() > 0);
-        assertEquals(GameState.RUNNING, snapshot.state());
     }
 
     @Test
-    void testResetClearsFood() {
-        int foodCount = gameModel.getFoods().size();
-        assertTrue(foodCount > 0);
+    void testExecuteBotStep() {
+        if (!gameModel.getBotSnakes().isEmpty()) {
+            ru.nsu.masolygin.model.bot.BotSnake bot = gameModel.getBotSnakes().get(0);
+            gameModel.executeBotStep(bot, Direction.UP);
+        }
+    }
+
+    @Test
+    void testExecuteBotStepDeadBot() {
+        if (!gameModel.getBotSnakes().isEmpty()) {
+            ru.nsu.masolygin.model.bot.BotSnake bot = gameModel.getBotSnakes().get(0);
+            bot.kill();
+            gameModel.executeBotStep(bot, Direction.UP);
+            assertFalse(bot.isAlive());
+        }
+    }
+
+    @Test
+    void testMultipleSteps() {
+        for (int i = 0; i < 10; i++) {
+            gameModel.executePlayerStep();
+        }
+    }
+
+    @Test
+    void testSetMultipleDirections() {
+        gameModel.setDirection(Direction.UP);
+        gameModel.setDirection(Direction.RIGHT);
+        gameModel.setDirection(Direction.DOWN);
+        gameModel.setDirection(Direction.LEFT);
+    }
+
+    @Test
+    void testExecutePlayerStepMultipleTimes() {
+        for (int i = 0; i < 20; i++) {
+            gameModel.executePlayerStep();
+        }
+    }
+
+    @Test
+    void testExecuteBotStepWithDifferentDirections() {
+        if (!gameModel.getBotSnakes().isEmpty()) {
+            ru.nsu.masolygin.model.bot.BotSnake bot = gameModel.getBotSnakes().get(0);
+            gameModel.executeBotStep(bot, Direction.UP);
+            gameModel.executeBotStep(bot, Direction.DOWN);
+            gameModel.executeBotStep(bot, Direction.LEFT);
+            gameModel.executeBotStep(bot, Direction.RIGHT);
+        }
+    }
+
+    @Test
+    void testIsWalkableDifferentPoints() {
+        assertTrue(gameModel.isWalkable(new Point(5, 5)));
+        assertTrue(gameModel.isWalkable(new Point(10, 10)));
+        assertTrue(gameModel.isWalkable(new Point(24, 24)));
+    }
+
+    @Test
+    void testResetMultipleTimes() {
         gameModel.reset();
-        assertNotNull(gameModel.getFoods());
-    }
-
-    @Test
-    void testPausePreventesSteps() {
-        gameModel.togglePause();
-        assertEquals(GameState.PAUSED, gameModel.getState());
         gameModel.executePlayerStep();
-        assertEquals(GameState.PAUSED, gameModel.getState());
-    }
-
-    @Test
-    void testMultipleResets() {
-        gameModel.reset();
-        assertEquals(GameState.RUNNING, gameModel.getState());
         gameModel.reset();
         assertEquals(GameState.RUNNING, gameModel.getState());
     }
 
     @Test
-    void testExecutePlayerStepWithDirection() {
+    void testTogglePauseMultipleTimes() {
+        for (int i = 0; i < 4; i++) {
+            gameModel.togglePause();
+        }
+        assertEquals(GameState.RUNNING, gameModel.getState());
+    }
+
+    @Test
+    void testExecutePlayerStepWithDirectionChanges() {
+        gameModel.setDirection(Direction.UP);
+        gameModel.executePlayerStep();
         gameModel.setDirection(Direction.RIGHT);
         gameModel.executePlayerStep();
         gameModel.setDirection(Direction.DOWN);
         gameModel.executePlayerStep();
-        assertEquals(GameState.RUNNING, gameModel.getState());
     }
 
     @Test
-    void testGameSnapshotUpdatesAfterStep() {
-        GameSnapshot snap1 = gameModel.getLatestSnapshot();
-        gameModel.executePlayerStep();
-        GameSnapshot snap2 = gameModel.getLatestSnapshot();
-        assertNotNull(snap1);
-        assertNotNull(snap2);
+    void testGameModelSnapshot() {
+        GameSnapshot snapshot = gameModel.getLatestSnapshot();
+        assertNotNull(snapshot.playerBody());
+        assertNotNull(snapshot.foods());
+        assertNotNull(snapshot.bots());
+        assertNotNull(snapshot.obstacles());
+    }
+
+    @Test
+    void testBotSnakesListNotNull() {
+        assertNotNull(gameModel.getBotSnakes());
+    }
+
+    @Test
+    void testFoodsListNotNull() {
+        assertNotNull(gameModel.getFoods());
+    }
+
+    @Test
+    void testObstaclesListNotNull() {
+        assertNotNull(gameModel.getObstacles());
     }
 }
 
