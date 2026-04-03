@@ -45,5 +45,47 @@ class RenderLoopTest {
     void testTargetFps() {
         assertTrue(RenderLoop.TARGET_FPS > 0);
     }
+
+    @Test
+    void testRenderLoopWithMultipleStartStop() {
+        for (int i = 0; i < 3; i++) {
+            renderLoop.start();
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+            renderLoop.stop();
+        }
+    }
+
+    @Test
+    void testRenderLoopMultipleFrames() {
+        renderLoop.start();
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        renderLoop.stop();
+    }
+
+    @Test
+    void testRenderLoopWithGameModelUpdates() {
+        renderLoop.start();
+        gameModel.setDirection(ru.nsu.masolygin.model.Direction.UP);
+        gameModel.executePlayerStep();
+        try {
+            Thread.sleep(150);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        renderLoop.stop();
+    }
+
+    @Test
+    void testRenderLoopFrameRate() {
+        assertTrue(RenderLoop.TARGET_FPS == 60);
+    }
 }
 
