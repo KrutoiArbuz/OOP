@@ -12,12 +12,13 @@ import ru.nsu.masolygin.model.GameModel;
 class PlayerRunnerTest {
 
     private PlayerRunner playerRunner;
+    private GameEngine engine;
 
     @BeforeEach
     void setUp() {
         SnakeConfig config = SnakeConfig.defaults();
         GameModel model = new GameModel(config);
-        GameEngine engine = new GameEngine(model, config);
+        engine = new GameEngine(model, config);
         engine.reset();
         playerRunner = new PlayerRunner(engine);
     }
@@ -33,9 +34,30 @@ class PlayerRunnerTest {
     }
 
     @Test
+    void testThreadName() {
+        assertNotNull(playerRunner.threadName());
+        assertTrue(playerRunner.threadName().contains("player"));
+    }
+
+    @Test
     void testStartAndStop() {
         playerRunner.start();
+        assertTrue(playerRunner.running);
         playerRunner.stop();
-        assertTrue(true);
+    }
+
+    @Test
+    void testStartMultipleTimes() {
+        playerRunner.start();
+        playerRunner.stop();
+        playerRunner.start();
+        assertTrue(playerRunner.running);
+        playerRunner.stop();
+    }
+
+    @Test
+    void testEngineNotNull() {
+        assertNotNull(engine);
     }
 }
+
