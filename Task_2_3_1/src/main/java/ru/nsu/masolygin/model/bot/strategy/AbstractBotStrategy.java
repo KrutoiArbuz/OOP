@@ -6,15 +6,23 @@ import ru.nsu.masolygin.model.Direction;
 import ru.nsu.masolygin.model.GameModel;
 import ru.nsu.masolygin.model.Point;
 import ru.nsu.masolygin.model.bot.BotSnake;
-import ru.nsu.masolygin.model.bot.BotStrategy;
 
 /**
  * Базовый класс стратегий бота.
  */
-public abstract class AbstractBotStrategy implements BotStrategy {
+public abstract class AbstractBotStrategy {
 
     /**
-     * Возвращает безопасные направления.
+     * Выбирает следующее направление для бота.
+     *
+     * @param bot   бот
+     * @param model текущее состояние игры
+     * @return выбранное направление
+     */
+    public abstract Direction chooseDirection(BotSnake bot, GameModel model);
+
+    /**
+     * Возвращает все безопасные направления.
      *
      * @param bot   бот
      * @param model модель

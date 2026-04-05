@@ -38,7 +38,8 @@ public abstract class AbstractGameThread {
     /**
      * Выполняет цикл потока.
      */
-    protected abstract void loop();
+    protected void loop() {
+    }
 
     /**
      * Ждет оставшееся время шага.

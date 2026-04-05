@@ -6,67 +6,36 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.nsu.masolygin.config.SnakeConfig;
+import ru.nsu.masolygin.model.GameEngine;
 import ru.nsu.masolygin.model.GameModel;
 
 class PlayerRunnerTest {
 
     private PlayerRunner playerRunner;
-    private GameModel gameModel;
 
     @BeforeEach
     void setUp() {
-        gameModel = new GameModel(new SnakeConfig());
-        playerRunner = new PlayerRunner(gameModel);
+        SnakeConfig config = SnakeConfig.defaults();
+        GameModel model = new GameModel(config);
+        GameEngine engine = new GameEngine(model, config);
+        engine.reset();
+        playerRunner = new PlayerRunner(engine);
     }
 
     @Test
-    void testBasicFunctionality() {
-        assertTrue(true);
-    }
-
-    @Test
-    void testInitialization() {
-        assertTrue(true);
-    }
-
-    @Test
-    void testPlayerRunnerCreation() {
+    void testCreation() {
         assertNotNull(playerRunner);
     }
 
     @Test
-    void testPlayerRunnerHasThreadName() {
-        try {
-            assertNotNull(playerRunner.getClass().getMethod("threadName"));
-        } catch (Exception e) {
-            assertTrue(true);
-        }
+    void testExtendsAbstractGameThread() {
+        assertTrue(playerRunner instanceof AbstractGameThread);
     }
 
     @Test
-    void testPlayerRunnerCanStart() {
-        playerRunner.start();
-        assertTrue(playerRunner.getClass().getName().contains("PlayerRunner"));
-    }
-
-    @Test
-    void testPlayerRunnerCanStop() {
+    void testStartAndStop() {
         playerRunner.start();
         playerRunner.stop();
         assertTrue(true);
-    }
-
-    @Test
-    void testPlayerRunnerHasLoop() {
-        try {
-            assertNotNull(playerRunner.getClass().getDeclaredMethod("loop"));
-        } catch (Exception e) {
-            assertTrue(true);
-        }
-    }
-
-    @Test
-    void testPlayerRunnerExtendsAbstractGameThread() {
-        assertTrue(playerRunner instanceof AbstractGameThread);
     }
 }

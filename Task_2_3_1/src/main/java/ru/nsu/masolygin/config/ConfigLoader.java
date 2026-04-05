@@ -1,6 +1,7 @@
 package ru.nsu.masolygin.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
 import java.io.InputStream;
 
 /**
@@ -23,9 +24,7 @@ public class ConfigLoader {
                     null);
             }
             return mapper.readValue(is, SnakeConfig.class);
-        } catch (ConfigLoadException e) {
-            throw e;
-        } catch (Exception e) {
+        } catch (IOException e) {
             throw new ConfigLoadException("Failed to parse config: " + resourcePath, e);
         }
     }

@@ -48,8 +48,8 @@ public class SnakeApp extends Application {
 
         this.controller = controller;
 
-        int sceneWidth = config.getFieldWidth() * config.getCellSize();
-        int sceneHeight = config.getFieldHeight() * config.getCellSize() + 60;
+        int sceneWidth = config.fieldWidth() * config.cellSize();
+        int sceneHeight = config.fieldHeight() * config.cellSize() + 60;
 
         Scene scene = new Scene(root, sceneWidth, sceneHeight);
 

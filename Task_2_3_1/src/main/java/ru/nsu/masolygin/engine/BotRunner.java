@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import ru.nsu.masolygin.model.Direction;
-import ru.nsu.masolygin.model.GameModel;
+import ru.nsu.masolygin.model.GameEngine;
 import ru.nsu.masolygin.model.GameState;
 import ru.nsu.masolygin.model.bot.BotSnake;
 
@@ -19,17 +19,14 @@ public class BotRunner extends AbstractGameThread {
     /**
      * Запускает потоки для ботов.
      *
-     * @param bots  список ботов
-     * @param model игровая модель
+     * @param bots   список ботов
+     * @param engine игровой движок
      */
-    public void start(List<BotSnake> bots, GameModel model) {
+    public void start(List<BotSnake> bots, GameEngine engine) {
         running = true;
         for (BotSnake bot : bots) {
             int id = THREAD_ID.getAndIncrement();
-            Thread t = new Thread(
-                () -> runBot(bot, model),
-                "bot-runner-" + id
-            );
+            Thread t = new Thread(() -> runBot(bot, engine), "bot-runner-" + id);
             t.setDaemon(true);
             botThreads.add(t);
             t.start();
@@ -49,26 +46,14 @@ public class BotRunner extends AbstractGameThread {
     /**
      * Перезапускает потоки с новым набором ботов.
      *
-     * @param bots  список ботов
-     * @param model игровая модель
+     * @param bots   список ботов
+     * @param engine игровой движок
      */
-    public void restart(List<BotSnake> bots, GameModel model) {
+    public void restart(List<BotSnake> bots, GameEngine engine) {
         stop();
-        start(bots, model);
+        start(bots, engine);
     }
 
-    /**
-     * Заглушка для базового контракта.
-     */
-    @Override
-    protected void loop() {
-    }
-
-    /**
-     * Возвращает имя потока.
-     *
-     * @return имя потока
-     */
     @Override
     protected String threadName() {
         return "bot-runner";
@@ -77,17 +62,18 @@ public class BotRunner extends AbstractGameThread {
     /**
      * Выполняет цикл одного бота.
      *
-     * @param bot   бот
-     * @param model модель
+     * @param bot    бот
+     * @param engine игровой движок
      */
-    private void runBot(BotSnake bot, GameModel model) {
+    private void runBot(BotSnake bot, GameEngine engine) {
         while (running) {
             long tickStart = System.currentTimeMillis();
 
-            if (bot.isAlive() && model.getState() == GameState.RUNNING) {
-                Direction dir = bot.computeDirection(model);
-                model.executeBotStep(bot, dir);
+            if (bot.isAlive() && engine.getState() == GameState.RUNNING) {
+                Direction dir = bot.computeDirection(engine.getModel());
+                engine.executeBotStep(bot, dir);
             }
+
             sleepRemaining(tickStart, bot.getSpeedMs());
         }
     }

@@ -11,13 +11,17 @@ class ConfigLoaderTest {
 
     private ConfigLoader configLoader;
 
+    private static void assertTrue(boolean condition) {
+        org.junit.jupiter.api.Assertions.assertTrue(condition);
+    }
+
     @BeforeEach
     void setUp() {
         configLoader = new ConfigLoader();
     }
 
     @Test
-    void testConfigLoaderCreation() {
+    void testCreation() {
         assertNotNull(configLoader);
     }
 
@@ -25,29 +29,26 @@ class ConfigLoaderTest {
     void testLoadExistingConfig() {
         SnakeConfig config = configLoader.load("/config.json");
         assertNotNull(config);
-        assertEquals(25, config.getFieldWidth());
-        assertEquals(25, config.getFieldHeight());
+        assertEquals(25, config.fieldWidth());
+        assertEquals(25, config.fieldHeight());
     }
 
     @Test
     void testLoadNonexistentConfigThrowsException() {
-        assertThrows(ConfigLoadException.class, () -> {
-            configLoader.load("/nonexistent.json");
-        });
+        assertThrows(ConfigLoadException.class, () ->
+            configLoader.load("/nonexistent.json"));
     }
 
     @Test
-    void testLoadConfigReturnsValidSnakeConfig() {
+    void testLoadedConfigIsValid() {
         SnakeConfig config = configLoader.load("/config.json");
-        assertNotNull(config.getFieldWidth());
-        assertNotNull(config.getFieldHeight());
+        assertTrue(config.fieldWidth() > 0);
+        assertTrue(config.fieldHeight() > 0);
     }
 
     @Test
-    void testLoadMultipleConfigs() {
-        SnakeConfig config1 = configLoader.load("/config.json");
-        SnakeConfig config2 = configLoader.load("/config.json");
-        assertNotNull(config1);
-        assertNotNull(config2);
+    void testLoadMultipleTimes() {
+        assertNotNull(configLoader.load("/config.json"));
+        assertNotNull(configLoader.load("/config.json"));
     }
 }

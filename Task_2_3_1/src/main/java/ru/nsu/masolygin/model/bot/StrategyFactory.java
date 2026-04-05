@@ -1,5 +1,6 @@
 package ru.nsu.masolygin.model.bot;
 
+import ru.nsu.masolygin.model.bot.strategy.AbstractBotStrategy;
 import ru.nsu.masolygin.model.bot.strategy.GreedyStrategy;
 import ru.nsu.masolygin.model.bot.strategy.RandomStrategy;
 import ru.nsu.masolygin.model.bot.strategy.WallHuggerStrategy;
@@ -9,9 +10,6 @@ import ru.nsu.masolygin.model.bot.strategy.WallHuggerStrategy;
  */
 public final class StrategyFactory {
 
-    /**
-     * Конструктор.
-     */
     private StrategyFactory() {
     }
 
@@ -21,7 +19,7 @@ public final class StrategyFactory {
      * @param type тип стратегии
      * @return стратегия
      */
-    public static BotStrategy create(StrategyType type) {
+    public static AbstractBotStrategy create(StrategyType type) {
         return switch (type) {
             case RANDOM -> new RandomStrategy();
             case GREEDY -> new GreedyStrategy();

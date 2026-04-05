@@ -7,85 +7,75 @@ import java.util.function.Consumer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.nsu.masolygin.config.SnakeConfig;
+import ru.nsu.masolygin.model.Direction;
+import ru.nsu.masolygin.model.GameEngine;
 import ru.nsu.masolygin.model.GameModel;
 import ru.nsu.masolygin.model.GameSnapshot;
 
 class RenderLoopTest {
 
     private RenderLoop renderLoop;
-    private GameModel gameModel;
-    private Consumer<GameSnapshot> mockRenderer;
+    private GameModel model;
+    private GameEngine engine;
+
+    private static void sleep(long ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
 
     @BeforeEach
     void setUp() {
-        gameModel = new GameModel(new SnakeConfig());
-        mockRenderer = snapshot -> {
+        SnakeConfig config = SnakeConfig.defaults();
+        model = new GameModel(config);
+        engine = new GameEngine(model, config);
+        engine.reset();
+        Consumer<GameSnapshot> mockRenderer = snapshot -> {
         };
-        renderLoop = new RenderLoop(gameModel, mockRenderer);
+        renderLoop = new RenderLoop(model, mockRenderer);
     }
 
     @Test
-    void testRenderLoopCreation() {
+    void testCreation() {
         assertNotNull(renderLoop);
-    }
-
-    @Test
-    void testRenderLoopStart() {
-        renderLoop.start();
-        renderLoop.stop();
-    }
-
-    @Test
-    void testRenderLoopStop() {
-        renderLoop.start();
-        renderLoop.stop();
     }
 
     @Test
     void testTargetFps() {
         assertTrue(RenderLoop.TARGET_FPS > 0);
+        assertTrue(RenderLoop.TARGET_FPS == 60);
     }
 
     @Test
-    void testRenderLoopWithMultipleStartStop() {
+    void testStartAndStop() {
+        renderLoop.start();
+        renderLoop.stop();
+    }
+
+    @Test
+    void testMultipleStartStop() {
         for (int i = 0; i < 3; i++) {
             renderLoop.start();
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
+            sleep(50);
             renderLoop.stop();
         }
     }
 
     @Test
-    void testRenderLoopMultipleFrames() {
+    void testRunsFramesDuringInterval() {
         renderLoop.start();
-        try {
-            Thread.sleep(200);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
+        sleep(200);
         renderLoop.stop();
     }
 
     @Test
-    void testRenderLoopWithGameModelUpdates() {
+    void testWithGameModelUpdates() {
         renderLoop.start();
-        gameModel.setDirection(ru.nsu.masolygin.model.Direction.UP);
-        gameModel.executePlayerStep();
-        try {
-            Thread.sleep(150);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
+        model.setDirection(Direction.UP);
+        engine.executePlayerStep();
+        sleep(150);
         renderLoop.stop();
-    }
-
-    @Test
-    void testRenderLoopFrameRate() {
-        assertTrue(RenderLoop.TARGET_FPS == 60);
     }
 }
-

@@ -10,6 +10,7 @@ import ru.nsu.masolygin.engine.BotRunner;
 import ru.nsu.masolygin.engine.PlayerRunner;
 import ru.nsu.masolygin.engine.RenderLoop;
 import ru.nsu.masolygin.model.Direction;
+import ru.nsu.masolygin.model.GameEngine;
 import ru.nsu.masolygin.model.GameModel;
 import ru.nsu.masolygin.view.GameRenderer;
 
@@ -28,28 +29,31 @@ public class GameController {
     private StackPane overlayPane;
 
     private GameModel model;
+    private GameEngine engine;
     private PlayerRunner playerRunner;
-    private RenderLoop renderLoop;
     private BotRunner botRunner;
+    private RenderLoop renderLoop;
 
     /**
-     * Инициализирует модель, рендер и потоки.
+     * Инициализирует модель, движок, рендер и потоки.
      *
      * @param config конфигурация игры
      */
     public void init(SnakeConfig config) {
         model = new GameModel(config);
+        engine = new GameEngine(model, config);
+        engine.reset();
 
-        gameCanvas.setWidth((double) config.getFieldWidth() * config.getCellSize());
-        gameCanvas.setHeight((double) config.getFieldHeight() * config.getCellSize());
+        gameCanvas.setWidth((double) config.fieldWidth() * config.cellSize());
+        gameCanvas.setHeight((double) config.fieldHeight() * config.cellSize());
 
-        GameRenderer renderer = new GameRenderer(gameCanvas, scoreLabel, statusLabel, overlayPane,
-            config);
+        GameRenderer renderer = new GameRenderer(
+            gameCanvas, scoreLabel, statusLabel, overlayPane, config);
 
         botRunner = new BotRunner();
-        botRunner.start(model.getBotSnakes(), model);
+        botRunner.start(model.getBotSnakes(), engine);
 
-        playerRunner = new PlayerRunner(model);
+        playerRunner = new PlayerRunner(engine);
         playerRunner.start();
 
         renderLoop = new RenderLoop(model, renderer::render);
@@ -84,8 +88,8 @@ public class GameController {
             case RIGHT, D -> model.setDirection(Direction.RIGHT);
             case SPACE -> model.togglePause();
             case R -> {
-                model.reset();
-                botRunner.restart(model.getBotSnakes(), model);
+                engine.reset();
+                botRunner.restart(model.getBotSnakes(), engine);
             }
         }
         event.consume();

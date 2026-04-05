@@ -47,6 +47,6 @@ public final class Food implements Placeable {
      */
     @Override
     public String toString() {
-        return type.getDisplayName() + " at " + position;
+        return type.name() + " at " + position;
     }
 }

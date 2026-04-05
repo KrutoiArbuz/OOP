@@ -1,6 +1,8 @@
 package ru.nsu.masolygin.view;
 
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -14,6 +16,7 @@ import ru.nsu.masolygin.config.SnakeConfig;
 import ru.nsu.masolygin.model.GameSnapshot;
 import ru.nsu.masolygin.model.Point;
 import ru.nsu.masolygin.model.food.Food;
+import ru.nsu.masolygin.model.food.FoodType;
 import ru.nsu.masolygin.model.obstacle.Obstacle;
 
 /**
@@ -25,6 +28,16 @@ public class GameRenderer {
     private static final String CH_BODY = "S";
     private static final String CH_FOOD = "F";
     private static final String CH_OBSTACLE = "#";
+
+    /**
+     * Цвета еды для отрисовки.
+     */
+    private static final Map<FoodType, Color> FOOD_COLORS = new EnumMap<>(Map.of(
+        FoodType.APPLE, Color.web("#e74c3c"),
+        FoodType.CHERRY, Color.web("#9b59b6"),
+        FoodType.GOLDEN_APPLE, Color.web("#f1c40f"),
+        FoodType.MUSHROOM, Color.web("#2ecc71")
+    ));
 
     private final Canvas canvas;
     private final Label scoreLabel;
@@ -49,7 +62,7 @@ public class GameRenderer {
         this.statusLabel = statusLabel;
         this.overlayPane = overlayPane;
         this.config = config;
-        this.cellFont = Font.font("Courier New", FontWeight.BOLD, config.getCellSize() * 0.65);
+        this.cellFont = Font.font("Courier New", FontWeight.BOLD, config.cellSize() * 0.65);
     }
 
     /**
@@ -59,9 +72,9 @@ public class GameRenderer {
      */
     public void render(GameSnapshot snap) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        int cell = config.getCellSize();
-        int cols = config.getFieldWidth();
-        int rows = config.getFieldHeight();
+        int cell = config.cellSize();
+        int cols = config.fieldWidth();
+        int rows = config.fieldHeight();
 
         drawBackground(gc, cols, rows, cell);
         drawObstacles(gc, snap.obstacles(), cell);
@@ -109,7 +122,7 @@ public class GameRenderer {
      */
     private void drawFoods(GraphicsContext gc, List<Food> foods, int cell) {
         for (Food food : foods) {
-            Color color = Color.web(food.getType().getColorHex());
+            Color color = FOOD_COLORS.getOrDefault(food.getType(), Color.WHITE);
             drawChar(gc, CH_FOOD, food.getPosition(), cell, color);
         }
     }
@@ -182,7 +195,7 @@ public class GameRenderer {
         long aliveBots = snap.bots().stream().filter(GameSnapshot.BotSnapshot::alive).count();
         String effect = "";
         if (snap.speedEffectTicks() > 0) {
-            boolean faster = snap.speedMs() < config.getInitialSpeedMs();
+            boolean faster = snap.speedMs() < config.initialSpeedMs();
             effect = (faster ? "  ⚡" : "  🐢") + "+" + snap.speedEffectTicks();
         }
         scoreLabel.setText(

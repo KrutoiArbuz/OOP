@@ -4,6 +4,7 @@ import ru.nsu.masolygin.model.Direction;
 import ru.nsu.masolygin.model.GameModel;
 import ru.nsu.masolygin.model.Point;
 import ru.nsu.masolygin.model.Snake;
+import ru.nsu.masolygin.model.bot.strategy.AbstractBotStrategy;
 
 /**
  * Змейка-бот.
@@ -12,7 +13,7 @@ public class BotSnake extends Snake {
 
     private final String colorHex;
     private final int speedMs;
-    private BotStrategy strategy;
+    private AbstractBotStrategy strategy;
     private boolean alive = true;
 
     /**
@@ -23,7 +24,8 @@ public class BotSnake extends Snake {
      * @param colorHex      цвет
      * @param speedMs       скорость
      */
-    public BotSnake(Point startPosition, BotStrategy strategy, String colorHex, int speedMs) {
+    public BotSnake(Point startPosition, AbstractBotStrategy strategy,
+        String colorHex, int speedMs) {
         super(startPosition);
         this.strategy = strategy;
         this.colorHex = colorHex;
@@ -79,7 +81,7 @@ public class BotSnake extends Snake {
      *
      * @param strategy стратегия
      */
-    public void setStrategy(BotStrategy strategy) {
+    public void setStrategy(AbstractBotStrategy strategy) {
         this.strategy = strategy;
     }
 }
