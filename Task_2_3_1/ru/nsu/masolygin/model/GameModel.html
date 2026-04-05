@@ -107,26 +107,15 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#executeBotStep(ru.nsu.masolygin.model.bot.BotSnake,ru.nsu.masolygin.model.Direction)" class="member-name-link">executeBotStep</a><wbr>(<a href="bot/BotSnake.html" title="class in ru.nsu.masolygin.model.bot">BotSnake</a>&nbsp;bot,
- <a href="Direction.html" title="enum class in ru.nsu.masolygin.model">Direction</a>&nbsp;dir)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Выполняет шаг одного бота.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#executePlayerStep()" class="member-name-link">executePlayerStep</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Выполняет один шаг игрока.</div>
-</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="bot/BotSnake.html" title="class in ru.nsu.masolygin.model.bot">BotSnake</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getBotSnakes()" class="member-name-link">getBotSnakes</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Возвращает список ботов.</div>
+<div class="block">Возвращает список ботов (только для чтения).</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="food/Food.html" title="class in ru.nsu.masolygin.model.food">Food</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getFoods()" class="member-name-link">getFoods</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Возвращает список еды.</div>
+<div class="block">Возвращает список еды (только для чтения).</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getHeight()" class="member-name-link">getHeight</a>()</code></div>
@@ -136,22 +125,22 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="GameSnapshot.html" title="class in ru.nsu.masolygin.model">GameSnapshot</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getLatestSnapshot()" class="member-name-link">getLatestSnapshot</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Возвращает последний снимок игры.</div>
+<div class="block">Возвращает последний снимок для рендера.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="obstacle/Obstacle.html" title="class in ru.nsu.masolygin.model.obstacle">Obstacle</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getObstacles()" class="member-name-link">getObstacles</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Возвращает список препятствий.</div>
+<div class="block">Возвращает список препятствий (только для чтения).</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSpeedMs()" class="member-name-link">getSpeedMs</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Возвращает текущую скорость.</div>
+<div class="block">Возвращает текущую скорость игрока.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="GameState.html" title="enum class in ru.nsu.masolygin.model">GameState</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getState()" class="member-name-link">getState</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Возвращает состояние игры.</div>
+<div class="block">Возвращает текущее состояние игры.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getWidth()" class="member-name-link">getWidth</a>()</code></div>
@@ -161,21 +150,16 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isWalkable(ru.nsu.masolygin.model.Point)" class="member-name-link">isWalkable</a><wbr>(<a href="Point.html" title="class in ru.nsu.masolygin.model">Point</a>&nbsp;p)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Проверяет проходимость клетки.</div>
+<div class="block">Проверяет, можно ли пройти через клетку.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#reset()" class="member-name-link">reset</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDirection(ru.nsu.masolygin.model.Direction)" class="member-name-link">setDirection</a><wbr>(<a href="Direction.html" title="enum class in ru.nsu.masolygin.model">Direction</a>&nbsp;direction)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Сбрасывает состояние игры.</div>
+<div class="block">Устанавливает желаемое направление игрока.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDirection(ru.nsu.masolygin.model.Direction)" class="member-name-link">setDirection</a><wbr>(<a href="Direction.html" title="enum class in ru.nsu.masolygin.model">Direction</a>&nbsp;direction)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#togglePause()" class="member-name-link">togglePause</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Устанавливает направление игрока.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#togglePause()" class="member-name-link">togglePause</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Переключает паузу.</div>
 </div>
 </div>
@@ -215,20 +199,26 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="reset()">
-<h3>reset</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">reset</span>()</div>
-<div class="block">Сбрасывает состояние игры.</div>
+<section class="detail" id="isWalkable(ru.nsu.masolygin.model.Point)">
+<h3>isWalkable</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isWalkable</span><wbr><span class="parameters">(<a href="Point.html" title="class in ru.nsu.masolygin.model">Point</a>&nbsp;p)</span></div>
+<div class="block">Проверяет, можно ли пройти через клетку.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>p</code> - точка на поле</dd>
+<dt>Returns:</dt>
+<dd>true если клетка свободна</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="setDirection(ru.nsu.masolygin.model.Direction)">
 <h3>setDirection</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setDirection</span><wbr><span class="parameters">(<a href="Direction.html" title="enum class in ru.nsu.masolygin.model">Direction</a>&nbsp;direction)</span></div>
-<div class="block">Устанавливает направление игрока.</div>
+<div class="block">Устанавливает желаемое направление игрока.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>direction</code> - направление</dd>
+<dd><code>direction</code> - новое направление</dd>
 </dl>
 </section>
 </li>
@@ -240,46 +230,46 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="executePlayerStep()">
-<h3>executePlayerStep</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">executePlayerStep</span>()</div>
-<div class="block">Выполняет один шаг игрока.</div>
+<section class="detail" id="getState()">
+<h3>getState</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="GameState.html" title="enum class in ru.nsu.masolygin.model">GameState</a></span>&nbsp;<span class="element-name">getState</span>()</div>
+<div class="block">Возвращает текущее состояние игры.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>состояние</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getSpeedMs()">
+<h3>getSpeedMs</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getSpeedMs</span>()</div>
+<div class="block">Возвращает текущую скорость игрока.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>скорость в миллисекундах</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getLatestSnapshot()">
 <h3>getLatestSnapshot</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="GameSnapshot.html" title="class in ru.nsu.masolygin.model">GameSnapshot</a></span>&nbsp;<span class="element-name">getLatestSnapshot</span>()</div>
-<div class="block">Возвращает последний снимок игры.</div>
+<div class="block">Возвращает последний снимок для рендера.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>снимок игры</dd>
+<dd>снимок или null если игра ещё не стартовала</dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="executeBotStep(ru.nsu.masolygin.model.bot.BotSnake,ru.nsu.masolygin.model.Direction)">
-<h3>executeBotStep</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">executeBotStep</span><wbr><span class="parameters">(<a href="bot/BotSnake.html" title="class in ru.nsu.masolygin.model.bot">BotSnake</a>&nbsp;bot,
- <a href="Direction.html" title="enum class in ru.nsu.masolygin.model">Direction</a>&nbsp;dir)</span></div>
-<div class="block">Выполняет шаг одного бота.</div>
+<section class="detail" id="getBotSnakes()">
+<h3>getBotSnakes</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="bot/BotSnake.html" title="class in ru.nsu.masolygin.model.bot">BotSnake</a>&gt;</span>&nbsp;<span class="element-name">getBotSnakes</span>()</div>
+<div class="block">Возвращает список ботов (только для чтения).</div>
 <dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>bot</code> - бот</dd>
-<dd><code>dir</code> - направление</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="isWalkable(ru.nsu.masolygin.model.Point)">
-<h3>isWalkable</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isWalkable</span><wbr><span class="parameters">(<a href="Point.html" title="class in ru.nsu.masolygin.model">Point</a>&nbsp;p)</span></div>
-<div class="block">Проверяет проходимость клетки.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>p</code> - точка</dd>
 <dt>Returns:</dt>
-<dd>true, если клетка проходима</dd>
+<dd>список ботов</dd>
 </dl>
 </section>
 </li>
@@ -287,7 +277,8 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getFoods()">
 <h3>getFoods</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="food/Food.html" title="class in ru.nsu.masolygin.model.food">Food</a>&gt;</span>&nbsp;<span class="element-name">getFoods</span>()</div>
-<div class="block">Возвращает список еды.</div>
+<div class="block">Возвращает список еды (только для чтения). Используется стратегиями ботов для поиска
+ ближайшей цели.</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>список еды</dd>
@@ -298,32 +289,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getObstacles()">
 <h3>getObstacles</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="obstacle/Obstacle.html" title="class in ru.nsu.masolygin.model.obstacle">Obstacle</a>&gt;</span>&nbsp;<span class="element-name">getObstacles</span>()</div>
-<div class="block">Возвращает список препятствий.</div>
+<div class="block">Возвращает список препятствий (только для чтения).</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>список препятствий</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getBotSnakes()">
-<h3>getBotSnakes</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="bot/BotSnake.html" title="class in ru.nsu.masolygin.model.bot">BotSnake</a>&gt;</span>&nbsp;<span class="element-name">getBotSnakes</span>()</div>
-<div class="block">Возвращает список ботов.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>список ботов</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getState()">
-<h3>getState</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="GameState.html" title="enum class in ru.nsu.masolygin.model">GameState</a></span>&nbsp;<span class="element-name">getState</span>()</div>
-<div class="block">Возвращает состояние игры.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>состояние игры</dd>
 </dl>
 </section>
 </li>
@@ -334,7 +303,7 @@ loadScripts(document, 'script');</script>
 <div class="block">Возвращает ширину поля.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>ширина поля</dd>
+<dd>ширина</dd>
 </dl>
 </section>
 </li>
@@ -345,18 +314,7 @@ loadScripts(document, 'script');</script>
 <div class="block">Возвращает высоту поля.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>высота поля</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getSpeedMs()">
-<h3>getSpeedMs</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getSpeedMs</span>()</div>
-<div class="block">Возвращает текущую скорость.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>скорость в миллисекундах</dd>
+<dd>высота</dd>
 </dl>
 </section>
 </li>

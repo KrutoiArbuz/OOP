@@ -75,17 +75,12 @@ loadScripts(document, 'script');</script>
 </div>
 <section class="class-description" id="class-description">
 <dl class="notes">
-<dt>All Implemented Interfaces:</dt>
-<dd><code><a href="../BotStrategy.html" title="interface in ru.nsu.masolygin.model.bot">BotStrategy</a></code></dd>
-</dl>
-<dl class="notes">
 <dt>Direct Known Subclasses:</dt>
 <dd><code><a href="GreedyStrategy.html" title="class in ru.nsu.masolygin.model.bot.strategy">GreedyStrategy</a></code>, <code><a href="RandomStrategy.html" title="class in ru.nsu.masolygin.model.bot.strategy">RandomStrategy</a></code>, <code><a href="WallHuggerStrategy.html" title="class in ru.nsu.masolygin.model.bot.strategy">WallHuggerStrategy</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public abstract class </span><span class="element-name type-name-label">AbstractBotStrategy</span>
-<span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
-implements <a href="../BotStrategy.html" title="interface in ru.nsu.masolygin.model.bot">BotStrategy</a></span></div>
+<span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
 <div class="block">Базовый класс стратегий бота.</div>
 </section>
 <section class="summary">
@@ -108,7 +103,7 @@ implements <a href="../BotStrategy.html" title="interface in ru.nsu.masolygin.mo
 <section class="method-summary" id="method-summary">
 <h2>Method Summary</h2>
 <div id="method-summary-table">
-<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab4" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab4', 3)" class="table-tab">Concrete Methods</button></div>
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab3" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab3', 3)" class="table-tab">Abstract Methods</button><button id="method-summary-table-tab4" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab4', 3)" class="table-tab">Concrete Methods</button></div>
 <div id="method-summary-table.tabpanel" role="tabpanel" aria-labelledby="method-summary-table-tab0">
 <div class="summary-table three-column-summary">
 <div class="table-header col-first">Modifier and Type</div>
@@ -120,17 +115,23 @@ implements <a href="../BotStrategy.html" title="interface in ru.nsu.masolygin.mo
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Возвращает любое безопасное направление.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="../../Point.html" title="class in ru.nsu.masolygin.model">Point</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextPoint(ru.nsu.masolygin.model.Point,ru.nsu.masolygin.model.Direction)" class="member-name-link">nextPoint</a><wbr>(<a href="../../Point.html" title="class in ru.nsu.masolygin.model">Point</a>&nbsp;from,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract <a href="../../Direction.html" title="enum class in ru.nsu.masolygin.model">Direction</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#chooseDirection(ru.nsu.masolygin.model.bot.BotSnake,ru.nsu.masolygin.model.GameModel)" class="member-name-link">chooseDirection</a><wbr>(<a href="../BotSnake.html" title="class in ru.nsu.masolygin.model.bot">BotSnake</a>&nbsp;bot,
+ <a href="../../GameModel.html" title="class in ru.nsu.masolygin.model">GameModel</a>&nbsp;model)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Выбирает следующее направление для бота.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="../../Point.html" title="class in ru.nsu.masolygin.model">Point</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextPoint(ru.nsu.masolygin.model.Point,ru.nsu.masolygin.model.Direction)" class="member-name-link">nextPoint</a><wbr>(<a href="../../Point.html" title="class in ru.nsu.masolygin.model">Point</a>&nbsp;from,
  <a href="../../Direction.html" title="enum class in ru.nsu.masolygin.model">Direction</a>&nbsp;dir)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Возвращает соседнюю точку по направлению.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../../Direction.html" title="enum class in ru.nsu.masolygin.model">Direction</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#safeDirections(ru.nsu.masolygin.model.bot.BotSnake,ru.nsu.masolygin.model.GameModel)" class="member-name-link">safeDirections</a><wbr>(<a href="../BotSnake.html" title="class in ru.nsu.masolygin.model.bot">BotSnake</a>&nbsp;bot,
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../../Direction.html" title="enum class in ru.nsu.masolygin.model">Direction</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#safeDirections(ru.nsu.masolygin.model.bot.BotSnake,ru.nsu.masolygin.model.GameModel)" class="member-name-link">safeDirections</a><wbr>(<a href="../BotSnake.html" title="class in ru.nsu.masolygin.model.bot">BotSnake</a>&nbsp;bot,
  <a href="../../GameModel.html" title="class in ru.nsu.masolygin.model">GameModel</a>&nbsp;model)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Возвращает безопасные направления.</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает все безопасные направления.</div>
 </div>
 </div>
 </div>
@@ -138,9 +139,6 @@ implements <a href="../BotStrategy.html" title="interface in ru.nsu.masolygin.mo
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
-<div class="inherited-list">
-<h3 id="methods-inherited-from-class-ru.nsu.masolygin.model.bot.BotStrategy">Methods inherited from interface&nbsp;ru.nsu.masolygin.model.bot.<a href="../BotStrategy.html" title="interface in ru.nsu.masolygin.model.bot">BotStrategy</a></h3>
-<code><a href="../BotStrategy.html#chooseDirection(ru.nsu.masolygin.model.bot.BotSnake,ru.nsu.masolygin.model.GameModel)">chooseDirection</a></code></div>
 </section>
 </li>
 </ul>
@@ -167,11 +165,26 @@ implements <a href="../BotStrategy.html" title="interface in ru.nsu.masolygin.mo
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
+<section class="detail" id="chooseDirection(ru.nsu.masolygin.model.bot.BotSnake,ru.nsu.masolygin.model.GameModel)">
+<h3>chooseDirection</h3>
+<div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type"><a href="../../Direction.html" title="enum class in ru.nsu.masolygin.model">Direction</a></span>&nbsp;<span class="element-name">chooseDirection</span><wbr><span class="parameters">(<a href="../BotSnake.html" title="class in ru.nsu.masolygin.model.bot">BotSnake</a>&nbsp;bot,
+ <a href="../../GameModel.html" title="class in ru.nsu.masolygin.model">GameModel</a>&nbsp;model)</span></div>
+<div class="block">Выбирает следующее направление для бота.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>bot</code> - бот</dd>
+<dd><code>model</code> - текущее состояние игры</dd>
+<dt>Returns:</dt>
+<dd>выбранное направление</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="safeDirections(ru.nsu.masolygin.model.bot.BotSnake,ru.nsu.masolygin.model.GameModel)">
 <h3>safeDirections</h3>
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../../Direction.html" title="enum class in ru.nsu.masolygin.model">Direction</a>&gt;</span>&nbsp;<span class="element-name">safeDirections</span><wbr><span class="parameters">(<a href="../BotSnake.html" title="class in ru.nsu.masolygin.model.bot">BotSnake</a>&nbsp;bot,
  <a href="../../GameModel.html" title="class in ru.nsu.masolygin.model">GameModel</a>&nbsp;model)</span></div>
-<div class="block">Возвращает безопасные направления.</div>
+<div class="block">Возвращает все безопасные направления.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>bot</code> - бот</dd>
