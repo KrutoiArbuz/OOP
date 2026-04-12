@@ -482,9 +482,13 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:I">I</h2>
 <dl class="index">
-<dt><a href="ru/nsu/masolygin/controller/GameController.html#init(ru.nsu.masolygin.config.SnakeConfig)" class="member-name-link">init(SnakeConfig)</a> - Method in class ru.nsu.masolygin.controller.<a href="ru/nsu/masolygin/controller/GameController.html" title="class in ru.nsu.masolygin.controller">GameController</a></dt>
+<dt><a href="ru/nsu/masolygin/controller/GameController.html#init(ru.nsu.masolygin.config.SnakeConfig,ru.nsu.masolygin.SnakeApp)" class="member-name-link">init(SnakeConfig, SnakeApp)</a> - Method in class ru.nsu.masolygin.controller.<a href="ru/nsu/masolygin/controller/GameController.html" title="class in ru.nsu.masolygin.controller">GameController</a></dt>
 <dd>
 <div class="block">Инициализирует модель, движок, рендер и потоки.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/controller/MenuController.html#initialize()" class="member-name-link">initialize()</a> - Method in class ru.nsu.masolygin.controller.<a href="ru/nsu/masolygin/controller/MenuController.html" title="class in ru.nsu.masolygin.controller">MenuController</a></dt>
+<dd>
+<div class="block">Инициализирует элементы управления меню.</div>
 </dd>
 <dt><a href="ru/nsu/masolygin/config/SnakeConfig.html#initialSpeedMs()" class="member-name-link">initialSpeedMs()</a> - Method in record class ru.nsu.masolygin.config.<a href="ru/nsu/masolygin/config/SnakeConfig.html" title="class in ru.nsu.masolygin.config">SnakeConfig</a></dt>
 <dd>
@@ -547,6 +551,12 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Точка входа JavaFX.</div>
 </dd>
+<dt><a href="ru/nsu/masolygin/controller/MenuController.html" class="type-name-link" title="class in ru.nsu.masolygin.controller">MenuController</a> - Class in <a href="ru/nsu/masolygin/controller/package-summary.html">ru.nsu.masolygin.controller</a></dt>
+<dd>
+<div class="block">Контроллер меню игры.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/controller/MenuController.html#%3Cinit%3E()" class="member-name-link">MenuController()</a> - Constructor for class ru.nsu.masolygin.controller.<a href="ru/nsu/masolygin/controller/MenuController.html" title="class in ru.nsu.masolygin.controller">MenuController</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="ru/nsu/masolygin/model/food/FoodType.html#MUSHROOM" class="member-name-link">MUSHROOM</a> - Enum constant in enum class ru.nsu.masolygin.model.food.<a href="ru/nsu/masolygin/model/food/FoodType.html" title="enum class in ru.nsu.masolygin.model.food">FoodType</a></dt>
 <dd>&nbsp;</dd>
 </dl>
@@ -596,6 +606,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the value of the <code>playerBody</code> record component.</div>
 </dd>
+<dt><a href="ru/nsu/masolygin/config/SnakeConfig.html#playerEnabled()" class="member-name-link">playerEnabled()</a> - Method in record class ru.nsu.masolygin.config.<a href="ru/nsu/masolygin/config/SnakeConfig.html" title="class in ru.nsu.masolygin.config">SnakeConfig</a></dt>
+<dd>
+<div class="block">Returns the value of the <code>playerEnabled</code> record component.</div>
+</dd>
 <dt><a href="ru/nsu/masolygin/model/GameSnapshot.html#playerLength()" class="member-name-link">playerLength()</a> - Method in record class ru.nsu.masolygin.model.<a href="ru/nsu/masolygin/model/GameSnapshot.html" title="class in ru.nsu.masolygin.model">GameSnapshot</a></dt>
 <dd>
 <div class="block">Returns the value of the <code>playerLength</code> record component.</div>
@@ -607,6 +621,14 @@ loadScripts(document, 'script');</script>
 <dt><a href="ru/nsu/masolygin/engine/PlayerRunner.html#%3Cinit%3E(ru.nsu.masolygin.model.GameEngine)" class="member-name-link">PlayerRunner(GameEngine)</a> - Constructor for class ru.nsu.masolygin.engine.<a href="ru/nsu/masolygin/engine/PlayerRunner.html" title="class in ru.nsu.masolygin.engine">PlayerRunner</a></dt>
 <dd>
 <div class="block">Конструктор.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/config/SnakeConfig.html#playerStartX()" class="member-name-link">playerStartX()</a> - Method in record class ru.nsu.masolygin.config.<a href="ru/nsu/masolygin/config/SnakeConfig.html" title="class in ru.nsu.masolygin.config">SnakeConfig</a></dt>
+<dd>
+<div class="block">Returns the value of the <code>playerStartX</code> record component.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/config/SnakeConfig.html#playerStartY()" class="member-name-link">playerStartY()</a> - Method in record class ru.nsu.masolygin.config.<a href="ru/nsu/masolygin/config/SnakeConfig.html" title="class in ru.nsu.masolygin.config">SnakeConfig</a></dt>
+<dd>
+<div class="block">Returns the value of the <code>playerStartY</code> record component.</div>
 </dd>
 <dt><a href="ru/nsu/masolygin/model/Point.html" class="type-name-link" title="class in ru.nsu.masolygin.model">Point</a> - Class in <a href="ru/nsu/masolygin/model/package-summary.html">ru.nsu.masolygin.model</a></dt>
 <dd>
@@ -651,6 +673,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Перезапускает потоки с новым набором ботов.</div>
 </dd>
+<dt><a href="ru/nsu/masolygin/SnakeApp.html#returnToMenu()" class="member-name-link">returnToMenu()</a> - Method in class ru.nsu.masolygin.<a href="ru/nsu/masolygin/SnakeApp.html" title="class in ru.nsu.masolygin">SnakeApp</a></dt>
+<dd>
+<div class="block">Возврат в меню.</div>
+</dd>
 <dt><a href="ru/nsu/masolygin/model/Direction.html#RIGHT" class="member-name-link">RIGHT</a> - Enum constant in enum class ru.nsu.masolygin.model.<a href="ru/nsu/masolygin/model/Direction.html" title="enum class in ru.nsu.masolygin.model">Direction</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/masolygin/package-summary.html">ru.nsu.masolygin</a> - package ru.nsu.masolygin</dt>
@@ -683,6 +709,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="ru/nsu/masolygin/model/bot/strategy/AbstractBotStrategy.html#safeDirections(ru.nsu.masolygin.model.bot.BotSnake,ru.nsu.masolygin.model.GameModel)" class="member-name-link">safeDirections(BotSnake, GameModel)</a> - Method in class ru.nsu.masolygin.model.bot.strategy.<a href="ru/nsu/masolygin/model/bot/strategy/AbstractBotStrategy.html" title="class in ru.nsu.masolygin.model.bot.strategy">AbstractBotStrategy</a></dt>
 <dd>
 <div class="block">Возвращает все безопасные направления.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/controller/MenuController.html#setApp(ru.nsu.masolygin.SnakeApp)" class="member-name-link">setApp(SnakeApp)</a> - Method in class ru.nsu.masolygin.controller.<a href="ru/nsu/masolygin/controller/MenuController.html" title="class in ru.nsu.masolygin.controller">MenuController</a></dt>
+<dd>
+<div class="block">Устанавливает ссылку на главное приложение игры.</div>
 </dd>
 <dt><a href="ru/nsu/masolygin/model/GameModel.html#setDirection(ru.nsu.masolygin.model.Direction)" class="member-name-link">setDirection(Direction)</a> - Method in class ru.nsu.masolygin.model.<a href="ru/nsu/masolygin/model/GameModel.html" title="class in ru.nsu.masolygin.model">GameModel</a></dt>
 <dd>
@@ -718,7 +748,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Конфигурация игры.</div>
 </dd>
-<dt><a href="ru/nsu/masolygin/config/SnakeConfig.html#%3Cinit%3E(int,int,int,int,int,int,java.util.List,java.util.List)" class="member-name-link">SnakeConfig(int, int, int, int, int, int, List&lt;SnakeConfig.ObstacleConfig&gt;, List&lt;SnakeConfig.BotConfig&gt;)</a> - Constructor for record class ru.nsu.masolygin.config.<a href="ru/nsu/masolygin/config/SnakeConfig.html" title="class in ru.nsu.masolygin.config">SnakeConfig</a></dt>
+<dt><a href="ru/nsu/masolygin/config/SnakeConfig.html#%3Cinit%3E(int,int,int,int,int,int,java.lang.Boolean,java.util.List,java.util.List,java.lang.Integer,java.lang.Integer)" class="member-name-link">SnakeConfig(int, int, int, int, int, int, Boolean, List&lt;SnakeConfig.ObstacleConfig&gt;, List&lt;SnakeConfig.BotConfig&gt;, Integer, Integer)</a> - Constructor for record class ru.nsu.masolygin.config.<a href="ru/nsu/masolygin/config/SnakeConfig.html" title="class in ru.nsu.masolygin.config">SnakeConfig</a></dt>
 <dd>
 <div class="block">Конструктор.</div>
 </dd>
@@ -761,6 +791,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="ru/nsu/masolygin/SnakeApp.html#start(javafx.stage.Stage)" class="member-name-link">start(Stage)</a> - Method in class ru.nsu.masolygin.<a href="ru/nsu/masolygin/SnakeApp.html" title="class in ru.nsu.masolygin">SnakeApp</a></dt>
 <dd>
 <div class="block">Запускает окно и инициализирует контроллер.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/SnakeApp.html#startGame(ru.nsu.masolygin.config.SnakeConfig)" class="member-name-link">startGame(SnakeConfig)</a> - Method in class ru.nsu.masolygin.<a href="ru/nsu/masolygin/SnakeApp.html" title="class in ru.nsu.masolygin">SnakeApp</a></dt>
+<dd>
+<div class="block">Запускает саму игру.</div>
 </dd>
 <dt><a href="ru/nsu/masolygin/config/SnakeConfig.BotConfig.html#startX()" class="member-name-link">startX()</a> - Method in record class ru.nsu.masolygin.config.<a href="ru/nsu/masolygin/config/SnakeConfig.BotConfig.html" title="class in ru.nsu.masolygin.config">SnakeConfig.BotConfig</a></dt>
 <dd>

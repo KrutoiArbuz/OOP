@@ -77,7 +77,7 @@ loadScripts(document, 'script');</script>
 </div>
 <section class="class-description" id="class-description">
 <hr>
-<div class="type-signature"><span class="modifiers">public record </span><span class="element-name type-name-label">SnakeConfig</span>(int&nbsp;fieldWidth, int&nbsp;fieldHeight, int&nbsp;cellSize, int&nbsp;foodCount, int&nbsp;winLength, int&nbsp;initialSpeedMs, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="SnakeConfig.ObstacleConfig.html" title="class in ru.nsu.masolygin.config">SnakeConfig.ObstacleConfig</a>&gt;&nbsp;obstacles, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="SnakeConfig.BotConfig.html" title="class in ru.nsu.masolygin.config">SnakeConfig.BotConfig</a>&gt;&nbsp;bots)
+<div class="type-signature"><span class="modifiers">public record </span><span class="element-name type-name-label">SnakeConfig</span>(int&nbsp;fieldWidth, int&nbsp;fieldHeight, int&nbsp;cellSize, int&nbsp;foodCount, int&nbsp;winLength, int&nbsp;initialSpeedMs, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&nbsp;playerEnabled, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="SnakeConfig.ObstacleConfig.html" title="class in ru.nsu.masolygin.config">SnakeConfig.ObstacleConfig</a>&gt;&nbsp;obstacles, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="SnakeConfig.BotConfig.html" title="class in ru.nsu.masolygin.config">SnakeConfig.BotConfig</a>&gt;&nbsp;bots, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&nbsp;playerStartX, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&nbsp;playerStartY)
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Record.html" title="class or interface in java.lang" class="external-link">Record</a></span></div>
 <div class="block">Конфигурация игры.</div>
 </section>
@@ -113,14 +113,17 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int,int,int,int,int,int,java.util.List,java.util.List)" class="member-name-link">SnakeConfig</a><wbr>(int&nbsp;fieldWidth,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int,int,int,int,int,int,java.lang.Boolean,java.util.List,java.util.List,java.lang.Integer,java.lang.Integer)" class="member-name-link">SnakeConfig</a><wbr>(int&nbsp;fieldWidth,
  int&nbsp;fieldHeight,
  int&nbsp;cellSize,
  int&nbsp;foodCount,
  int&nbsp;winLength,
  int&nbsp;initialSpeedMs,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&nbsp;playerEnabled,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="SnakeConfig.ObstacleConfig.html" title="class in ru.nsu.masolygin.config">SnakeConfig.ObstacleConfig</a>&gt;&nbsp;obstacles,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="SnakeConfig.BotConfig.html" title="class in ru.nsu.masolygin.config">SnakeConfig.BotConfig</a>&gt;&nbsp;bots)</code></div>
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="SnakeConfig.BotConfig.html" title="class in ru.nsu.masolygin.config">SnakeConfig.BotConfig</a>&gt;&nbsp;bots,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&nbsp;playerStartX,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&nbsp;playerStartY)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Конструктор.</div>
 </div>
@@ -188,14 +191,29 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the value of the <code>obstacles</code> record component.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#playerEnabled()" class="member-name-link">playerEnabled</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the value of the <code>playerEnabled</code> record component.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#playerStartX()" class="member-name-link">playerStartX</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the value of the <code>playerStartX</code> record component.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#playerStartY()" class="member-name-link">playerStartY</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the value of the <code>playerStartY</code> record component.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns a string representation of this record class.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#winLength()" class="member-name-link">winLength</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#winLength()" class="member-name-link">winLength</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the value of the <code>winLength</code> record component.</div>
 </div>
 </div>
@@ -216,7 +234,7 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(int,int,int,int,int,int,java.util.List,java.util.List)">
+<section class="detail" id="&lt;init&gt;(int,int,int,int,int,int,java.lang.Boolean,java.util.List,java.util.List,java.lang.Integer,java.lang.Integer)">
 <h3>SnakeConfig</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">SnakeConfig</span><wbr><span class="parameters">(int&nbsp;fieldWidth,
  int&nbsp;fieldHeight,
@@ -224,8 +242,11 @@ loadScripts(document, 'script');</script>
  int&nbsp;foodCount,
  int&nbsp;winLength,
  int&nbsp;initialSpeedMs,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a>&nbsp;playerEnabled,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="SnakeConfig.ObstacleConfig.html" title="class in ru.nsu.masolygin.config">SnakeConfig.ObstacleConfig</a>&gt;&nbsp;obstacles,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="SnakeConfig.BotConfig.html" title="class in ru.nsu.masolygin.config">SnakeConfig.BotConfig</a>&gt;&nbsp;bots)</span></div>
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="SnakeConfig.BotConfig.html" title="class in ru.nsu.masolygin.config">SnakeConfig.BotConfig</a>&gt;&nbsp;bots,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&nbsp;playerStartX,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&nbsp;playerStartY)</span></div>
 <div class="block">Конструктор.</div>
 </section>
 </li>
@@ -356,6 +377,17 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="playerEnabled()">
+<h3>playerEnabled</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html" title="class or interface in java.lang" class="external-link">Boolean</a></span>&nbsp;<span class="element-name">playerEnabled</span>()</div>
+<div class="block">Returns the value of the <code>playerEnabled</code> record component.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the value of the <code>playerEnabled</code> record component</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="obstacles()">
 <h3>obstacles</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="SnakeConfig.ObstacleConfig.html" title="class in ru.nsu.masolygin.config">SnakeConfig.ObstacleConfig</a>&gt;</span>&nbsp;<span class="element-name">obstacles</span>()</div>
@@ -374,6 +406,28 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the value of the <code>bots</code> record component</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="playerStartX()">
+<h3>playerStartX</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a></span>&nbsp;<span class="element-name">playerStartX</span>()</div>
+<div class="block">Returns the value of the <code>playerStartX</code> record component.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the value of the <code>playerStartX</code> record component</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="playerStartY()">
+<h3>playerStartY</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a></span>&nbsp;<span class="element-name">playerStartY</span>()</div>
+<div class="block">Returns the value of the <code>playerStartY</code> record component.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the value of the <code>playerStartY</code> record component</dd>
 </dl>
 </section>
 </li>
