@@ -132,9 +132,12 @@ public class GameEngine {
                 model.playerSnake.addGrowth(eaten.getType().getGrowAmount());
                 model.speedEffect.apply(eaten.getType().getSpeedDeltaMs());
                 model.foods.remove(eaten);
-                spawnFood();
             }
             model.playerSnake.step();
+
+            if (eaten != null) {
+                spawnFood();
+            }
 
             if (model.playerSnake.getLength() >= model.winLength) {
                 model.state = GameState.WON;
@@ -173,9 +176,11 @@ public class GameEngine {
             if (eaten != null) {
                 bot.addGrowth(eaten.getType().getGrowAmount());
                 model.foods.remove(eaten);
-                spawnFood();
             }
             bot.step();
+            if (eaten != null) {
+                spawnFood();
+            }
             model.refreshSnapshot();
         } finally {
             model.tickLock.unlock();
