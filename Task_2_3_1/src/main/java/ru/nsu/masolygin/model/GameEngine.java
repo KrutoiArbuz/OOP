@@ -65,11 +65,16 @@ public class GameEngine {
         try {
             loadObstacles();
 
-            model.playerSnake = new Snake(safeSpawn(
-                model.width / 2, model.height / 2, Set.of()));
-
             Set<Point> occupiedByBots = new HashSet<>();
-            occupiedByBots.add(model.playerSnake.getHead());
+
+            if (config.playerEnabled()) {
+                int px = (config.playerStartX() != null) ? config.playerStartX() : model.width / 2;
+                int py = (config.playerStartY() != null) ? config.playerStartY() : model.height / 2;
+                model.playerSnake = new Snake(safeSpawn(px, py, Set.of()));
+                occupiedByBots.add(model.playerSnake.getHead());
+            } else {
+                model.playerSnake = null;
+            }
 
             model.botSnakes = new ArrayList<>();
             for (SnakeConfig.BotConfig bc : config.bots()) {
@@ -101,6 +106,9 @@ public class GameEngine {
      * ботов.
      */
     public void executePlayerStep() {
+        if (!config.playerEnabled()) {
+            return;
+        }
         model.tickLock.lock();
         try {
             Direction pending = model.pendingPlayerDirection.getAndSet(null);
@@ -206,7 +214,7 @@ public class GameEngine {
         if (isOutOfBounds(next) || model.obstaclePositions.contains(next)) {
             return true;
         }
-        if (model.playerSnake.contains(next)) {
+        if (model.playerSnake != null && model.playerSnake.contains(next)) {
             return true;
         }
         List<Point> selfBody = self.getBody();
@@ -233,7 +241,10 @@ public class GameEngine {
     }
 
     private void spawnFood() {
-        Set<Point> occupied = new HashSet<>(model.playerSnake.getBody());
+        Set<Point> occupied = new HashSet<>();
+        if (model.playerSnake != null) {
+            occupied.addAll(model.playerSnake.getBody());
+        }
         for (BotSnake bot : model.botSnakes) {
             occupied.addAll(bot.getBody());
         }

@@ -87,6 +87,26 @@ class GameEngineTest {
     }
 
     @Test
+    void testPlayerDisabled() {
+        SnakeConfig customConfig = new SnakeConfig(20, 20, 20, 1, 10, 200, false, null, null, null,
+            null);
+        GameModel customModel = new GameModel(customConfig);
+        GameEngine customEngine = new GameEngine(customModel, customConfig);
+        customEngine.reset();
+        assertEquals(null, customModel.playerSnake);
+    }
+
+    @Test
+    void testCustomPlayerStartPosition() {
+        SnakeConfig customConfig = new SnakeConfig(20, 20, 20, 1, 10, 200, true, null, null, 5, 5);
+        GameModel customModel = new GameModel(customConfig);
+        GameEngine customEngine = new GameEngine(customModel, customConfig);
+        customEngine.reset();
+        assertNotNull(customModel.playerSnake);
+        assertEquals(new Point(5, 5), customModel.playerSnake.getHead());
+    }
+
+    @Test
     void testObstaclesLoaded() {
         engine.reset();
         assertNotNull(model.obstacles);

@@ -48,6 +48,17 @@ class SnakeConfigTest {
     }
 
     @Test
+    void testPlayerEnabled() {
+        assertTrue(config.playerEnabled());
+    }
+
+    @Test
+    void testPlayerStartPositionsNullByDefault() {
+        assertEquals(null, config.playerStartX());
+        assertEquals(null, config.playerStartY());
+    }
+
+    @Test
     void testInitialSpeedMs() {
         assertTrue(config.initialSpeedMs() > 0);
     }
@@ -64,7 +75,8 @@ class SnakeConfigTest {
 
     @Test
     void testCustomConfig() {
-        SnakeConfig custom = new SnakeConfig(30, 35, 20, 5, 50, 150, List.of(), List.of());
+        SnakeConfig custom = new SnakeConfig(30, 35, 20, 5, 50, 150, true, List.of(), List.of(),
+            null, null);
         assertEquals(30, custom.fieldWidth());
         assertEquals(35, custom.fieldHeight());
         assertEquals(20, custom.cellSize());
@@ -85,7 +97,7 @@ class SnakeConfigTest {
 
     @Test
     void testNullObstaclesBecomesEmpty() {
-        SnakeConfig c = new SnakeConfig(10, 10, 10, 1, 10, 100, null, null);
+        SnakeConfig c = new SnakeConfig(10, 10, 10, 1, 10, 100, true, null, null, null, null);
         assertNotNull(c.obstacles());
         assertNotNull(c.bots());
         assertEquals(0, c.obstacles().size());

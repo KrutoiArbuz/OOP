@@ -157,6 +157,9 @@ public class GameRenderer {
      * @param cell размер клетки
      */
     private void drawPlayer(GraphicsContext gc, List<Point> body, int cell) {
+        if (body == null) {
+            return;
+        }
         for (int i = 0; i < body.size(); i++) {
             if (i == 0) {
                 drawChar(gc, CH_PLAYER_HEAD, body.get(i), cell, Color.rgb(100, 255, 80));
@@ -193,17 +196,26 @@ public class GameRenderer {
      */
     private void updateScoreLabel(GameSnapshot snap) {
         long aliveBots = snap.bots().stream().filter(GameSnapshot.BotSnapshot::alive).count();
-        String effect = "";
-        if (snap.speedEffectTicks() > 0) {
-            boolean faster = snap.speedMs() < config.initialSpeedMs();
-            effect = (faster ? "  ⚡" : "  🐢") + "+" + snap.speedEffectTicks();
+
+        StringBuilder sb = new StringBuilder();
+
+        if (config.playerEnabled()) {
+            sb.append("Длина: ").append(snap.playerLength());
+            if (snap.winLength() != Integer.MAX_VALUE) {
+                sb.append("/").append(snap.winLength());
+            }
+            sb.append("   Скорость: ").append(snap.speedMs()).append("мс");
+
+            if (snap.speedEffectTicks() > 0) {
+                boolean faster = snap.speedMs() < config.initialSpeedMs();
+                sb.append(faster ? "  ⚡+" : "  🐢+").append(snap.speedEffectTicks());
+            }
+            sb.append("   ");
         }
-        scoreLabel.setText(
-            "Длина: " + snap.playerLength() + "/" + snap.winLength()
-                + "   " + snap.speedMs() + "мс/ход"
-                + "   Ботов: " + aliveBots + "/" + snap.bots().size()
-                + effect
-        );
+
+        sb.append("Ботов: ").append(aliveBots).append("/").append(snap.bots().size());
+
+        scoreLabel.setText(sb.toString());
     }
 
     /**

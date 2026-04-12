@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
@@ -22,7 +23,7 @@ public class GameModel {
     final int height;
     final int foodCount;
     final int winLength;
-    final List<Food> foods = new ArrayList<>();
+    final List<Food> foods = new CopyOnWriteArrayList<>();
     final List<Obstacle> obstacles = new ArrayList<>();
     final Set<Point> obstaclePositions = new HashSet<>();
     final SpeedEffect speedEffect;
@@ -190,12 +191,12 @@ public class GameModel {
             .collect(Collectors.toList());
 
         return new GameSnapshot(
-            playerSnake.getBody(),
+            playerSnake != null ? playerSnake.getBody() : List.of(),
             List.copyOf(botSnaps),
             List.copyOf(foods),
             List.copyOf(obstacles),
             state,
-            playerSnake.getLength(),
+            playerSnake != null ? playerSnake.getLength() : 0,
             winLength,
             speedEffect.getSpeedMs(),
             speedEffect.getTicksLeft()

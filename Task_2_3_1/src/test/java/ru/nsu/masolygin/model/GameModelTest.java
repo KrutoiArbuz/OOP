@@ -50,6 +50,14 @@ class GameModelTest {
     }
 
     @Test
+    void testFoodsIsCopyOnWriteArrayList() throws Exception {
+        java.lang.reflect.Field field = GameModel.class.getDeclaredField("foods");
+        field.setAccessible(true);
+        Object foodsObj = field.get(model);
+        assertTrue(foodsObj instanceof java.util.concurrent.CopyOnWriteArrayList);
+    }
+
+    @Test
     void testGetObstacles() {
         assertNotNull(model.getObstacles());
     }

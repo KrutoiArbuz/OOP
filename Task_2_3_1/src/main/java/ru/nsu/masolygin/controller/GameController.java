@@ -5,6 +5,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import ru.nsu.masolygin.SnakeApp;
 import ru.nsu.masolygin.config.SnakeConfig;
 import ru.nsu.masolygin.engine.BotRunner;
 import ru.nsu.masolygin.engine.PlayerRunner;
@@ -28,6 +29,7 @@ public class GameController {
     @FXML
     private StackPane overlayPane;
 
+    private SnakeApp app;
     private GameModel model;
     private GameEngine engine;
     private PlayerRunner playerRunner;
@@ -38,8 +40,10 @@ public class GameController {
      * Инициализирует модель, движок, рендер и потоки.
      *
      * @param config конфигурация игры
+     * @param app    ссылка на основное приложение
      */
-    public void init(SnakeConfig config) {
+    public void init(SnakeConfig config, SnakeApp app) {
+        this.app = app;
         model = new GameModel(config);
         engine = new GameEngine(model, config);
         engine.reset();
@@ -53,8 +57,10 @@ public class GameController {
         botRunner = new BotRunner();
         botRunner.start(model.getBotSnakes(), engine);
 
-        playerRunner = new PlayerRunner(engine);
-        playerRunner.start();
+        if (Boolean.TRUE.equals(config.playerEnabled())) {
+            playerRunner = new PlayerRunner(engine);
+            playerRunner.start();
+        }
 
         renderLoop = new RenderLoop(model, renderer::render);
         renderLoop.start();
@@ -82,6 +88,11 @@ public class GameController {
      */
     public void handleKeyPress(KeyEvent event) {
         switch (event.getCode()) {
+            case ESCAPE -> {
+                if (app != null) {
+                    app.returnToMenu();
+                }
+            }
             case UP, W -> model.setDirection(Direction.UP);
             case DOWN, S -> model.setDirection(Direction.DOWN);
             case LEFT, A -> model.setDirection(Direction.LEFT);

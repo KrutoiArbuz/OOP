@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="600.0" prefWidth="900.0"
+  xmlns="http://javafx.com/javafx/17" fx:controller="ru.nsu.masolygin.controller.MenuController">
+  <bottom>
+    <HBox style="-fx-padding: 20;" BorderPane.alignment="CENTER" alignment="CENTER">
+      <children>
+        <Button style="-fx-font-size: 20px; -fx-padding: 10 30;" mnemonicParsing="false"
+          text="НАЧАТЬ ИГРУ" fx:id="startBtn"/>
+      </children>
+    </HBox>
+  </bottom>
+
+  <center>
+    <ScrollPane style="-fx-background-color: transparent; -fx-padding: 10;" BorderPane.alignment="CENTER"
+      fitToHeight="true" fitToWidth="true">
+      <content>
+        <StackPane style="-fx-background-color: transparent;">
+          <children>
+            <GridPane style="-fx-background-color: #222222; -fx-padding: 0;" alignment="CENTER" hgap="1.0"
+              vgap="1.0" fx:id="gridPane">
+            </GridPane>
+          </children>
+        </StackPane>
+      </content>
+    </ScrollPane>
+  </center>
+
+  <left>
+    <ScrollPane style="-fx-background-color: transparent; -fx-background: #ffffff;" BorderPane.alignment="CENTER"
+      fitToWidth="true"
+      prefWidth="280.0">
+      <content>
+        <VBox style="-fx-padding: 15;" spacing="8.0">
+          <children>
+            <Button mnemonicParsing="false" text="Очистить поле" fx:id="clearBtn"/>
+            <CheckBox mnemonicParsing="false" text="Бесконечная игра" fx:id="infiniteWinBox"/>
+
+            <CheckBox mnemonicParsing="false" text="Играть только ботами" fx:id="noPlayerBox"/>
+            <Label text="Ширина поля (мин 6):"/>
+
+            <Label text="Высота поля (мин 6):"/>
+            <Label text="Скорость игрока (мс):" fx:id="speedLabel"/>
+
+            <Label text="Скорость ботов (мс):"/>
+            <Label text="Количество еды:"/>
+
+            <Label text="Длина для победы:" fx:id="winLabel"/>
+            <Label text="Редактор поля (Кисть):"/>
+
+            <RadioButton mnemonicParsing="false" selected="true" text="Препятствие"
+              fx:id="brushObstacle">
+              <toggleGroup>
+                <ToggleGroup fx:id="brushGroup"/>
+              </toggleGroup>
+            </RadioButton>
+            <RadioButton mnemonicParsing="false" text="Игрок (Зеленый)" toggleGroup="$brushGroup"
+              fx:id="brushPlayer"/>
+
+            <RadioButton mnemonicParsing="false" text="Бот (Жадный)" toggleGroup="$brushGroup"
+              fx:id="brushBotGreedy"/>
+            <RadioButton mnemonicParsing="false" text="Бот (Стена)" toggleGroup="$brushGroup"
+              fx:id="brushBotWall"/>
+
+            <RadioButton mnemonicParsing="false" text="Бот (Случайный)" toggleGroup="$brushGroup"
+              fx:id="brushBotRandom"/>
+
+            <RadioButton mnemonicParsing="false" text="Ластик (Удалить)" toggleGroup="$brushGroup"
+              fx:id="brushEraser"/>
+            <Separator prefWidth="200.0"/>
+            <Slider majorTickUnit="50.0" max="500.0" min="50.0" showTickLabels="true"
+              showTickMarks="true" fx:id="speedSlider"/>
+            <Slider majorTickUnit="50.0" max="500.0" min="50.0" showTickLabels="true"
+              showTickMarks="true" fx:id="botSpeedSlider"/>
+            <Spinner editable="true" fx:id="widthSpinner"/>
+            <Spinner editable="true" fx:id="heightSpinner"/>
+            <Spinner editable="true" fx:id="foodSpinner"/>
+
+            <Spinner editable="true" fx:id="winSpinner"/>
+          </children>
+        </VBox>
+      </content>
+    </ScrollPane>
+  </left>
+</BorderPane>

@@ -13,14 +13,20 @@ public record SnakeConfig(
     @JsonProperty("foodCount") int foodCount,
     @JsonProperty("winLength") int winLength,
     @JsonProperty("initialSpeedMs") int initialSpeedMs,
+    @JsonProperty("playerEnabled") Boolean playerEnabled,
     @JsonProperty("obstacles") List<ObstacleConfig> obstacles,
-    @JsonProperty("bots") List<BotConfig> bots
+    @JsonProperty("bots") List<BotConfig> bots,
+    @JsonProperty("playerStartX") Integer playerStartX,
+    @JsonProperty("playerStartY") Integer playerStartY
 ) {
 
     /**
      * Конструктор.
      */
     public SnakeConfig {
+        if (playerEnabled == null) {
+            playerEnabled = true;
+        }
         if (obstacles == null) {
             obstacles = List.of();
         }
@@ -35,7 +41,7 @@ public record SnakeConfig(
      * @return конфигурация
      */
     public static SnakeConfig defaults() {
-        return new SnakeConfig(25, 25, 26, 3, 20, 200, List.of(), List.of());
+        return new SnakeConfig(25, 25, 26, 3, 20, 200, true, List.of(), List.of(), null, null);
     }
 
     /**
