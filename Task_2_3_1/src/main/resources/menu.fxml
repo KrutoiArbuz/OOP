@@ -47,19 +47,31 @@
       <content>
         <VBox style="-fx-padding: 15;" spacing="8.0">
           <children>
-            <Button mnemonicParsing="false" text="Очистить поле" fx:id="clearBtn"/>
+            <CheckBox mnemonicParsing="false" text="Играть только ботами" fx:id="noPlayerBox"/>
             <CheckBox mnemonicParsing="false" text="Бесконечная игра" fx:id="infiniteWinBox"/>
 
-            <CheckBox mnemonicParsing="false" text="Играть только ботами" fx:id="noPlayerBox"/>
             <Label text="Ширина поля (мин 6):"/>
+            <Spinner editable="true" fx:id="widthSpinner"/>
 
             <Label text="Высота поля (мин 6):"/>
-            <Label text="Скорость игрока (мс):" fx:id="speedLabel"/>
+            <Spinner editable="true" fx:id="heightSpinner"/>
 
-            <Label text="Скорость ботов (мс):"/>
             <Label text="Количество еды:"/>
+            <Spinner editable="true" fx:id="foodSpinner"/>
 
             <Label text="Длина для победы:" fx:id="winLabel"/>
+            <Spinner editable="true" fx:id="winSpinner"/>
+
+            <Label text="Скорость игрока (мс):" fx:id="speedLabel"/>
+            <Slider majorTickUnit="50.0" max="500.0" min="50.0" showTickLabels="true"
+              showTickMarks="true" fx:id="speedSlider"/>
+
+            <Label text="Скорость ботов (мс):"/>
+            <Slider majorTickUnit="50.0" max="500.0" min="50.0" showTickLabels="true"
+              showTickMarks="true" fx:id="botSpeedSlider"/>
+
+            <Separator prefWidth="200.0"/>
+
             <Label text="Редактор поля (Кисть):"/>
 
             <RadioButton mnemonicParsing="false" selected="true" text="Препятствие"
@@ -81,16 +93,8 @@
 
             <RadioButton mnemonicParsing="false" text="Ластик (Удалить)" toggleGroup="$brushGroup"
               fx:id="brushEraser"/>
-            <Separator prefWidth="200.0"/>
-            <Slider majorTickUnit="50.0" max="500.0" min="50.0" showTickLabels="true"
-              showTickMarks="true" fx:id="speedSlider"/>
-            <Slider majorTickUnit="50.0" max="500.0" min="50.0" showTickLabels="true"
-              showTickMarks="true" fx:id="botSpeedSlider"/>
-            <Spinner editable="true" fx:id="widthSpinner"/>
-            <Spinner editable="true" fx:id="heightSpinner"/>
-            <Spinner editable="true" fx:id="foodSpinner"/>
 
-            <Spinner editable="true" fx:id="winSpinner"/>
+            <Button mnemonicParsing="false" text="Очистить поле" fx:id="clearBtn"/>
           </children>
         </VBox>
       </content>
