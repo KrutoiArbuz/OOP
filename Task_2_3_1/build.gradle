@@ -37,7 +37,9 @@ jacocoTestReport {
                 '**/GameController.class',
                 '**/SnakeApp.class',
                 '**/GameRenderer.class',
-                '**/Launcher.class'
+                '**/Launcher.class',
+                '**/MenuController.class',
+                '**/PlayerRunner.class'
             ])
         }))
     }
