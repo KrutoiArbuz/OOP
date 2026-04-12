@@ -14,12 +14,13 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import ru.nsu.masolygin.SnakeApp;
 import ru.nsu.masolygin.config.ConfigLoader;
 import ru.nsu.masolygin.config.SnakeConfig;
 import ru.nsu.masolygin.model.Point;
+import ru.nsu.masolygin.view.CellType;
+import ru.nsu.masolygin.view.MenuRenderer;
 
 /**
  * Контроллер меню игры.
@@ -74,6 +75,7 @@ public class MenuController {
     private CellType currentBrush = CellType.OBSTACLE;
     private SnakeApp app;
     private SnakeConfig baseConfig;
+    private MenuRenderer menuRenderer;
 
     /**
      * Инициализирует элементы управления меню.
@@ -151,6 +153,8 @@ public class MenuController {
 
         startBtn.setOnAction(e -> startGame());
 
+        menuRenderer = new MenuRenderer(gridPane, this::applyBrush);
+
         Runnable rebuildGrid = this::buildGrid;
         widthSpinner.valueProperty().addListener((obs, ov, nv) -> rebuildGrid.run());
         heightSpinner.valueProperty().addListener((obs, ov, nv) -> rebuildGrid.run());
@@ -171,35 +175,8 @@ public class MenuController {
      * Создает или обновляет превью-сетку.
      */
     private void buildGrid() {
-        int width = widthSpinner.getValue();
-        int height = heightSpinner.getValue();
-        gridPane.getChildren().clear();
-
-        double maxAvailableScreen = 500.0;
-        int cellSize = (int) Math.min((maxAvailableScreen / width), (maxAvailableScreen / height));
-        if (cellSize < 3) {
-            cellSize = 3;
-        }
-
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                Rectangle cell = new Rectangle(cellSize, cellSize, Color.BLACK);
-                final int cx = x;
-                final int cy = y;
-
-                Point p = new Point(cx, cy);
-                CellType existingType = cellMap.getOrDefault(p, CellType.EMPTY);
-                cell.setFill(existingType.color);
-
-                cell.setOnMouseClicked(event -> applyBrush(p, cell));
-                cell.setOnMouseEntered(event -> {
-                    if (event.isPrimaryButtonDown()) {
-                        applyBrush(p, cell);
-                    }
-                });
-
-                gridPane.add(cell, x, y);
-            }
+        if (menuRenderer != null) {
+            menuRenderer.renderGrid(widthSpinner.getValue(), heightSpinner.getValue(), cellMap);
         }
     }
 
@@ -230,7 +207,7 @@ public class MenuController {
         } else {
             cellMap.put(p, currentBrush);
         }
-        cell.setFill(currentBrush.color);
+        cell.setFill(currentBrush.getColor());
     }
 
     /**
@@ -271,7 +248,7 @@ public class MenuController {
                 };
                 bots.add(new SnakeConfig.BotConfig(
                     p.getX(), p.getY(), strategy,
-                    "#" + type.color.toString().substring(2, 8).toLowerCase(),
+                    "#" + type.getColor().toString().substring(2, 8).toLowerCase(),
                     (int) botSpeedSlider.getValue()
                 ));
             }
@@ -294,23 +271,5 @@ public class MenuController {
         );
 
         app.startGame(finalConfig);
-    }
-
-    /**
-     * Типы ячеек в редакторе карты.
-     */
-    private enum CellType {
-        EMPTY(Color.BLACK),
-        OBSTACLE(Color.GRAY),
-        PLAYER(Color.web("#2ecc71")),
-        BOT_GREEDY(Color.web("#3498db")),
-        BOT_RANDOM(Color.web("#e73cdb")),
-        BOT_WALL_HUGGER(Color.web("#e67e22"));
-
-        final Color color;
-
-        CellType(Color color) {
-            this.color = color;
-        }
     }
 }
