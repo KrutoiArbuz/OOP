@@ -36,6 +36,8 @@
                style="-fx-background-color: rgba(0, 0, 0, 0.70);">
 
         <Label fx:id="statusLabel"
+               prefWidth="300"
+               prefHeight="150"
                text=""
                style="-fx-text-fill: white;
                       -fx-font-size: 22px;
