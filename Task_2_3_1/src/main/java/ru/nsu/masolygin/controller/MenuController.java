@@ -14,6 +14,7 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import ru.nsu.masolygin.SnakeApp;
 import ru.nsu.masolygin.config.ConfigLoader;
@@ -72,6 +73,16 @@ public class MenuController {
     private Button startBtn;
     @FXML
     private GridPane gridPane;
+
+    @FXML
+    private StackPane errorOverlay;
+    @FXML
+    private Label errorTitle;
+    @FXML
+    private Label errorMessage;
+    @FXML
+    private Button errorOkBtn;
+
     private CellType currentBrush = CellType.OBSTACLE;
     private SnakeApp app;
     private SnakeConfig baseConfig;
@@ -153,7 +164,8 @@ public class MenuController {
 
         startBtn.setOnAction(e -> startGame());
 
-        menuRenderer = new MenuRenderer(gridPane, this::applyBrush);
+        menuRenderer = new MenuRenderer(gridPane, errorOverlay, errorTitle, errorMessage,
+            errorOkBtn, this::applyBrush);
 
         Runnable rebuildGrid = this::buildGrid;
         widthSpinner.valueProperty().addListener((obs, ov, nv) -> rebuildGrid.run());
@@ -176,7 +188,18 @@ public class MenuController {
      */
     private void buildGrid() {
         if (menuRenderer != null) {
-            menuRenderer.renderGrid(widthSpinner.getValue(), heightSpinner.getValue(), cellMap);
+            boolean playerEnabled = !noPlayerBox.isSelected();
+            Point playerPos = null;
+
+            for (Map.Entry<Point, CellType> entry : cellMap.entrySet()) {
+                if (entry.getValue() == CellType.PLAYER) {
+                    playerPos = entry.getKey();
+                    break;
+                }
+            }
+
+            menuRenderer.renderGrid(widthSpinner.getValue(), heightSpinner.getValue(), cellMap,
+                playerEnabled, playerPos);
         }
     }
 
@@ -197,9 +220,10 @@ public class MenuController {
             }
             if (oldPlayer != null && !oldPlayer.equals(p)) {
                 cellMap.remove(oldPlayer);
-                buildGrid();
-                return;
             }
+            cellMap.put(p, currentBrush);
+            buildGrid();
+            return;
         }
 
         if (currentBrush == CellType.EMPTY) {
@@ -211,10 +235,92 @@ public class MenuController {
     }
 
     /**
+     * Анализирует введенные значения. Возвращает false, если настройки игры некорректны (выводя
+     * предупреждение).
+     */
+    private boolean validateConfig() {
+        int w = widthSpinner.getValue();
+        int h = heightSpinner.getValue();
+        int obstaclesCount = 0;
+        Point playerPos = null;
+
+        for (Map.Entry<Point, CellType> entry : cellMap.entrySet()) {
+            Point p = entry.getKey();
+            CellType type = entry.getValue();
+
+            if (p.getX() >= w || p.getY() >= h) {
+                continue;
+            }
+
+            if (type == CellType.PLAYER) {
+                playerPos = p;
+            } else if (type == CellType.OBSTACLE) {
+                obstaclesCount++;
+            }
+        }
+
+        boolean playerEnabled = !noPlayerBox.isSelected();
+        if (playerEnabled && playerPos != null) {
+            if (!has3x3FreeSpace(playerPos, w, h)) {
+                if (menuRenderer != null) {
+                    menuRenderer.showNotEnoughSpaceError();
+                }
+                return false;
+            }
+        }
+
+        int playerCells = (playerEnabled && playerPos != null) ? 9 : 0;
+        int freeCells = (w * h) - obstaclesCount - playerCells;
+
+        if (freeCells < 0) {
+            if (menuRenderer != null) {
+                menuRenderer.showNotEnoughSpaceError();
+            }
+            return false;
+        }
+
+        if (foodSpinner.getValue() > freeCells) {
+            if (menuRenderer != null) {
+                menuRenderer.showTooMuchFoodError(freeCells);
+            }
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Проверяет, что 3x3 область вокруг игрока не содержит препятствий.
+     *
+     * @param playerPos позиция игрока
+     * @param w         ширина поля
+     * @param h         высота поля
+     * @return true если пространство свободно
+     */
+    private boolean has3x3FreeSpace(Point playerPos, int w, int h) {
+        int px = playerPos.getX();
+        int py = playerPos.getY();
+
+        for (int x = px - 1; x <= px + 1; x++) {
+            for (int y = py - 1; y <= py + 1; y++) {
+                if (x < 0 || x >= w || y < 0 || y >= h) {
+                    return false;
+                }
+                Point checkPoint = new Point(x, y);
+                CellType type = cellMap.get(checkPoint);
+                if (type == CellType.OBSTACLE) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
      * Собирает конфигурацию и запускает игру.
      */
     private void startGame() {
-        if (app == null) {
+        if (app == null || !validateConfig()) {
             return;
         }
 
