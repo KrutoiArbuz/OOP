@@ -493,6 +493,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Возвращает хеш-код точки.</div>
 </dd>
+<dt><a href="ru/nsu/masolygin/view/MenuRenderer.html#hideErrorModal()" class="member-name-link">hideErrorModal()</a> - Method in class ru.nsu.masolygin.view.<a href="ru/nsu/masolygin/view/MenuRenderer.html" title="class in ru.nsu.masolygin.view">MenuRenderer</a></dt>
+<dd>
+<div class="block">Скрывает модальное окно.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:I">I</h2>
 <dl class="index">
@@ -573,9 +577,9 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/masolygin/view/MenuRenderer.html" class="type-name-link" title="class in ru.nsu.masolygin.view">MenuRenderer</a> - Class in <a href="ru/nsu/masolygin/view/package-summary.html">ru.nsu.masolygin.view</a></dt>
 <dd>
-<div class="block">Рендерер сетки редактора карты в меню.</div>
+<div class="block">Рендер меню игры.</div>
 </dd>
-<dt><a href="ru/nsu/masolygin/view/MenuRenderer.html#%3Cinit%3E(javafx.scene.layout.GridPane,java.util.function.BiConsumer)" class="member-name-link">MenuRenderer(GridPane, BiConsumer&lt;Point, Rectangle&gt;)</a> - Constructor for class ru.nsu.masolygin.view.<a href="ru/nsu/masolygin/view/MenuRenderer.html" title="class in ru.nsu.masolygin.view">MenuRenderer</a></dt>
+<dt><a href="ru/nsu/masolygin/view/MenuRenderer.html#%3Cinit%3E(javafx.scene.layout.GridPane,javafx.scene.layout.StackPane,javafx.scene.control.Label,javafx.scene.control.Label,javafx.scene.control.Button,java.util.function.BiConsumer)" class="member-name-link">MenuRenderer(GridPane, StackPane, Label, Label, Button, BiConsumer&lt;Point, Rectangle&gt;)</a> - Constructor for class ru.nsu.masolygin.view.<a href="ru/nsu/masolygin/view/MenuRenderer.html" title="class in ru.nsu.masolygin.view">MenuRenderer</a></dt>
 <dd>
 <div class="block">Конструктор.</div>
 </dd>
@@ -679,9 +683,9 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Рисует кадр игры.</div>
 </dd>
-<dt><a href="ru/nsu/masolygin/view/MenuRenderer.html#renderGrid(int,int,java.util.Map)" class="member-name-link">renderGrid(int, int, Map&lt;Point, CellType&gt;)</a> - Method in class ru.nsu.masolygin.view.<a href="ru/nsu/masolygin/view/MenuRenderer.html" title="class in ru.nsu.masolygin.view">MenuRenderer</a></dt>
+<dt><a href="ru/nsu/masolygin/view/MenuRenderer.html#renderGrid(int,int,java.util.Map,boolean,ru.nsu.masolygin.model.Point)" class="member-name-link">renderGrid(int, int, Map&lt;Point, CellType&gt;, boolean, Point)</a> - Method in class ru.nsu.masolygin.view.<a href="ru/nsu/masolygin/view/MenuRenderer.html" title="class in ru.nsu.masolygin.view">MenuRenderer</a></dt>
 <dd>
-<div class="block">Отрисовывает сетку редактора.</div>
+<div class="block">Отрисовывает сетку редактора с визуализацией доступной зоны спауна игрока.</div>
 </dd>
 <dt><a href="ru/nsu/masolygin/engine/RenderLoop.html" class="type-name-link" title="class in ru.nsu.masolygin.engine">RenderLoop</a> - Class in <a href="ru/nsu/masolygin/engine/package-summary.html">ru.nsu.masolygin.engine</a></dt>
 <dd>
@@ -755,6 +759,18 @@ loadScripts(document, 'script');</script>
 <dt><a href="ru/nsu/masolygin/model/bot/BotSnake.html#setStrategy(ru.nsu.masolygin.model.bot.strategy.AbstractBotStrategy)" class="member-name-link">setStrategy(AbstractBotStrategy)</a> - Method in class ru.nsu.masolygin.model.bot.<a href="ru/nsu/masolygin/model/bot/BotSnake.html" title="class in ru.nsu.masolygin.model.bot">BotSnake</a></dt>
 <dd>
 <div class="block">Устанавливает стратегию бота.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/view/MenuRenderer.html#showErrorModal(java.lang.String,java.lang.String)" class="member-name-link">showErrorModal(String, String)</a> - Method in class ru.nsu.masolygin.view.<a href="ru/nsu/masolygin/view/MenuRenderer.html" title="class in ru.nsu.masolygin.view">MenuRenderer</a></dt>
+<dd>
+<div class="block">Показывает модальное окно с ошибкой.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/view/MenuRenderer.html#showNotEnoughSpaceError()" class="member-name-link">showNotEnoughSpaceError()</a> - Method in class ru.nsu.masolygin.view.<a href="ru/nsu/masolygin/view/MenuRenderer.html" title="class in ru.nsu.masolygin.view">MenuRenderer</a></dt>
+<dd>
+<div class="block">Показывает ошибку нехватки пространства.</div>
+</dd>
+<dt><a href="ru/nsu/masolygin/view/MenuRenderer.html#showTooMuchFoodError(int)" class="member-name-link">showTooMuchFoodError(int)</a> - Method in class ru.nsu.masolygin.view.<a href="ru/nsu/masolygin/view/MenuRenderer.html" title="class in ru.nsu.masolygin.view">MenuRenderer</a></dt>
+<dd>
+<div class="block">Показывает ошибку избытка еды.</div>
 </dd>
 <dt><a href="ru/nsu/masolygin/engine/AbstractGameThread.html#sleepRemaining(long,long)" class="member-name-link">sleepRemaining(long, long)</a> - Method in class ru.nsu.masolygin.engine.<a href="ru/nsu/masolygin/engine/AbstractGameThread.html" title="class in ru.nsu.masolygin.engine">AbstractGameThread</a></dt>
 <dd>

@@ -77,7 +77,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">MenuRenderer</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
-<div class="block">Рендерер сетки редактора карты в меню.</div>
+<div class="block">Рендер меню игры. Управляет отображением поля и модалок.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -89,7 +89,11 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(javafx.scene.layout.GridPane,java.util.function.BiConsumer)" class="member-name-link">MenuRenderer</a><wbr>(javafx.scene.layout.GridPane&nbsp;gridPane,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(javafx.scene.layout.GridPane,javafx.scene.layout.StackPane,javafx.scene.control.Label,javafx.scene.control.Label,javafx.scene.control.Button,java.util.function.BiConsumer)" class="member-name-link">MenuRenderer</a><wbr>(javafx.scene.layout.GridPane&nbsp;gridPane,
+ javafx.scene.layout.StackPane&nbsp;errorOverlay,
+ javafx.scene.control.Label&nbsp;errorTitle,
+ javafx.scene.control.Label&nbsp;errorMessage,
+ javafx.scene.control.Button&nbsp;errorOkBtn,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BiConsumer.html" title="class or interface in java.util.function" class="external-link">BiConsumer</a>&lt;<a href="../model/Point.html" title="class in ru.nsu.masolygin.model">Point</a>,<wbr>javafx.scene.shape.Rectangle&gt;&nbsp;cellInteractedAction)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Конструктор.</div>
@@ -109,11 +113,34 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#renderGrid(int,int,java.util.Map)" class="member-name-link">renderGrid</a><wbr>(int&nbsp;width,
- int&nbsp;height,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="../model/Point.html" title="class in ru.nsu.masolygin.model">Point</a>,<wbr><a href="CellType.html" title="enum class in ru.nsu.masolygin.view">CellType</a>&gt;&nbsp;cellMap)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hideErrorModal()" class="member-name-link">hideErrorModal</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Отрисовывает сетку редактора.</div>
+<div class="block">Скрывает модальное окно.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#renderGrid(int,int,java.util.Map,boolean,ru.nsu.masolygin.model.Point)" class="member-name-link">renderGrid</a><wbr>(int&nbsp;width,
+ int&nbsp;height,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="../model/Point.html" title="class in ru.nsu.masolygin.model">Point</a>,<wbr><a href="CellType.html" title="enum class in ru.nsu.masolygin.view">CellType</a>&gt;&nbsp;cellMap,
+ boolean&nbsp;playerEnabled,
+ <a href="../model/Point.html" title="class in ru.nsu.masolygin.model">Point</a>&nbsp;playerPos)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Отрисовывает сетку редактора с визуализацией доступной зоны спауна игрока.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#showErrorModal(java.lang.String,java.lang.String)" class="member-name-link">showErrorModal</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;title,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;message)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Показывает модальное окно с ошибкой.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#showNotEnoughSpaceError()" class="member-name-link">showNotEnoughSpaceError</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Показывает ошибку нехватки пространства.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#showTooMuchFoodError(int)" class="member-name-link">showTooMuchFoodError</a><wbr>(int&nbsp;freeCells)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Показывает ошибку избытка еды.</div>
 </div>
 </div>
 </div>
@@ -133,14 +160,22 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(javafx.scene.layout.GridPane,java.util.function.BiConsumer)">
+<section class="detail" id="&lt;init&gt;(javafx.scene.layout.GridPane,javafx.scene.layout.StackPane,javafx.scene.control.Label,javafx.scene.control.Label,javafx.scene.control.Button,java.util.function.BiConsumer)">
 <h3>MenuRenderer</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">MenuRenderer</span><wbr><span class="parameters">(javafx.scene.layout.GridPane&nbsp;gridPane,
+ javafx.scene.layout.StackPane&nbsp;errorOverlay,
+ javafx.scene.control.Label&nbsp;errorTitle,
+ javafx.scene.control.Label&nbsp;errorMessage,
+ javafx.scene.control.Button&nbsp;errorOkBtn,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BiConsumer.html" title="class or interface in java.util.function" class="external-link">BiConsumer</a>&lt;<a href="../model/Point.html" title="class in ru.nsu.masolygin.model">Point</a>,<wbr>javafx.scene.shape.Rectangle&gt;&nbsp;cellInteractedAction)</span></div>
 <div class="block">Конструктор.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>gridPane</code> - панель сетки для отрисовки</dd>
+<dd><code>errorOverlay</code> - оверлей для ошибки</dd>
+<dd><code>errorTitle</code> - заголовок ошибки</dd>
+<dd><code>errorMessage</code> - текст ошибки</dd>
+<dd><code>errorOkBtn</code> - кнопка закрытия ошибки</dd>
 <dd><code>cellInteractedAction</code> - действие при взаимодействии с клеткой</dd>
 </dl>
 </section>
@@ -154,18 +189,60 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="renderGrid(int,int,java.util.Map)">
+<section class="detail" id="renderGrid(int,int,java.util.Map,boolean,ru.nsu.masolygin.model.Point)">
 <h3>renderGrid</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">renderGrid</span><wbr><span class="parameters">(int&nbsp;width,
  int&nbsp;height,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="../model/Point.html" title="class in ru.nsu.masolygin.model">Point</a>,<wbr><a href="CellType.html" title="enum class in ru.nsu.masolygin.view">CellType</a>&gt;&nbsp;cellMap)</span></div>
-<div class="block">Отрисовывает сетку редактора.</div>
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="../model/Point.html" title="class in ru.nsu.masolygin.model">Point</a>,<wbr><a href="CellType.html" title="enum class in ru.nsu.masolygin.view">CellType</a>&gt;&nbsp;cellMap,
+ boolean&nbsp;playerEnabled,
+ <a href="../model/Point.html" title="class in ru.nsu.masolygin.model">Point</a>&nbsp;playerPos)</span></div>
+<div class="block">Отрисовывает сетку редактора с визуализацией доступной зоны спауна игрока.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>width</code> - ширина поля</dd>
 <dd><code>height</code> - высота поля</dd>
 <dd><code>cellMap</code> - карта клеток с их типами</dd>
+<dd><code>playerEnabled</code> - включен ли игрок</dd>
+<dd><code>playerPos</code> - позиция игрока (null если не расставлен)</dd>
 </dl>
+</section>
+</li>
+<li>
+<section class="detail" id="showNotEnoughSpaceError()">
+<h3>showNotEnoughSpaceError</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">showNotEnoughSpaceError</span>()</div>
+<div class="block">Показывает ошибку нехватки пространства.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="showTooMuchFoodError(int)">
+<h3>showTooMuchFoodError</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">showTooMuchFoodError</span><wbr><span class="parameters">(int&nbsp;freeCells)</span></div>
+<div class="block">Показывает ошибку избытка еды.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>freeCells</code> - количество свободных клеток (вне зоны спауна)</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="showErrorModal(java.lang.String,java.lang.String)">
+<h3>showErrorModal</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">showErrorModal</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;title,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;message)</span></div>
+<div class="block">Показывает модальное окно с ошибкой.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>title</code> - заголовок</dd>
+<dd><code>message</code> - сообщение</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="hideErrorModal()">
+<h3>hideErrorModal</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">hideErrorModal</span>()</div>
+<div class="block">Скрывает модальное окно.</div>
 </section>
 </li>
 </ul>
