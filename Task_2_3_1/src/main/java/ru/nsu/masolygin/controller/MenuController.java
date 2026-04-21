@@ -106,6 +106,7 @@ public class MenuController {
                     case "GREEDY" -> type = CellType.BOT_GREEDY;
                     case "RANDOM" -> type = CellType.BOT_RANDOM;
                     case "WALL_HUGGER" -> type = CellType.BOT_WALL_HUGGER;
+                    default -> type = CellType.EMPTY;
                 }
                 if (type != CellType.EMPTY) {
                     cellMap.put(new Point(bot.startX(), bot.startY()), type);
@@ -127,9 +128,9 @@ public class MenuController {
         foodSpinner.setValueFactory(
             new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, baseConfig.foodCount()));
 
-        int wLen = baseConfig.winLength() > 10000 ? 30 : baseConfig.winLength();
+        int winLen = baseConfig.winLength() > 10000 ? 30 : baseConfig.winLength();
         winSpinner.setValueFactory(
-            new SpinnerValueFactory.IntegerSpinnerValueFactory(3, 10000, wLen));
+            new SpinnerValueFactory.IntegerSpinnerValueFactory(3, 10000, winLen));
         speedSlider.setValue(baseConfig.initialSpeedMs());
 
         infiniteWinBox.setSelected(baseConfig.winLength() == Integer.MAX_VALUE);

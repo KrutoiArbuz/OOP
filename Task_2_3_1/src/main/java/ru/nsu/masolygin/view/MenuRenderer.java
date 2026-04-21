@@ -77,9 +77,11 @@ public class MenuRenderer {
 
                 gridPane.add(cell, x, y);
 
-                if (playerEnabled &&
-                    x >= zoneX - 1 && x <= zoneX + 1 &&
-                    y >= zoneY - 1 && y <= zoneY + 1) {
+                if (playerEnabled
+                    && x >= zoneX - 1
+                    && x <= zoneX + 1
+                    && y >= zoneY - 1
+                    && y <= zoneY + 1) {
                     Rectangle spawnOverlay = new Rectangle(cellSize, cellSize,
                         Color.color(0.18, 0.80, 0.44, 0.3));
                     gridPane.add(spawnOverlay, x, y);
@@ -102,7 +104,10 @@ public class MenuRenderer {
     public void showNotEnoughSpaceError() {
         showErrorModal(
             "Ошибка конфигурации",
-            "Слишком много объектов на поле или нет места 3x3!\nИгроку требуется пространство 3x3 клетки вокруг себя.\nУбедитесь, что вокруг случайного или выбранного старта свободно, либо увеличьте поле."
+            "Слишком много объектов на поле или нет места 3x3!\n"
+                + "Игроку требуется пространство 3x3 клетки вокруг себя.\n"
+                + "Убедитесь, что вокруг случайного или выбранного старта свободно, "
+                + "либо увеличьте поле."
         );
     }
 

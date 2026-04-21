@@ -229,6 +229,7 @@ public class GameRenderer {
             case PAUSED -> show("ПАУЗА\n[SPACE] продолжить   [R] рестарт");
             case WON -> show("ПОБЕДА!\nДлина: " + snap.playerLength() + "\n[R] снова");
             case LOST -> show("ИГРА ОКОНЧЕНА\n[R] попробовать снова");
+            default -> overlayPane.setVisible(false);
         }
     }
 

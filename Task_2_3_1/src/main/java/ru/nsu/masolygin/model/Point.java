@@ -7,8 +7,8 @@ import java.util.Objects;
  */
 public final class Point {
 
-    private final int x;
-    private final int y;
+    private final int xCoord;
+    private final int yCoord;
 
     /**
      * Конструктор.
@@ -17,8 +17,8 @@ public final class Point {
      * @param y координата Y
      */
     public Point(int x, int y) {
-        this.x = x;
-        this.y = y;
+        this.xCoord = x;
+        this.yCoord = y;
     }
 
     /**
@@ -27,7 +27,7 @@ public final class Point {
      * @return координата X
      */
     public int getX() {
-        return x;
+        return xCoord;
     }
 
     /**
@@ -36,7 +36,7 @@ public final class Point {
      * @return координата Y
      */
     public int getY() {
-        return y;
+        return yCoord;
     }
 
     /**
@@ -47,7 +47,7 @@ public final class Point {
      * @return новая точка
      */
     public Point translate(int dx, int dy) {
-        return new Point(x + dx, y + dy);
+        return new Point(xCoord + dx, yCoord + dy);
     }
 
     /**
@@ -64,7 +64,7 @@ public final class Point {
         if (!(o instanceof Point other)) {
             return false;
         }
-        return x == other.x && y == other.y;
+        return xCoord == other.xCoord && yCoord == other.yCoord;
     }
 
     /**
@@ -74,7 +74,7 @@ public final class Point {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(x, y);
+        return Objects.hash(xCoord, yCoord);
     }
 
     /**
@@ -84,6 +84,6 @@ public final class Point {
      */
     @Override
     public String toString() {
-        return "(" + x + ", " + y + ")";
+        return "(" + xCoord + ", " + yCoord + ")";
     }
 }

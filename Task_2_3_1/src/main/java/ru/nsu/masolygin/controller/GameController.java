@@ -51,9 +51,6 @@ public class GameController {
         gameCanvas.setWidth((double) config.fieldWidth() * config.cellSize());
         gameCanvas.setHeight((double) config.fieldHeight() * config.cellSize());
 
-        GameRenderer renderer = new GameRenderer(
-            gameCanvas, scoreLabel, statusLabel, overlayPane, config);
-
         botRunner = new BotRunner();
         botRunner.start(model.getBotSnakes(), engine);
 
@@ -62,7 +59,8 @@ public class GameController {
             playerRunner.start();
         }
 
-        renderLoop = new RenderLoop(model, renderer::render);
+        renderLoop = new RenderLoop(model,
+            new GameRenderer(gameCanvas, scoreLabel, statusLabel, overlayPane, config)::render);
         renderLoop.start();
     }
 
@@ -101,6 +99,9 @@ public class GameController {
             case R -> {
                 engine.reset();
                 botRunner.restart(model.getBotSnakes(), engine);
+            }
+            default -> {
+                // no-op
             }
         }
         event.consume();
