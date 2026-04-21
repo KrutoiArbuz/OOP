@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Label?>
+
+
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="ru.nsu.masolygin.controller.GameController"
+           style="-fx-background-color: #1e1e1e;">
+
+    <VBox alignment="CENTER" spacing="6">
+
+        <HBox alignment="CENTER" style="-fx-padding: 8 0 4 0;">
+            <Label fx:id="scoreLabel"
+                   text="Длина: 1"
+                   style="-fx-text-fill: #e0e0e0;
+                          -fx-font-size: 15px;
+                          -fx-font-weight: bold;
+                          -fx-font-family: 'Monospaced';"/>
+        </HBox>
+
+        <Canvas fx:id="gameCanvas"/>
+
+        <HBox alignment="CENTER" style="-fx-padding: 4 0 6 0;">
+            <Label text="[←↑→↓ / WASD] движение   [SPACE] пауза   [R] рестарт"
+                   style="-fx-text-fill: #606060;
+                          -fx-font-size: 11px;
+                          -fx-font-family: 'Monospaced';"/>
+        </HBox>
+    </VBox>
+
+    <StackPane fx:id="overlayPane"
+               visible="false"
+               style="-fx-background-color: rgba(0, 0, 0, 0.70);">
+
+        <Label fx:id="statusLabel"
+               prefWidth="300"
+               prefHeight="150"
+               text=""
+               style="-fx-text-fill: white;
+                      -fx-font-size: 22px;
+                      -fx-font-weight: bold;
+                      -fx-font-family: 'Monospaced';
+                      -fx-text-alignment: center;
+                      -fx-alignment: center;
+                      -fx-line-spacing: 6;"/>
+    </StackPane>
+
+</StackPane>
