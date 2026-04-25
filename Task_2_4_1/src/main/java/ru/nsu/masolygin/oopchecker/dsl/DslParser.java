@@ -14,7 +14,16 @@ import ru.nsu.masolygin.oopchecker.domain.CourseConfig;
  */
 public class DslParser {
 
+    /**
+     * Путь к файлу конфигурации по умолчанию относительно рабочего каталога.
+     */
     public static final String DEFAULT_SCRIPT_NAME = "config/oopchecker.groovy";
+
+    /**
+     * Создаёт парсер DSL.
+     */
+    public DslParser() {
+    }
 
     /**
      * Парсит основной конфиг из указанного каталога.

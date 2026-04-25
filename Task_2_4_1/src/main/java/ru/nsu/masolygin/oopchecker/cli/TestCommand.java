@@ -65,8 +65,6 @@ final class TestCommand {
      * @throws Exception при ошибке парсинга конфигурации или git операций
      */
     boolean run(String[] args) throws Exception {
-        TestCommandOptions options = TestCommandOptions.parse(args);
-
         Path configFile = Paths.get(DslParser.DEFAULT_SCRIPT_NAME);
         if (!Files.exists(configFile)) {
             System.err.println("[oop-checker] ERROR: " + DslParser.DEFAULT_SCRIPT_NAME
@@ -84,6 +82,7 @@ final class TestCommand {
             git
         );
 
+        TestCommandOptions options = TestCommandOptions.parse(args);
         List<Assignment> assignments = filterAssignments(config.assignments(), options.student());
         Set<String> cloned = cloneRepos(config, assignments, git);
 
@@ -222,7 +221,7 @@ final class TestCommand {
         /**
          * Распарсивает опции из аргументов командной строки.
          *
-         * @param args аргументы (--text, --student <ник>)
+         * @param args аргументы (--text, --student &lt;ник&gt;)
          * @return объект опций
          */
         private static TestCommandOptions parse(String[] args) {

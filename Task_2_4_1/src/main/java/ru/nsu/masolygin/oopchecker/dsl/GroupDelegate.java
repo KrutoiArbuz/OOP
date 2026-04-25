@@ -15,6 +15,11 @@ public class GroupDelegate {
     private final String name;
     private final List<Student> students = new ArrayList<>();
 
+    /**
+     * Создаёт делегат группы с заданным именем.
+     *
+     * @param name имя группы
+     */
     public GroupDelegate(String name) {
         this.name = name;
     }
@@ -22,6 +27,8 @@ public class GroupDelegate {
     /**
      * Вызывается из Groovy как {@code student(github: 'x', name: 'y', repo: 'z')}. В Groovy
      * именованные аргументы склеиваются в {@link Map}, который Groovy передаёт первым параметром.
+     *
+     * @param args именованные аргументы: github, name, repo
      */
     public void student(Map<String, Object> args) {
         students.add(new Student(

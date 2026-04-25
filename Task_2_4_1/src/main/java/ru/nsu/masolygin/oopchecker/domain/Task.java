@@ -4,6 +4,13 @@ import java.time.LocalDate;
 
 /**
  * Лабораторная работа с мягким и жёстким дедлайном.
+ *
+ * @param id           идентификатор задачи
+ * @param name         название задачи
+ * @param maxPoints    максимум баллов
+ * @param softDeadline мягкий дедлайн (после него штраф)
+ * @param hardDeadline жёсткий дедлайн (после него 0 баллов)
+ * @param labPath      путь к каталогу задачи в репозитории (null означает id)
  */
 public record Task(
     String id,

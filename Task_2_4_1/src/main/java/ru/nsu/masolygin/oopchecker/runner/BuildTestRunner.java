@@ -120,7 +120,7 @@ public class BuildTestRunner {
 
         Duration testTimeout = Duration.ofSeconds(config.settings().getTestTimeoutSeconds());
         exec(labDir, BuildCommandFactory.testCmd(labDir, bs), testTimeout);
-        TestReport tests = JUnitXmlReportParser.parse(labDir, bs);
+        TestReport tests = JunitXmlReportParser.parse(labDir, bs);
 
         log(task.id(), assignment.studentGithub(),
             "compile=+ docs=" + mark(docsOk) + " style=" + mark(styleOk)

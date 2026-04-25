@@ -8,7 +8,7 @@ import java.nio.file.Path;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-class JUnitXmlReportParserTest {
+class JunitXmlReportParserTest {
 
     private static final String TESTSUITE_XML = """
         <?xml version="1.0" encoding="UTF-8"?>
@@ -28,7 +28,7 @@ class JUnitXmlReportParserTest {
 
     @Test
     void returnsEmptyWhenResultsDirMissing(@TempDir Path tmp) {
-        TestReport r = JUnitXmlReportParser.parse(tmp, BuildCommandFactory.BuildSystem.GRADLE);
+        TestReport r = JunitXmlReportParser.parse(tmp, BuildCommandFactory.BuildSystem.GRADLE);
         assertEquals(TestReport.EMPTY, r);
     }
 
@@ -38,7 +38,7 @@ class JUnitXmlReportParserTest {
         Files.createDirectories(resultsDir);
         Files.writeString(resultsDir.resolve("TEST-SomeTest.xml"), TESTSUITE_XML);
 
-        TestReport r = JUnitXmlReportParser.parse(tmp, BuildCommandFactory.BuildSystem.GRADLE);
+        TestReport r = JunitXmlReportParser.parse(tmp, BuildCommandFactory.BuildSystem.GRADLE);
 
         assertEquals(3, r.passed());
         assertEquals(1, r.failed());
@@ -51,7 +51,7 @@ class JUnitXmlReportParserTest {
         Files.createDirectories(resultsDir);
         Files.writeString(resultsDir.resolve("TEST-Suites.xml"), TESTSUITES_XML);
 
-        TestReport r = JUnitXmlReportParser.parse(tmp, BuildCommandFactory.BuildSystem.GRADLE);
+        TestReport r = JunitXmlReportParser.parse(tmp, BuildCommandFactory.BuildSystem.GRADLE);
 
         assertEquals(5, r.passed());
         assertEquals(2, r.failed());
@@ -64,7 +64,7 @@ class JUnitXmlReportParserTest {
         Files.createDirectories(resultsDir);
         Files.writeString(resultsDir.resolve("TEST-SomeTest.xml"), TESTSUITE_XML);
 
-        TestReport r = JUnitXmlReportParser.parse(tmp, BuildCommandFactory.BuildSystem.MAVEN);
+        TestReport r = JunitXmlReportParser.parse(tmp, BuildCommandFactory.BuildSystem.MAVEN);
         assertEquals(3, r.passed());
     }
 
@@ -74,7 +74,7 @@ class JUnitXmlReportParserTest {
         Files.createDirectories(resultsDir);
         Files.writeString(resultsDir.resolve("BROKEN.xml"), MALFORMED_XML);
 
-        TestReport r = JUnitXmlReportParser.parse(tmp, BuildCommandFactory.BuildSystem.GRADLE);
+        TestReport r = JunitXmlReportParser.parse(tmp, BuildCommandFactory.BuildSystem.GRADLE);
         assertEquals(0, r.passed());
         assertEquals(0, r.failed());
     }
@@ -90,7 +90,7 @@ class JUnitXmlReportParserTest {
         Files.writeString(resultsDir.resolve("TEST-A.xml"), xml);
         Files.writeString(resultsDir.resolve("TEST-B.xml"), xml);
 
-        TestReport r = JUnitXmlReportParser.parse(tmp, BuildCommandFactory.BuildSystem.GRADLE);
+        TestReport r = JunitXmlReportParser.parse(tmp, BuildCommandFactory.BuildSystem.GRADLE);
         assertEquals(8, r.passed());
     }
 
@@ -100,7 +100,7 @@ class JUnitXmlReportParserTest {
         Files.createDirectories(resultsDir);
         Files.writeString(resultsDir.resolve("notes.txt"), "some text");
 
-        TestReport r = JUnitXmlReportParser.parse(tmp, BuildCommandFactory.BuildSystem.GRADLE);
+        TestReport r = JunitXmlReportParser.parse(tmp, BuildCommandFactory.BuildSystem.GRADLE);
         assertEquals(TestReport.EMPTY, r);
     }
 }

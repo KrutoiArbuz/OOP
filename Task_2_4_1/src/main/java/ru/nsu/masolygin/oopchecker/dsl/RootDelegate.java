@@ -32,6 +32,8 @@ public class RootDelegate {
 
     /**
      * Выполняет тело блока {@code course { ... }} с соответствующим делегатом.
+     *
+     * @param body тело блока
      */
     public void course(Closure<?> body) {
         DslSupport.runClosure(body, new CourseDelegate(config));
@@ -39,6 +41,9 @@ public class RootDelegate {
 
     /**
      * Подключает другой DSL-файл, добавляя его данные в ту же {@link CourseConfig}.
+     *
+     * @param relativePath путь к импортируемому файлу относительно текущего скрипта
+     * @throws IOException при ошибке чтения файла
      */
     public void importConfig(String relativePath) throws IOException {
         Path target = baseDir != null
@@ -56,6 +61,8 @@ public class RootDelegate {
 
     /**
      * Возвращает текущую конфигурацию курса.
+     *
+     * @return конфигурация курса
      */
     public CourseConfig getConfig() {
         return config;

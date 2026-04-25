@@ -17,6 +17,11 @@ public class CourseSettings {
     private double activityWeight = 0.0;
     private LocalDate semesterStart;
     private int semesterWeeks = 16;
+    /**
+     * Создаёт настройки курса со значениями по умолчанию.
+     */
+    public CourseSettings() {
+    }
 
     /**
      * Возвращает долю баллов, снимаемых при сдаче после мягкого дедлайна.

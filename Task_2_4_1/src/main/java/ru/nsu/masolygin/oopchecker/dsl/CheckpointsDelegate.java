@@ -13,10 +13,20 @@ public class CheckpointsDelegate {
 
     private final CourseConfig config;
 
+    /**
+     * Создаёт делегат, привязанный к конфигурации курса.
+     *
+     * @param config конфигурация курса
+     */
     public CheckpointsDelegate(CourseConfig config) {
         this.config = config;
     }
 
+    /**
+     * Добавляет контрольную точку в конфигурацию.
+     *
+     * @param args именованные аргументы: name, date (обязательно), startDate (опционально)
+     */
     public void checkpoint(Map<String, Object> args) {
         String startDateStr = (String) args.get("startDate");
         LocalDate startDate = startDateStr != null ? LocalDate.parse(startDateStr) : null;

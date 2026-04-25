@@ -18,26 +18,62 @@ public class TaskDelegate {
     private LocalDate hardDeadline;
     private String labPath;
 
+    /**
+     * Создаёт делегат задачи с пустыми полями.
+     */
+    public TaskDelegate() {
+    }
+
+    /**
+     * Устанавливает идентификатор задачи.
+     *
+     * @param value идентификатор
+     */
     public void id(String value) {
         this.id = value;
     }
 
+    /**
+     * Устанавливает название задачи.
+     *
+     * @param value название
+     */
     public void name(String value) {
         this.name = value;
     }
 
+    /**
+     * Устанавливает максимальное количество баллов.
+     *
+     * @param value баллы
+     */
     public void maxPoints(int value) {
         this.maxPoints = value;
     }
 
+    /**
+     * Устанавливает путь к каталогу задачи в репозитории.
+     *
+     * @param value путь относительно корня репозитория
+     */
     public void path(String value) {
         this.labPath = value;
     }
 
+    /**
+     * Устанавливает мягкий дедлайн задачи.
+     *
+     * @param isoDate дата в формате ISO-8601 (yyyy-MM-dd)
+     */
     public void softDeadline(String isoDate) {
         this.softDeadline = LocalDate.parse(isoDate);
     }
 
+    /**
+     * Устанавливает жёсткий дедлайн задачи.
+     *
+     * @param isoDate дата в формате ISO-8601 (yyyy-MM-dd)
+     */
     public void hardDeadline(String isoDate) {
         this.hardDeadline = LocalDate.parse(isoDate);
     }

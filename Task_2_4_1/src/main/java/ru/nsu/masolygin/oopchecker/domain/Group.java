@@ -10,6 +10,9 @@ import java.util.List;
  */
 public record Group(String name, List<Student> students) {
 
+    /**
+     * Канонический конструктор: делает список студентов неизменяемым.
+     */
     public Group {
         students = List.copyOf(students);
     }

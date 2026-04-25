@@ -14,6 +14,11 @@ public class AssignmentsDelegate {
 
     private final CourseConfig config;
 
+    /**
+     * Создаёт делегат, привязанный к конфигурации курса.
+     *
+     * @param config конфигурация курса
+     */
     public AssignmentsDelegate(CourseConfig config) {
         this.config = config;
     }
@@ -22,6 +27,11 @@ public class AssignmentsDelegate {
         return value != null && !value.isBlank();
     }
 
+    /**
+     * Добавляет задание(я) по студенту или группе.
+     *
+     * @param args именованные аргументы: task (обязательно), student или group
+     */
     public void check(Map<String, Object> args) {
         String taskId = (String) args.get("task");
         String studentGithub = (String) args.get("student");

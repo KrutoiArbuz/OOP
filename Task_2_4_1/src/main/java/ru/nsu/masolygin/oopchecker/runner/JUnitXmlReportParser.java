@@ -13,9 +13,9 @@ import org.w3c.dom.NodeList;
 /**
  * Парсит JUnit XML отчёты и агрегирует статистику тестов из стандартных директорий результатов.
  */
-final class JUnitXmlReportParser {
+final class JunitXmlReportParser {
 
-    private JUnitXmlReportParser() {
+    private JunitXmlReportParser() {
     }
 
     /**
@@ -48,6 +48,7 @@ final class JUnitXmlReportParser {
                 skipped += r.skipped();
             }
         } catch (IOException ignored) {
+            // walk error — return what was collected so far
         }
         return new TestReport(passed, failed, skipped);
     }
@@ -83,6 +84,7 @@ final class JUnitXmlReportParser {
                 return parseSuite(root);
             }
         } catch (Exception ignored) {
+            // malformed or unreadable XML — return empty
         }
         return TestReport.EMPTY;
     }

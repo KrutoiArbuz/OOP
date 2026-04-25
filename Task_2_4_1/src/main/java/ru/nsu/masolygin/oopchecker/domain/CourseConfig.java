@@ -15,9 +15,16 @@ public class CourseConfig {
     private final List<Assignment> assignments = new ArrayList<>();
     private final List<Checkpoint> checkpoints = new ArrayList<>();
     private final CourseSettings settings = new CourseSettings();
+    /**
+     * Создаёт пустую конфигурацию курса.
+     */
+    public CourseConfig() {
+    }
 
     /**
      * Добавляет задачу в конфигурацию.
+     *
+     * @param task задача
      */
     public void addTask(Task task) {
         tasks.add(task);
@@ -25,6 +32,8 @@ public class CourseConfig {
 
     /**
      * Добавляет группу в конфигурацию.
+     *
+     * @param group группа
      */
     public void addGroup(Group group) {
         groups.add(group);
@@ -32,6 +41,8 @@ public class CourseConfig {
 
     /**
      * Добавляет задание в конфигурацию.
+     *
+     * @param assignment задание
      */
     public void addAssignment(Assignment assignment) {
         assignments.add(assignment);
@@ -39,6 +50,8 @@ public class CourseConfig {
 
     /**
      * Добавляет контрольную точку в конфигурацию.
+     *
+     * @param checkpoint контрольная точка
      */
     public void addCheckpoint(Checkpoint checkpoint) {
         checkpoints.add(checkpoint);

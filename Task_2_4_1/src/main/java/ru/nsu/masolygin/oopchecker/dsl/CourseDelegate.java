@@ -21,6 +21,8 @@ public class CourseDelegate {
 
     /**
      * Обрабатывает блок {@code tasks { ... }}.
+     *
+     * @param body тело блока
      */
     public void tasks(Closure<?> body) {
         DslSupport.runClosure(body, new TasksDelegate(config));
@@ -28,6 +30,8 @@ public class CourseDelegate {
 
     /**
      * Обрабатывает блок {@code groups { ... }}.
+     *
+     * @param body тело блока
      */
     public void groups(Closure<?> body) {
         DslSupport.runClosure(body, new GroupsDelegate(config));
@@ -35,6 +39,8 @@ public class CourseDelegate {
 
     /**
      * Обрабатывает блок {@code assignments { ... }}.
+     *
+     * @param body тело блока
      */
     public void assignments(Closure<?> body) {
         DslSupport.runClosure(body, new AssignmentsDelegate(config));
@@ -42,6 +48,8 @@ public class CourseDelegate {
 
     /**
      * Обрабатывает блок {@code checkpoints { ... }}.
+     *
+     * @param body тело блока
      */
     public void checkpoints(Closure<?> body) {
         DslSupport.runClosure(body, new CheckpointsDelegate(config));
@@ -49,6 +57,8 @@ public class CourseDelegate {
 
     /**
      * Обрабатывает блок {@code settings { ... }}.
+     *
+     * @param body тело блока
      */
     public void settings(Closure<?> body) {
         DslSupport.runClosure(body, new SettingsDelegate(config.settings()));

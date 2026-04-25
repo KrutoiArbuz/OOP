@@ -21,6 +21,8 @@ public class TasksDelegate {
 
     /**
      * Обрабатывает один блок {@code task { ... }} и добавляет задачу в конфигурацию.
+     *
+     * @param body тело блока с описанием задачи
      */
     public void task(Closure<?> body) {
         TaskDelegate delegate = new TaskDelegate();
