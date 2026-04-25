@@ -1,0 +1,7 @@
+ru.nsu.masolygin.oopchecker.cli
+ru.nsu.masolygin.oopchecker.domain
+ru.nsu.masolygin.oopchecker.dsl
+ru.nsu.masolygin.oopchecker.grader
+ru.nsu.masolygin.oopchecker.report
+ru.nsu.masolygin.oopchecker.runner
+ru.nsu.masolygin.oopchecker.vcs
