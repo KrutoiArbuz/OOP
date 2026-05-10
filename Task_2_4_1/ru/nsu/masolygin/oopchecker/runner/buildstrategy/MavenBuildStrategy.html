@@ -112,10 +112,14 @@ implements <a href="BuildStrategy.html" title="interface in ru.nsu.masolygin.oop
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#compileCmd(java.nio.file.Path)" class="member-name-link">compileCmd</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html" title="class or interface in java.nio.file" class="external-link">Path</a>&nbsp;dir)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает команду для компиляции проекта.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#docsCmd(java.nio.file.Path)" class="member-name-link">docsCmd</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html" title="class or interface in java.nio.file" class="external-link">Path</a>&nbsp;dir)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает команду для генерации документации.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isApplicable(java.nio.file.Path)" class="member-name-link">isApplicable</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html" title="class or interface in java.nio.file" class="external-link">Path</a>&nbsp;dir)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
@@ -123,10 +127,14 @@ implements <a href="BuildStrategy.html" title="interface in ru.nsu.masolygin.oop
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#styleCmd(java.nio.file.Path)" class="member-name-link">styleCmd</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html" title="class or interface in java.nio.file" class="external-link">Path</a>&nbsp;dir)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает команду для проверки стиля кода.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#testCmd(java.nio.file.Path)" class="member-name-link">testCmd</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html" title="class or interface in java.nio.file" class="external-link">Path</a>&nbsp;dir)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает команду для запуска тестов.</div>
+</div>
 </div>
 </div>
 </div>
@@ -178,6 +186,8 @@ implements <a href="BuildStrategy.html" title="interface in ru.nsu.masolygin.oop
 <section class="detail" id="compileCmd(java.nio.file.Path)">
 <h3>compileCmd</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name">compileCmd</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html" title="class or interface in java.nio.file" class="external-link">Path</a>&nbsp;dir)</span></div>
+<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="BuildStrategy.html#compileCmd(java.nio.file.Path)">BuildStrategy</a></code></span></div>
+<div class="block">Возвращает команду для компиляции проекта.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="BuildStrategy.html#compileCmd(java.nio.file.Path)">compileCmd</a></code>&nbsp;in interface&nbsp;<code><a href="BuildStrategy.html" title="interface in ru.nsu.masolygin.oopchecker.runner.buildstrategy">BuildStrategy</a></code></dd>
@@ -192,6 +202,8 @@ implements <a href="BuildStrategy.html" title="interface in ru.nsu.masolygin.oop
 <section class="detail" id="docsCmd(java.nio.file.Path)">
 <h3>docsCmd</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name">docsCmd</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html" title="class or interface in java.nio.file" class="external-link">Path</a>&nbsp;dir)</span></div>
+<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="BuildStrategy.html#docsCmd(java.nio.file.Path)">BuildStrategy</a></code></span></div>
+<div class="block">Возвращает команду для генерации документации.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="BuildStrategy.html#docsCmd(java.nio.file.Path)">docsCmd</a></code>&nbsp;in interface&nbsp;<code><a href="BuildStrategy.html" title="interface in ru.nsu.masolygin.oopchecker.runner.buildstrategy">BuildStrategy</a></code></dd>
@@ -206,6 +218,8 @@ implements <a href="BuildStrategy.html" title="interface in ru.nsu.masolygin.oop
 <section class="detail" id="styleCmd(java.nio.file.Path)">
 <h3>styleCmd</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name">styleCmd</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html" title="class or interface in java.nio.file" class="external-link">Path</a>&nbsp;dir)</span></div>
+<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="BuildStrategy.html#styleCmd(java.nio.file.Path)">BuildStrategy</a></code></span></div>
+<div class="block">Возвращает команду для проверки стиля кода.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="BuildStrategy.html#styleCmd(java.nio.file.Path)">styleCmd</a></code>&nbsp;in interface&nbsp;<code><a href="BuildStrategy.html" title="interface in ru.nsu.masolygin.oopchecker.runner.buildstrategy">BuildStrategy</a></code></dd>
@@ -220,6 +234,8 @@ implements <a href="BuildStrategy.html" title="interface in ru.nsu.masolygin.oop
 <section class="detail" id="testCmd(java.nio.file.Path)">
 <h3>testCmd</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name">testCmd</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html" title="class or interface in java.nio.file" class="external-link">Path</a>&nbsp;dir)</span></div>
+<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="BuildStrategy.html#testCmd(java.nio.file.Path)">BuildStrategy</a></code></span></div>
+<div class="block">Возвращает команду для запуска тестов.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="BuildStrategy.html#testCmd(java.nio.file.Path)">testCmd</a></code>&nbsp;in interface&nbsp;<code><a href="BuildStrategy.html" title="interface in ru.nsu.masolygin.oopchecker.runner.buildstrategy">BuildStrategy</a></code></dd>

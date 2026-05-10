@@ -81,13 +81,13 @@ loadScripts(document, 'script');</script>
  придумывать свой parse-DSL для значений.
 
  <pre>
-     settings {
-         latePenalty 0.5
-         testTimeoutSeconds 60
-         activityWeight 0.1
-         gradeThreshold min: 85, grade: 'отлично'
-         extraPoints task: '2_1_1', student: 'ivanov', points: 2
-     }
+ settings {
+ latePenalty 0.5
+ testTimeoutSeconds 60
+ activityWeight 0.1
+ gradeThreshold min: 85, grade: 'отлично'
+ extraPoints task: '2_1_1', student: 'ivanov', points: 2
+ }
  </pre></div>
 </section>
 <section class="summary">
@@ -101,7 +101,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.masolygin.oopchecker.domain.coursesettings.CourseSettingsBuilder)" class="member-name-link">SettingsDelegate</a><wbr>(<a href="../domain/coursesettings/CourseSettingsBuilder.html" title="class in ru.nsu.masolygin.oopchecker.domain.coursesettings">CourseSettingsBuilder</a>&nbsp;builder)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Создает делегата с привязкой к билдеру настроек.</div>
+</div>
 </div>
 </section>
 </li>
@@ -149,7 +151,9 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#semester(int,groovy.lang.Closure)" class="member-name-link">semester</a><wbr>(int&nbsp;id,
  groovy.lang.Closure&lt;?&gt;&nbsp;body)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Конфигурирует настройки конкретного семестра.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#stylePenalty(double)" class="member-name-link">stylePenalty</a><wbr>(double&nbsp;value)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
@@ -181,6 +185,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;(ru.nsu.masolygin.oopchecker.domain.coursesettings.CourseSettingsBuilder)">
 <h3>SettingsDelegate</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">SettingsDelegate</span><wbr><span class="parameters">(<a href="../domain/coursesettings/CourseSettingsBuilder.html" title="class in ru.nsu.masolygin.oopchecker.domain.coursesettings">CourseSettingsBuilder</a>&nbsp;builder)</span></div>
+<div class="block">Создает делегата с привязкой к билдеру настроек.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>builder</code> - билдер настроек курса</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -262,6 +271,12 @@ loadScripts(document, 'script');</script>
 <h3>semester</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">semester</span><wbr><span class="parameters">(int&nbsp;id,
  groovy.lang.Closure&lt;?&gt;&nbsp;body)</span></div>
+<div class="block">Конфигурирует настройки конкретного семестра.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>id</code> - идентификатор семестра (например, номер)</dd>
+<dd><code>body</code> - тело блока с настройками семестра</dd>
+</dl>
 </section>
 </li>
 <li>

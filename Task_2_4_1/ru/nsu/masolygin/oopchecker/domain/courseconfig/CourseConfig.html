@@ -76,6 +76,14 @@ loadScripts(document, 'script');</script>
 </div>
 </div>
 <section class="class-description" id="class-description">
+<dl class="notes">
+<dt>Record Components:</dt>
+<dd><code><span id="param-tasks">tasks</span></code> - список всех задач курса</dd>
+<dd><code><span id="param-groups">groups</span></code> - список учебных групп</dd>
+<dd><code><span id="param-assignments">assignments</span></code> - назначения задач студентам</dd>
+<dd><code><span id="param-checkpoints">checkpoints</span></code> - контрольные точки</dd>
+<dd><code><span id="param-settings">settings</span></code> - общие настройки курса</dd>
+</dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public record </span><span class="element-name type-name-label">CourseConfig</span>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Task.html" title="class in ru.nsu.masolygin.oopchecker.domain">Task</a>&gt;&nbsp;tasks, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Group.html" title="class in ru.nsu.masolygin.oopchecker.domain">Group</a>&gt;&nbsp;groups, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Assignment.html" title="class in ru.nsu.masolygin.oopchecker.domain">Assignment</a>&gt;&nbsp;assignments, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Checkpoint.html" title="class in ru.nsu.masolygin.oopchecker.domain">Checkpoint</a>&gt;&nbsp;checkpoints, <a href="../coursesettings/CourseSettings.html" title="class in ru.nsu.masolygin.oopchecker.domain.coursesettings">CourseSettings</a>&nbsp;settings)
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Record.html" title="class or interface in java.lang" class="external-link">Record</a></span></div>
@@ -97,7 +105,7 @@ loadScripts(document, 'script');</script>
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Checkpoint.html" title="class in ru.nsu.masolygin.oopchecker.domain">Checkpoint</a>&gt;&nbsp;checkpoints,
  <a href="../coursesettings/CourseSettings.html" title="class in ru.nsu.masolygin.oopchecker.domain.coursesettings">CourseSettings</a>&nbsp;settings)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Creates an instance of a <code>CourseConfig</code> record class.</div>
+<div class="block">Создает неизменяемую конфигурацию курса.</div>
 </div>
 </div>
 </section>
@@ -116,12 +124,12 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Assignment.html" title="class in ru.nsu.masolygin.oopchecker.domain">Assignment</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#assignments()" class="member-name-link">assignments</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>assignments</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-assignments"><code>assignments</code></a> record component.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Checkpoint.html" title="class in ru.nsu.masolygin.oopchecker.domain">Checkpoint</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#checkpoints()" class="member-name-link">checkpoints</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>checkpoints</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-checkpoints"><code>checkpoints</code></a> record component.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#equals(java.lang.Object)" class="member-name-link">equals</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;o)</code></div>
@@ -141,7 +149,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Group.html" title="class in ru.nsu.masolygin.oopchecker.domain">Group</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#groups()" class="member-name-link">groups</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>groups</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-groups"><code>groups</code></a> record component.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hashCode()" class="member-name-link">hashCode</a>()</code></div>
@@ -151,12 +159,12 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../coursesettings/CourseSettings.html" title="class in ru.nsu.masolygin.oopchecker.domain.coursesettings">CourseSettings</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#settings()" class="member-name-link">settings</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>settings</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-settings"><code>settings</code></a> record component.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Task.html" title="class in ru.nsu.masolygin.oopchecker.domain">Task</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#tasks()" class="member-name-link">tasks</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>tasks</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-tasks"><code>tasks</code></a> record component.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Task.html" title="class in ru.nsu.masolygin.oopchecker.domain">Task</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#tasksFor(ru.nsu.masolygin.oopchecker.domain.Group)" class="member-name-link">tasksFor</a><wbr>(<a href="../Group.html" title="class in ru.nsu.masolygin.oopchecker.domain">Group</a>&nbsp;group)</code></div>
@@ -193,15 +201,7 @@ loadScripts(document, 'script');</script>
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Assignment.html" title="class in ru.nsu.masolygin.oopchecker.domain">Assignment</a>&gt;&nbsp;assignments,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Checkpoint.html" title="class in ru.nsu.masolygin.oopchecker.domain">Checkpoint</a>&gt;&nbsp;checkpoints,
  <a href="../coursesettings/CourseSettings.html" title="class in ru.nsu.masolygin.oopchecker.domain.coursesettings">CourseSettings</a>&nbsp;settings)</span></div>
-<div class="block">Creates an instance of a <code>CourseConfig</code> record class.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>tasks</code> - the value for the <code>tasks</code> record component</dd>
-<dd><code>groups</code> - the value for the <code>groups</code> record component</dd>
-<dd><code>assignments</code> - the value for the <code>assignments</code> record component</dd>
-<dd><code>checkpoints</code> - the value for the <code>checkpoints</code> record component</dd>
-<dd><code>settings</code> - the value for the <code>settings</code> record component</dd>
-</dl>
+<div class="block">Создает неизменяемую конфигурацию курса.</div>
 </section>
 </li>
 </ul>
@@ -296,10 +296,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="tasks()">
 <h3>tasks</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Task.html" title="class in ru.nsu.masolygin.oopchecker.domain">Task</a>&gt;</span>&nbsp;<span class="element-name">tasks</span>()</div>
-<div class="block">Returns the value of the <code>tasks</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-tasks"><code>tasks</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>tasks</code> record component</dd>
+<dd>the value of the <a href="#param-tasks"><code>tasks</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -307,10 +307,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="groups()">
 <h3>groups</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Group.html" title="class in ru.nsu.masolygin.oopchecker.domain">Group</a>&gt;</span>&nbsp;<span class="element-name">groups</span>()</div>
-<div class="block">Returns the value of the <code>groups</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-groups"><code>groups</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>groups</code> record component</dd>
+<dd>the value of the <a href="#param-groups"><code>groups</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -318,10 +318,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="assignments()">
 <h3>assignments</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Assignment.html" title="class in ru.nsu.masolygin.oopchecker.domain">Assignment</a>&gt;</span>&nbsp;<span class="element-name">assignments</span>()</div>
-<div class="block">Returns the value of the <code>assignments</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-assignments"><code>assignments</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>assignments</code> record component</dd>
+<dd>the value of the <a href="#param-assignments"><code>assignments</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -329,10 +329,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="checkpoints()">
 <h3>checkpoints</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../Checkpoint.html" title="class in ru.nsu.masolygin.oopchecker.domain">Checkpoint</a>&gt;</span>&nbsp;<span class="element-name">checkpoints</span>()</div>
-<div class="block">Returns the value of the <code>checkpoints</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-checkpoints"><code>checkpoints</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>checkpoints</code> record component</dd>
+<dd>the value of the <a href="#param-checkpoints"><code>checkpoints</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -340,10 +340,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="settings()">
 <h3>settings</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../coursesettings/CourseSettings.html" title="class in ru.nsu.masolygin.oopchecker.domain.coursesettings">CourseSettings</a></span>&nbsp;<span class="element-name">settings</span>()</div>
-<div class="block">Returns the value of the <code>settings</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-settings"><code>settings</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>settings</code> record component</dd>
+<dd>the value of the <a href="#param-settings"><code>settings</code></a> record component</dd>
 </dl>
 </section>
 </li>

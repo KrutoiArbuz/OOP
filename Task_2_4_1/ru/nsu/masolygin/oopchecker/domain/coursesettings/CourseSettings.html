@@ -76,6 +76,18 @@ loadScripts(document, 'script');</script>
 </div>
 </div>
 <section class="class-description" id="class-description">
+<dl class="notes">
+<dt>Record Components:</dt>
+<dd><code><span id="param-extraPoints">extraPoints</span></code> - дополнительные баллы по студентам и задачам</dd>
+<dd><code><span id="param-gradeScale">gradeScale</span></code> - шкала оценок в зависимости от процента выполнения</dd>
+<dd><code><span id="param-semesters">semesters</span></code> - информация о семестрах</dd>
+<dd><code><span id="param-latePenalty">latePenalty</span></code> - штраф за сдачу после дедлайна</dd>
+<dd><code><span id="param-testTimeoutSeconds">testTimeoutSeconds</span></code> - таймаут выполнения тестов в секундах</dd>
+<dd><code><span id="param-buildTimeoutSeconds">buildTimeoutSeconds</span></code> - таймаут сборки в секундах</dd>
+<dd><code><span id="param-activityWeight">activityWeight</span></code> - вес активности в итоговой оценке</dd>
+<dd><code><span id="param-docsPenalty">docsPenalty</span></code> - штраф за отсутствие документации</dd>
+<dd><code><span id="param-stylePenalty">stylePenalty</span></code> - штраф за нарушение стиля кода</dd>
+</dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public record </span><span class="element-name type-name-label">CourseSettings</span>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;&gt;&nbsp;extraPoints, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/NavigableMap.html" title="class or interface in java.util" class="external-link">NavigableMap</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;gradeScale, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>,<wbr><a href="../SemesterInfo.html" title="class in ru.nsu.masolygin.oopchecker.domain">SemesterInfo</a>&gt;&nbsp;semesters, double&nbsp;latePenalty, long&nbsp;testTimeoutSeconds, long&nbsp;buildTimeoutSeconds, double&nbsp;activityWeight, double&nbsp;docsPenalty, double&nbsp;stylePenalty)
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Record.html" title="class or interface in java.lang" class="external-link">Record</a></span></div>
@@ -101,7 +113,7 @@ loadScripts(document, 'script');</script>
  double&nbsp;docsPenalty,
  double&nbsp;stylePenalty)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Creates an instance of a <code>CourseSettings</code> record class.</div>
+<div class="block">Создает настройки курса, обеспечивая неизменяемость коллекций.</div>
 </div>
 </div>
 </section>
@@ -120,17 +132,17 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#activityWeight()" class="member-name-link">activityWeight</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>activityWeight</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-activityWeight"><code>activityWeight</code></a> record component.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>long</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#buildTimeoutSeconds()" class="member-name-link">buildTimeoutSeconds</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>buildTimeoutSeconds</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-buildTimeoutSeconds"><code>buildTimeoutSeconds</code></a> record component.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#docsPenalty()" class="member-name-link">docsPenalty</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>docsPenalty</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-docsPenalty"><code>docsPenalty</code></a> record component.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#equals(java.lang.Object)" class="member-name-link">equals</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;o)</code></div>
@@ -140,7 +152,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#extraPoints()" class="member-name-link">extraPoints</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>extraPoints</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-extraPoints"><code>extraPoints</code></a> record component.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getExtraPoints(java.lang.String,java.lang.String)" class="member-name-link">getExtraPoints</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;taskId,
@@ -156,7 +168,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/NavigableMap.html" title="class or interface in java.util" class="external-link">NavigableMap</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#gradeScale()" class="member-name-link">gradeScale</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>gradeScale</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-gradeScale"><code>gradeScale</code></a> record component.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hashCode()" class="member-name-link">hashCode</a>()</code></div>
@@ -166,22 +178,22 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#latePenalty()" class="member-name-link">latePenalty</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>latePenalty</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-latePenalty"><code>latePenalty</code></a> record component.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>,<wbr><a href="../SemesterInfo.html" title="class in ru.nsu.masolygin.oopchecker.domain">SemesterInfo</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#semesters()" class="member-name-link">semesters</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>semesters</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-semesters"><code>semesters</code></a> record component.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#stylePenalty()" class="member-name-link">stylePenalty</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>stylePenalty</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-stylePenalty"><code>stylePenalty</code></a> record component.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>long</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#testTimeoutSeconds()" class="member-name-link">testTimeoutSeconds</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>testTimeoutSeconds</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-testTimeoutSeconds"><code>testTimeoutSeconds</code></a> record component.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
@@ -217,19 +229,7 @@ loadScripts(document, 'script');</script>
  double&nbsp;activityWeight,
  double&nbsp;docsPenalty,
  double&nbsp;stylePenalty)</span></div>
-<div class="block">Creates an instance of a <code>CourseSettings</code> record class.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>extraPoints</code> - the value for the <code>extraPoints</code> record component</dd>
-<dd><code>gradeScale</code> - the value for the <code>gradeScale</code> record component</dd>
-<dd><code>semesters</code> - the value for the <code>semesters</code> record component</dd>
-<dd><code>latePenalty</code> - the value for the <code>latePenalty</code> record component</dd>
-<dd><code>testTimeoutSeconds</code> - the value for the <code>testTimeoutSeconds</code> record component</dd>
-<dd><code>buildTimeoutSeconds</code> - the value for the <code>buildTimeoutSeconds</code> record component</dd>
-<dd><code>activityWeight</code> - the value for the <code>activityWeight</code> record component</dd>
-<dd><code>docsPenalty</code> - the value for the <code>docsPenalty</code> record component</dd>
-<dd><code>stylePenalty</code> - the value for the <code>stylePenalty</code> record component</dd>
-</dl>
+<div class="block">Создает настройки курса, обеспечивая неизменяемость коллекций.</div>
 </section>
 </li>
 </ul>
@@ -313,10 +313,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="extraPoints()">
 <h3>extraPoints</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;&gt;</span>&nbsp;<span class="element-name">extraPoints</span>()</div>
-<div class="block">Returns the value of the <code>extraPoints</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-extraPoints"><code>extraPoints</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>extraPoints</code> record component</dd>
+<dd>the value of the <a href="#param-extraPoints"><code>extraPoints</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -324,10 +324,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="gradeScale()">
 <h3>gradeScale</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/NavigableMap.html" title="class or interface in java.util" class="external-link">NavigableMap</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name">gradeScale</span>()</div>
-<div class="block">Returns the value of the <code>gradeScale</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-gradeScale"><code>gradeScale</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>gradeScale</code> record component</dd>
+<dd>the value of the <a href="#param-gradeScale"><code>gradeScale</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -335,10 +335,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="semesters()">
 <h3>semesters</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>,<wbr><a href="../SemesterInfo.html" title="class in ru.nsu.masolygin.oopchecker.domain">SemesterInfo</a>&gt;</span>&nbsp;<span class="element-name">semesters</span>()</div>
-<div class="block">Returns the value of the <code>semesters</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-semesters"><code>semesters</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>semesters</code> record component</dd>
+<dd>the value of the <a href="#param-semesters"><code>semesters</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -346,10 +346,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="latePenalty()">
 <h3>latePenalty</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">latePenalty</span>()</div>
-<div class="block">Returns the value of the <code>latePenalty</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-latePenalty"><code>latePenalty</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>latePenalty</code> record component</dd>
+<dd>the value of the <a href="#param-latePenalty"><code>latePenalty</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -357,10 +357,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="testTimeoutSeconds()">
 <h3>testTimeoutSeconds</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">long</span>&nbsp;<span class="element-name">testTimeoutSeconds</span>()</div>
-<div class="block">Returns the value of the <code>testTimeoutSeconds</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-testTimeoutSeconds"><code>testTimeoutSeconds</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>testTimeoutSeconds</code> record component</dd>
+<dd>the value of the <a href="#param-testTimeoutSeconds"><code>testTimeoutSeconds</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -368,10 +368,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="buildTimeoutSeconds()">
 <h3>buildTimeoutSeconds</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">long</span>&nbsp;<span class="element-name">buildTimeoutSeconds</span>()</div>
-<div class="block">Returns the value of the <code>buildTimeoutSeconds</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-buildTimeoutSeconds"><code>buildTimeoutSeconds</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>buildTimeoutSeconds</code> record component</dd>
+<dd>the value of the <a href="#param-buildTimeoutSeconds"><code>buildTimeoutSeconds</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -379,10 +379,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="activityWeight()">
 <h3>activityWeight</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">activityWeight</span>()</div>
-<div class="block">Returns the value of the <code>activityWeight</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-activityWeight"><code>activityWeight</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>activityWeight</code> record component</dd>
+<dd>the value of the <a href="#param-activityWeight"><code>activityWeight</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -390,10 +390,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="docsPenalty()">
 <h3>docsPenalty</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">docsPenalty</span>()</div>
-<div class="block">Returns the value of the <code>docsPenalty</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-docsPenalty"><code>docsPenalty</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>docsPenalty</code> record component</dd>
+<dd>the value of the <a href="#param-docsPenalty"><code>docsPenalty</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -401,10 +401,10 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="stylePenalty()">
 <h3>stylePenalty</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">stylePenalty</span>()</div>
-<div class="block">Returns the value of the <code>stylePenalty</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-stylePenalty"><code>stylePenalty</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>stylePenalty</code> record component</dd>
+<dd>the value of the <a href="#param-stylePenalty"><code>stylePenalty</code></a> record component</dd>
 </dl>
 </section>
 </li>
