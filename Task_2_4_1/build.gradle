@@ -37,6 +37,10 @@ tasks.withType(Javadoc).configureEach {
     options.charSet = 'UTF-8'
 }
 
+run {
+    jvmArgs '-Dfile.encoding=UTF-8', '-Dstdout.encoding=UTF-8', '-Dstderr.encoding=UTF-8'
+}
+
 test {
     useJUnitPlatform()
 }
