@@ -18,7 +18,7 @@ class TextTableTest {
     }
 
     @Test
-    void renderContainsHeaders() {
+    void renderContainsAllHeaders() {
         String out = table.render();
         assertTrue(out.contains("Имя"));
         assertTrue(out.contains("Баллы"));
@@ -26,64 +26,83 @@ class TextTableTest {
     }
 
     @Test
-    void renderContainsSeparatorLine() {
+    void renderContainsSeparatorRow() {
         String out = table.render();
         assertTrue(out.contains("---"));
     }
 
     @Test
-    void renderContainsAddedRowData() {
-        table.addRow(List.of("Иванов", "10", "отлично"));
-        String out = table.render();
-        assertTrue(out.contains("Иванов"));
-        assertTrue(out.contains("10"));
-        assertTrue(out.contains("отлично"));
-    }
-
-    @Test
-    void renderWithNoRowsHasTwoLines() {
-        String out = table.render();
-        String[] lines = out.split("\n");
+    void renderEmptyTableHasHeaderAndSeparatorOnly() {
+        String[] lines = table.render().split("\n");
         assertEquals(2, lines.length);
     }
 
     @Test
     void renderWithOneRowHasThreeLines() {
         table.addRow(List.of("Иванов", "10", "отлично"));
+        assertEquals(3, table.render().split("\n").length);
+    }
+
+    @Test
+    void renderIncludesAllRowsInOrder() {
+        table.addRow(List.of("Иванов", "10", "отлично"));
+        table.addRow(List.of("Петров", "7", "хорошо"));
         String out = table.render();
-        String[] lines = out.split("\n");
-        assertEquals(3, lines.length);
-    }
-
-    @Test
-    void addRowReturnsTableForChaining() {
-        TextTable result = table.addRow(List.of("A", "1", "B"));
-        assertEquals(table, result);
-    }
-
-    @Test
-    void addRowWithWrongSizeThrows() {
-        assertThrows(IllegalArgumentException.class,
-            () -> table.addRow(List.of("только один элемент")));
+        assertTrue(out.indexOf("Иванов") < out.indexOf("Петров"));
     }
 
     @Test
     void columnWidthAdaptsToLongestValue() {
         table.addRow(List.of("Очень длинное имя студента", "5", "хорошо"));
-        String out = table.render();
-        int headerLineLen = out.split("\n")[0].length();
-        int separatorLen = out.split("\n")[1].length();
-        assertEquals(headerLineLen, separatorLen);
+        String[] lines = table.render().split("\n");
+        assertEquals(lines[0].length(), lines[1].length());
     }
 
     @Test
-    void multipleRowsAllAppearInOutput() {
-        table.addRow(List.of("Иванов", "10", "отлично"));
-        table.addRow(List.of("Петров", "7", "хорошо"));
-        table.addRow(List.of("Сидоров", "3", "неудовлетворительно"));
-        String out = table.render();
-        assertTrue(out.contains("Иванов"));
-        assertTrue(out.contains("Петров"));
-        assertTrue(out.contains("Сидоров"));
+    void allRowsHaveEqualLength() {
+        table.addRow(List.of("A", "1", "B"));
+        table.addRow(List.of("Очень длинная строка", "1000", "В"));
+        String[] lines = table.render().split("\n");
+        for (int i = 1; i < lines.length; i++) {
+            assertEquals(lines[0].length(), lines[i].length(),
+                "row " + i + " has different width");
+        }
+    }
+
+    @Test
+    void addRowWithWrongSizeThrows() {
+        assertThrows(IllegalArgumentException.class,
+            () -> table.addRow(List.of("одно поле")));
+    }
+
+    @Test
+    void addRowWithExtraColumnsThrows() {
+        assertThrows(IllegalArgumentException.class,
+            () -> table.addRow(List.of("a", "b", "c", "d")));
+    }
+
+    @Test
+    void nullHeadersAreRejected() {
+        assertThrows(NullPointerException.class, () -> new TextTable(null));
+    }
+
+    @Test
+    void nullRowIsRejected() {
+        assertThrows(NullPointerException.class, () -> table.addRow(null));
+    }
+
+    @Test
+    void emptyHeadersTableProducesEmptyLines() {
+        TextTable empty = new TextTable(List.of());
+        String[] lines = empty.render().split("\n", -1);
+        assertEquals("", lines[0]);
+    }
+
+    @Test
+    void cellShorterThanHeaderIsPaddedWithSpaces() {
+        TextTable t = new TextTable(List.of("ОченьШирокийЗаголовок"));
+        t.addRow(List.of("a"));
+        String[] lines = t.render().split("\n");
+        assertEquals(lines[0].length(), lines[2].length());
     }
 }

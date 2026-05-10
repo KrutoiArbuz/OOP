@@ -1,114 +1,89 @@
 package ru.nsu.masolygin.oopchecker.runner;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import ru.nsu.masolygin.oopchecker.runner.buildstrategy.BuildStrategy;
+import ru.nsu.masolygin.oopchecker.runner.buildstrategy.GradleBuildStrategy;
+import ru.nsu.masolygin.oopchecker.runner.buildstrategy.MavenBuildStrategy;
 
 class BuildCommandFactoryTest {
 
+    private BuildCommandFactory factory;
+
+    @BeforeEach
+    void setUp() {
+        factory = new BuildCommandFactory();
+    }
+
     @Test
-    void detectsGradleViaBuildGradle(@TempDir Path tmp) throws IOException {
+    void detectsGradleByBuildGradle(@TempDir Path tmp) throws IOException {
         Files.createFile(tmp.resolve("build.gradle"));
-        assertEquals(BuildCommandFactory.BuildSystem.GRADLE,
-            BuildCommandFactory.detectBuildSystem(tmp));
+        BuildStrategy strategy = factory.detect(tmp);
+        assertTrue(strategy instanceof GradleBuildStrategy);
     }
 
     @Test
-    void detectsGradleViaGradlew(@TempDir Path tmp) throws IOException {
+    void detectsGradleByGradlewWrapper(@TempDir Path tmp) throws IOException {
         Files.createFile(tmp.resolve("gradlew"));
-        assertEquals(BuildCommandFactory.BuildSystem.GRADLE,
-            BuildCommandFactory.detectBuildSystem(tmp));
+        assertTrue(factory.detect(tmp) instanceof GradleBuildStrategy);
     }
 
     @Test
-    void detectsGradleViaKotlinDsl(@TempDir Path tmp) throws IOException {
+    void detectsGradleByGradlewBat(@TempDir Path tmp) throws IOException {
+        Files.createFile(tmp.resolve("gradlew.bat"));
+        assertTrue(factory.detect(tmp) instanceof GradleBuildStrategy);
+    }
+
+    @Test
+    void detectsGradleByKotlinDsl(@TempDir Path tmp) throws IOException {
         Files.createFile(tmp.resolve("build.gradle.kts"));
-        assertEquals(BuildCommandFactory.BuildSystem.GRADLE,
-            BuildCommandFactory.detectBuildSystem(tmp));
+        assertTrue(factory.detect(tmp) instanceof GradleBuildStrategy);
     }
 
     @Test
-    void detectsMavenViaPomXml(@TempDir Path tmp) throws IOException {
+    void detectsMavenByPomXml(@TempDir Path tmp) throws IOException {
         Files.createFile(tmp.resolve("pom.xml"));
-        assertEquals(BuildCommandFactory.BuildSystem.MAVEN,
-            BuildCommandFactory.detectBuildSystem(tmp));
+        assertTrue(factory.detect(tmp) instanceof MavenBuildStrategy);
     }
 
     @Test
-    void detectsMavenViaMvnw(@TempDir Path tmp) throws IOException {
+    void detectsMavenByMvnw(@TempDir Path tmp) throws IOException {
         Files.createFile(tmp.resolve("mvnw"));
-        assertEquals(BuildCommandFactory.BuildSystem.MAVEN,
-            BuildCommandFactory.detectBuildSystem(tmp));
+        assertTrue(factory.detect(tmp) instanceof MavenBuildStrategy);
+    }
+
+    @Test
+    void detectsMavenByMvnwCmd(@TempDir Path tmp) throws IOException {
+        Files.createFile(tmp.resolve("mvnw.cmd"));
+        assertTrue(factory.detect(tmp) instanceof MavenBuildStrategy);
     }
 
     @Test
     void throwsWhenNoBuildSystemFound(@TempDir Path tmp) {
-        assertThrows(IllegalStateException.class,
-            () -> BuildCommandFactory.detectBuildSystem(tmp));
+        IllegalStateException e = assertThrows(IllegalStateException.class,
+            () -> factory.detect(tmp));
+        assertTrue(e.getMessage().contains(tmp.toString()));
     }
 
     @Test
-    void compileCmdForGradleContainsCompileJava(@TempDir Path tmp) {
-        List<String> cmd = BuildCommandFactory.compileCmd(tmp,
-            BuildCommandFactory.BuildSystem.GRADLE);
-        assertTrue(cmd.contains("compileJava"));
+    void gradlePrioritisedOverMavenIfBothPresent(@TempDir Path tmp) throws IOException {
+        Files.createFile(tmp.resolve("build.gradle"));
+        Files.createFile(tmp.resolve("pom.xml"));
+        assertTrue(factory.detect(tmp) instanceof GradleBuildStrategy);
     }
 
     @Test
-    void compileCmdForMavenContainsCompile(@TempDir Path tmp) {
-        List<String> cmd = BuildCommandFactory.compileCmd(tmp,
-            BuildCommandFactory.BuildSystem.MAVEN);
-        assertTrue(cmd.contains("compile"));
-    }
-
-    @Test
-    void docsCmdForGradleContainsJavadoc(@TempDir Path tmp) {
-        List<String> cmd = BuildCommandFactory.docsCmd(tmp, BuildCommandFactory.BuildSystem.GRADLE);
-        assertTrue(cmd.contains("javadoc"));
-    }
-
-    @Test
-    void docsCmdForMavenContainsJavadocGoal(@TempDir Path tmp) {
-        List<String> cmd = BuildCommandFactory.docsCmd(tmp, BuildCommandFactory.BuildSystem.MAVEN);
-        assertTrue(cmd.contains("javadoc:javadoc"));
-    }
-
-    @Test
-    void styleCmdForGradleContainsCheckstyleMain(@TempDir Path tmp) {
-        List<String> cmd = BuildCommandFactory.styleCmd(tmp,
-            BuildCommandFactory.BuildSystem.GRADLE);
-        assertTrue(cmd.contains("checkstyleMain"));
-    }
-
-    @Test
-    void styleCmdForMavenContainsCheckstyleCheck(@TempDir Path tmp) {
-        List<String> cmd = BuildCommandFactory.styleCmd(tmp, BuildCommandFactory.BuildSystem.MAVEN);
-        assertTrue(cmd.contains("checkstyle:check"));
-    }
-
-    @Test
-    void testCmdForGradleContainsTest(@TempDir Path tmp) {
-        List<String> cmd = BuildCommandFactory.testCmd(tmp, BuildCommandFactory.BuildSystem.GRADLE);
-        assertTrue(cmd.contains("test"));
-    }
-
-    @Test
-    void testCmdForMavenContainsTest(@TempDir Path tmp) {
-        List<String> cmd = BuildCommandFactory.testCmd(tmp, BuildCommandFactory.BuildSystem.MAVEN);
-        assertTrue(cmd.contains("test"));
-    }
-
-    @Test
-    void compileCmdIsNotEmpty(@TempDir Path tmp) {
-        List<String> cmd = BuildCommandFactory.compileCmd(tmp,
-            BuildCommandFactory.BuildSystem.GRADLE);
-        assertTrue(!cmd.isEmpty());
+    void detectInvocationsAreIndependent(@TempDir Path tmp1, @TempDir Path tmp2) throws IOException {
+        Files.createFile(tmp1.resolve("build.gradle"));
+        Files.createFile(tmp2.resolve("pom.xml"));
+        assertTrue(factory.detect(tmp1) instanceof GradleBuildStrategy);
+        assertTrue(factory.detect(tmp2) instanceof MavenBuildStrategy);
     }
 }

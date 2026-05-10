@@ -39,10 +39,17 @@ course {
     settings {
         latePenalty 0.5
         testTimeoutSeconds 60
+        buildTimeoutSeconds 300
         activityWeight 0.2
+        docsPenalty 0.2
+        stylePenalty 0.2
         gradeThreshold min: 85, grade: 'отлично'
         gradeThreshold min: 70, grade: 'хорошо'
         gradeThreshold min: 50, grade: 'удовлетворительно'
         extraPoints task: '2_3_1', student: 'ivanov', points: 2
+        semester(1) {
+            startDate '2023-09-01'
+            weeks 17
+        }
     }
 }

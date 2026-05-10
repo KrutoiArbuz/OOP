@@ -1,97 +1,130 @@
 package ru.nsu.masolygin.oopchecker.vcs;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class GitLogParserTest {
 
     private static final String SEP = String.valueOf((char) 0x1F);
+    private static final String VALID_LINE = String.join(SEP,
+        "abc123",
+        "2024-03-15T10:30:00+00:00",
+        "Ivan Ivanov",
+        "ivan@example.com",
+        "Add feature");
 
-    private static final String VALID_LINE =
-        "abc123" + SEP + "2024-03-15T10:30:00+00:00"
-            + SEP + "Ivan Ivanov" + SEP + "ivan@example.com" + SEP + "Add feature";
+    private GitLogParser parser;
 
-    @Test
-    void prettyFormatArgContainsPrettyFlag() {
-        String arg = GitLogParser.prettyFormatArg();
-        assertTrue(arg.startsWith("--pretty=format:"));
+    @BeforeEach
+    void setUp() {
+        parser = new GitLogParser();
     }
 
     @Test
-    void parseManyReturnsEmptyListForBlankInput() {
-        List<Commit> commits = GitLogParser.parseMany("   ");
-        assertTrue(commits.isEmpty());
+    void buildLogCommandIncludesPrettyAndDateRange() {
+        List<String> cmd = parser.buildLogCommand(
+            LocalDate.of(2024, 1, 1), LocalDate.of(2024, 2, 1));
+
+        assertAll(
+            () -> assertEquals("git", cmd.get(0)),
+            () -> assertEquals("log", cmd.get(1)),
+            () -> assertTrue(cmd.stream().anyMatch(s -> s.startsWith("--pretty=format:"))),
+            () -> assertTrue(cmd.contains("--since=2024-01-01")),
+            () -> assertTrue(cmd.contains("--until=2024-02-01"))
+        );
     }
 
     @Test
-    void parseManyReturnsEmptyListForEmptyString() {
-        List<Commit> commits = GitLogParser.parseMany("");
-        assertTrue(commits.isEmpty());
+    void prettyFormatContainsAllFields() {
+        List<String> cmd = parser.buildLogCommand(LocalDate.now(), LocalDate.now());
+        String pretty = cmd.stream().filter(s -> s.startsWith("--pretty=")).findFirst()
+            .orElseThrow();
+        assertTrue(pretty.contains("%H"));
+        assertTrue(pretty.contains("%aI"));
+        assertTrue(pretty.contains("%an"));
+        assertTrue(pretty.contains("%ae"));
+        assertTrue(pretty.contains("%s"));
     }
 
     @Test
-    void parseManyParsesOneCommit() {
-        List<Commit> commits = GitLogParser.parseMany(VALID_LINE);
+    void parseManyOnEmptyStringReturnsEmptyList() {
+        assertTrue(parser.parseMany("").isEmpty());
+    }
+
+    @Test
+    void parseManyOnBlankStringReturnsEmptyList() {
+        assertTrue(parser.parseMany("   \n\t").isEmpty());
+    }
+
+    @Test
+    void parseManyParsesSingleLine() {
+        List<Commit> commits = parser.parseMany(VALID_LINE);
         assertEquals(1, commits.size());
-        assertEquals("abc123", commits.get(0).hash());
-        assertEquals("Ivan Ivanov", commits.get(0).authorName());
-        assertEquals("ivan@example.com", commits.get(0).authorEmail());
-        assertEquals("Add feature", commits.get(0).subject());
     }
 
     @Test
-    void parsedTimestampIsNotNull() {
-        List<Commit> commits = GitLogParser.parseMany(VALID_LINE);
-        assertTrue(commits.get(0).timestamp() != null);
+    void parsedCommitHasAllFields() {
+        Commit c = parser.parseMany(VALID_LINE).get(0);
+        assertAll(
+            () -> assertEquals("abc123", c.hash()),
+            () -> assertEquals("Ivan Ivanov", c.authorName()),
+            () -> assertEquals("ivan@example.com", c.authorEmail()),
+            () -> assertEquals("Add feature", c.subject())
+        );
     }
 
     @Test
-    void parseManyHandlesMultipleLines() {
-        String line2 = "def456" + SEP + "2024-03-16T12:00:00+00:00"
-            + SEP + "Petr Petrov" + SEP + "petr@example.com" + SEP + "Fix bug";
-        List<Commit> commits = GitLogParser.parseMany(VALID_LINE + "\n" + line2);
+    void parsedCommitHasNonNullTimestamp() {
+        Commit c = parser.parseMany(VALID_LINE).get(0);
+        assertTrue(c.timestamp() != null);
+    }
+
+    @Test
+    void parseManySplitsByNewline() {
+        String line2 = String.join(SEP, "def456", "2024-03-16T12:00:00+00:00",
+            "Petr", "petr@x", "Fix bug");
+        List<Commit> commits = parser.parseMany(VALID_LINE + "\n" + line2);
         assertEquals(2, commits.size());
         assertEquals("abc123", commits.get(0).hash());
         assertEquals("def456", commits.get(1).hash());
     }
 
     @Test
-    void parseSingleReturnsEmptyForBlankInput() {
-        Optional<Commit> commit = GitLogParser.parseSingle("   ");
-        assertFalse(commit.isPresent());
+    void parseManySkipsBlankLines() {
+        String input = VALID_LINE + "\n\n   \n";
+        assertEquals(1, parser.parseMany(input).size());
     }
 
     @Test
-    void parseSingleReturnsPresentForValidLine() {
-        Optional<Commit> commit = GitLogParser.parseSingle(VALID_LINE);
-        assertTrue(commit.isPresent());
-        assertEquals("abc123", commit.get().hash());
+    void parseCommitOnMalformedLineThrows() {
+        assertThrows(GitException.class,
+            () -> parser.parseCommit("only" + SEP + "two"));
     }
 
     @Test
-    void parseSingleTrimsSurroundingWhitespace() {
-        Optional<Commit> commit = GitLogParser.parseSingle("  " + VALID_LINE + "  ");
-        assertTrue(commit.isPresent());
+    void parseManyPropagatesGitException() {
+        assertThrows(GitException.class,
+            () -> parser.parseMany("only" + SEP + "two"));
     }
 
     @Test
-    void parseManyThrowsOnMalformedLine() {
-        assertThrows(Exception.class,
-            () -> GitLogParser.parseMany("tooshort" + SEP + "only2fields"));
+    void emptySubjectIsAcceptedWhenSeparatorPresent() {
+        String line = String.join(SEP, "h", "2024-03-15T10:30:00+00:00", "n", "e", "");
+        Commit c = parser.parseCommit(line);
+        assertEquals("", c.subject());
     }
 
     @Test
-    void commitSubjectIsEmptyWhenNotProvided() {
-        String lineWithoutSubject = "abc123" + SEP + "2024-03-15T10:30:00+00:00"
-            + SEP + "Ivan" + SEP + "ivan@example.com";
-        List<Commit> commits = GitLogParser.parseMany(lineWithoutSubject);
-        assertEquals(1, commits.size());
-        assertEquals("", commits.get(0).subject());
+    void missingSubjectColumnDefaultsToEmpty() {
+        String line = String.join(SEP, "h", "2024-03-15T10:30:00+00:00", "n", "e");
+        Commit c = parser.parseCommit(line);
+        assertEquals("", c.subject());
     }
 }
