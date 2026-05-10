@@ -10,16 +10,6 @@ package ru.nsu.masolygin.oopchecker.grader;
 public record StudentActivity(String studentGithub, int activeWeeks, int totalWeeks) {
 
     /**
-     * Создаёт запись для студента без активности.
-     *
-     * @param github GitHub ник студента
-     * @return активность с нулевыми счётчиками
-     */
-    public static StudentActivity absent(String github) {
-        return new StudentActivity(github, 0, 0);
-    }
-
-    /**
      * Возвращает долю активных недель.
      *
      * @return доля (0..1)
