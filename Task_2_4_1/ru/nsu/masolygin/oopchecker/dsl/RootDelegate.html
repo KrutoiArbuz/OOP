@@ -89,7 +89,7 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.masolygin.oopchecker.domain.CourseConfig,java.nio.file.Path)" class="member-name-link">RootDelegate</a><wbr>(<a href="../domain/CourseConfig.html" title="class in ru.nsu.masolygin.oopchecker.domain">CourseConfig</a>&nbsp;config,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.masolygin.oopchecker.domain.courseconfig.CourseConfigBuilder,java.nio.file.Path)" class="member-name-link">RootDelegate</a><wbr>(<a href="../domain/courseconfig/CourseConfigBuilder.html" title="class in ru.nsu.masolygin.oopchecker.domain.courseconfig">CourseConfigBuilder</a>&nbsp;builder,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html" title="class or interface in java.nio.file" class="external-link">Path</a>&nbsp;baseDir)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Конструктор.</div>
@@ -113,15 +113,10 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Выполняет тело блока <code>course { ... }</code> с соответствующим делегатом.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../domain/CourseConfig.html" title="class in ru.nsu.masolygin.oopchecker.domain">CourseConfig</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getConfig()" class="member-name-link">getConfig</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#importConfig(java.lang.String)" class="member-name-link">importConfig</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;relativePath)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Возвращает текущую конфигурацию курса.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#importConfig(java.lang.String)" class="member-name-link">importConfig</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;relativePath)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Подключает другой DSL-файл, добавляя его данные в ту же <a href="../domain/CourseConfig.html" title="class in ru.nsu.masolygin.oopchecker.domain"><code>CourseConfig</code></a>.</div>
+<div class="block">Загружает и выполняет вложенный конфиг DSL относительно текущего скрипта.</div>
 </div>
 </div>
 </div>
@@ -141,14 +136,13 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(ru.nsu.masolygin.oopchecker.domain.CourseConfig,java.nio.file.Path)">
+<section class="detail" id="&lt;init&gt;(ru.nsu.masolygin.oopchecker.domain.courseconfig.CourseConfigBuilder,java.nio.file.Path)">
 <h3>RootDelegate</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">RootDelegate</span><wbr><span class="parameters">(<a href="../domain/CourseConfig.html" title="class in ru.nsu.masolygin.oopchecker.domain">CourseConfig</a>&nbsp;config,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">RootDelegate</span><wbr><span class="parameters">(<a href="../domain/courseconfig/CourseConfigBuilder.html" title="class in ru.nsu.masolygin.oopchecker.domain.courseconfig">CourseConfigBuilder</a>&nbsp;builder,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html" title="class or interface in java.nio.file" class="external-link">Path</a>&nbsp;baseDir)</span></div>
 <div class="block">Конструктор.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>config</code> - конфигурация курса, в которую пишутся все данные</dd>
 <dd><code>baseDir</code> - каталог скрипта, относительно которого разрешаются импорты</dd>
 </dl>
 </section>
@@ -177,23 +171,12 @@ loadScripts(document, 'script');</script>
 <h3>importConfig</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">importConfig</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;relativePath)</span>
                   throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></span></div>
-<div class="block">Подключает другой DSL-файл, добавляя его данные в ту же <a href="../domain/CourseConfig.html" title="class in ru.nsu.masolygin.oopchecker.domain"><code>CourseConfig</code></a>.</div>
+<div class="block">Загружает и выполняет вложенный конфиг DSL относительно текущего скрипта.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>relativePath</code> - путь к импортируемому файлу относительно текущего скрипта</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - при ошибке чтения файла</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getConfig()">
-<h3>getConfig</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../domain/CourseConfig.html" title="class in ru.nsu.masolygin.oopchecker.domain">CourseConfig</a></span>&nbsp;<span class="element-name">getConfig</span>()</div>
-<div class="block">Возвращает текущую конфигурацию курса.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>конфигурация курса</dd>
 </dl>
 </section>
 </li>

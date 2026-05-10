@@ -77,8 +77,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Grader</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
-<div class="block">Пересчитывает результаты проверок в баллы и оценки согласно критериям курса с учётом дедлайнов,
- штрафов и активности.</div>
+<div class="block">Считает итоговые баллы: по задаче, сумму, КТ, оценку по шкале.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -90,10 +89,8 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.masolygin.oopchecker.domain.CourseConfig)" class="member-name-link">Grader</a><wbr>(<a href="../domain/CourseConfig.html" title="class in ru.nsu.masolygin.oopchecker.domain">CourseConfig</a>&nbsp;config)</code></div>
-<div class="col-last even-row-color">
-<div class="block">Создаёт оценщик с конфигурацией курса.</div>
-</div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.masolygin.oopchecker.domain.courseconfig.CourseConfig)" class="member-name-link">Grader</a><wbr>(<a href="../domain/courseconfig/CourseConfig.html" title="class in ru.nsu.masolygin.oopchecker.domain.courseconfig">CourseConfig</a>&nbsp;config)</code></div>
+<div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
 </li>
@@ -117,28 +114,22 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="GradingResult.html" title="class in ru.nsu.masolygin.oopchecker.grader">GradingResult</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#grade(ru.nsu.masolygin.oopchecker.runner.TaskExecutionResult)" class="member-name-link">grade</a><wbr>(<a href="../runner/TaskExecutionResult.html" title="class in ru.nsu.masolygin.oopchecker.runner">TaskExecutionResult</a>&nbsp;result)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Вычисляет развёрнутую оценку задачи с учётом дедлайнов и штрафов.</div>
+<div class="block">Вычисляет развёрнутую оценку задачи.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#gradeFor(double,double)" class="member-name-link">gradeFor</a><wbr>(double&nbsp;score,
- double&nbsp;maxScore)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#gradeFor(double)" class="member-name-link">gradeFor</a><wbr>(double&nbsp;score)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Преобразует балл в оценку согласно шкале курса.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#maxScoreFor(java.util.List)" class="member-name-link">maxScoreFor</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;taskIds)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#totalScore(java.util.List)" class="member-name-link">totalScore</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../runner/TaskExecutionResult.html" title="class in ru.nsu.masolygin.oopchecker.runner">TaskExecutionResult</a>&gt;&nbsp;results)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Возвращает максимально возможный балл за набор задач.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#totalScore(java.util.List)" class="member-name-link">totalScore</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../runner/TaskExecutionResult.html" title="class in ru.nsu.masolygin.oopchecker.runner">TaskExecutionResult</a>&gt;&nbsp;results)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Вычисляет сумму баллов студента по всем задачам без учёта активности.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#totalWithActivity(java.util.List,ru.nsu.masolygin.oopchecker.grader.StudentActivity)" class="member-name-link">totalWithActivity</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../runner/TaskExecutionResult.html" title="class in ru.nsu.masolygin.oopchecker.runner">TaskExecutionResult</a>&gt;&nbsp;results,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#totalWithActivity(java.util.List,ru.nsu.masolygin.oopchecker.grader.StudentActivity)" class="member-name-link">totalWithActivity</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../runner/TaskExecutionResult.html" title="class in ru.nsu.masolygin.oopchecker.runner">TaskExecutionResult</a>&gt;&nbsp;results,
  <a href="StudentActivity.html" title="class in ru.nsu.masolygin.oopchecker.grader">StudentActivity</a>&nbsp;activity)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Вычисляет итоговый балл с модификатором активности.</div>
 </div>
 </div>
@@ -159,14 +150,9 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(ru.nsu.masolygin.oopchecker.domain.CourseConfig)">
+<section class="detail" id="&lt;init&gt;(ru.nsu.masolygin.oopchecker.domain.courseconfig.CourseConfig)">
 <h3>Grader</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Grader</span><wbr><span class="parameters">(<a href="../domain/CourseConfig.html" title="class in ru.nsu.masolygin.oopchecker.domain">CourseConfig</a>&nbsp;config)</span></div>
-<div class="block">Создаёт оценщик с конфигурацией курса.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>config</code> - конфигурация курса с задачами и настройками</dd>
-</dl>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Grader</span><wbr><span class="parameters">(<a href="../domain/courseconfig/CourseConfig.html" title="class in ru.nsu.masolygin.oopchecker.domain.courseconfig">CourseConfig</a>&nbsp;config)</span></div>
 </section>
 </li>
 </ul>
@@ -181,12 +167,12 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="grade(ru.nsu.masolygin.oopchecker.runner.TaskExecutionResult)">
 <h3>grade</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="GradingResult.html" title="class in ru.nsu.masolygin.oopchecker.grader">GradingResult</a></span>&nbsp;<span class="element-name">grade</span><wbr><span class="parameters">(<a href="../runner/TaskExecutionResult.html" title="class in ru.nsu.masolygin.oopchecker.runner">TaskExecutionResult</a>&nbsp;result)</span></div>
-<div class="block">Вычисляет развёрнутую оценку задачи с учётом дедлайнов и штрафов.</div>
+<div class="block">Вычисляет развёрнутую оценку задачи.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>result</code> - результат выполнения задачи</dd>
 <dt>Returns:</dt>
-<dd>развёрнутая оценка с базовым баллом и финальным результатом</dd>
+<dd>развёрнутая оценка</dd>
 </dl>
 </section>
 </li>
@@ -234,28 +220,13 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="maxScoreFor(java.util.List)">
-<h3>maxScoreFor</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">maxScoreFor</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;taskIds)</span></div>
-<div class="block">Возвращает максимально возможный балл за набор задач.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>taskIds</code> - список идентификаторов задач</dd>
-<dt>Returns:</dt>
-<dd>сумма максимальных баллов</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="gradeFor(double,double)">
+<section class="detail" id="gradeFor(double)">
 <h3>gradeFor</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">gradeFor</span><wbr><span class="parameters">(double&nbsp;score,
- double&nbsp;maxScore)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">gradeFor</span><wbr><span class="parameters">(double&nbsp;score)</span></div>
 <div class="block">Преобразует балл в оценку согласно шкале курса.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>score</code> - текущий балл</dd>
-<dd><code>maxScore</code> - максимальный балл</dd>
 <dt>Returns:</dt>
 <dd>буквенная оценка</dd>
 </dl>

@@ -52,10 +52,13 @@ loadScripts(document, 'script');</script>
 <ul class="horizontal">
 <li><a href="ru/nsu/masolygin/oopchecker/cli/package-tree.html">ru.nsu.masolygin.oopchecker.cli</a>, </li>
 <li><a href="ru/nsu/masolygin/oopchecker/domain/package-tree.html">ru.nsu.masolygin.oopchecker.domain</a>, </li>
+<li><a href="ru/nsu/masolygin/oopchecker/domain/courseconfig/package-tree.html">ru.nsu.masolygin.oopchecker.domain.courseconfig</a>, </li>
+<li><a href="ru/nsu/masolygin/oopchecker/domain/coursesettings/package-tree.html">ru.nsu.masolygin.oopchecker.domain.coursesettings</a>, </li>
 <li><a href="ru/nsu/masolygin/oopchecker/dsl/package-tree.html">ru.nsu.masolygin.oopchecker.dsl</a>, </li>
 <li><a href="ru/nsu/masolygin/oopchecker/grader/package-tree.html">ru.nsu.masolygin.oopchecker.grader</a>, </li>
 <li><a href="ru/nsu/masolygin/oopchecker/report/package-tree.html">ru.nsu.masolygin.oopchecker.report</a>, </li>
 <li><a href="ru/nsu/masolygin/oopchecker/runner/package-tree.html">ru.nsu.masolygin.oopchecker.runner</a>, </li>
+<li><a href="ru/nsu/masolygin/oopchecker/runner/buildstrategy/package-tree.html">ru.nsu.masolygin.oopchecker.runner.buildstrategy</a>, </li>
 <li><a href="ru/nsu/masolygin/oopchecker/vcs/package-tree.html">ru.nsu.masolygin.oopchecker.vcs</a></li>
 </ul>
 </div>
@@ -64,29 +67,45 @@ loadScripts(document, 'script');</script>
 <ul>
 <li class="circle">java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" class="type-name-link external-link" title="class or interface in java.lang">Object</a>
 <ul>
+<li class="circle">ru.nsu.masolygin.oopchecker.report.<a href="ru/nsu/masolygin/oopchecker/report/AbstractReport.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.report">AbstractReport</a> (implements ru.nsu.masolygin.oopchecker.report.<a href="ru/nsu/masolygin/oopchecker/report/Report.html" title="interface in ru.nsu.masolygin.oopchecker.report">Report</a>)
+<ul>
+<li class="circle">ru.nsu.masolygin.oopchecker.report.<a href="ru/nsu/masolygin/oopchecker/report/ConsoleReport.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.report">ConsoleReport</a></li>
+<li class="circle">ru.nsu.masolygin.oopchecker.report.<a href="ru/nsu/masolygin/oopchecker/report/HtmlReport.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.report">HtmlReport</a></li>
+</ul>
+</li>
+<li class="circle">ru.nsu.masolygin.oopchecker.cli.<a href="ru/nsu/masolygin/oopchecker/cli/ActivityCollector.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.cli">ActivityCollector</a></li>
 <li class="circle">ru.nsu.masolygin.oopchecker.dsl.<a href="ru/nsu/masolygin/oopchecker/dsl/AssignmentsDelegate.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.dsl">AssignmentsDelegate</a></li>
+<li class="circle">ru.nsu.masolygin.oopchecker.runner.<a href="ru/nsu/masolygin/oopchecker/runner/BuildCommandFactory.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.runner">BuildCommandFactory</a></li>
 <li class="circle">ru.nsu.masolygin.oopchecker.runner.<a href="ru/nsu/masolygin/oopchecker/runner/BuildTestRunner.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.runner">BuildTestRunner</a></li>
 <li class="circle">ru.nsu.masolygin.oopchecker.dsl.<a href="ru/nsu/masolygin/oopchecker/dsl/CheckpointsDelegate.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.dsl">CheckpointsDelegate</a></li>
-<li class="circle">ru.nsu.masolygin.oopchecker.report.<a href="ru/nsu/masolygin/oopchecker/report/ConsoleReport.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.report">ConsoleReport</a></li>
-<li class="circle">ru.nsu.masolygin.oopchecker.domain.<a href="ru/nsu/masolygin/oopchecker/domain/CourseConfig.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.domain">CourseConfig</a></li>
+<li class="circle">ru.nsu.masolygin.oopchecker.cli.<a href="ru/nsu/masolygin/oopchecker/cli/Cli.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.cli">Cli</a></li>
+<li class="circle">ru.nsu.masolygin.oopchecker.domain.courseconfig.<a href="ru/nsu/masolygin/oopchecker/domain/courseconfig/CourseConfigBuilder.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.domain.courseconfig">CourseConfigBuilder</a></li>
 <li class="circle">ru.nsu.masolygin.oopchecker.dsl.<a href="ru/nsu/masolygin/oopchecker/dsl/CourseDelegate.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.dsl">CourseDelegate</a></li>
-<li class="circle">ru.nsu.masolygin.oopchecker.domain.<a href="ru/nsu/masolygin/oopchecker/domain/CourseSettings.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.domain">CourseSettings</a></li>
+<li class="circle">ru.nsu.masolygin.oopchecker.domain.coursesettings.<a href="ru/nsu/masolygin/oopchecker/domain/coursesettings/CourseSettingsBuilder.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.domain.coursesettings">CourseSettingsBuilder</a></li>
 <li class="circle">ru.nsu.masolygin.oopchecker.dsl.<a href="ru/nsu/masolygin/oopchecker/dsl/DslParser.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.dsl">DslParser</a></li>
 <li class="circle">ru.nsu.masolygin.oopchecker.vcs.<a href="ru/nsu/masolygin/oopchecker/vcs/GitClient.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.vcs">GitClient</a></li>
+<li class="circle">ru.nsu.masolygin.oopchecker.vcs.<a href="ru/nsu/masolygin/oopchecker/vcs/GitCommandExecutor.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.vcs">GitCommandExecutor</a></li>
+<li class="circle">ru.nsu.masolygin.oopchecker.vcs.<a href="ru/nsu/masolygin/oopchecker/vcs/GitLogParser.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.vcs">GitLogParser</a></li>
 <li class="circle">ru.nsu.masolygin.oopchecker.grader.<a href="ru/nsu/masolygin/oopchecker/grader/Grader.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.grader">Grader</a></li>
+<li class="circle">ru.nsu.masolygin.oopchecker.runner.buildstrategy.<a href="ru/nsu/masolygin/oopchecker/runner/buildstrategy/GradleBuildStrategy.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.runner.buildstrategy">GradleBuildStrategy</a> (implements ru.nsu.masolygin.oopchecker.runner.buildstrategy.<a href="ru/nsu/masolygin/oopchecker/runner/buildstrategy/BuildStrategy.html" title="interface in ru.nsu.masolygin.oopchecker.runner.buildstrategy">BuildStrategy</a>)</li>
 <li class="circle">ru.nsu.masolygin.oopchecker.dsl.<a href="ru/nsu/masolygin/oopchecker/dsl/GroupDelegate.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.dsl">GroupDelegate</a></li>
 <li class="circle">ru.nsu.masolygin.oopchecker.dsl.<a href="ru/nsu/masolygin/oopchecker/dsl/GroupsDelegate.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.dsl">GroupsDelegate</a></li>
-<li class="circle">ru.nsu.masolygin.oopchecker.report.<a href="ru/nsu/masolygin/oopchecker/report/HtmlReport.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.report">HtmlReport</a></li>
+<li class="circle">ru.nsu.masolygin.oopchecker.runner.<a href="ru/nsu/masolygin/oopchecker/runner/JUnitXmlReportParser.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.runner">JUnitXmlReportParser</a></li>
 <li class="circle">ru.nsu.masolygin.oopchecker.cli.<a href="ru/nsu/masolygin/oopchecker/cli/Main.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.cli">Main</a></li>
+<li class="circle">ru.nsu.masolygin.oopchecker.runner.buildstrategy.<a href="ru/nsu/masolygin/oopchecker/runner/buildstrategy/MavenBuildStrategy.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.runner.buildstrategy">MavenBuildStrategy</a> (implements ru.nsu.masolygin.oopchecker.runner.buildstrategy.<a href="ru/nsu/masolygin/oopchecker/runner/buildstrategy/BuildStrategy.html" title="interface in ru.nsu.masolygin.oopchecker.runner.buildstrategy">BuildStrategy</a>)</li>
 <li class="circle">ru.nsu.masolygin.oopchecker.runner.<a href="ru/nsu/masolygin/oopchecker/runner/ProcessRunner.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.runner">ProcessRunner</a></li>
 <li class="circle">java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Record.html" class="type-name-link external-link" title="class or interface in java.lang">Record</a>
 <ul>
 <li class="circle">ru.nsu.masolygin.oopchecker.domain.<a href="ru/nsu/masolygin/oopchecker/domain/Assignment.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.domain">Assignment</a></li>
 <li class="circle">ru.nsu.masolygin.oopchecker.domain.<a href="ru/nsu/masolygin/oopchecker/domain/Checkpoint.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.domain">Checkpoint</a></li>
+<li class="circle">ru.nsu.masolygin.oopchecker.cli.<a href="ru/nsu/masolygin/oopchecker/cli/CliArgs.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.cli">CliArgs</a></li>
 <li class="circle">ru.nsu.masolygin.oopchecker.vcs.<a href="ru/nsu/masolygin/oopchecker/vcs/Commit.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.vcs">Commit</a></li>
+<li class="circle">ru.nsu.masolygin.oopchecker.domain.courseconfig.<a href="ru/nsu/masolygin/oopchecker/domain/courseconfig/CourseConfig.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.domain.courseconfig">CourseConfig</a></li>
+<li class="circle">ru.nsu.masolygin.oopchecker.domain.coursesettings.<a href="ru/nsu/masolygin/oopchecker/domain/coursesettings/CourseSettings.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.domain.coursesettings">CourseSettings</a></li>
 <li class="circle">ru.nsu.masolygin.oopchecker.grader.<a href="ru/nsu/masolygin/oopchecker/grader/GradingResult.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.grader">GradingResult</a></li>
 <li class="circle">ru.nsu.masolygin.oopchecker.domain.<a href="ru/nsu/masolygin/oopchecker/domain/Group.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.domain">Group</a></li>
 <li class="circle">ru.nsu.masolygin.oopchecker.runner.<a href="ru/nsu/masolygin/oopchecker/runner/ProcessResult.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.runner">ProcessResult</a></li>
+<li class="circle">ru.nsu.masolygin.oopchecker.domain.<a href="ru/nsu/masolygin/oopchecker/domain/SemesterInfo.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.domain">SemesterInfo</a></li>
 <li class="circle">ru.nsu.masolygin.oopchecker.domain.<a href="ru/nsu/masolygin/oopchecker/domain/Student.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.domain">Student</a></li>
 <li class="circle">ru.nsu.masolygin.oopchecker.grader.<a href="ru/nsu/masolygin/oopchecker/grader/StudentActivity.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.grader">StudentActivity</a></li>
 <li class="circle">ru.nsu.masolygin.oopchecker.domain.<a href="ru/nsu/masolygin/oopchecker/domain/Task.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.domain">Task</a></li>
@@ -94,10 +113,15 @@ loadScripts(document, 'script');</script>
 <li class="circle">ru.nsu.masolygin.oopchecker.runner.<a href="ru/nsu/masolygin/oopchecker/runner/TestReport.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.runner">TestReport</a></li>
 </ul>
 </li>
+<li class="circle">ru.nsu.masolygin.oopchecker.report.<a href="ru/nsu/masolygin/oopchecker/report/ReportData.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.report">ReportData</a></li>
+<li class="circle">ru.nsu.masolygin.oopchecker.cli.<a href="ru/nsu/masolygin/oopchecker/cli/RepoSyncer.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.cli">RepoSyncer</a></li>
 <li class="circle">ru.nsu.masolygin.oopchecker.dsl.<a href="ru/nsu/masolygin/oopchecker/dsl/RootDelegate.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.dsl">RootDelegate</a></li>
+<li class="circle">ru.nsu.masolygin.oopchecker.dsl.<a href="ru/nsu/masolygin/oopchecker/dsl/SemesterDelegate.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.dsl">SemesterDelegate</a></li>
 <li class="circle">ru.nsu.masolygin.oopchecker.dsl.<a href="ru/nsu/masolygin/oopchecker/dsl/SettingsDelegate.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.dsl">SettingsDelegate</a></li>
 <li class="circle">ru.nsu.masolygin.oopchecker.dsl.<a href="ru/nsu/masolygin/oopchecker/dsl/TaskDelegate.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.dsl">TaskDelegate</a></li>
+<li class="circle">ru.nsu.masolygin.oopchecker.grader.<a href="ru/nsu/masolygin/oopchecker/grader/TaskGrader.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.grader">TaskGrader</a></li>
 <li class="circle">ru.nsu.masolygin.oopchecker.dsl.<a href="ru/nsu/masolygin/oopchecker/dsl/TasksDelegate.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.dsl">TasksDelegate</a></li>
+<li class="circle">ru.nsu.masolygin.oopchecker.cli.<a href="ru/nsu/masolygin/oopchecker/cli/TestCommand.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.cli">TestCommand</a></li>
 <li class="circle">ru.nsu.masolygin.oopchecker.report.<a href="ru/nsu/masolygin/oopchecker/report/TextTable.html" class="type-name-link" title="class in ru.nsu.masolygin.oopchecker.report">TextTable</a></li>
 <li class="circle">java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Throwable.html" class="type-name-link external-link" title="class or interface in java.lang">Throwable</a> (implements java.io.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a>)
 <ul>
@@ -111,6 +135,27 @@ loadScripts(document, 'script');</script>
 </li>
 </ul>
 </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="hierarchy">
+<h2 title="Interface Hierarchy">Interface Hierarchy</h2>
+<ul>
+<li class="circle">ru.nsu.masolygin.oopchecker.runner.buildstrategy.<a href="ru/nsu/masolygin/oopchecker/runner/buildstrategy/BuildStrategy.html" class="type-name-link" title="interface in ru.nsu.masolygin.oopchecker.runner.buildstrategy">BuildStrategy</a></li>
+<li class="circle">ru.nsu.masolygin.oopchecker.report.<a href="ru/nsu/masolygin/oopchecker/report/Report.html" class="type-name-link" title="interface in ru.nsu.masolygin.oopchecker.report">Report</a></li>
+</ul>
+</section>
+<section class="hierarchy">
+<h2 title="Enum Class Hierarchy">Enum Class Hierarchy</h2>
+<ul>
+<li class="circle">java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" class="type-name-link external-link" title="class or interface in java.lang">Object</a>
+<ul>
+<li class="circle">java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" class="type-name-link external-link" title="class or interface in java.lang">Enum</a>&lt;E&gt; (implements java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Comparable.html" title="class or interface in java.lang" class="external-link">Comparable</a>&lt;T&gt;, java.lang.constant.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/constant/Constable.html" title="class or interface in java.lang.constant" class="external-link">Constable</a>, java.io.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a>)
+<ul>
+<li class="circle">ru.nsu.masolygin.oopchecker.cli.<a href="ru/nsu/masolygin/oopchecker/cli/Flag.html" class="type-name-link" title="enum class in ru.nsu.masolygin.oopchecker.cli">Flag</a></li>
 </ul>
 </li>
 </ul>

@@ -81,13 +81,13 @@ loadScripts(document, 'script');</script>
 <dd><code><span id="param-taskId">taskId</span></code> - идентификатор задачи</dd>
 <dd><code><span id="param-studentGithub">studentGithub</span></code> - GitHub ник студента</dd>
 <dd><code><span id="param-base">base</span></code> - базовый балл без корректировок</dd>
-<dd><code><span id="param-latePenaltyApplied">latePenaltyApplied</span></code> - коэффициент штрафа за просрочку (0..1)</dd>
+<dd><code><span id="param-latePenaltyPoints">latePenaltyPoints</span></code> - снятые баллы за просрочку мягкого дедлайна</dd>
 <dd><code><span id="param-extraPoints">extraPoints</span></code> - дополнительные баллы</dd>
 <dd><code><span id="param-score">score</span></code> - финальный балл с учётом штрафов и доп. баллов</dd>
 <dd><code><span id="param-comment">comment</span></code> - объяснение результата (если нужно)</dd>
 </dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public record </span><span class="element-name type-name-label">GradingResult</span>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;taskId, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;studentGithub, double&nbsp;base, double&nbsp;latePenaltyApplied, int&nbsp;extraPoints, double&nbsp;score, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;comment)
+<div class="type-signature"><span class="modifiers">public record </span><span class="element-name type-name-label">GradingResult</span>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;taskId, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;studentGithub, double&nbsp;base, double&nbsp;latePenaltyPoints, int&nbsp;extraPoints, double&nbsp;score, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;comment)
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Record.html" title="class or interface in java.lang" class="external-link">Record</a></span></div>
 <div class="block">Развёрнутая оценка задачи студента с базовым баллом, штрафами и финальным результатом.</div>
 </section>
@@ -104,7 +104,7 @@ loadScripts(document, 'script');</script>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String,java.lang.String,double,double,int,double,java.lang.String)" class="member-name-link">GradingResult</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;taskId,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;studentGithub,
  double&nbsp;base,
- double&nbsp;latePenaltyApplied,
+ double&nbsp;latePenaltyPoints,
  int&nbsp;extraPoints,
  double&nbsp;score,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;comment)</code></div>
@@ -151,9 +151,9 @@ loadScripts(document, 'script');</script>
 <div class="block">Returns a hash code value for this object.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#latePenaltyApplied()" class="member-name-link">latePenaltyApplied</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#latePenaltyPoints()" class="member-name-link">latePenaltyPoints</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <a href="#param-latePenaltyApplied"><code>latePenaltyApplied</code></a> record component.</div>
+<div class="block">Returns the value of the <a href="#param-latePenaltyPoints"><code>latePenaltyPoints</code></a> record component.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#score()" class="member-name-link">score</a>()</code></div>
@@ -198,7 +198,7 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">GradingResult</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;taskId,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;studentGithub,
  double&nbsp;base,
- double&nbsp;latePenaltyApplied,
+ double&nbsp;latePenaltyPoints,
  int&nbsp;extraPoints,
  double&nbsp;score,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;comment)</span></div>
@@ -208,7 +208,7 @@ loadScripts(document, 'script');</script>
 <dd><code>taskId</code> - the value for the <a href="#param-taskId"><code>taskId</code></a> record component</dd>
 <dd><code>studentGithub</code> - the value for the <a href="#param-studentGithub"><code>studentGithub</code></a> record component</dd>
 <dd><code>base</code> - the value for the <a href="#param-base"><code>base</code></a> record component</dd>
-<dd><code>latePenaltyApplied</code> - the value for the <a href="#param-latePenaltyApplied"><code>latePenaltyApplied</code></a> record component</dd>
+<dd><code>latePenaltyPoints</code> - the value for the <a href="#param-latePenaltyPoints"><code>latePenaltyPoints</code></a> record component</dd>
 <dd><code>extraPoints</code> - the value for the <a href="#param-extraPoints"><code>extraPoints</code></a> record component</dd>
 <dd><code>score</code> - the value for the <a href="#param-score"><code>score</code></a> record component</dd>
 <dd><code>comment</code> - the value for the <a href="#param-comment"><code>comment</code></a> record component</dd>
@@ -298,13 +298,13 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="latePenaltyApplied()">
-<h3>latePenaltyApplied</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">latePenaltyApplied</span>()</div>
-<div class="block">Returns the value of the <a href="#param-latePenaltyApplied"><code>latePenaltyApplied</code></a> record component.</div>
+<section class="detail" id="latePenaltyPoints()">
+<h3>latePenaltyPoints</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">latePenaltyPoints</span>()</div>
+<div class="block">Returns the value of the <a href="#param-latePenaltyPoints"><code>latePenaltyPoints</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <a href="#param-latePenaltyApplied"><code>latePenaltyApplied</code></a> record component</dd>
+<dd>the value of the <a href="#param-latePenaltyPoints"><code>latePenaltyPoints</code></a> record component</dd>
 </dl>
 </section>
 </li>

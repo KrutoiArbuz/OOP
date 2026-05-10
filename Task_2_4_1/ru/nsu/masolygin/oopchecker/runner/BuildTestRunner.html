@@ -91,9 +91,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.masolygin.oopchecker.runner.ProcessRunner,ru.nsu.masolygin.oopchecker.vcs.GitClient)" class="member-name-link">BuildTestRunner</a><wbr>(<a href="ProcessRunner.html" title="class in ru.nsu.masolygin.oopchecker.runner">ProcessRunner</a>&nbsp;runner,
  <a href="../vcs/GitClient.html" title="class in ru.nsu.masolygin.oopchecker.vcs">GitClient</a>&nbsp;git)</code></div>
-<div class="col-last even-row-color">
-<div class="block">Создаёт исполнитель проверки с заданным процесс-раннером и git клиентом.</div>
-</div>
+<div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
 </li>
@@ -109,9 +107,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="TaskExecutionResult.html" title="class in ru.nsu.masolygin.oopchecker.runner">TaskExecutionResult</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#run(java.nio.file.Path,ru.nsu.masolygin.oopchecker.domain.Assignment,ru.nsu.masolygin.oopchecker.domain.CourseConfig)" class="member-name-link">run</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html" title="class or interface in java.nio.file" class="external-link">Path</a>&nbsp;repo,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#run(java.nio.file.Path,ru.nsu.masolygin.oopchecker.domain.Assignment,ru.nsu.masolygin.oopchecker.domain.courseconfig.CourseConfig)" class="member-name-link">run</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html" title="class or interface in java.nio.file" class="external-link">Path</a>&nbsp;repo,
  <a href="../domain/Assignment.html" title="class in ru.nsu.masolygin.oopchecker.domain">Assignment</a>&nbsp;assignment,
- <a href="../domain/CourseConfig.html" title="class in ru.nsu.masolygin.oopchecker.domain">CourseConfig</a>&nbsp;config)</code></div>
+ <a href="../domain/courseconfig/CourseConfig.html" title="class in ru.nsu.masolygin.oopchecker.domain.courseconfig">CourseConfig</a>&nbsp;config)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Запускает полный цикл проверки задания: компиляция, документация, стиль, тесты.</div>
 </div>
@@ -137,12 +135,6 @@ loadScripts(document, 'script');</script>
 <h3>BuildTestRunner</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">BuildTestRunner</span><wbr><span class="parameters">(<a href="ProcessRunner.html" title="class in ru.nsu.masolygin.oopchecker.runner">ProcessRunner</a>&nbsp;runner,
  <a href="../vcs/GitClient.html" title="class in ru.nsu.masolygin.oopchecker.vcs">GitClient</a>&nbsp;git)</span></div>
-<div class="block">Создаёт исполнитель проверки с заданным процесс-раннером и git клиентом.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>runner</code> - раннер для запуска внешних команд</dd>
-<dd><code>git</code> - git клиент для определения даты сдачи</dd>
-</dl>
 </section>
 </li>
 </ul>
@@ -154,11 +146,11 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="run(java.nio.file.Path,ru.nsu.masolygin.oopchecker.domain.Assignment,ru.nsu.masolygin.oopchecker.domain.CourseConfig)">
+<section class="detail" id="run(java.nio.file.Path,ru.nsu.masolygin.oopchecker.domain.Assignment,ru.nsu.masolygin.oopchecker.domain.courseconfig.CourseConfig)">
 <h3>run</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="TaskExecutionResult.html" title="class in ru.nsu.masolygin.oopchecker.runner">TaskExecutionResult</a></span>&nbsp;<span class="element-name">run</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html" title="class or interface in java.nio.file" class="external-link">Path</a>&nbsp;repo,
  <a href="../domain/Assignment.html" title="class in ru.nsu.masolygin.oopchecker.domain">Assignment</a>&nbsp;assignment,
- <a href="../domain/CourseConfig.html" title="class in ru.nsu.masolygin.oopchecker.domain">CourseConfig</a>&nbsp;config)</span></div>
+ <a href="../domain/courseconfig/CourseConfig.html" title="class in ru.nsu.masolygin.oopchecker.domain.courseconfig">CourseConfig</a>&nbsp;config)</span></div>
 <div class="block">Запускает полный цикл проверки задания: компиляция, документация, стиль, тесты.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
