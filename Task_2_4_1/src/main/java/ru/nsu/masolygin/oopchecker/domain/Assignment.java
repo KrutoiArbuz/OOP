@@ -8,4 +8,12 @@ package ru.nsu.masolygin.oopchecker.domain;
  */
 public record Assignment(String taskId, String studentGithub) {
 
+    public Assignment {
+        if (taskId == null || taskId.isBlank()) {
+            throw new IllegalArgumentException("taskId не может быть пустым");
+        }
+        if (studentGithub == null || studentGithub.isBlank()) {
+            throw new IllegalArgumentException("studentGithub не может быть пустым");
+        }
+    }
 }

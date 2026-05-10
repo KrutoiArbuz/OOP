@@ -12,35 +12,26 @@ import java.time.LocalDate;
  * @param hardDeadline жёсткий дедлайн (после него 0 баллов)
  * @param labPath      путь к каталогу задачи в репозитории (null означает id)
  */
-public record Task(
-    String id,
-    String name,
-    int maxPoints,
-    LocalDate softDeadline,
-    LocalDate hardDeadline,
-    String labPath
-) {
+public record Task(String id, String name, int maxPoints, LocalDate softDeadline,
+                   LocalDate hardDeadline, String labPath) {
 
     /**
-     * Конструктор.
-     *
-     * @param id           идентификатор задачи
-     * @param name         название
-     * @param maxPoints    максимум баллов
-     * @param softDeadline мягкий дедлайн
-     * @param hardDeadline жёсткий дедлайн
+     * Компактный конструктор: нормализует путь к директории.
      */
-    public Task(String id, String name, int maxPoints,
-        LocalDate softDeadline, LocalDate hardDeadline) {
-        this(id, name, maxPoints, softDeadline, hardDeadline, null);
+    public Task {
+        if (id == null || id.isBlank()) {
+            throw new IllegalArgumentException("id не может быть пустым");
+        }
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("name не может быть пустым");
+        }
+        if (maxPoints <= 0) {
+            throw new IllegalArgumentException("maxPoints должен быть > 0, передано: " + maxPoints);
+        }
+        if (labPath == null || labPath.isBlank()) {
+            labPath = id;
+        }
     }
 
-    /**
-     * Реальный путь к каталогу задачи; если не задан, возвращает id.
-     *
-     * @return путь
-     */
-    public String effectiveLabPath() {
-        return (labPath == null || labPath.isBlank()) ? id : labPath;
-    }
+
 }
