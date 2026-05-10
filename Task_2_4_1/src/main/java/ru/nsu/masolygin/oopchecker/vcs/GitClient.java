@@ -6,7 +6,6 @@ import java.nio.file.Path;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -18,58 +17,23 @@ import ru.nsu.masolygin.oopchecker.runner.ProcessRunner;
  */
 public class GitClient {
 
+    private static final Map<String, String> NON_INTERACTIVE_ENV = Map.of(
+        "GIT_TERMINAL_PROMPT", "0",
+        "GIT_ASKPASS", "echo",
+        "SSH_ASKPASS", "echo",
+        "GIT_LFS_SKIP_SMUDGE", "1"
+    );
+
     private final GitCommandExecutor executor;
+    private final GitLogParser logParser;
 
     /**
      * Конструктор с таймаутом 5 минут и non-interactive переменными окружения.
      */
     public GitClient() {
-        this(new ProcessRunner(Duration.ofMinutes(5), nonInteractiveEnv()));
-    }
-
-    /**
-     * Конструктор с кастомным ProcessRunner.
-     *
-     * @param runner раннер процессов
-     */
-    public GitClient(ProcessRunner runner) {
-        this(new GitCommandExecutor(runner));
-    }
-
-    /**
-     * Конструктор с кастомным исполнителем команд.
-     *
-     * @param executor исполнитель
-     */
-    GitClient(GitCommandExecutor executor) {
-        this.executor = executor;
-    }
-
-    /**
-     * Возвращает переменные окружения для non-interactive режима.
-     *
-     * @return переменные
-     */
-    public static Map<String, String> nonInteractiveEnv() {
-        return GitCommandExecutor.nonInteractiveEnv();
-    }
-
-    private static boolean isInteractiveHelper(String helper) {
-        String h = helper.toLowerCase();
-        return h.contains("manager") || h.contains("wincred")
-            || h.contains("osxkeychain") || h.contains("cache");
-    }
-
-    private static void ensureParent(Path target) {
-        Path parent = target.toAbsolutePath().getParent();
-        if (parent == null) {
-            return;
-        }
-        try {
-            Files.createDirectories(parent);
-        } catch (IOException e) {
-            throw new GitException("cannot create parent dir " + parent, e);
-        }
+        ProcessRunner defaultRunner = new ProcessRunner(Duration.ofMinutes(5), NON_INTERACTIVE_ENV);
+        this.executor = new GitCommandExecutor(defaultRunner);
+        this.logParser = new GitLogParser();
     }
 
     /**
@@ -95,29 +59,70 @@ public class GitClient {
      *
      * @param repoUrl адрес репозитория
      * @param target  целевой каталог
-     * @return путь к репозиторию
      */
-    public Path cloneOrUpdate(String repoUrl, Path target) {
+    public void cloneOrUpdate(String repoUrl, Path target) {
         if (Files.exists(target.resolve(".git"))) {
             executor.run(target, List.of("git", "fetch", "--all", "--prune"));
         } else {
             ensureParent(target);
             executor.run(null, List.of("git", "clone", repoUrl, target.toString()));
         }
-        return target;
     }
 
     /**
      * Переключается на дефолтную ветку origin и жёстко выравнивает HEAD.
      *
      * @param repo путь к репозиторию
-     * @return имя ветки
      */
-    public String checkoutDefaultBranch(Path repo) {
+    public void checkoutDefaultBranch(Path repo) {
         String branch = resolveDefaultBranch(repo);
         executor.run(repo, List.of("git", "checkout", branch));
         executor.run(repo, List.of("git", "reset", "--hard", "origin/" + branch));
-        return branch;
+    }
+
+    /**
+     * Коммиты в полуоткрытом интервале [sinceInclusive, untilExclusive).
+     *
+     * @param repo           путь к репозиторию
+     * @param sinceInclusive начало интервала включительно
+     * @param untilExclusive конец интервала исключительно
+     * @return список коммитов
+     */
+    public List<Commit> log(Path repo, LocalDate sinceInclusive, LocalDate untilExclusive) {
+        List<String> cmd = logParser.buildLogCommand(sinceInclusive, untilExclusive);
+        ProcessResult r = executor.run(repo, cmd);
+        return logParser.parseMany(r.stdout());
+    }
+
+    /**
+     * Проверяет наличие коммита в неделе начиная с weekStart.
+     *
+     * @param repo      путь к репозиторию
+     * @param weekStart первый день недели
+     * @return true если есть хотя бы один коммит
+     */
+    public boolean hasCommitInWeek(Path repo, LocalDate weekStart) {
+        return !log(repo, weekStart, weekStart.plusDays(7)).isEmpty();
+    }
+
+    /**
+     * Дата последнего коммита по пути relPath.
+     *
+     * @param repo    путь к репозиторию
+     * @param relPath путь внутри репозитория
+     * @return дата или пусто если коммитов нет
+     */
+    public Optional<LocalDate> lastCommitDateForPath(Path repo, String relPath) {
+        List<String> cmd = List.of("git", "log", "-1", "--pretty=format:%aI", "--", relPath);
+        ProcessResult r = executor.safeRun(repo, cmd);
+        if (!r.success() || r.stdout().isBlank()) {
+            return Optional.empty();
+        }
+        try {
+            return Optional.of(OffsetDateTime.parse(r.stdout().trim()).toLocalDate());
+        } catch (Exception e) {
+            return Optional.empty();
+        }
     }
 
     private String resolveDefaultBranch(Path repo) {
@@ -141,69 +146,21 @@ public class GitClient {
             + " (нет ни origin/main, ни origin/master)");
     }
 
-    /**
-     * Возвращает коммиты в полуоткрытом интервале [since, until).
-     *
-     * @param repo           путь к репозиторию
-     * @param sinceInclusive начало интервала (включительно)
-     * @param untilExclusive конец интервала (исключительно)
-     * @return список коммитов
-     */
-    public List<Commit> log(Path repo, LocalDate sinceInclusive, LocalDate untilExclusive) {
-        List<String> cmd = new ArrayList<>(List.of(
-            "git", "log", GitLogParser.prettyFormatArg(),
-            "--since=" + sinceInclusive,
-            "--until=" + untilExclusive
-        ));
-        ProcessResult r = executor.run(repo, cmd);
-        return GitLogParser.parseMany(r.stdout());
+    private boolean isInteractiveHelper(String helper) {
+        String h = helper.toLowerCase();
+        return h.contains("manager") || h.contains("wincred")
+            || h.contains("osxkeychain") || h.contains("cache");
     }
 
-    /**
-     * Проверяет, есть ли коммиты в указанной неделе.
-     *
-     * @param repo      путь к репозиторию
-     * @param weekStart первый день недели
-     * @return true если есть коммиты
-     */
-    public boolean hasCommitInWeek(Path repo, LocalDate weekStart) {
-        return !log(repo, weekStart, weekStart.plusDays(7)).isEmpty();
-    }
-
-    /**
-     * Возвращает последний коммит до указанной даты.
-     *
-     * @param repo путь к репозиторию
-     * @param date дата
-     * @return последний коммит или пусто
-     */
-    public Optional<Commit> lastCommitBefore(Path repo, LocalDate date) {
-        List<String> cmd = List.of("git", "log", "-1", GitLogParser.prettyFormatArg(),
-            "--until=" + date);
-        ProcessResult r = executor.safeRun(repo, cmd);
-        if (!r.success()) {
-            return Optional.empty();
-        }
-        return GitLogParser.parseSingle(r.stdout());
-    }
-
-    /**
-     * Возвращает дату последнего коммита, затронувшего указанный путь.
-     *
-     * @param repo    путь к репозиторию
-     * @param relPath путь внутри репозитория
-     * @return дата сдачи или пусто
-     */
-    public Optional<LocalDate> lastCommitDateForPath(Path repo, String relPath) {
-        List<String> cmd = List.of("git", "log", "-1", "--pretty=format:%aI", "--", relPath);
-        ProcessResult r = executor.safeRun(repo, cmd);
-        if (!r.success() || r.stdout().isBlank()) {
-            return Optional.empty();
+    private void ensureParent(Path target) {
+        Path parent = target.toAbsolutePath().getParent();
+        if (parent == null) {
+            return;
         }
         try {
-            return Optional.of(OffsetDateTime.parse(r.stdout().trim()).toLocalDate());
-        } catch (Exception e) {
-            return Optional.empty();
+            Files.createDirectories(parent);
+        } catch (IOException e) {
+            throw new GitException("cannot create parent dir " + parent, e);
         }
     }
 }

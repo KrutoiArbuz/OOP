@@ -7,13 +7,12 @@ import java.util.Optional;
  * Результат проверки одной задачи одного студента с флагами компиляции, документации, стиля и
  * тестами.
  *
- * @param taskId         идентификатор задачи
- * @param studentGithub  GitHub ник студента
- * @param compileOk      true если компиляция прошла успешно
- * @param docsOk         true если документация сгенерирована успешно
- * @param styleOk        true если стиль кода соответствует требованиям
- * @param tests          результаты тестов (passed/failed/skipped)
- * @param submissionDate дата последнего коммита, затронувшего задачу (или empty если коммитов нет)
+ * @param taskId        идентификатор задачи
+ * @param studentGithub GitHub ник студента
+ * @param compileOk     true если компиляция прошла успешно
+ * @param docsOk        true если документация сгенерирована успешно
+ * @param styleOk       true если стиль кода соответствует требованиям
+ * @param tests         результаты тестов (passed/failed/skipped)
  */
 public record TaskExecutionResult(
     String taskId,
@@ -22,7 +21,7 @@ public record TaskExecutionResult(
     boolean docsOk,
     boolean styleOk,
     TestReport tests,
-    Optional<LocalDate> submissionDate
+    LocalDate submissionDateRaw
 ) {
 
     /**
@@ -37,7 +36,16 @@ public record TaskExecutionResult(
             taskId, studentGithub,
             false, false, false,
             TestReport.EMPTY,
-            Optional.empty()
+            null
         );
+    }
+
+    /**
+     * Возвращает дату последнего коммита по задаче, если есть.
+     *
+     * @return дата сдачи или пусто
+     */
+    public Optional<LocalDate> submissionDate() {
+        return Optional.ofNullable(submissionDateRaw);
     }
 }

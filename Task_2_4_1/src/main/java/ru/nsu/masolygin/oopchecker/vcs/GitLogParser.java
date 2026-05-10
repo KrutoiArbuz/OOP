@@ -1,29 +1,32 @@
 package ru.nsu.masolygin.oopchecker.vcs;
 
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Парсит вывод git log в объекты Commit.
  */
-final class GitLogParser {
+public class GitLogParser {
 
     private static final String FIELD_SEP = "\u001F";
-    private static final String PRETTY_ARG = "--pretty=format:%H" + FIELD_SEP + "%aI"
-        + FIELD_SEP + "%an" + FIELD_SEP + "%ae" + FIELD_SEP + "%s";
-
-    private GitLogParser() {
-    }
+    private static final String PRETTY_ARG =
+        "--pretty=format:" + String.join(FIELD_SEP, "%H", "%aI", "%an", "%ae", "%s");
 
     /**
-     * Возвращает аргумент для git log для форматирования вывода.
+     * Команда git log для диапазона дат [since, until).
      *
-     * @return строка аргумента --pretty=format:...
+     * @param since начало диапазона включительно
+     * @param until конец диапазона исключительно
+     * @return аргументы команды
      */
-    static String prettyFormatArg() {
-        return PRETTY_ARG;
+    public List<String> buildLogCommand(LocalDate since, LocalDate until) {
+        return List.of(
+            "git", "log", PRETTY_ARG,
+            "--since=" + since,
+            "--until=" + until
+        );
     }
 
     /**
@@ -32,27 +35,14 @@ final class GitLogParser {
      * @param stdout вывод git log
      * @return список коммитов
      */
-    static List<Commit> parseMany(String stdout) {
+    public List<Commit> parseMany(String stdout) {
         if (stdout.isBlank()) {
             return List.of();
         }
         return Arrays.stream(stdout.split("\n"))
             .filter(line -> !line.isBlank())
-            .map(GitLogParser::parseCommit)
+            .map(this::parseCommit)
             .toList();
-    }
-
-    /**
-     * Парсит одну строку вывода git log.
-     *
-     * @param stdout вывод git log (одна строка)
-     * @return опциональный коммит
-     */
-    static Optional<Commit> parseSingle(String stdout) {
-        if (stdout.isBlank()) {
-            return Optional.empty();
-        }
-        return Optional.of(parseCommit(stdout.trim()));
     }
 
     /**
@@ -62,7 +52,7 @@ final class GitLogParser {
      * @return объект Commit
      * @throws GitException если формат строки неверный
      */
-    private static Commit parseCommit(String line) {
+    public Commit parseCommit(String line) {
         String[] f = line.split(FIELD_SEP, -1);
         if (f.length < 4) {
             throw new GitException("unexpected git log line: " + line);

@@ -11,12 +11,11 @@ import java.time.Instant;
  * @param authorEmail email автора
  * @param subject     заголовок коммита
  */
-public record Commit(
-    String hash,
-    Instant timestamp,
-    String authorName,
-    String authorEmail,
-    String subject
+public record Commit(String hash,
+                     Instant timestamp,
+                     String authorName,
+                     String authorEmail,
+                     String subject
 ) {
 
 }
