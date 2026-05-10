@@ -39,6 +39,6 @@ public class GroupDelegate {
     }
 
     Group build() {
-        return new Group(name, students);
+        return new Group(name, List.copyOf(students));
     }
 }

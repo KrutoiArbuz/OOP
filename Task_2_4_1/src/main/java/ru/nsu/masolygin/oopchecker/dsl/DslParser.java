@@ -5,36 +5,15 @@ import groovy.util.DelegatingScript;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import org.codehaus.groovy.control.CompilerConfiguration;
-import ru.nsu.masolygin.oopchecker.domain.CourseConfig;
+import ru.nsu.masolygin.oopchecker.domain.courseconfig.CourseConfig;
+import ru.nsu.masolygin.oopchecker.domain.courseconfig.CourseConfigBuilder;
+
 
 /**
  * Парсер DSL конфигурации курса на основе Groovy.
  */
 public class DslParser {
-
-    /**
-     * Путь к файлу конфигурации по умолчанию относительно рабочего каталога.
-     */
-    public static final String DEFAULT_SCRIPT_NAME = "config/oopchecker.groovy";
-
-    /**
-     * Создаёт парсер DSL.
-     */
-    public DslParser() {
-    }
-
-    /**
-     * Парсит основной конфиг из указанного каталога.
-     *
-     * @param workingDir рабочий каталог
-     * @return конфигурация курса
-     * @throws IOException при ошибке чтения файла
-     */
-    public CourseConfig parseWorkingDir(Path workingDir) throws IOException {
-        return parseFile(workingDir.resolve(DEFAULT_SCRIPT_NAME));
-    }
 
     /**
      * Парсит файл конфигурации.
@@ -47,16 +26,6 @@ public class DslParser {
         String source = Files.readString(scriptFile);
         Path baseDir = scriptFile.toAbsolutePath().getParent();
         return parseSource(source, scriptFile.getFileName().toString(), baseDir);
-    }
-
-    /**
-     * Парсит конфигурацию из строки с текущим каталогом как baseDir.
-     *
-     * @param source исходник DSL
-     * @return конфигурация курса
-     */
-    public CourseConfig parseSource(String source) {
-        return parseSource(source, "script.groovy", Paths.get("."));
     }
 
     /**
@@ -74,9 +43,9 @@ public class DslParser {
         GroovyShell shell = new GroovyShell(cc);
         DelegatingScript script = (DelegatingScript) shell.parse(source, scriptName);
 
-        CourseConfig config = new CourseConfig();
-        script.setDelegate(new RootDelegate(config, baseDir));
+        CourseConfigBuilder builder = new CourseConfigBuilder();
+        script.setDelegate(new RootDelegate(builder, baseDir));
         script.run();
-        return config;
+        return builder.build();
     }
 }

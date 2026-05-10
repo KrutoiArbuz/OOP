@@ -2,9 +2,9 @@ package ru.nsu.masolygin.oopchecker.dsl;
 
 import java.util.Map;
 import ru.nsu.masolygin.oopchecker.domain.Assignment;
-import ru.nsu.masolygin.oopchecker.domain.CourseConfig;
 import ru.nsu.masolygin.oopchecker.domain.Group;
 import ru.nsu.masolygin.oopchecker.domain.Student;
+import ru.nsu.masolygin.oopchecker.domain.courseconfig.CourseConfigBuilder;
 
 /**
  * Делегат блока {@code assignments { ... }}. Синтаксис:
@@ -12,19 +12,10 @@ import ru.nsu.masolygin.oopchecker.domain.Student;
  */
 public class AssignmentsDelegate {
 
-    private final CourseConfig config;
+    private final CourseConfigBuilder builder;
 
-    /**
-     * Создаёт делегат, привязанный к конфигурации курса.
-     *
-     * @param config конфигурация курса
-     */
-    public AssignmentsDelegate(CourseConfig config) {
-        this.config = config;
-    }
-
-    private static boolean hasText(String value) {
-        return value != null && !value.isBlank();
+    public AssignmentsDelegate(CourseConfigBuilder builder) {
+        this.builder = builder;
     }
 
     /**
@@ -37,12 +28,12 @@ public class AssignmentsDelegate {
         String studentGithub = (String) args.get("student");
         String groupName = (String) args.get("group");
 
-        if (!hasText(taskId)) {
+        if (taskId == null || taskId.isBlank()) {
             throw new IllegalArgumentException("check requires non-empty 'task'");
         }
 
-        boolean hasStudent = hasText(studentGithub);
-        boolean hasGroup = hasText(groupName);
+        boolean hasStudent = studentGithub != null && !studentGithub.isBlank();
+        boolean hasGroup = groupName != null && !groupName.isBlank();
         if (hasStudent == hasGroup) {
             throw new IllegalArgumentException(
                 "check requires exactly one of 'student' or 'group'");
@@ -53,18 +44,16 @@ public class AssignmentsDelegate {
             return;
         }
 
-        Group group = config.groups().stream()
-            .filter(g -> g.name().equals(groupName))
-            .findFirst()
+        Group group = builder.findGroup(groupName)
             .orElseThrow(() -> new IllegalArgumentException(
                 "group '" + groupName + "' not found"));
 
-        for (Student student : group.students()) {
-            addAssignment(taskId, student.github());
-        }
+        group.students().stream()
+            .map(Student::github)
+            .forEach(github -> addAssignment(taskId, github));
     }
 
     private void addAssignment(String taskId, String studentGithub) {
-        config.addAssignment(new Assignment(taskId, studentGithub));
+        builder.addAssignment(new Assignment(taskId, studentGithub));
     }
 }

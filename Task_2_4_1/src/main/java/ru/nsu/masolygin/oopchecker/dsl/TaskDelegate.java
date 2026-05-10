@@ -6,7 +6,7 @@ import ru.nsu.masolygin.oopchecker.domain.Task;
 
 /**
  * Делегат блока {@code task { ... }}. Синтаксис: {@code id '2_1_1'}, {@code maxPoints 10},
- * {@code path 'Task_2_1_1'}. Поле {@code path} необязательно — по умолчанию используется
+ * {@code path 'Task_2_1_1'}. Поле {@code labPath} необязательно — по умолчанию используется
  * {@code id}.
  */
 public class TaskDelegate {
@@ -17,12 +17,6 @@ public class TaskDelegate {
     private LocalDate softDeadline;
     private LocalDate hardDeadline;
     private String labPath;
-
-    /**
-     * Создаёт делегат задачи с пустыми полями.
-     */
-    public TaskDelegate() {
-    }
 
     /**
      * Устанавливает идентификатор задачи.
@@ -56,7 +50,7 @@ public class TaskDelegate {
      *
      * @param value путь относительно корня репозитория
      */
-    public void path(String value) {
+    public void labPath(String value) {
         this.labPath = value;
     }
 
@@ -79,8 +73,8 @@ public class TaskDelegate {
     }
 
     Task build() {
-        Objects.requireNonNull(id, "task.id is required");
-        Objects.requireNonNull(name, "task.name is required");
+        Objects.requireNonNull(id, "task.id необходим");
+        Objects.requireNonNull(name, "task.name необходим");
         return new Task(id, name, maxPoints, softDeadline, hardDeadline, labPath);
     }
 }

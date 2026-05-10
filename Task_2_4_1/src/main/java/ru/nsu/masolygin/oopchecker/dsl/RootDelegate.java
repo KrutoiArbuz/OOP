@@ -7,26 +7,24 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Objects;
 import org.codehaus.groovy.control.CompilerConfiguration;
-import ru.nsu.masolygin.oopchecker.domain.CourseConfig;
+import ru.nsu.masolygin.oopchecker.domain.courseconfig.CourseConfigBuilder;
 
 /**
  * Делегат корневого скрипта, предоставляющий методы {@code course} и {@code importConfig}.
  */
 public class RootDelegate {
 
-    private final CourseConfig config;
+    private final CourseConfigBuilder builder;
     private final Path baseDir;
 
     /**
      * Конструктор.
      *
-     * @param config  конфигурация курса, в которую пишутся все данные
      * @param baseDir каталог скрипта, относительно которого разрешаются импорты
      */
-    public RootDelegate(CourseConfig config, Path baseDir) {
-        this.config = Objects.requireNonNull(config);
+    public RootDelegate(CourseConfigBuilder builder, Path baseDir) {
+        this.builder = builder;
         this.baseDir = baseDir;
     }
 
@@ -36,11 +34,11 @@ public class RootDelegate {
      * @param body тело блока
      */
     public void course(Closure<?> body) {
-        DslSupport.runClosure(body, new CourseDelegate(config));
+        ClosureBinder.bindAndCall(body, new CourseDelegate(builder));
     }
 
     /**
-     * Подключает другой DSL-файл, добавляя его данные в ту же {@link CourseConfig}.
+     * Загружает и выполняет вложенный конфиг DSL относительно текущего скрипта.
      *
      * @param relativePath путь к импортируемому файлу относительно текущего скрипта
      * @throws IOException при ошибке чтения файла
@@ -55,16 +53,8 @@ public class RootDelegate {
         GroovyShell shell = new GroovyShell(cc);
         DelegatingScript imported = (DelegatingScript) shell.parse(
             Files.readString(target), target.getFileName().toString());
-        imported.setDelegate(new RootDelegate(config, target.getParent()));
+        imported.setDelegate(new RootDelegate(builder, target.getParent()));
         imported.run();
     }
 
-    /**
-     * Возвращает текущую конфигурацию курса.
-     *
-     * @return конфигурация курса
-     */
-    public CourseConfig getConfig() {
-        return config;
-    }
 }

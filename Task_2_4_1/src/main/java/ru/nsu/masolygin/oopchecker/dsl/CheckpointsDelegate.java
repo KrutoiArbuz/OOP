@@ -3,7 +3,7 @@ package ru.nsu.masolygin.oopchecker.dsl;
 import java.time.LocalDate;
 import java.util.Map;
 import ru.nsu.masolygin.oopchecker.domain.Checkpoint;
-import ru.nsu.masolygin.oopchecker.domain.CourseConfig;
+import ru.nsu.masolygin.oopchecker.domain.courseconfig.CourseConfigBuilder;
 
 /**
  * Делегат блока {@code checkpoints { ... }}. Синтаксис:
@@ -11,15 +11,11 @@ import ru.nsu.masolygin.oopchecker.domain.CourseConfig;
  */
 public class CheckpointsDelegate {
 
-    private final CourseConfig config;
+    private final CourseConfigBuilder builder;
 
-    /**
-     * Создаёт делегат, привязанный к конфигурации курса.
-     *
-     * @param config конфигурация курса
-     */
-    public CheckpointsDelegate(CourseConfig config) {
-        this.config = config;
+
+    public CheckpointsDelegate(CourseConfigBuilder builder) {
+        this.builder = builder;
     }
 
     /**
@@ -30,7 +26,7 @@ public class CheckpointsDelegate {
     public void checkpoint(Map<String, Object> args) {
         String startDateStr = (String) args.get("startDate");
         LocalDate startDate = startDateStr != null ? LocalDate.parse(startDateStr) : null;
-        config.addCheckpoint(new Checkpoint(
+        builder.addCheckpoint(new Checkpoint(
             (String) args.get("name"),
             startDate,
             LocalDate.parse((String) args.get("date"))

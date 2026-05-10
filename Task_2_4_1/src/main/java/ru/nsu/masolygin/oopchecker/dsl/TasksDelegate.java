@@ -1,22 +1,18 @@
 package ru.nsu.masolygin.oopchecker.dsl;
 
 import groovy.lang.Closure;
-import ru.nsu.masolygin.oopchecker.domain.CourseConfig;
+import ru.nsu.masolygin.oopchecker.domain.courseconfig.CourseConfigBuilder;
 
 /**
  * Делегат блока {@code tasks { ... }}, собирающий задачи через {@code task { ... }}.
  */
 public class TasksDelegate {
 
-    private final CourseConfig config;
+    private final CourseConfigBuilder builder;
 
-    /**
-     * Конструктор.
-     *
-     * @param config конфигурация курса, в которую добавляются задачи
-     */
-    public TasksDelegate(CourseConfig config) {
-        this.config = config;
+
+    public TasksDelegate(CourseConfigBuilder builder) {
+        this.builder = builder;
     }
 
     /**
@@ -26,7 +22,7 @@ public class TasksDelegate {
      */
     public void task(Closure<?> body) {
         TaskDelegate delegate = new TaskDelegate();
-        DslSupport.runClosure(body, delegate);
-        config.addTask(delegate.build());
+        ClosureBinder.bindAndCall(body, delegate);
+        builder.addTask(delegate.build());
     }
 }

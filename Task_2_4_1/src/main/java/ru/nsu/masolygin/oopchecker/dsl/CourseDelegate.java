@@ -1,22 +1,19 @@
 package ru.nsu.masolygin.oopchecker.dsl;
 
 import groovy.lang.Closure;
-import ru.nsu.masolygin.oopchecker.domain.CourseConfig;
+import ru.nsu.masolygin.oopchecker.domain.courseconfig.CourseConfigBuilder;
+
 
 /**
  * Делегат блока {@code course { ... }}, маршрутизирующий вложенные блоки DSL.
  */
 public class CourseDelegate {
 
-    private final CourseConfig config;
+    private final CourseConfigBuilder builder;
 
-    /**
-     * Конструктор.
-     *
-     * @param config конфигурация курса, в которую пишутся все данные
-     */
-    public CourseDelegate(CourseConfig config) {
-        this.config = config;
+
+    public CourseDelegate(CourseConfigBuilder builder) {
+        this.builder = builder;
     }
 
     /**
@@ -25,7 +22,7 @@ public class CourseDelegate {
      * @param body тело блока
      */
     public void tasks(Closure<?> body) {
-        DslSupport.runClosure(body, new TasksDelegate(config));
+        ClosureBinder.bindAndCall(body, new TasksDelegate(builder));
     }
 
     /**
@@ -34,7 +31,7 @@ public class CourseDelegate {
      * @param body тело блока
      */
     public void groups(Closure<?> body) {
-        DslSupport.runClosure(body, new GroupsDelegate(config));
+        ClosureBinder.bindAndCall(body, new GroupsDelegate(builder));
     }
 
     /**
@@ -43,7 +40,7 @@ public class CourseDelegate {
      * @param body тело блока
      */
     public void assignments(Closure<?> body) {
-        DslSupport.runClosure(body, new AssignmentsDelegate(config));
+        ClosureBinder.bindAndCall(body, new AssignmentsDelegate(builder));
     }
 
     /**
@@ -52,7 +49,7 @@ public class CourseDelegate {
      * @param body тело блока
      */
     public void checkpoints(Closure<?> body) {
-        DslSupport.runClosure(body, new CheckpointsDelegate(config));
+        ClosureBinder.bindAndCall(body, new CheckpointsDelegate(builder));
     }
 
     /**
@@ -61,6 +58,7 @@ public class CourseDelegate {
      * @param body тело блока
      */
     public void settings(Closure<?> body) {
-        DslSupport.runClosure(body, new SettingsDelegate(config.settings()));
+        ClosureBinder.bindAndCall(body, new SettingsDelegate(
+            builder.getSettingsBuilder()));
     }
 }

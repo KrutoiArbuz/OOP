@@ -1,8 +1,8 @@
 package ru.nsu.masolygin.oopchecker.dsl;
 
-import java.time.LocalDate;
+import groovy.lang.Closure;
 import java.util.Map;
-import ru.nsu.masolygin.oopchecker.domain.CourseSettings;
+import ru.nsu.masolygin.oopchecker.domain.coursesettings.CourseSettingsBuilder;
 
 /**
  * Делегат блока {@code settings { ... }}. Каждый параметр — отдельный DSL-метод, чтобы не
@@ -20,15 +20,11 @@ import ru.nsu.masolygin.oopchecker.domain.CourseSettings;
  */
 public class SettingsDelegate {
 
-    private final CourseSettings settings;
+    private final CourseSettingsBuilder builder;
 
-    /**
-     * Создаёт делегат настроек.
-     *
-     * @param settings настройки курса для изменения
-     */
-    public SettingsDelegate(CourseSettings settings) {
-        this.settings = settings;
+
+    public SettingsDelegate(CourseSettingsBuilder builder) {
+        this.builder = builder;
     }
 
     /**
@@ -37,7 +33,7 @@ public class SettingsDelegate {
      * @param value штраф
      */
     public void latePenalty(double value) {
-        settings.setLatePenalty(value);
+        builder.setLatePenalty(value);
     }
 
     /**
@@ -46,7 +42,16 @@ public class SettingsDelegate {
      * @param value таймаут в секундах
      */
     public void testTimeoutSeconds(long value) {
-        settings.setTestTimeoutSeconds(value);
+        builder.setTestTimeoutSeconds(value);
+    }
+
+    /**
+     * Устанавливает таймаут сборки (компиляция, документация, стиль) в секундах.
+     *
+     * @param value таймаут в секундах
+     */
+    public void buildTimeoutSeconds(long value) {
+        builder.setBuildTimeoutSeconds(value);
     }
 
     /**
@@ -55,26 +60,34 @@ public class SettingsDelegate {
      * @param value вес активности
      */
     public void activityWeight(double value) {
-        settings.setActivityWeight(value);
+        builder.setActivityWeight(value);
+    }
+
+
+    /**
+     * Устанавливает штраф за отсутствие документации (0.0–1.0).
+     *
+     * @param value коэффициент штрафа
+     */
+    public void docsPenalty(double value) {
+        builder.setDocsPenalty(value);
     }
 
     /**
-     * Устанавливает дату начала семестра.
+     * Устанавливает штраф за нарушение стиля кода (0.0–1.0).
      *
-     * @param isoDate дата в формате ISO-8601 (yyyy-MM-dd)
+     * @param value коэффициент штрафа
      */
-    public void semesterStart(String isoDate) {
-        settings.setSemesterStart(LocalDate.parse(isoDate));
+    public void stylePenalty(double value) {
+        builder.setStylePenalty(value);
     }
 
-    /**
-     * Устанавливает количество недель в семестре.
-     *
-     * @param value количество недель
-     */
-    public void semesterWeeks(int value) {
-        settings.setSemesterWeeks(value);
+    public void semester(int id, Closure<?> body) {
+        SemesterDelegate delegate = new SemesterDelegate();
+        ClosureBinder.bindAndCall(body, delegate);
+        builder.addSemester(id, delegate.build());
     }
+
 
     /**
      * Добавляет пороговое значение для выставления оценки.
@@ -84,7 +97,7 @@ public class SettingsDelegate {
     public void gradeThreshold(Map<String, Object> args) {
         int min = ((Number) args.get("min")).intValue();
         String grade = (String) args.get("grade");
-        settings.addGradeThreshold(min, grade);
+        builder.addGradeThreshold(min, grade);
     }
 
     /**
@@ -94,7 +107,7 @@ public class SettingsDelegate {
      */
     public void extraPoints(Map<String, Object> args) {
         int points = ((Number) args.get("points")).intValue();
-        settings.addExtraPoints(
+        builder.addExtraPoints(
             (String) args.get("task"),
             (String) args.get("student"),
             points

@@ -1,23 +1,15 @@
 package ru.nsu.masolygin.oopchecker.dsl;
 
 import groovy.lang.Closure;
-import ru.nsu.masolygin.oopchecker.domain.CourseConfig;
+import ru.nsu.masolygin.oopchecker.domain.courseconfig.CourseConfigBuilder;
 
-/**
- * Делегат блока {@code groups { ... }}. Разрешает вызовы {@code group('12345') { ... }} — имя
- * группы передаётся первым позиционным аргументом, тело — замыканием.
- */
 public class GroupsDelegate {
 
-    private final CourseConfig config;
+    private final CourseConfigBuilder builder;
 
-    /**
-     * Создаёт делегат, привязанный к конфигурации курса.
-     *
-     * @param config конфигурация курса
-     */
-    public GroupsDelegate(CourseConfig config) {
-        this.config = config;
+
+    public GroupsDelegate(CourseConfigBuilder builder) {
+        this.builder = builder;
     }
 
     /**
@@ -28,7 +20,7 @@ public class GroupsDelegate {
      */
     public void group(String name, Closure<?> body) {
         GroupDelegate delegate = new GroupDelegate(name);
-        DslSupport.runClosure(body, delegate);
-        config.addGroup(delegate.build());
+        ClosureBinder.bindAndCall(body, delegate);
+        builder.addGroup(delegate.build());
     }
 }
