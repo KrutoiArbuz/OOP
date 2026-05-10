@@ -11,6 +11,9 @@ import java.util.Objects;
  */
 public record SemesterInfo(LocalDate startDate, int weeks) {
 
+    /**
+     * Создает информацию о семестре с валидацией входных данных.
+     */
     public SemesterInfo {
         Objects.requireNonNull(startDate, "startDate");
         if (weeks <= 0) {

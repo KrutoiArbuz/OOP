@@ -17,24 +17,32 @@ public interface BuildStrategy {
     boolean isApplicable(Path dir);
 
     /**
+     * Возвращает команду для компиляции проекта.
+     *
      * @param dir каталог проекта
      * @return команда компиляции
      */
     List<String> compileCmd(Path dir);
 
     /**
+     * Возвращает команду для генерации документации.
+     *
      * @param dir каталог проекта
      * @return команда генерации документации
      */
     List<String> docsCmd(Path dir);
 
     /**
+     * Возвращает команду для проверки стиля кода.
+     *
      * @param dir каталог проекта
      * @return команда проверки стиля
      */
     List<String> styleCmd(Path dir);
 
     /**
+     * Возвращает команду для запуска тестов.
+     *
      * @param dir каталог проекта
      * @return команда запуска тестов
      */

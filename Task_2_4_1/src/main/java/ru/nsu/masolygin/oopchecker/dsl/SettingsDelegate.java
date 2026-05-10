@@ -9,20 +9,24 @@ import ru.nsu.masolygin.oopchecker.domain.coursesettings.CourseSettingsBuilder;
  * придумывать свой parse-DSL для значений.
  *
  * <pre>
- *     settings {
- *         latePenalty 0.5
- *         testTimeoutSeconds 60
- *         activityWeight 0.1
- *         gradeThreshold min: 85, grade: 'отлично'
- *         extraPoints task: '2_1_1', student: 'ivanov', points: 2
- *     }
+ * settings {
+ * latePenalty 0.5
+ * testTimeoutSeconds 60
+ * activityWeight 0.1
+ * gradeThreshold min: 85, grade: 'отлично'
+ * extraPoints task: '2_1_1', student: 'ivanov', points: 2
+ * }
  * </pre>
  */
 public class SettingsDelegate {
 
     private final CourseSettingsBuilder builder;
 
-
+    /**
+     * Создает делегата с привязкой к билдеру настроек.
+     *
+     * @param builder билдер настроек курса
+     */
     public SettingsDelegate(CourseSettingsBuilder builder) {
         this.builder = builder;
     }
@@ -82,12 +86,17 @@ public class SettingsDelegate {
         builder.setStylePenalty(value);
     }
 
+    /**
+     * Конфигурирует настройки конкретного семестра.
+     *
+     * @param id   идентификатор семестра (например, номер)
+     * @param body тело блока с настройками семестра
+     */
     public void semester(int id, Closure<?> body) {
         SemesterDelegate delegate = new SemesterDelegate();
         ClosureBinder.bindAndCall(body, delegate);
         builder.addSemester(id, delegate.build());
     }
-
 
     /**
      * Добавляет пороговое значение для выставления оценки.

@@ -12,6 +12,12 @@ import ru.nsu.masolygin.oopchecker.domain.coursesettings.CourseSettings;
 
 /**
  * Агрегат всей конфигурации курса, заполняемый DSL-парсером.
+ *
+ * @param tasks       список всех задач курса
+ * @param groups      список учебных групп
+ * @param assignments назначения задач студентам
+ * @param checkpoints контрольные точки
+ * @param settings    общие настройки курса
  */
 public record CourseConfig(List<Task> tasks,
                            List<Group> groups,
@@ -19,6 +25,9 @@ public record CourseConfig(List<Task> tasks,
                            List<Checkpoint> checkpoints,
                            CourseSettings settings) {
 
+    /**
+     * Создает неизменяемую конфигурацию курса.
+     */
     public CourseConfig {
         tasks = List.copyOf(tasks);
         groups = List.copyOf(groups);

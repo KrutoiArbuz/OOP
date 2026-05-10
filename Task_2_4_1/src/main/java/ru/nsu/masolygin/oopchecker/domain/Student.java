@@ -9,6 +9,9 @@ package ru.nsu.masolygin.oopchecker.domain;
  */
 public record Student(String github, String fullName, String repoUrl) {
 
+    /**
+     * Создает студента с валидацией переданных полей.
+     */
     public Student {
         if (github == null || github.isBlank()) {
             throw new IllegalArgumentException("github не может быть пустым");

@@ -80,7 +80,8 @@ class BuildCommandFactoryTest {
     }
 
     @Test
-    void detectInvocationsAreIndependent(@TempDir Path tmp1, @TempDir Path tmp2) throws IOException {
+    void detectInvocationsAreIndependent(@TempDir Path tmp1, @TempDir Path tmp2)
+        throws IOException {
         Files.createFile(tmp1.resolve("build.gradle"));
         Files.createFile(tmp2.resolve("pom.xml"));
         assertTrue(factory.detect(tmp1) instanceof GradleBuildStrategy);

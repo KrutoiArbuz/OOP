@@ -8,6 +8,9 @@ package ru.nsu.masolygin.oopchecker.domain;
  */
 public record Assignment(String taskId, String studentGithub) {
 
+    /**
+     * Создает задание с валидацией идентификаторов.
+     */
     public Assignment {
         if (taskId == null || taskId.isBlank()) {
             throw new IllegalArgumentException("taskId не может быть пустым");

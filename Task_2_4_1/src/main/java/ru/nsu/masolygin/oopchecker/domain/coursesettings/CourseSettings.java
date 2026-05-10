@@ -9,6 +9,16 @@ import ru.nsu.masolygin.oopchecker.domain.SemesterInfo;
 
 /**
  * Настройки курса, заполняемые DSL пошагово.
+ *
+ * @param extraPoints         дополнительные баллы по студентам и задачам
+ * @param gradeScale          шкала оценок в зависимости от процента выполнения
+ * @param semesters           информация о семестрах
+ * @param latePenalty         штраф за сдачу после дедлайна
+ * @param testTimeoutSeconds  таймаут выполнения тестов в секундах
+ * @param buildTimeoutSeconds таймаут сборки в секундах
+ * @param activityWeight      вес активности в итоговой оценке
+ * @param docsPenalty         штраф за отсутствие документации
+ * @param stylePenalty        штраф за нарушение стиля кода
  */
 public record CourseSettings(Map<String, Map<String, Integer>> extraPoints,
                              NavigableMap<Integer, String> gradeScale,
@@ -20,6 +30,9 @@ public record CourseSettings(Map<String, Map<String, Integer>> extraPoints,
                              double docsPenalty,
                              double stylePenalty) {
 
+    /**
+     * Создает настройки курса, обеспечивая неизменяемость коллекций.
+     */
     public CourseSettings {
         extraPoints = extraPoints.entrySet().stream()
             .collect(Collectors.toUnmodifiableMap(
