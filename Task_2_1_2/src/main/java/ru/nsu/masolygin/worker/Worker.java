@@ -17,17 +17,31 @@ import ru.nsu.masolygin.protocol.payload.EmptyPayload;
 import ru.nsu.masolygin.protocol.payload.HelloPayload;
 import ru.nsu.masolygin.protocol.payload.TaskPayload;
 
+/**
+ * Рабочий процесс для выполнения задач по проверке простых чисел.
+ */
 public class Worker {
 
     private final int port;
     private final long workerId;
     private volatile TaskRunner currentRunner;
 
+    /**
+     * Создает рабочий процесс на указанном порту.
+     *
+     * @param port порт для прослушивания подключений
+     */
     public Worker(int port) {
         this.port = port;
         this.workerId = UUID.randomUUID().getMostSignificantBits();
     }
 
+    /**
+     * Точка входа для запуска рабочего процесса.
+     *
+     * @param args аргументы командной строки (порт)
+     * @throws IOException при ошибке сокета
+     */
     public static void main(String[] args) throws IOException {
         int port = args.length > 0 ? Integer.parseInt(args[0]) : 5001;
         new Worker(port).start();

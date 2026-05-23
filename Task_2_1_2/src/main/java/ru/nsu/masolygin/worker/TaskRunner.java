@@ -8,6 +8,9 @@ import ru.nsu.masolygin.protocol.payload.ResultPayload;
 import ru.nsu.masolygin.protocol.payload.TaskPayload;
 
 
+/**
+ * Запускает выполнение задачи по проверке простых чисел в отдельном потоке.
+ */
 public class TaskRunner {
 
     private final TaskPayload payload;
@@ -16,6 +19,13 @@ public class TaskRunner {
     private final ChunkProcessor processor;
     private final Thread thread;
 
+    /**
+     * Создает запуск задачи.
+     *
+     * @param payload  полезная нагрузка с данными задачи
+     * @param out      выходной поток для отправки результата
+     * @param workerId идентификатор рабочего процесса
+     */
     public TaskRunner(TaskPayload payload, DataOutputStream out, long workerId) {
         this.payload = payload;
         this.out = out;
@@ -24,14 +34,25 @@ public class TaskRunner {
         this.thread = new Thread(this::run, "worker-task-" + workerId);
     }
 
+    /**
+     * Запускает выполнение задачи в отдельном потоке.
+     */
     public void start() {
         thread.start();
     }
 
+    /**
+     * Отменяет выполнение задачи.
+     */
     public void cancel() {
         processor.cancel();
     }
 
+    /**
+     * Ожидает завершения выполнения задачи.
+     *
+     * @throws InterruptedException если поток был прерван
+     */
     public void join() throws InterruptedException {
         thread.join();
     }

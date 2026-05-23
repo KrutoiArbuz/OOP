@@ -3,6 +3,9 @@ package ru.nsu.masolygin.master;
 import java.util.List;
 
 
+/**
+ * Следит за живостью рабочих процессов и таймаутами выполнения задач.
+ */
 public class Watchdog {
 
     private final List<WorkerSession> workers;
@@ -12,6 +15,14 @@ public class Watchdog {
     private final OnTimeout onTimeout;
     private Thread thread;
 
+    /**
+     * Создает контролер живости рабочих процессов.
+     *
+     * @param workers    список рабочих процессов для мониторинга
+     * @param timeoutMs  таймаут выполнения задачи в миллисекундах
+     * @param intervalMs интервал проверки в миллисекундах
+     * @param onTimeout  обработчик события таймаута
+     */
     public Watchdog(List<WorkerSession> workers,
         long timeoutMs,
         long intervalMs,
@@ -23,11 +34,17 @@ public class Watchdog {
         this.onTimeout = onTimeout;
     }
 
+    /**
+     * Запускает мониторинг в отдельном потоке.
+     */
     public void start() {
         thread = new Thread(this::loop, "watchdog");
         thread.start();
     }
 
+    /**
+     * Останавливает мониторинг.
+     */
     public void stop() {
         if (thread != null) {
             thread.interrupt();
@@ -65,8 +82,16 @@ public class Watchdog {
         }
     }
 
+    /**
+     * Обработчик события таймаута выполнения задачи.
+     */
     public interface OnTimeout {
 
+        /**
+         * Обрабатывает таймаут выполнения задачи.
+         *
+         * @param stuckTaskId идентификатор зависшей задачи
+         */
         void handle(long stuckTaskId);
     }
 }

@@ -5,6 +5,9 @@ import ru.nsu.masolygin.protocol.Message;
 import ru.nsu.masolygin.protocol.payload.HelloPayload;
 import ru.nsu.masolygin.protocol.payload.ResultPayload;
 
+/**
+ * Читает входящие сообщения от рабочего процесса в отдельном потоке.
+ */
 public class WorkerReader {
 
     private final WorkerSession session;
@@ -12,6 +15,13 @@ public class WorkerReader {
     private final OnDisconnect onDisconnect;
     private final Thread thread;
 
+    /**
+     * Создает читатель сообщений от рабочего процесса.
+     *
+     * @param session      сессия с рабочим процессом
+     * @param onResult     обработчик результатов
+     * @param onDisconnect обработчик отключения
+     */
     public WorkerReader(WorkerSession session,
         OnResult onResult,
         OnDisconnect onDisconnect) {
@@ -21,10 +31,16 @@ public class WorkerReader {
         this.thread = new Thread(this::loop, "reader-" + session.address());
     }
 
+    /**
+     * Запускает чтение сообщений в отдельном потоке.
+     */
     public void start() {
         thread.start();
     }
 
+    /**
+     * Останавливает чтение сообщений.
+     */
     public void stop() {
         thread.interrupt();
     }
@@ -45,13 +61,30 @@ public class WorkerReader {
         }
     }
 
+    /**
+     * Обработчик результатов от рабочего процесса.
+     */
     public interface OnResult {
 
+        /**
+         * Обрабатывает результат выполнения задачи.
+         *
+         * @param w сессия рабочего процесса
+         * @param r результат выполнения задачи
+         */
         void handle(WorkerSession w, ResultPayload r);
     }
 
+    /**
+     * Обработчик отключения рабочего процесса.
+     */
     public interface OnDisconnect {
 
+        /**
+         * Обрабатывает отключение рабочего процесса.
+         *
+         * @param w сессия рабочего процесса
+         */
         void handle(WorkerSession w);
     }
 }

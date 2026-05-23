@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import ru.nsu.masolygin.protocol.payload.ResultPayload;
 
+/**
+ * Мастер для распределенной проверки наличия непростых чисел в массиве.
+ */
 public class Master {
 
     private static final long TASK_TIMEOUT_MS = 5000;
@@ -22,11 +25,23 @@ public class Master {
     private List<WorkerReader> readers;
     private Watchdog watchdog;
 
+    /**
+     * Создает мастер для работы с набором рабочих процессов.
+     *
+     * @param addresses адреса рабочих процессов
+     * @param chunkSize размер блока для обработки одним рабочим
+     */
     public Master(List<InetSocketAddress> addresses, int chunkSize) {
         this.addresses = addresses;
         this.chunkSize = chunkSize;
     }
 
+    /**
+     * Проверяет, содержит ли массив непростые числа.
+     *
+     * @param data массив чисел для проверки
+     * @return true, если найдено непростое число, иначе false
+     */
     public boolean containsComposite(int[] data) {
         if (data.length == 0) {
             return false;
