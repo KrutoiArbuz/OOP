@@ -104,14 +104,6 @@ public class WorkerSession {
         return address;
     }
 
-    /**
-     * Возвращает идентификатор воркера.
-     *
-     * @return идентификатор воркера (-1 до получения HELLO)
-     */
-    public long workerId() {
-        return workerId;
-    }
 
     /**
      * Устанавливает идентификатор воркера (вызывается при получении HELLO).

@@ -60,7 +60,7 @@ public class MessageIO {
             case HELLO -> HelloPayload.decode(bytes);
             case TASK -> TaskPayload.decode(bytes);
             case RESULT -> ResultPayload.decode(bytes);
-            case CANCEL, PING, PONG -> EmptyPayload.decode(bytes);
+            case CANCEL, PING, PONG -> EmptyPayload.decode();
         };
 
         return new Message(type, payload);

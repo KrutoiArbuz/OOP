@@ -8,10 +8,9 @@ public record EmptyPayload() implements Payload {
     /**
      * Декодирует массив байтов в объект EmptyPayload.
      *
-     * @param payload массив байтов (не используется)
      * @return новый объект EmptyPayload
      */
-    public static EmptyPayload decode(byte[] payload) {
+    public static EmptyPayload decode() {
         return new EmptyPayload();
     }
 
