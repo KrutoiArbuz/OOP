@@ -1,6 +1,8 @@
 package ru.nsu.masolygin;
 
+import java.net.InetSocketAddress;
 import java.util.Arrays;
+import java.util.List;
 import ru.nsu.masolygin.solutions.DistributedPrimeChecker;
 import ru.nsu.masolygin.solutions.PrimeChecker;
 
@@ -67,14 +69,22 @@ public class Main {
      */
     public static void main(String[] args) {
 
-        DistributedPrimeChecker sequentialChecker = new DistributedPrimeChecker();
+        List<InetSocketAddress> workers = List.of(
+            new InetSocketAddress("localhost", 5001),
+            new InetSocketAddress("localhost", 5002),
+            new InetSocketAddress("localhost", 5003)
+        );
+        int chunkSize = 100;
 
-        int[] bigData = generateArray(10_000);
-        int[] funnyData = generateFunnyArray(10_000);
+        DistributedPrimeChecker distributedChecker = new DistributedPrimeChecker(workers,
+            chunkSize);
 
-        tester(sequentialChecker, bigData, "Sequential Checker (Big Data)");
+        int[] bigData = generateArray(100_000);
+        int[] funnyData = generateFunnyArray(100_000);
 
-        tester(sequentialChecker, funnyData, "Sequential Checker (Funny Data)");
+        tester(distributedChecker, bigData, "Distributed Checker (Big Data)");
+
+        tester(distributedChecker, funnyData, "Distributed Checker (Funny Data)");
 
     }
 }

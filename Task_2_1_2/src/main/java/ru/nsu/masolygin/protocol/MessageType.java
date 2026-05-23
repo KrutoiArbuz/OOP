@@ -10,13 +10,20 @@ public enum MessageType {
 
     private final byte code;
 
-    MessageType(int code) { this.code = (byte) code; }
-    public byte code() { return code; }
+    MessageType(int code) {
+        this.code = (byte) code;
+    }
 
     public static MessageType fromCode(byte code) {
         for (MessageType t : values()) {
-            if (t.code == code) return t;
+            if (t.code == code) {
+                return t;
+            }
         }
         throw new IllegalArgumentException("Unknown message type: " + code);
+    }
+
+    public byte code() {
+        return code;
     }
 }

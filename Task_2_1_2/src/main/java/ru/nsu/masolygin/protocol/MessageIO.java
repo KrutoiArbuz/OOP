@@ -10,9 +10,11 @@ import ru.nsu.masolygin.protocol.payload.ResultPayload;
 import ru.nsu.masolygin.protocol.payload.TaskPayload;
 
 public class MessageIO {
+
     private static final int MAX_PAYLOAD_LENGTH = 64 * 1024 * 1024;
 
-    public static void write(DataOutputStream out, MessageType type, Payload payload) throws IOException {
+    public static void write(DataOutputStream out, MessageType type, Payload payload)
+        throws IOException {
         byte[] bytes = payload.encode();
 
         synchronized (out) {
