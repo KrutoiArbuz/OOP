@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ru.nsu.masolygin"},{"l":"ru.nsu.masolygin.master"},{"l":"ru.nsu.masolygin.protocol"},{"l":"ru.nsu.masolygin.protocol.payload"},{"l":"ru.nsu.masolygin.solutions"},{"l":"ru.nsu.masolygin.worker"}];updateSearchResults();
