@@ -73,10 +73,13 @@ public class Watchdog {
 
             if (w.currentTaskId() >= 0 && silence > timeoutMs) {
                 long stuck = w.currentTaskId();
+                System.out.println(w.address()
+                    + " silence: " + silence + "ms, change task " + stuck);
                 w.markDead();
                 w.close();
                 onTimeout.handle(stuck);
             } else if (silence > pingAfterMs) {
+                System.out.println(w.address() + " silence: " + silence + "ms");
                 w.sendPing();
             }
         }

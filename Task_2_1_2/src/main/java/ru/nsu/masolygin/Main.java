@@ -79,8 +79,8 @@ public class Main {
         DistributedPrimeChecker distributedChecker = new DistributedPrimeChecker(workers,
             chunkSize);
 
-        int[] bigData = generateArray(100_000);
-        int[] funnyData = generateFunnyArray(100_000);
+        int[] bigData = generateArray(200_000);
+        int[] funnyData = generateFunnyArray(200_000);
 
         tester(distributedChecker, bigData, "Distributed Checker (Big Data)");
 

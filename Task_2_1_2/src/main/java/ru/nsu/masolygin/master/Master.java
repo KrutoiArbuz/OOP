@@ -12,8 +12,8 @@ import ru.nsu.masolygin.protocol.payload.ResultPayload;
  */
 public class Master {
 
-    private static final long TASK_TIMEOUT_MS = 5000;
-    private static final long WATCHDOG_INTERVAL_MS = 500;
+    private static final long TASK_TIMEOUT_MS = 500;
+    private static final long WATCHDOG_INTERVAL_MS = 100;
 
     private final List<InetSocketAddress> addresses;
     private final int chunkSize;
@@ -118,10 +118,14 @@ public class Master {
     }
 
     private synchronized void onDisconnect(WorkerSession w) {
+        System.out.println("dead "+w.address());
         if (w.currentTaskId() >= 0) {
             queue.reassign(w.currentTaskId());
+            System.out.println("reasign task "+w.currentTaskId());
+
         }
         dispatch();
+
     }
 
     private synchronized void dispatch() {
